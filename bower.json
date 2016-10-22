@@ -1,0 +1,22 @@
+{
+  "name": "handie",
+  "homepage": "https://github.com/ourai/handie",
+  "authors": [
+    "Ourai Lin <ourairyu@gmail.com> (http://ourai.ws/)"
+  ],
+  "description": "UI stuffs for the dashboard of a website.",
+  "main": "",
+  "keywords": [
+    "ui",
+    "dashboard",
+    "website"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
