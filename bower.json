@@ -21,8 +21,6 @@
     "gulpfile.js"
   ],
   "dependencies": {
-    "tangram-0.2.0": "ourai/tangram#0.2.0",
-    "compass-mixins-0.12.10": "compass-mixins#0.12.10",
-    "compass-kit-0.3.0": "ourai/compass-kit#0.3.0"
+    "tangram-0.2.1": "ourai/tangram#0.2.1"
   }
 }

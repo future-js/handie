@@ -9,3 +9,20 @@ body {
   min-width: 800px;
   margin: 0;
 }
+
+.Page-content {
+  @include box-fixed-height(
+    ".Page-header", 60px,
+    ".Page-footer", 0,
+    ".Page-main"
+  );
+}
+
+.Page-header,
+.Page-footer,
+.Page-main {
+  padding: {
+    right: 15px;
+    left: 15px;
+  }
+}

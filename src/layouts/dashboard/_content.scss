@@ -1,34 +1,6 @@
-.Page-content {
-  overflow: auto;
-  background-color: #fff;
-}
-
 .Page-header {
-  height: 60px;
   border-bottom: 1px solid #e5e5e5;
   background-color: #f5f5f5;
-}
-
-.Page-operations {
-  float: right;
-  margin-top: 21px;
-
-  .Button--newForm,
-  .Button--signOut {
-    font-size: 18px;
-    color: #666;
-  }
-
-  .Button--newForm {
-    margin-right: 20px;
-    padding: 0;
-    border-style: none;
-    background-color: transparent;
-  }
-
-  .Button--signOut:hover {
-    text-decoration: none;
-  }
 }
 
 .Page-breadcrumb {
@@ -49,7 +21,10 @@
   }
 
   ul {
-    margin-bottom: 0;
+    margin: {
+      top: 0;
+      bottom: 0;
+    }
     padding-left: 0;
     list-style: none inside none;
     overflow: hidden;
@@ -67,33 +42,4 @@
 
 .Page-main {
   padding-top: 30px;
-
-  .Area {
-    &.Area--query {
-      select {
-        width: 150px;
-      }
-
-      .fa-search,
-      .fa-pie-chart {
-        margin-right: 5px;
-      }
-    }
-
-    + .Area {
-      margin-top: 20px;
-      //padding-top: 30px;
-      //border-top: 1px solid #e5e5e5;
-    }
-  }
-}
-
-.OperationGroup {
-  > a,
-  > button {
-    + a,
-    + button {
-      margin-left: 7px;
-    }
-  }
 }
