@@ -7,7 +7,7 @@ const cssmin = require("gulp-cssmin");
 const rename = require("gulp-rename");
 
 gulp.task("compile", function() {
-  ["reset", "layouts/sidebar-outside"].forEach(function( f ) {
+  ["reset", "layouts/sidebar-outside", "layouts/sidebar-inside"].forEach(function( f ) {
     gulp
       .src(`./src/${f}/index.scss`)
       .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))

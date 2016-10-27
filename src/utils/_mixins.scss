@@ -4,3 +4,9 @@
 @import "../../bower_components/compass-mixins-0.12.10/lib/animation/core";
 // Tangram layout library
 @import "../../bower_components/tangram-0.2.2/tangram";
+
+@import "../reset/variables";
+
+//= Variables and mixins from Bootstrap
+@import "../../bower_components/bootstrap-sass-3.3.6/assets/stylesheets/bootstrap/variables";
+@import "../../bower_components/bootstrap-sass-3.3.6/assets/stylesheets/bootstrap/mixins";
