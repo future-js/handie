@@ -21,6 +21,8 @@
     "gulpfile.js"
   ],
   "dependencies": {
-    "tangram-0.2.2": "ourai/tangram#0.2.2"
+    "tangram-0.2.2": "ourai/tangram#0.2.2",
+    "bootstrap-sass-3.3.6": "bootstrap-sass#3.3.6",
+    "fontawesome-4.6.3": "fontawesome#4.6.3"
   }
 }
