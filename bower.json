@@ -21,6 +21,6 @@
     "gulpfile.js"
   ],
   "dependencies": {
-    "tangram-0.2.1": "ourai/tangram#0.2.1"
+    "tangram-0.2.2": "ourai/tangram#0.2.2"
   }
 }

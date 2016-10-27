@@ -15,7 +15,7 @@
   }
 
   &:before {
-    content: $UN-space;
+    content: "\0020";
     width: 0;
     height: 100%;
   }

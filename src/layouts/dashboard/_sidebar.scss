@@ -53,7 +53,7 @@ $sidebarBgColor: #fafafa;
         @include ellipsis;
 
         &:before {
-          content: $UN-space;
+          content: "\0020";
           width: 0;
           height: 100%;
           @include inline-block;
@@ -90,7 +90,7 @@ $sidebarBgColor: #fafafa;
     @include box-shadow(1px 1px 10px 1px rgba(0, 0, 0, .3));
 
     &:before {
-      content: $UN-space;
+      content: "\0020";
       position: absolute;
       top: 15px;
       right: 100%;
