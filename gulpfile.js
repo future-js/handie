@@ -7,12 +7,19 @@ const cssmin = require("gulp-cssmin");
 const rename = require("gulp-rename");
 
 gulp.task("compile", function() {
-  ["themes/sidebar-outside-gray", "themes/sidebar-inside-yellow"].forEach(function( f ) {
+  [{
+    src: "layouts/sidebar-outside",
+    dist: "themes/sidebar-outside-gray"
+  }, {
+    src: "layouts/sidebar-inside",
+    dist: "themes/sidebar-inside-yellow"
+  }].forEach(function( f ) {
     gulp
-      .src(`./src/${f}/index.scss`)
+      .src(`./src/${f.src}/_exports.scss`)
+      .pipe(concat("index.scss"))
       .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
       .pipe(cssmin({keepSpecialComments: 0}))
-      .pipe(rename(`${f}.min.css`))
+      .pipe(rename(`${f.dist}.min.css`))
       .pipe(gulp.dest("./dist"));
   });
 });
