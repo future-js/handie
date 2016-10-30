@@ -1,5 +1,3 @@
-@import "../../utils/mixins";
-
 $headerHeight: $navbar-height;
 $footerHeight: 90px;
 
@@ -15,10 +13,18 @@ body {
   overflow: hidden;
 }
 
+.Page {
+  @include box-fixed-height(
+    ".Page-header", $headerHeight + 1px,
+    ".Page-footer", 0,
+    ".Page-content"
+  );
+}
+
 .Page-header {
-  margin-bottom: -($headerHeight);
   border-bottom: 1px solid #E9C200;
   background-color: #FDD430;
+  overflow: visible !important;
 
   .navbar {
     margin-bottom: 0;
@@ -166,19 +172,6 @@ body {
   }
 }
 
-.Page-content > .container,
-.Page-main > .container-fluid {
-  padding-top: 30px;
-}
-
-.Page-content {
-  padding-top: $headerHeight;
-}
-
-.Page-main {
-  overflow: auto;
-}
-
 .Page-sidebar {
   width: 160px;
   padding-top: 10px;
@@ -188,37 +181,6 @@ body {
   @include transition(width .35s ease);
 }
 
-.Page-navs--sidebar {
-  margin-bottom: 0;
-  padding-left: 0;
-  list-style: none inside none;
-  font-size: 14px;
-
-  a {
-    display: block;
-    padding: 0 25px;
-    height: 36px;
-    line-height: 36px;
-    color: #fff;
-    @include ellipsis;
-
-    &:hover {
-      background-color: #c4aa27;
-      text-decoration: none;
-    }
-
-    span {
-      margin-left: 14px;
-    }
-  }
-}
-
-@media (max-width: $screen-md-max) {
-  .Page-sidebar {
-    width: 64px;
-  }
-
-  .Page-navs--sidebar a span {
-    display: none;
-  }
+.Page-main {
+  overflow: auto;
 }

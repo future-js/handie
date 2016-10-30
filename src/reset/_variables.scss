@@ -2,7 +2,7 @@
  * Font Awesome
  */
 
-$fa-font-path: "../bower_components/fontawesome-4.6.3/fonts";
+$fa-font-path: "../../bower_components/fontawesome-4.6.3/fonts" !default;
 
 
 
@@ -10,8 +10,6 @@ $fa-font-path: "../bower_components/fontawesome-4.6.3/fonts";
  * Bootstrap
  */
 
-$font-family-sans-serif: "Helvetica Neue", Helvetica, Arial, "Pingfang SC", "Microsoft Yahei", Sans-serif;
-$font-size-base: 14px;
-$line-height-base: 1.5;
-
-$navbar-height: 40px;
+$font-family-sans-serif: "Helvetica Neue", Helvetica, Arial, "Pingfang SC", "Microsoft Yahei", Sans-serif !default;
+$font-size-base: 14px !default;
+$line-height-base: 1.5 !default;
