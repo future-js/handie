@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="../dist/themes/sidebar-outside-default.css">
+    <link rel="stylesheet" href="./stylesheets/sidebar-outside.css">
   </head>
   <body class="Page">
     <header class="Page-sidebar">
@@ -52,12 +52,19 @@
       </nav>
     </header>
     <main class="Page-content">
-      <header class="Page-header">
-        <div class="Page-breadcrumb">
+      <header class="Page-header Header">
+        <div class="Header-breadcrumb">
           <ul>
             <li>Primary</li>
             <li>Secondary</li>
+            <li>Tertiary</li>
           </ul>
+        </div>
+        <div class="Header-extra">
+          <div class="Header-operations">
+            <button class="fa fa-plus" type="button" title="New"><span class="sr-only">New</span></button>
+            <a href="javascript:void(0);" class="fa fa-sign-out" title="Sign out"><span class="sr-only">Sign out</span></a>
+          </div>
         </div>
       </header>
       <div class="Page-main">Main content</div>

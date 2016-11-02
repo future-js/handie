@@ -10,6 +10,10 @@ body {
   margin: 0;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 .Page-content {
   @include box-fixed-height(
     ".Page-header", 60px,

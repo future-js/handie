@@ -12,10 +12,15 @@ gulp.task("compile", function() {
       .src(`./src/layouts/${f}/_exports.scss`)
       .pipe(concat("index.scss"))
       .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
-      // .pipe(cssmin({keepSpecialComments: 0}))
       .pipe(rename(`themes/${f}-default.css`))
       .pipe(gulp.dest("./dist"));
   });
+
+  gulp
+    .src("./examples/**/*.scss")
+    .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
+    .pipe(cssmin({keepSpecialComments: 0}))
+    .pipe(gulp.dest("./examples"))
 });
 
 gulp.task("default", ["compile"]);
