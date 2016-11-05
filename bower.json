@@ -36,6 +36,7 @@
     "select2-4.0.3": "select2#4.0.3",
     "h5fx-0.2.3": "h5fx#0.2.3",
     "bootstrap-table-1.11.0": "bootstrap-table#1.11.0",
-    "trick-0.4.2": "ourai/trick#0.4.2"
+    "trick-0.4.2": "ourai/trick#0.4.2",
+    "moment-2.15.2": "moment#2.15.2"
   }
 }
