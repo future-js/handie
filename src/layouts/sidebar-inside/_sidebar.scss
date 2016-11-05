@@ -1,0 +1,34 @@
+.Page-navs--sidebar {
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none inside none;
+  font-size: 14px;
+
+  a {
+    display: block;
+    padding: 0 25px;
+    height: 36px;
+    line-height: 36px;
+    color: #fff;
+    @include ellipsis;
+
+    &:hover {
+      background-color: #c4aa27;
+      text-decoration: none;
+    }
+
+    span {
+      margin-left: 14px;
+    }
+  }
+}
+
+@media (max-width: $screen-md-max) {
+  .Page-sidebar {
+    width: 64px;
+  }
+
+  .Page-navs--sidebar a span {
+    display: none;
+  }
+}

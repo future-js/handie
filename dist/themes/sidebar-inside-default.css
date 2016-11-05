@@ -8373,3 +8373,45 @@ body {
 .Page-main {
   overflow: auto;
 }
+
+.Page-main > .container-fluid {
+  padding-top: 30px;
+}
+
+.Page-navs--sidebar {
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none inside none;
+  font-size: 14px;
+}
+
+.Page-navs--sidebar a {
+  display: block;
+  padding: 0 25px;
+  height: 36px;
+  line-height: 36px;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+
+.Page-navs--sidebar a:hover {
+  background-color: #c4aa27;
+  text-decoration: none;
+}
+
+.Page-navs--sidebar a span {
+  margin-left: 14px;
+}
+
+@media (max-width: 1199px) {
+  .Page-sidebar {
+    width: 64px;
+  }
+  .Page-navs--sidebar a span {
+    display: none;
+  }
+}
