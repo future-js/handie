@@ -11,6 +11,15 @@ body {
   background-color: #eee;
 }
 
+a {
+  color: inherit;
+
+  &:hover,
+  &:active {
+    text-decoration: none;
+  }
+}
+
 .Page {
   @include box-fixed-height(
     ".Page-header", $layout-header-height + 1px,

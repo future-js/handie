@@ -1,8 +1,48 @@
 .Page-sidebar {
-  width: 160px;
-  padding-top: 10px;
+  width: 200px;
+  padding-top: 20px;
   float: left;
-  box-shadow: 1px 0 3px rgba(0, 0, 0, .25);
-  background-color: #dcb803;
-  @include transition(width .35s ease);
+  overflow: auto;
+}
+
+.Sidebar {
+  .Navs {
+    > ul {
+      margin-bottom: 0;
+      padding-left: 0;
+      list-style: none inside none;
+
+      > li {
+        > a {
+          display: block;
+          height: 48px;
+          padding: 0 25px;
+          font: {
+            size: 14px;
+            weight: normal;
+          }
+          color: #666;
+          @include text-middle("i, span");
+
+          i {
+            width: 20px;
+            font-size: 16px;
+            text-align: center;
+          }
+
+          span {
+            margin-left: 14px;
+          }
+
+          &:hover {
+            background-color: #e7e7e7;
+          }
+        }
+
+        > .Navs {
+          display: none;
+        }
+      }
+    }
+  }
 }

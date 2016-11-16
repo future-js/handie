@@ -1,4 +1,5 @@
 .Page-header {
+  position: relative;
   padding: {
     right: 15px;
     left: 15px;
@@ -80,11 +81,6 @@
     padding: 0;
     border-style: none;
     background-color: transparent;
-  }
-
-  a.Action-trigger {
-    text-decoration: none;
-    color: inherit;
   }
 
   &.Action--avatar {

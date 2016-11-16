@@ -8877,6 +8877,14 @@ body {
   background-color: #eee;
 }
 
+a {
+  color: inherit;
+}
+
+a:hover, a:active {
+  text-decoration: none;
+}
+
 .Page {
   padding-top: 61px;
   padding-bottom: 0;
@@ -8914,6 +8922,7 @@ body {
 }
 
 .Page-header {
+  position: relative;
   padding-right: 15px;
   padding-left: 15px;
   border-bottom: 1px solid #fda929;
@@ -9043,11 +9052,6 @@ body {
   background-color: transparent;
 }
 
-.Header-action a.Action-trigger {
-  text-decoration: none;
-  color: inherit;
-}
-
 .Header-action.Action--avatar .Action-trigger img,
 .Header-action.Action--avatar .Action-trigger span {
   display: block;
@@ -9101,14 +9105,64 @@ body {
 }
 
 .Page-sidebar {
-  width: 160px;
-  padding-top: 10px;
+  width: 200px;
+  padding-top: 20px;
   float: left;
-  box-shadow: 1px 0 3px rgba(0, 0, 0, 0.25);
-  background-color: #dcb803;
-  -webkit-transition: width 0.35s ease;
-  -o-transition: width 0.35s ease;
-  transition: width 0.35s ease;
+  overflow: auto;
+}
+
+.Sidebar .Navs > ul {
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none inside none;
+}
+
+.Sidebar .Navs > ul > li > a {
+  display: block;
+  height: 48px;
+  padding: 0 25px;
+  font-size: 14px;
+  font-weight: normal;
+  color: #666;
+}
+
+.Sidebar .Navs > ul > li > a:before {
+  content: " ";
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  width: 0;
+  height: 100%;
+}
+
+.Sidebar .Navs > ul > li > a i, .Sidebar .Navs > ul > li > a span {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+}
+
+.Sidebar .Navs > ul > li > a i {
+  width: 20px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.Sidebar .Navs > ul > li > a span {
+  margin-left: 14px;
+}
+
+.Sidebar .Navs > ul > li > a:hover {
+  background-color: #e7e7e7;
+}
+
+.Sidebar .Navs > ul > li > .Navs {
+  display: none;
 }
 
 .Page-main {
