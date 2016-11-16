@@ -7,7 +7,7 @@ const cssmin = require("gulp-cssmin");
 const rename = require("gulp-rename");
 
 gulp.task("compile", function() {
-  ["sidebar-outside", "sidebar-inside"].forEach(function( f ) {
+  ["sidebar-outside", "sidebar-inside", "isomorphic"].forEach(function( f ) {
     gulp
       .src(`./src/layouts/${f}/_exports.scss`)
       .pipe(concat("index.scss"))
@@ -23,4 +23,8 @@ gulp.task("compile", function() {
     .pipe(gulp.dest("./examples"))
 });
 
-gulp.task("default", ["compile"]);
+gulp.task("watch", function() {
+  gulp.watch("**/*.scss", ["compile"]);
+});
+
+gulp.task("default", ["compile", "watch"]);

@@ -1,0 +1,8 @@
+.Page-sidebar {
+  width: 160px;
+  padding-top: 10px;
+  float: left;
+  box-shadow: 1px 0 3px rgba(0, 0, 0, .25);
+  background-color: #dcb803;
+  @include transition(width .35s ease);
+}

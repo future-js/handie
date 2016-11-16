@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <title>Isomorphic Layout</title>
+    <link rel="stylesheet" href="./stylesheets/isomorphic.css">
+  </head>
+  <body class="Page">
+    <header class="Page-header Header">
+      <div class="Header-brand">
+        <h1><a href="/"><img src="./images/logos/b2b.png" srcset="./images/logos/b2b@2x.png 2x" alt="Maihaoche"><span>仓储管理</span></a></h1>
+      </div>
+      <div class="Header-extra">
+        <div class="Header-operations">
+          <div class="Header-action Action"><button class="Action-trigger fa fa-plus" type="button" title="新增"><span class="sr-only">新增</span></button>
+          </div>
+          <div class="Header-action Action"><button class="Action-trigger fa fa-th" type="button" title="其他应用"><span class="sr-only">其他应用</span></button>
+            <div class="Action-content">
+              <ul>
+                <li><a href="javascript:void(0);" title="退出系统">退出系统</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="Header-action Action Action--avatar is-shown"><a class="Action-trigger" href="javascript:void(0);"><span>欧雷</span></a>
+            <div class="Action-content">
+              <ul>
+                <li><a href="javascript:void(0);" title="退出系统">退出系统</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="Page-content">
+      <nav class="Page-sidebar"></nav>
+      <div class="Page-main">
+        <article class="container-fluid">
+          <header>
+            <h1>Page's title</h1>
+          </header>
+          <p>Main content</p>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>

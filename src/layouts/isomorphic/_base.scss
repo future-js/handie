@@ -1,0 +1,20 @@
+html,
+body,
+.Page-content,
+.Page-sidebar,
+.Page-main {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+  background-color: #eee;
+}
+
+.Page {
+  @include box-fixed-height(
+    ".Page-header", $layout-header-height + 1px,
+    ".Page-footer", 0,
+    ".Page-content"
+  );
+}
