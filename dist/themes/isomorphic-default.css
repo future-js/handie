@@ -8923,6 +8923,7 @@ a:hover, a:active {
 
 .Page-header {
   position: relative;
+  z-index: 1;
   padding-right: 15px;
   padding-left: 15px;
   border-bottom: 1px solid #fda929;
