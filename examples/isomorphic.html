@@ -8,7 +8,7 @@
   <body class="Page">
     <header class="Page-header Header">
       <div class="Header-brand">
-        <h1><a href="/"><img src="./images/logos/b2b.png" srcset="./images/logos/b2b@2x.png 2x" alt="Maihaoche"><span>仓储管理</span></a></h1>
+        <a href="/"><img src="./images/logos/b2b.png" srcset="./images/logos/b2b@2x.png 2x" alt="Maihaoche"><span>系统标题</span></a>
       </div>
       <div class="Header-extra">
         <div class="Header-operations">
@@ -21,7 +21,7 @@
               </ul>
             </div>
           </div>
-          <div class="Header-action Action Action--avatar is-shown"><a class="Action-trigger" href="javascript:void(0);"><span>欧雷</span></a>
+          <div class="Header-action Action Action--avatar"><a class="Action-trigger" href="javascript:void(0);"><span>欧雷</span></a>
             <div class="Action-content">
               <ul>
                 <li><a href="javascript:void(0);" title="退出系统">退出系统</a></li>
@@ -36,37 +36,35 @@
         <nav class="Sidebar-navs Navs">
           <ul>
             <li>
-              <a href="javascript:void(0);"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+              <a href="javascript:void(0);"><i class="fa fa-dashboard"></i><span>仪表盘</span></a>
               <div class="Navs">
                 <ul>
                   <li><a href="javascript:void(0);">Sub-item 1</a></li>
                 </ul>
               </div>
             </li>
+            <li class="is-active">
+              <a href="javascript:void(0);"><i class="fa fa-pie-chart"></i><span>报表</span></a>
+              <div class="Navs">
+                <ul>
+                  <li><a href="javascript:void(0);">日报</a></li>
+                  <li class="is-active"><a href="javascript:void(0);">周报</a></li>
+                  <li><a href="javascript:void(0);">月报</a></li>
+                </ul>
+              </div>
+            </li>
             <li>
-              <a href="javascript:void(0);"><i class="fa fa-pie-chart"></i><span>Charts</span></a>
+              <a href="javascript:void(0);"><i class="fa fa-info-circle"></i><span>信息</span></a>
               <div class="Navs">
                 <ul>
                   <li><a href="javascript:void(0);">Sub-item 1</a></li>
                   <li><a href="javascript:void(0);">Sub-item 2</a></li>
                   <li><a href="javascript:void(0);">Sub-item 3</a></li>
-                  <li><a href="javascript:void(0);">Sub-item 4</a></li>
-                  <li><a href="javascript:void(0);">Sub-item 5</a></li>
                 </ul>
               </div>
             </li>
             <li>
-              <a href="javascript:void(0);"><i class="fa fa-info-circle"></i><span>Info</span></a>
-              <div class="Navs">
-                <ul>
-                  <li><a href="javascript:void(0);">Sub-item 1</a></li>
-                  <li><a href="javascript:void(0);">Sub-item 2</a></li>
-                  <li><a href="javascript:void(0);">Sub-item 3</a></li>
-                </ul>
-              </div>
-            </li>
-            <li>
-              <a href="javascript:void(0);"><i class="fa fa-cogs"></i><span>Settings</span></a>
+              <a href="javascript:void(0);"><i class="fa fa-cogs"></i><span>设置</span></a>
               <div class="Navs">
                 <ul>
                   <li><a href="javascript:void(0);">Sub-item 1</a></li>
@@ -77,11 +75,16 @@
         </nav>
       </div>
       <div class="Page-main">
-        <article class="container-fluid">
-          <header>
-            <h1>Page's title</h1>
+        <article class="Content container-fluid">
+          <header class="Content-header">
+            <div class="Breadcrumb"><i class="fa fa-map-marker"></i><ul>
+              <li>一级页面</li>
+              <li>二级页面</li>
+              <li>三级页面</li>
+            </ul></div>
+            <h1>页面标题</h1>
           </header>
-          <p>Main content</p>
+          <p>页面正文</p>
         </article>
       </div>
     </main>
