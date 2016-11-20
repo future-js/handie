@@ -6,7 +6,8 @@
   ],
   "description": "UI stuffs for the dashboard of a website.",
   "main": [
-    "dist/themes/sidebar-outside-default.css"
+    "dist/javascripts/isomorphic.js",
+    "dist/stylesheets/themes/isomorphic-default.css"
   ],
   "keywords": [
     "ui",
