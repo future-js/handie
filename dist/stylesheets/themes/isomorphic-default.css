@@ -8881,7 +8881,7 @@ a {
   color: inherit;
 }
 
-a:hover, a:active {
+a:hover, a:focus, a:active {
   text-decoration: none;
 }
 
@@ -9038,6 +9038,10 @@ a:hover, a:active {
   *vertical-align: auto;
   zoom: 1;
   *display: inline;
+}
+
+.Header-action .Action-trigger:focus {
+  outline: none;
 }
 
 .Header-action .Action-trigger.fa {

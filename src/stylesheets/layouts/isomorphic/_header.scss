@@ -70,6 +70,10 @@
   @include text-middle(".Action-trigger");
 
   .Action-trigger {
+    &:focus {
+      outline: none;
+    }
+    
     &.fa {
       width: 18px;
       font-size: 18px;
