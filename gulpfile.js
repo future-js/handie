@@ -9,11 +9,11 @@ const rename = require("gulp-rename");
 gulp.task("compile", function() {
   ["sidebar-outside", "sidebar-inside", "isomorphic"].forEach(function( f ) {
     gulp
-      .src(`./src/layouts/${f}/_exports.scss`)
+      .src(`./src/stylesheets/layouts/${f}/_exports.scss`)
       .pipe(concat("index.scss"))
       .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
       .pipe(rename(`themes/${f}-default.css`))
-      .pipe(gulp.dest("./dist"));
+      .pipe(gulp.dest("./dist/stylesheets"));
   });
 
   gulp
