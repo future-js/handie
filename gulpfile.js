@@ -5,8 +5,10 @@ const concat = require("gulp-concat");
 const sass = require("gulp-sass");
 const cssmin = require("gulp-cssmin");
 const rename = require("gulp-rename");
+const babel = require("gulp-babel");
+const umd = require("gulp-umd");
 
-gulp.task("compile", function() {
+gulp.task("compile-css", function() {
   ["sidebar-outside", "sidebar-inside", "isomorphic"].forEach(function( f ) {
     gulp
       .src(`./src/stylesheets/layouts/${f}/_exports.scss`)
@@ -23,8 +25,16 @@ gulp.task("compile", function() {
     .pipe(gulp.dest("./examples"))
 });
 
-gulp.task("watch", function() {
-  gulp.watch("**/*.scss", ["compile"]);
+gulp.task("compile-js", function() {
+  gulp
+    .src("./src/javascripts/*.js")
+    .pipe(babel({presets: ["es2015"]}))
+    .pipe(gulp.dest("./dist/javascripts"));
 });
 
-gulp.task("default", ["compile", "watch"]);
+gulp.task("watch", function() {
+  gulp.watch("**/*.scss", ["compile-css"]);
+  gulp.watch("./src/**/*.js", ["compile-js"]);
+});
+
+gulp.task("default", ["compile-css", "compile-js", "watch"]);
