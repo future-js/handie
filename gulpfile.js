@@ -7,6 +7,7 @@ const cssmin = require("gulp-cssmin");
 const rename = require("gulp-rename");
 const babel = require("gulp-babel");
 const umd = require("gulp-umd");
+const scssimport = require("gulp-shopify-sass");
 
 gulp.task("compile-css", function() {
   ["sidebar-outside", "sidebar-inside", "isomorphic"].forEach(function( f ) {
@@ -15,6 +16,12 @@ gulp.task("compile-css", function() {
       .pipe(concat("index.scss"))
       .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
       .pipe(rename(`themes/${f}-default.css`))
+      .pipe(gulp.dest("./dist/stylesheets"));
+
+    gulp
+      .src(`./src/stylesheets/layouts/${f}/_exports.scss`)
+      .pipe(scssimport())
+      .pipe(rename(`themes/${f}.scss`))
       .pipe(gulp.dest("./dist/stylesheets"));
   });
 
