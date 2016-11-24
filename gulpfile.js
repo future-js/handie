@@ -21,7 +21,7 @@ gulp.task("compile-css", function() {
     gulp
       .src(`./src/stylesheets/layouts/${f}/_exports.scss`)
       .pipe(scssimport())
-      .pipe(rename(`themes/${f}.scss`))
+      .pipe(rename(`themes/_${f}.scss`))
       .pipe(gulp.dest("./dist/stylesheets"));
   });
 
