@@ -40,7 +40,7 @@ gulp.task("compile-js", function() {
 });
 
 gulp.task("watch", function() {
-  gulp.watch("**/*.scss", ["compile-css"]);
+  gulp.watch("./src/**/*.scss", ["compile-css"]);
   gulp.watch("./src/**/*.js", ["compile-js"]);
 });
 

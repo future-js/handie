@@ -8926,8 +8926,8 @@ a:hover, a:focus, a:active {
   z-index: 1;
   padding-right: 15px;
   padding-left: 15px;
-  border-bottom: 1px solid #fda929;
-  background-color: #fdaf2e;
+  border-bottom: 1px solid #0871ab;
+  background-color: #cae6f1;
   overflow: visible !important;
   *zoom: 1;
   -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
@@ -8982,16 +8982,16 @@ a:hover, a:focus, a:active {
 }
 
 .Header-brand a img {
-  height: 20px;
+  height: inherit;
+  max-height: 100%;
 }
 
-.Header-brand a span {
+.Header-brand a img + span {
   position: relative;
   padding-left: 24px;
-  color: #333;
 }
 
-.Header-brand a span:before {
+.Header-brand a img + span:before {
   content: " ";
   width: 1px;
   background-color: #666;
@@ -9000,6 +9000,11 @@ a:hover, a:focus, a:active {
   bottom: 0;
   left: 10px;
   right: auto;
+}
+
+.Header-brand a span {
+  padding-left: 10px;
+  color: #333;
 }
 
 .Header-extra {

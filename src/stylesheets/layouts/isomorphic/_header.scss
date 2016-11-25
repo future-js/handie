@@ -27,27 +27,32 @@
     position: relative;
     display: block;
     font: {
-      size: 18px;
-      weight: normal;
+      size: $layout-brand-font-size;
+      weight: $layout-brand-font-weight;
     }
     line-height: 1.1;
     @include text-middle("img, span");
 
     img {
-      height: 20px;
+      height: $layout-brand-image-height;
+      max-height: 100%;
+
+      + span {
+        position: relative;
+        padding-left: $layout-brand-separator-gap;
+
+        &:before {
+          content: $UN-space;
+          width: 1px;
+          background-color: $layout-brand-separator-color;
+          @include stretch(0, auto, 0, 10px);
+        }
+      }
     }
 
     span {
-      position: relative;
-      padding-left: 24px;
-      color: #333;
-
-      &:before {
-        content: $UN-space;
-        width: 1px;
-        background-color: #666;
-        @include stretch(0, auto, 0, 10px);
-      }
+      padding-left: 10px;
+      color: $layout-brand-text-color;
     }
   }
 }
@@ -73,7 +78,7 @@
     &:focus {
       outline: none;
     }
-    
+
     &.fa {
       width: 18px;
       font-size: 18px;

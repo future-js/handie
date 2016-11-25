@@ -7,7 +7,8 @@
   "description": "UI stuffs for the dashboard of a website.",
   "main": [
     "dist/javascripts/isomorphic.js",
-    "dist/stylesheets/themes/isomorphic-default.css"
+    "dist/stylesheets/themes/isomorphic-default.css",
+    "dist/stylesheets/themes/_isomorphic.scss"
   ],
   "keywords": [
     "ui",

@@ -1,10 +1,27 @@
+//= Override Bootstrap
+
 $navbar-height: 60px !default;
 
+
+
+//= Header
+
 $layout-header-height: $navbar-height !default;
-$layout-header-bg-color: #fdaf2e !default;
-$layout-header-border-color: #fda929 !default;
+$layout-header-bg-color: #cae6f1 !default;
+$layout-header-border-color: #0871ab !default;
+
+$layout-brand-image-height: inherit !default;
+$layout-brand-font-size: 18px !default;
+$layout-brand-font-weight: normal !default;
+$layout-brand-text-color: #333 !default;
+$layout-brand-separator-color: #666 !default;
+$layout-brand-separator-gap: 24px !default;
 
 $layout-navbar-avatar-size: 30px !default;
+
+
+
+//= Sidebar
 
 $layout-sidebar-item-hover: #e7e7e7 !default;
 
@@ -20929,27 +20946,32 @@ a {
     position: relative;
     display: block;
     font: {
-      size: 18px;
-      weight: normal;
+      size: $layout-brand-font-size;
+      weight: $layout-brand-font-weight;
     }
     line-height: 1.1;
     @include text-middle("img, span");
 
     img {
-      height: 20px;
+      height: $layout-brand-image-height;
+      max-height: 100%;
+
+      + span {
+        position: relative;
+        padding-left: $layout-brand-separator-gap;
+
+        &:before {
+          content: $UN-space;
+          width: 1px;
+          background-color: $layout-brand-separator-color;
+          @include stretch(0, auto, 0, 10px);
+        }
+      }
     }
 
     span {
-      position: relative;
-      padding-left: 24px;
-      color: #333;
-
-      &:before {
-        content: $UN-space;
-        width: 1px;
-        background-color: #666;
-        @include stretch(0, auto, 0, 10px);
-      }
+      padding-left: 10px;
+      color: $layout-brand-text-color;
     }
   }
 }
@@ -20975,7 +20997,7 @@ a {
     &:focus {
       outline: none;
     }
-    
+
     &.fa {
       width: 18px;
       font-size: 18px;
