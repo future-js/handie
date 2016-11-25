@@ -8860,8 +8860,28 @@ button.close {
   /* 2 */
 }
 
+*:focus {
+  outline: none;
+}
+
 body {
   font-weight: 300;
+}
+
+img {
+  max-width: 100%;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none inside none;
 }
 
 html,
@@ -8926,8 +8946,8 @@ a:hover, a:focus, a:active {
   z-index: 1;
   padding-right: 15px;
   padding-left: 15px;
-  border-bottom: 1px solid #0871ab;
-  background-color: #cae6f1;
+  border-bottom: 1px solid #cae6f1;
+  background-color: #0871ab;
   overflow: visible !important;
   *zoom: 1;
   -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
@@ -9004,7 +9024,7 @@ a:hover, a:focus, a:active {
 
 .Header-brand a span {
   padding-left: 10px;
-  color: #333;
+  color: #fff;
 }
 
 .Header-extra {
@@ -9045,13 +9065,10 @@ a:hover, a:focus, a:active {
   *display: inline;
 }
 
-.Header-action .Action-trigger:focus {
-  outline: none;
-}
-
 .Header-action .Action-trigger.fa {
   width: 18px;
   font-size: 18px;
+  color: #fff;
 }
 
 .Header-action button.Action-trigger {
@@ -9081,6 +9098,7 @@ a:hover, a:focus, a:active {
   position: absolute;
   top: 100%;
   right: 10px;
+  min-width: 200px;
   margin-top: -2px;
   padding: 20px;
   border: 1px solid #ccc;
@@ -9117,12 +9135,6 @@ a:hover, a:focus, a:active {
   padding-top: 20px;
   float: left;
   overflow: auto;
-}
-
-.Sidebar .Navs > ul {
-  margin-bottom: 0;
-  padding-left: 0;
-  list-style: none inside none;
 }
 
 .Sidebar .Navs > ul > li > a {
@@ -9238,10 +9250,7 @@ a:hover, a:focus, a:active {
 }
 
 .Content-header .Breadcrumb ul {
-  margin-bottom: 0;
   margin-left: 8px;
-  padding-left: 0;
-  list-style: none inside none;
   overflow: hidden;
 }
 

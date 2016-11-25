@@ -8860,8 +8860,28 @@ button.close {
   /* 2 */
 }
 
+*:focus {
+  outline: none;
+}
+
 body {
   font-weight: 300;
+}
+
+img {
+  max-width: 100%;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none inside none;
 }
 
 html,
@@ -8973,9 +8993,7 @@ body {
   top: 100%;
   right: 0;
   min-width: 100px;
-  padding: 0;
   display: none;
-  list-style: none inside none;
   background-color: #FDD430;
 }
 
@@ -9071,9 +9089,6 @@ body {
 }
 
 .Page-navs--sidebar {
-  margin-bottom: 0;
-  padding-left: 0;
-  list-style: none inside none;
   font-size: 14px;
 }
 

@@ -7,17 +7,19 @@ $navbar-height: 60px !default;
 //= Header
 
 $layout-header-height: $navbar-height !default;
-$layout-header-bg-color: #cae6f1 !default;
-$layout-header-border-color: #0871ab !default;
+$layout-header-bg-color: #0871ab !default;
+$layout-header-border-color: #cae6f1 !default;
 
 $layout-brand-image-height: inherit !default;
 $layout-brand-font-size: 18px !default;
 $layout-brand-font-weight: normal !default;
-$layout-brand-text-color: #333 !default;
+$layout-brand-text-color: #fff !default;
 $layout-brand-separator-color: #666 !default;
 $layout-brand-separator-gap: 24px !default;
 
 $layout-navbar-avatar-size: 30px !default;
+
+$layout-action-trigger-color: $layout-brand-text-color !default;
 
 
 
@@ -20882,8 +20884,28 @@ $fa-var-youtube-square: "\f166";
   word-wrap: normal !important; /* 2 */
 }
 
+*:focus {
+  outline: none;
+}
+
 body {
   font-weight: 300;
+}
+
+img {
+  max-width: 100%;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none inside none;
 }
 
 html,
@@ -20994,13 +21016,10 @@ a {
   @include text-middle(".Action-trigger");
 
   .Action-trigger {
-    &:focus {
-      outline: none;
-    }
-
     &.fa {
       width: 18px;
       font-size: 18px;
+      color: $layout-action-trigger-color;
     }
   }
 
@@ -21037,6 +21056,7 @@ a {
     position: absolute;
     top: 100%;
     right: 10px;
+    min-width: 200px;
     margin-top: -2px;
     padding: 20px;
     border: 1px solid #ccc;
@@ -21084,10 +21104,6 @@ a {
 .Sidebar {
   .Navs {
     > ul {
-      margin-bottom: 0;
-      padding-left: 0;
-      list-style: none inside none;
-
       > li {
         > a {
           display: block;
@@ -21162,12 +21178,7 @@ a {
     @include text-middle("ul");
 
     ul {
-      margin: {
-        bottom: 0;
-        left: 8px;
-      }
-      padding-left: 0;
-      list-style: none inside none;
+      margin-left: 8px;
       overflow: hidden;
     }
 

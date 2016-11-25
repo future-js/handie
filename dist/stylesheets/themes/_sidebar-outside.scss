@@ -20861,8 +20861,28 @@ $fa-var-youtube-square: "\f166";
   word-wrap: normal !important; /* 2 */
 }
 
+*:focus {
+  outline: none;
+}
+
 body {
   font-weight: 300;
+}
+
+img {
+  max-width: 100%;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none inside none;
 }
 
 html,
@@ -20919,12 +20939,6 @@ a:hover {
 
 .Page-navs {
   padding-top: 10px;
-
-  ul {
-    margin-bottom: 0;
-    padding-left: 0;
-    list-style: none inside none;
-  }
 
   a {
     display: block;
@@ -21046,12 +21060,6 @@ a:hover {
   }
 
   ul {
-    margin: {
-      top: 0;
-      bottom: 0;
-    }
-    padding-left: 0;
-    list-style: none inside none;
     overflow: hidden;
   }
 

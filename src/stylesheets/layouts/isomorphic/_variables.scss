@@ -7,17 +7,19 @@ $navbar-height: 60px !default;
 //= Header
 
 $layout-header-height: $navbar-height !default;
-$layout-header-bg-color: #cae6f1 !default;
-$layout-header-border-color: #0871ab !default;
+$layout-header-bg-color: #0871ab !default;
+$layout-header-border-color: #cae6f1 !default;
 
 $layout-brand-image-height: inherit !default;
 $layout-brand-font-size: 18px !default;
 $layout-brand-font-weight: normal !default;
-$layout-brand-text-color: #333 !default;
+$layout-brand-text-color: #fff !default;
 $layout-brand-separator-color: #666 !default;
 $layout-brand-separator-gap: 24px !default;
 
 $layout-navbar-avatar-size: 30px !default;
+
+$layout-action-trigger-color: $layout-brand-text-color !default;
 
 
 

@@ -75,13 +75,10 @@
   @include text-middle(".Action-trigger");
 
   .Action-trigger {
-    &:focus {
-      outline: none;
-    }
-
     &.fa {
       width: 18px;
       font-size: 18px;
+      color: $layout-action-trigger-color;
     }
   }
 
@@ -118,6 +115,7 @@
     position: absolute;
     top: 100%;
     right: 10px;
+    min-width: 200px;
     margin-top: -2px;
     padding: 20px;
     border: 1px solid #ccc;

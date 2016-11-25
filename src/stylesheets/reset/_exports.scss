@@ -1,9 +1,5 @@
 @import "../utils/mixins";
-
 @import "./bootstrap";
 @import "./font-awesome";
 @import "../../../bower_components/suitcss-sass-0.1.0/index";
-
-body {
-  font-weight: 300;
-}
+@import "./base";
