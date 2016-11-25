@@ -49,7 +49,7 @@ function initNavbar() {
 }
 
 function initSidebar() {
-  $(".Sidebar-navs > ul > li > a").on("click", function() {
+  $(".Sidebar-navs:not(.Navs--hover) > ul > li > a").on("click", function() {
     toggleStatus($(this).closest("li"));
 
     return false;
