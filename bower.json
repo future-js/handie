@@ -39,6 +39,7 @@
     "h5fx-0.2.3": "h5fx#0.2.3",
     "bootstrap-table-1.11.1": "bootstrap-table#1.11.1",
     "trick-0.4.2": "ourai/trick#0.4.2",
-    "moment-2.18.0": "moment#2.18.0"
+    "moment-2.18.0": "moment#2.18.0",
+    "bootstrap-datetimepicker-4.17.45": "eonasdan-bootstrap-datetimepicker#4.17.45"
   }
 }
