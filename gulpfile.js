@@ -9,6 +9,8 @@ const babel = require("gulp-babel");
 const umd = require("gulp-umd");
 const scssimport = require("gulp-shopify-sass");
 
+const pkg = require("./package.json");
+
 gulp.task("compile-css", function() {
   ["sidebar-outside", "sidebar-inside", "isomorphic"].forEach(function( f ) {
     gulp
@@ -34,9 +36,36 @@ gulp.task("compile-css", function() {
 
 gulp.task("compile-js", function() {
   gulp
-    .src("./src/javascripts/*.js")
+    .src([
+      "variables",
+      "other",
+      "ajax",
+      "calculation",
+      "dialog",
+      "form",
+      "generator",
+      "table",
+      "initializer"
+    ].map(function( name ) {
+      return `./src/javascripts/utils/${name}.js`;
+    }))
+    .pipe(concat(`${pkg.name}.js`))
     .pipe(babel({presets: ["es2015"]}))
+    .pipe(umd({
+      exports: function() {
+        return "utils";
+      },
+      namespace: function() {
+        return pkg.name;
+      },
+      templateName: "amdCommonWeb"
+    }))
     .pipe(gulp.dest("./dist/javascripts"));
+
+  gulp
+    .src("./src/javascripts/themes/*.js")
+    .pipe(babel({presets: ["es2015"]}))
+    .pipe(gulp.dest("./dist/javascripts/themes"));
 });
 
 gulp.task("watch", function() {
