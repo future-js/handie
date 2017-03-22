@@ -9377,12 +9377,13 @@ a:hover, a:focus, a:active {
   line-height: 36px;
 }
 
-.Sidebar-navs > ul > li.is-active > .Navs {
-  display: block;
-}
-
+.Sidebar-navs > ul > li.is-active.is-childless > a,
 .Sidebar-navs > ul > li.is-active > .Navs .is-active a {
   background-color: #e7e7e7;
+}
+
+.Sidebar-navs > ul > li.is-active > .Navs {
+  display: block;
 }
 
 .Sidebar-navs.Navs--hover {

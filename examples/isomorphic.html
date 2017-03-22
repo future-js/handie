@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-page="dashboard">
   <head>
     <meta charset="UTF-8">
     <title>Isomorphic Layout</title>
@@ -40,39 +40,32 @@
       <div class="Page-sidebar Sidebar">
         <nav class="Sidebar-navs Navs">
           <ul>
-            <li>
-              <a href="javascript:void(0);"><i class="fa fa-dashboard"></i><span>仪表盘</span></a>
-              <div class="Navs">
-                <ul>
-                  <li><a href="javascript:void(0);">Sub-item 1</a></li>
-                </ul>
-              </div>
-            </li>
-            <li>
+            <li data-flag="dashboard"><a href="#"><i class="fa fa-dashboard"></i><span>仪表盘</span></a></li>
+            <li data-flag="report">
               <a href="javascript:void(0);"><i class="fa fa-pie-chart"></i><span>报表</span></a>
               <div class="Navs">
                 <ul>
-                  <li><a href="javascript:void(0);">日报</a></li>
-                  <li><a href="javascript:void(0);">周报</a></li>
-                  <li><a href="javascript:void(0);">月报</a></li>
+                  <li data-flag="daily"><a href="javascript:void(0);">日报</a></li>
+                  <li data-flag="weekly"><a href="javascript:void(0);">周报</a></li>
+                  <li data-flag="monthly"><a href="javascript:void(0);">月报</a></li>
                 </ul>
               </div>
             </li>
-            <li>
+            <li data-flag="info">
               <a href="javascript:void(0);"><i class="fa fa-info-circle"></i><span>信息</span></a>
               <div class="Navs">
                 <ul>
-                  <li><a href="javascript:void(0);">Sub-item 1</a></li>
-                  <li><a href="javascript:void(0);">Sub-item 2</a></li>
-                  <li><a href="javascript:void(0);">Sub-item 3</a></li>
+                  <li data-flag="sub-item-1"><a href="javascript:void(0);">Sub-item 1</a></li>
+                  <li data-flag="sub-item-2"><a href="javascript:void(0);">Sub-item 2</a></li>
+                  <li data-flag="sub-item-3"><a href="javascript:void(0);">Sub-item 3</a></li>
                 </ul>
               </div>
             </li>
-            <li>
+            <li data-flag="settings">
               <a href="javascript:void(0);"><i class="fa fa-cogs"></i><span>设置</span></a>
               <div class="Navs">
                 <ul>
-                  <li><a href="javascript:void(0);">Sub-item 1</a></li>
+                  <li data-flag="sub-item-1"><a href="javascript:void(0);">Sub-item 1</a></li>
                 </ul>
               </div>
             </li>

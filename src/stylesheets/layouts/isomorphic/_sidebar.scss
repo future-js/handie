@@ -48,12 +48,13 @@
       }
 
       &.is-active {
+        &.is-childless > a,
+        > .Navs .is-active a {
+          background-color: $layout-sidebar-item-hover;
+        }
+
         > .Navs {
           display: block;
-
-          .is-active a {
-            background-color: $layout-sidebar-item-hover;
-          }
         }
       }
     }

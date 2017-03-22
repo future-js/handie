@@ -48,11 +48,35 @@ function initNavbar() {
   });
 }
 
-function initSidebar() {
-  $(".Sidebar-navs:not(.Navs--hover) > ul > li > a").on("click", function() {
-    toggleStatus($(this).closest("li"));
+function changeNavStatus() {
+  let flag = $("html").attr("data-page");
 
-    return false;
+  if ( !flag ) {
+    return;
+  }
+
+  let page = flag.split("-");
+  let $nav = $(`.Sidebar-navs > ul > li[data-flag="${page[0]}"]`);
+
+  $nav.addClass("is-active");
+  $(`[data-flag="${page[1]}"]`, $nav).addClass("is-active");
+}
+
+function initSidebar() {
+  changeNavStatus();
+
+  $(".Sidebar-navs > ul > li").each(function() {
+    if ( $(".Navs", $(this)).size() === 0 ) {
+      $(this).addClass("is-childless");
+    }
+  });
+
+  $(".Sidebar-navs:not(.Navs--hover) > ul > li > a").on("click", function() {
+    if ( /^(javascript\:|\#)/.test($(this).attr("href")) ) {
+      toggleStatus($(this).closest("li"));
+
+      return false;
+    }
   });
 }
 
