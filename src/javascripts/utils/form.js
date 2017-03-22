@@ -44,7 +44,7 @@ utils.form = {
   }
 };
 
-if ( H5F ) {
+if ( SUPPORTS.H5FX ) {
   utils.form.h5f = function( $form ) {
     H5F.init($form, {immediate: false});
 

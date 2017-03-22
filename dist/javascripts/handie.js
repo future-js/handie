@@ -2,21 +2,28 @@
   if (typeof define === 'function' && define.amd) {
     define([], factory);
   } else if (typeof exports === 'object') {
-    factory(exports);
+    module.exports = factory();
   } else {
-    // Browser globals
-    factory((root.handie = {}));
+    root.handie = factory();
   }
-}(this, function (exports) {
+}(this, function() {
 "use strict";
+
+var SUPPORTS = {
+  BS_MODAL: $.fn.hasOwnProperty("modal"),
+  BS_TABLE: $.fn.hasOwnProperty("bootstrapTable"),
+  SELECT2: $.fn.hasOwnProperty("select2"),
+  H5FX: window.hasOwnProperty("H5F"),
+  MOMENTJS: window.hasOwnProperty("moment")
+};
+
+var utils = {};
 
 var defaults = {
   dataTable: "",
   showRowNumber: false,
   rowActions: []
 };
-
-var utils = {};
 
 utils.setDefaults = function (settings) {
   $.extend(defaults, settings);
@@ -226,37 +233,39 @@ utils.calculate = {
 var dialogLevel = 0;
 var DIALOG_DEFAULT_INDEX = 1050;
 
-utils.dialog = {
-  levelUp: function levelUp($dlg) {
-    var $backdrop = $dlg.data("bs.modal").$backdrop;
-    var increase = dialogLevel * 2 * 10;
+if (SUPPORTS.BS_MODAL) {
+  utils.dialog = {
+    levelUp: function levelUp($dlg) {
+      var $backdrop = $dlg.data("bs.modal").$backdrop;
+      var increase = dialogLevel * 2 * 10;
 
-    $dlg.css("z-index", DIALOG_DEFAULT_INDEX + increase);
+      $dlg.css("z-index", DIALOG_DEFAULT_INDEX + increase);
 
-    if ($backdrop) {
-      $backdrop.css("z-index", DIALOG_DEFAULT_INDEX + increase - 10);
+      if ($backdrop) {
+        $backdrop.css("z-index", DIALOG_DEFAULT_INDEX + increase - 10);
+      }
+
+      dialogLevel++;
+    },
+    levelDown: function levelDown($dlg) {
+      var $backdrop = $dlg.data("bs.modal").$backdrop;
+
+      $dlg.css("z-index", DIALOG_DEFAULT_INDEX);
+
+      if ($backdrop) {
+        $backdrop.css("z-index", DIALOG_DEFAULT_INDEX - 10);
+      }
+
+      dialogLevel--;
+    },
+    // 获取最顶级的对话框
+    top: function top() {
+      return [].sort.call($(".modal:visible"), function (a, b) {
+        return $(a).css("z-index") * 1 < $(b).css("z-index") * 1;
+      }).first();
     }
-
-    dialogLevel++;
-  },
-  levelDown: function levelDown($dlg) {
-    var $backdrop = $dlg.data("bs.modal").$backdrop;
-
-    $dlg.css("z-index", DIALOG_DEFAULT_INDEX);
-
-    if ($backdrop) {
-      $backdrop.css("z-index", DIALOG_DEFAULT_INDEX - 10);
-    }
-
-    dialogLevel--;
-  },
-  // 获取最顶级的对话框
-  top: function top() {
-    return [].sort.call($(".modal:visible"), function (a, b) {
-      return $(a).css("z-index") * 1 < $(b).css("z-index") * 1;
-    }).first();
-  }
-};
+  };
+}
 
 utils.select = {
   change: function change($sel, val, callback) {
@@ -299,7 +308,7 @@ utils.form = {
   }
 };
 
-if (H5F) {
+if (SUPPORTS.H5FX) {
   utils.form.h5f = function ($form) {
     H5F.init($form, { immediate: false });
 
@@ -440,7 +449,7 @@ function getDataTable() {
   return $(defaults.dataTable);
 }
 
-if ($.fn.bootstrapTable) {
+if (SUPPORTS.BS_TABLE) {
   utils.table = {
     init: function init(opts) {
       opts.columns = utils.table.columns(opts.columns, opts.showSerialNumber);
@@ -528,7 +537,7 @@ if ($.fn.bootstrapTable) {
  */
 function initDefaults() {
   [{
-    dependency: $.fn.modal,
+    dependency: SUPPORTS.BS_MODAL,
     initializer: function initializer() {
       // Bootstrap 对话框
       $.extend($.fn.modal.Constructor.DEFAULTS, {
@@ -537,7 +546,7 @@ function initDefaults() {
       });
     }
   }, {
-    dependency: $.fn.bootstrapTable,
+    dependency: SUPPORTS.BS_TABLE,
     initializer: function initializer() {
       // Bootstrap 数据表格表配置
       $.extend($.fn.bootstrapTable.defaults, {
@@ -582,7 +591,7 @@ function initDefaults() {
       $.extend($.fn.bootstrapTable.columnDefaults, { valign: "middle" });
     }
   }, {
-    dependency: $.fn.select2,
+    dependency: SUPPORTS.SELECT2,
     initializer: function initializer() {
       // Select2 下拉列表
       $.each({
@@ -594,7 +603,7 @@ function initDefaults() {
       });
     }
   }, {
-    dependency: window.H5F,
+    dependency: SUPPORTS.H5FX,
     initializer: function initializer() {
       // 添加校验规则
       H5F.rules({
@@ -624,7 +633,7 @@ function initDefaults() {
       });
     }
   }, {
-    dependency: window.moment,
+    dependency: SUPPORTS.MOMENTJS,
     initializer: function initializer() {
       // moment 日期时间格式转换
       moment.locale("zh-CN");
@@ -637,6 +646,10 @@ function initDefaults() {
 }
 
 function initDialogs() {
+  if (!SUPPORTS.MODAL) {
+    return;
+  }
+
   $(document).on("shown.bs.modal", ".modal", function () {
     var $m = $(this);
     var $dlg = $(".modal-dialog", $m);
@@ -663,7 +676,7 @@ function initDialogs() {
 }
 
 function initSelects() {
-  if (!$.fn.select2) {
+  if (!SUPPORTS.SELECT2) {
     return;
   }
 
@@ -697,5 +710,5 @@ $(document).ready(function () {
     e.preventDefault();
   });
 });
-exports.utils = utils;
+return utils;
 }));

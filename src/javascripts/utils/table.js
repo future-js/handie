@@ -2,7 +2,7 @@ function getDataTable() {
   return $(defaults.dataTable);
 }
 
-if ( $.fn.bootstrapTable ) {
+if ( SUPPORTS.BS_TABLE ) {
   utils.table = {
     init: function( opts ) {
       opts.columns = utils.table.columns(opts.columns, opts.showSerialNumber);

@@ -57,8 +57,7 @@ gulp.task("compile-js", function() {
       },
       namespace: function() {
         return pkg.name;
-      },
-      templateName: "amdCommonWeb"
+      }
     }))
     .pipe(gulp.dest("./dist/javascripts"));
 

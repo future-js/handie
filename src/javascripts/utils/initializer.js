@@ -4,7 +4,7 @@
 function initDefaults() {
   [
     {
-      dependency: $.fn.modal,
+      dependency: SUPPORTS.BS_MODAL,
       initializer: function() {
         // Bootstrap 对话框
         $.extend($.fn.modal.Constructor.DEFAULTS, {
@@ -14,7 +14,7 @@ function initDefaults() {
       }
     },
     {
-      dependency: $.fn.bootstrapTable,
+      dependency: SUPPORTS.BS_TABLE,
       initializer: function() {
         // Bootstrap 数据表格表配置
         $.extend($.fn.bootstrapTable.defaults, {
@@ -63,7 +63,7 @@ function initDefaults() {
       }
     },
     {
-      dependency: $.fn.select2,
+      dependency: SUPPORTS.SELECT2,
       initializer: function() {
         // Select2 下拉列表
         $.each({
@@ -76,7 +76,7 @@ function initDefaults() {
       }
     },
     {
-      dependency: window.H5F,
+      dependency: SUPPORTS.H5FX,
       initializer: function() {
         // 添加校验规则
         H5F.rules({
@@ -107,7 +107,7 @@ function initDefaults() {
       }
     },
     {
-      dependency: window.moment,
+      dependency: SUPPORTS.MOMENTJS,
       initializer: function() {
         // moment 日期时间格式转换
         moment.locale("zh-CN");
@@ -121,6 +121,10 @@ function initDefaults() {
 }
 
 function initDialogs() {
+  if ( !SUPPORTS.MODAL ) {
+    return;
+  }
+
   $(document).on("shown.bs.modal", ".modal", function() {
     let $m = $(this);
     let $dlg = $(".modal-dialog", $m);
@@ -147,7 +151,7 @@ function initDialogs() {
 }
 
 function initSelects() {
-  if ( !$.fn.select2 ) {
+  if ( !SUPPORTS.SELECT2 ) {
     return;
   }
 
