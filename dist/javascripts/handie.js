@@ -480,7 +480,7 @@ if (SUPPORTS.BS_TABLE) {
 
         if ($.isPlainObject(viewDetailOpts)) {
           col.formatter = function (val) {
-            return "<a href=\"javascript:void(0);\" class=\"js-openDetailDialog\">" + val + "</a>";
+            return "<a href=\"javascript:void(0);\" class=\"js-openDetailDialog\">" + (val || "-") + "</a>";
           };
 
           col.events = $.extend({}, col.events, {
@@ -522,6 +522,11 @@ if (SUPPORTS.BS_TABLE) {
     refresh: function refresh() {
       var $table = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : getDataTable();
       var resetTop = arguments[1];
+
+      if (typeof $table === "boolean") {
+        resetTop = $table;
+        $table = getDataTable();
+      }
 
       if (resetTop === true) {
         $table.data("bootstrap.table").options.pageNumber = 1;
