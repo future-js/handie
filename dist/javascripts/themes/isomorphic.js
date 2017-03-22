@@ -1,3 +1,5 @@
+(function() {
+
 "use strict";
 
 function toggleStatus($target, selector, callback) {
@@ -82,3 +84,5 @@ $(document).ready(function () {
   initNavbar();
   initSidebar();
 });
+
+})();

@@ -7,6 +7,7 @@ const cssmin = require("gulp-cssmin");
 const rename = require("gulp-rename");
 const babel = require("gulp-babel");
 const umd = require("gulp-umd");
+const wrap = require("gulp-wrap");
 const scssimport = require("gulp-shopify-sass");
 
 const pkg = require("./package.json");
@@ -64,6 +65,7 @@ gulp.task("compile-js", function() {
   gulp
     .src("./src/javascripts/themes/*.js")
     .pipe(babel({presets: ["es2015"]}))
+    .pipe(wrap(`(function() {\n\n<%= contents %>\n\n})();`))
     .pipe(gulp.dest("./dist/javascripts/themes"));
 });
 

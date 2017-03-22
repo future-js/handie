@@ -1,5 +1,3 @@
-"use strict";
-
 function toggleStatus( $target, selector, callback ) {
   let cls = "is-active";
 
