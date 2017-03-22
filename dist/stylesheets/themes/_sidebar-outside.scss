@@ -10281,7 +10281,7 @@ $component-active-color:    #fff !default;
 //** Global background color for active items (e.g., navs or dropdowns).
 $component-active-bg:       $brand-primary !default;
 
-//** Width of the `border` for generating carets that indicator dropdowns.
+//** Width of the `border` for generating carets that indicate dropdowns.
 $caret-width-base:          4px !default;
 //** Carets increase slightly in size for larger components.
 $caret-width-large:         5px !default;
@@ -11172,9 +11172,9 @@ $hr-border:                   $gray-lighter !default;
 // WebKit-style focus
 
 @mixin tab-focus() {
-  // Default
-  outline: thin dotted;
-  // WebKit
+  // WebKit-specific. Other browsers will keep their default outline style.
+  // (Initially tried to also force default via `outline: initial`,
+  // but that seems to erroneously remove the outline in Firefox altogether.)
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -12088,8 +12088,8 @@ $hr-border:                   $gray-lighter !default;
 }
 
 /*!
- * Bootstrap v3.3.6 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
@@ -12212,7 +12212,7 @@ $component-active-color:    #fff !default;
 //** Global background color for active items (e.g., navs or dropdowns).
 $component-active-bg:       $brand-primary !default;
 
-//** Width of the `border` for generating carets that indicator dropdowns.
+//** Width of the `border` for generating carets that indicate dropdowns.
 $caret-width-base:          4px !default;
 //** Carets increase slightly in size for larger components.
 $caret-width-large:         5px !default;
@@ -13103,9 +13103,9 @@ $hr-border:                   $gray-lighter !default;
 // WebKit-style focus
 
 @mixin tab-focus() {
-  // Default
-  outline: thin dotted;
-  // WebKit
+  // WebKit-specific. Other browsers will keep their default outline style.
+  // (Initially tried to also force default via `outline: initial`,
+  // but that seems to erroneously remove the outline in Firefox altogether.)
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -14669,7 +14669,7 @@ hr {
 
 // Only display content to screen readers
 //
-// See: http://a11yproject.com/posts/how-to-hide-content/
+// See: http://a11yproject.com/posts/how-to-hide-content
 
 .sr-only {
   position: absolute;
@@ -15583,7 +15583,7 @@ input[type="search"] {
 // set a pixel line-height that matches the given height of the input, but only
 // for Safari. See https://bugs.webkit.org/show_bug.cgi?id=139848
 //
-// Note that as of 8.3, iOS doesn't support `datetime` or `week`.
+// Note that as of 9.3, iOS doesn't support `week`.
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   input[type="date"],
@@ -16502,7 +16502,7 @@ tbody.collapse.in { display: table-row-group; }
     @include border-right-radius(0);
   }
 }
-// Need .dropdown-toggle since :last-child doesn't apply given a .dropdown-menu immediately after it
+// Need .dropdown-toggle since :last-child doesn't apply, given that a .dropdown-menu is used immediately after it
 .btn-group > .btn:last-child:not(:first-child),
 .btn-group > .dropdown-toggle:not(:first-child) {
   @include border-left-radius(0);
@@ -16717,7 +16717,7 @@ tbody.collapse.in { display: table-row-group; }
 
     width: 100%;
     margin-bottom: 0;
-    
+
     &:focus {
       z-index: 3;
     }
@@ -18392,7 +18392,7 @@ button.list-group-item {
 }
 
 
-// Collapsable panels (aka, accordion)
+// Collapsible panels (aka, accordion)
 //
 // Wrap a series of panels in `.panel-group` to turn them into an accordion with
 // the help of our collapse JavaScript plugin.
