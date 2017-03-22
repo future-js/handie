@@ -33,7 +33,7 @@
   "dependencies": {
     "tangram-0.2.2": "ourai/tangram#0.2.2",
     "bootstrap-sass-3.3.7": "bootstrap-sass#3.3.7",
-    "fontawesome-4.6.3": "fontawesome#4.6.3",
+    "fontawesome-4.7.0": "fontawesome#4.7.0",
     "suitcss-sass-0.1.0": "suitcss-sass#0.1.0",
     "jquery-1.12.0": "jquery#1.12.0",
     "icheck-1.0.2": "icheck#1.0.2",

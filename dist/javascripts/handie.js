@@ -595,8 +595,8 @@ function initDefaults() {
     initializer: function initializer() {
       // Select2 下拉列表
       $.each({
-        containerCssClass: "hummer-Select2-container",
-        dropdownCssClass: "hummer-Select2-dropdown",
+        containerCssClass: "handie-Select2-container",
+        dropdownCssClass: "handie-Select2-dropdown",
         minimumResultsForSearch: "Infinity"
       }, function (k, v) {
         $.fn.select2.defaults.set(k, v);
