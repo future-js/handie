@@ -1,6 +1,6 @@
 {
   "name": "handie",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "UI stuffs for the dashboard of a website.",
   "main": "index.js",
   "directories": {
