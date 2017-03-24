@@ -1,3 +1,22 @@
+defaults.ajax = {
+  errorHandler: function( evt, req, settings, err ) {
+    let code = req.status;
+
+    if ( code >= 500 ) {
+      alert("服务器开小差啦～");
+    }
+    else if ( code >= 400 ) {
+      alert(req.responseText);
+    }
+  },
+  responseHandler: function( res, callback ) {
+    callback(null, res);
+  }
+};
+
+/**
+ * 重置请求等待状态
+ */
 function resetWaitStatus() {
   let $layer = $(".modal:visible .js-waitForResult:visible");
 
@@ -67,15 +86,8 @@ utils.ajax = {
       });
     });
   },
-  result: function( res, callback ) {
-    if ( res.success ) {
-      if ( $.isFunction(callback) ) {
-        callback.call(null, res.data);
-      }
-    }
-    else {
-      alert(res.message);
-    }
+  result: function( ...args ) {
+    defaults.ajax.responseHandler(...args);
   },
   waiting: function( $target, text = "数据保存中，请耐心等待..." ) {
     let $dlg = $target.closest(".modal");

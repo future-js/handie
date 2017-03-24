@@ -15,7 +15,7 @@ utils.generate = {
       actions = [actions];
     }
 
-    actions = actions.concat(defaults.rowActions);
+    actions = actions.concat(defaults.table.rowActions);
 
     if ( !Array.isArray(actions) ) {
       return false;

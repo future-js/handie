@@ -1,22 +1,30 @@
+defaults.table = {
+  selector: "",
+  showRowNumber: false,
+  rowActions: []
+};
+
 function getDataTable() {
-  return $(defaults.dataTable);
+  return $(defaults.table.selector);
 }
 
 if ( SUPPORTS.BS_TABLE ) {
+  defaults.table.responseHandler = $.fn.bootstrapTable.defaults.responseHandler;
+  
   utils.table = {
     init: function( opts ) {
-      opts.columns = utils.table.columns(opts.columns, opts.showSerialNumber);
+      opts.columns = utils.table.columns(opts.columns, opts.showRowNumber);
 
       getDataTable().bootstrapTable(opts);
     },
-    columns: function( cols, showSerialNumber ) {
+    columns: function( cols, showRowNumber ) {
       let temp = cols.concat([]);
 
-      if ( $.type(showSerialNumber) !== "boolean" ) {
-        showSerialNumber = defaults.showRowNumber;
+      if ( $.type(showRowNumber) !== "boolean" ) {
+        showRowNumber = defaults.table.showRowNumber;
       }
 
-      if ( showSerialNumber === true ) {
+      if ( showRowNumber === true ) {
         temp.unshift({
           field: "serialNumber",
           title: "序号",

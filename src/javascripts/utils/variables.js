@@ -1,3 +1,5 @@
+let defaults = {};
+const utils = {};
 const SUPPORTS = {
   BS_MODAL: $.fn.hasOwnProperty("modal"),
   BS_TABLE: $.fn.hasOwnProperty("bootstrapTable"),
@@ -5,11 +7,3 @@ const SUPPORTS = {
   H5FX: window.hasOwnProperty("H5F"),
   MOMENTJS: window.hasOwnProperty("moment")
 };
-
-const utils = {};
-
-let defaults = {
-    dataTable: "",
-    showRowNumber: false,
-    rowActions: []
-  };

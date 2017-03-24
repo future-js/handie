@@ -44,17 +44,7 @@ function initDefaults() {
             return params;
           },
           responseHandler: function( res ) {
-            if ( !res.success ) {
-              alert(res.message);
-            }
-
-            return res.success && res.data ? {
-              total: res.data.totalCount || 0,
-              rows: (Array.isArray(res.data) ? res.data : res.data.result) || []
-            } : {
-              total: 0,
-              rows: []
-            };
+            defaults.table.responseHandler.call(this, res);
           }
         });
 
@@ -165,15 +155,9 @@ function initSelects() {
   });
 }
 
-$(document).ajaxError(function( evt, req, settings, err ) {
-  let code = req.status;
-
-  if ( code >= 500 ) {
-    alert("服务器开小差啦～");
-  }
-  else if ( code >= 400 ) {
-    alert(req.responseText);
-  }
+$(document).ajaxError(function( ...args ) {
+  defaults.ajax.errorHandler(...args);
+  resetWaitStatus();
 });
 
 $(document).ready(function() {

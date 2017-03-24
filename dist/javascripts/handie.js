@@ -9,20 +9,14 @@
 }(this, function() {
 "use strict";
 
+var defaults = {};
+var utils = {};
 var SUPPORTS = {
   BS_MODAL: $.fn.hasOwnProperty("modal"),
   BS_TABLE: $.fn.hasOwnProperty("bootstrapTable"),
   SELECT2: $.fn.hasOwnProperty("select2"),
   H5FX: window.hasOwnProperty("H5F"),
   MOMENTJS: window.hasOwnProperty("moment")
-};
-
-var utils = {};
-
-var defaults = {
-  dataTable: "",
-  showRowNumber: false,
-  rowActions: []
 };
 
 utils.setDefaults = function (settings) {
@@ -35,6 +29,24 @@ utils.$el = {
   }
 };
 
+defaults.ajax = {
+  errorHandler: function errorHandler(evt, req, settings, err) {
+    var code = req.status;
+
+    if (code >= 500) {
+      alert("服务器开小差啦～");
+    } else if (code >= 400) {
+      alert(req.responseText);
+    }
+  },
+  responseHandler: function responseHandler(res, callback) {
+    callback(null, res);
+  }
+};
+
+/**
+ * 重置请求等待状态
+ */
 function resetWaitStatus() {
   var $layer = $(".modal:visible .js-waitForResult:visible");
 
@@ -102,14 +114,10 @@ utils.ajax = {
       });
     });
   },
-  result: function result(res, callback) {
-    if (res.success) {
-      if ($.isFunction(callback)) {
-        callback.call(null, res.data);
-      }
-    } else {
-      alert(res.message);
-    }
+  result: function result() {
+    var _defaults$ajax;
+
+    (_defaults$ajax = defaults.ajax).responseHandler.apply(_defaults$ajax, arguments);
   },
   waiting: function waiting($target) {
     var text = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "数据保存中，请耐心等待...";
@@ -409,7 +417,7 @@ utils.generate = {
       actions = [actions];
     }
 
-    actions = actions.concat(defaults.rowActions);
+    actions = actions.concat(defaults.table.rowActions);
 
     if (!Array.isArray(actions)) {
       return false;
@@ -445,25 +453,33 @@ utils.generate = {
   }
 };
 
+defaults.table = {
+  selector: "",
+  showRowNumber: false,
+  rowActions: []
+};
+
 function getDataTable() {
-  return $(defaults.dataTable);
+  return $(defaults.table.selector);
 }
 
 if (SUPPORTS.BS_TABLE) {
+  defaults.table.responseHandler = $.fn.bootstrapTable.defaults.responseHandler;
+
   utils.table = {
     init: function init(opts) {
-      opts.columns = utils.table.columns(opts.columns, opts.showSerialNumber);
+      opts.columns = utils.table.columns(opts.columns, opts.showRowNumber);
 
       getDataTable().bootstrapTable(opts);
     },
-    columns: function columns(cols, showSerialNumber) {
+    columns: function columns(cols, showRowNumber) {
       var temp = cols.concat([]);
 
-      if ($.type(showSerialNumber) !== "boolean") {
-        showSerialNumber = defaults.showRowNumber;
+      if ($.type(showRowNumber) !== "boolean") {
+        showRowNumber = defaults.table.showRowNumber;
       }
 
-      if (showSerialNumber === true) {
+      if (showRowNumber === true) {
         temp.unshift({
           field: "serialNumber",
           title: "序号",
@@ -578,17 +594,7 @@ function initDefaults() {
           return params;
         },
         responseHandler: function responseHandler(res) {
-          if (!res.success) {
-            alert(res.message);
-          }
-
-          return res.success && res.data ? {
-            total: res.data.totalCount || 0,
-            rows: (Array.isArray(res.data) ? res.data : res.data.result) || []
-          } : {
-            total: 0,
-            rows: []
-          };
+          defaults.table.responseHandler.call(this, res);
         }
       });
 
@@ -695,14 +701,11 @@ function initSelects() {
   });
 }
 
-$(document).ajaxError(function (evt, req, settings, err) {
-  var code = req.status;
+$(document).ajaxError(function () {
+  var _defaults$ajax2;
 
-  if (code >= 500) {
-    alert("服务器开小差啦～");
-  } else if (code >= 400) {
-    alert(req.responseText);
-  }
+  (_defaults$ajax2 = defaults.ajax).errorHandler.apply(_defaults$ajax2, arguments);
+  resetWaitStatus();
 });
 
 $(document).ready(function () {
