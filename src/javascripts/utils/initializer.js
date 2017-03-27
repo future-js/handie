@@ -111,7 +111,7 @@ function initDefaults() {
 }
 
 function initDialogs() {
-  if ( !SUPPORTS.MODAL ) {
+  if ( !SUPPORTS.BS_MODAL ) {
     return;
   }
 
