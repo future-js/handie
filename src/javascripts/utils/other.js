@@ -1,5 +1,5 @@
 utils.setDefaults = function( settings ) {
-  $.extend(defaults, settings);
+  $.extend(true, defaults, settings);
 };
 
 utils.$el = {

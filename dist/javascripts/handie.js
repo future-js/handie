@@ -20,7 +20,7 @@ var SUPPORTS = {
 };
 
 utils.setDefaults = function (settings) {
-  $.extend(defaults, settings);
+  $.extend(true, defaults, settings);
 };
 
 utils.$el = {
@@ -594,7 +594,7 @@ function initDefaults() {
           return params;
         },
         responseHandler: function responseHandler(res) {
-          defaults.table.responseHandler.call(this, res);
+          return defaults.table.responseHandler.call(this, res);
         }
       });
 

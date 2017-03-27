@@ -44,7 +44,7 @@ function initDefaults() {
             return params;
           },
           responseHandler: function( res ) {
-            defaults.table.responseHandler.call(this, res);
+            return defaults.table.responseHandler.call(this, res);
           }
         });
 
