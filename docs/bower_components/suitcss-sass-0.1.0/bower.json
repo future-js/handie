@@ -1,0 +1,36 @@
+{
+  "name": "suitcss-sass",
+  "homepage": "https://github.com/ourai/suitcss-sass",
+  "authors": [{
+    "name": "Ourai Lin",
+    "email": "ourairyu@hotmail.com",
+    "homepage": "http://ourai.ws"
+  }],
+  "description": "Play SUIT CSS with Sass",
+  "main": "_index.scss",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "suitcss",
+    "modular",
+    "sass",
+    "class",
+    "css",
+    "utils",
+    "utilitis",
+    "components"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ourai/suitcss-sass.git"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

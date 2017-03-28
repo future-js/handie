@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <title>Isomorphic Layout</title>
+    <link rel="stylesheet" href="../bower_components/handie-0.3.8/dist/stylesheets/themes/isomorphic-default.css">
+    <script src="../bower_components/jquery-1.12.0/dist/jquery.min.js"></script>
+    <script src="../bower_components/handie-0.3.8/dist/javascripts/isomorphic.js"></script>
+  </head>
+  <body class="Page">
+    <header class="Page-header Header">
+      <div class="Header-brand">
+        <a href="/"><span>系统标题</span></a>
+      </div>
+      <div class="Header-extra">
+        <div class="Header-operations">
+          <div class="Header-action Action"><button class="Action-trigger fa fa-plus" type="button" title="新增"><span class="sr-only">新增</span></button>
+          </div>
+          <div class="Header-action Action"><button class="Action-trigger fa fa-th" type="button" title="其他应用"><span class="sr-only">其他应用</span></button>
+            <div class="Action-content">
+              <ul>
+                <li><a href="javascript:void(0);" title="退出系统">退出系统</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="Header-action Action Action--avatar"><a class="Action-trigger" href="javascript:void(0);"><span>欧雷</span></a>
+            <div class="Action-content">
+              <ul>
+                <li><a href="javascript:void(0);" title="退出系统">退出系统</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="Page-content">
+      <div class="Page-sidebar Sidebar">
+        <nav class="Sidebar-navs Navs">
+          <ul>
+            <li>
+              <a href="javascript:void(0);"><i class="fa fa-dashboard"></i><span>仪表盘</span></a>
+              <div class="Navs">
+                <ul>
+                  <li><a href="javascript:void(0);">Sub-item 1</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="is-active">
+              <a href="javascript:void(0);"><i class="fa fa-pie-chart"></i><span>报表</span></a>
+              <div class="Navs">
+                <ul>
+                  <li><a href="javascript:void(0);">日报</a></li>
+                  <li class="is-active"><a href="javascript:void(0);">周报</a></li>
+                  <li><a href="javascript:void(0);">月报</a></li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a href="javascript:void(0);"><i class="fa fa-info-circle"></i><span>信息</span></a>
+              <div class="Navs">
+                <ul>
+                  <li><a href="javascript:void(0);">Sub-item 1</a></li>
+                  <li><a href="javascript:void(0);">Sub-item 2</a></li>
+                  <li><a href="javascript:void(0);">Sub-item 3</a></li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a href="javascript:void(0);"><i class="fa fa-cogs"></i><span>设置</span></a>
+              <div class="Navs">
+                <ul>
+                  <li><a href="javascript:void(0);">Sub-item 1</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="Page-main">
+        <article class="Content container-fluid">
+          <header class="Content-header">
+            <div class="Breadcrumb"><i class="fa fa-map-marker"></i><ul>
+              <li>一级页面</li>
+              <li>二级页面</li>
+              <li>三级页面</li>
+            </ul></div>
+            <h1>页面标题</h1>
+          </header>
+          <p>页面正文</p>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>
