@@ -2,10 +2,13 @@
 .git
 
 node_modules
-bower_components
 *.log
 
 .sass-cache
 .idea
 
-!/docs/bower_components
+/bower_components
+/docs/bower_components/*
+!/docs/bower_components/jquery-*
+!/docs/bower_components/handie-*
+!/docs/bower_components/fontawesome-*
