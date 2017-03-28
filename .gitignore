@@ -8,4 +8,4 @@ bower_components
 .sass-cache
 .idea
 
-!docs/bower_components
+!/docs/bower_components
