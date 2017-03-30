@@ -1,6 +1,27 @@
+/**
+ * 获取下拉列表的默认选项
+ *
+ * @param     $sel
+ */
+function getDefaultOption( $sel ) {
+  let $opt;
+
+  $("option", $sel).each(function() {
+    if ( this.defaultSelected === true ) {
+      $opt = $(this);
+
+      return false;
+    }
+  });
+
+  return $opt || $("option:first", $sel);
+}
+
 utils.select = {
   change: function( $sel, val, callback ) {
-    $(((val == null || val === "") ? ":first" : `[value='${val}']`), $sel)
+    let $opt = (val == null || val === "") ? getDefaultOption($sel) : $(`option[value='${val}']`, $sel);
+
+    $opt
       .prop("selected", true)
       .siblings(":selected")
       .prop("selected", false);
@@ -41,6 +62,22 @@ utils.form = {
         utils.select.change($ipt, value);
       }
     });
+  },
+  /**
+   * 重置表单
+   *
+   * @param $form
+   */
+  reset: function( $form, callback ) {
+    $("select", $form).each(function() {
+      utils.select.change($(this));
+    });
+
+    $("[type='hidden']").val("");
+
+    if ( $.isFunction(callback) ) {
+      callback.call($form.get(0));
+    }
   }
 };
 

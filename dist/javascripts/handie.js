@@ -275,9 +275,30 @@ if (SUPPORTS.BS_MODAL) {
   };
 }
 
+/**
+ * 获取下拉列表的默认选项
+ *
+ * @param     $sel
+ */
+function getDefaultOption($sel) {
+  var $opt = void 0;
+
+  $("option", $sel).each(function () {
+    if (this.defaultSelected === true) {
+      $opt = $(this);
+
+      return false;
+    }
+  });
+
+  return $opt || $("option:first", $sel);
+}
+
 utils.select = {
   change: function change($sel, val, callback) {
-    $(val == null || val === "" ? ":first" : "[value='" + val + "']", $sel).prop("selected", true).siblings(":selected").prop("selected", false);
+    var $opt = val == null || val === "" ? getDefaultOption($sel) : $("option[value='" + val + "']", $sel);
+
+    $opt.prop("selected", true).siblings(":selected").prop("selected", false);
 
     if ($.isFunction(callback)) {
       callback.call($sel.get(0));
@@ -313,6 +334,22 @@ utils.form = {
         utils.select.change($ipt, value);
       }
     });
+  },
+  /**
+   * 重置表单
+   *
+   * @param $form
+   */
+  reset: function reset($form, callback) {
+    $("select", $form).each(function () {
+      utils.select.change($(this));
+    });
+
+    $("[type='hidden']").val("");
+
+    if ($.isFunction(callback)) {
+      callback.call($form.get(0));
+    }
   }
 };
 
