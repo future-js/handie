@@ -19,16 +19,18 @@
   "license": "MIT",
   "ignore": [
     "**/.*",
+    "*.json",
+    "*.log",
+    "*.md",
+    "gulpfile.js",
     "node_modules",
     "bower_components",
-    "src",
+    "docs",
     "examples",
     "test",
     "tests",
-    "docs",
-    "gulpfile.js",
-    "*.md",
-    "*.json"
+    "scripts",
+    "src"
   ],
   "devDependencies": {
     "tangram-0.2.2": "ourai/tangram#0.2.2",

@@ -10,8 +10,8 @@
   "scripts": {
     "preembed": "rm -rf libs",
     "embed": "bower install",
-    "postembed": "cp -R bower_components libs && node ./bin/rename.js",
-    "precompile": "node ./bin/check.js",
+    "postembed": "cp -R bower_components libs && node ./scripts/rename.js",
+    "precompile": "node ./scripts/check.js",
     "compile": "gulp compile",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
