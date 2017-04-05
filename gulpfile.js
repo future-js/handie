@@ -69,9 +69,11 @@ gulp.task("compile-js", function() {
     .pipe(gulp.dest("./dist/javascripts/themes"));
 });
 
+gulp.task("compile", ["compile-css", "compile-js"]);
+
 gulp.task("watch", function() {
   gulp.watch("./src/**/*.scss", ["compile-css"]);
   gulp.watch("./src/**/*.js", ["compile-js"]);
 });
 
-gulp.task("default", ["compile-css", "compile-js", "watch"]);
+gulp.task("default", ["compile", "watch"]);

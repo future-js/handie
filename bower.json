@@ -7,7 +7,6 @@
   "description": "UI stuffs for the dashboard of a website.",
   "main": [
     "dist/javascripts/handie.js",
-    "dist/javascripts/themes/isomorphic.js",
     "dist/stylesheets/themes/isomorphic-default.css",
     "dist/stylesheets/themes/_isomorphic.scss"
   ],

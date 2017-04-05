@@ -8,7 +8,11 @@
     "test": "tests"
   },
   "scripts": {
-    "compile": "gulp compile-css && gulp compile-js",
+    "preembed": "rm -rf libs",
+    "embed": "bower install",
+    "postembed": "cp -R bower_components libs && node ./bin/rename.js",
+    "precompile": "node ./bin/check.js",
+    "compile": "gulp compile",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
