@@ -8,6 +8,7 @@
     "test": "tests"
   },
   "scripts": {
+    "compile": "gulp compile-css && gulp compile-js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

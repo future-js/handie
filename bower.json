@@ -1,6 +1,6 @@
 {
   "name": "handie",
-  "homepage": "https://github.com/ourai/handie",
+  "homepage": "https://ourai.github.io/handie/",
   "authors": [
     "Ourai Lin <ourairyu@gmail.com> (http://ourai.ws/)"
   ],
@@ -31,7 +31,7 @@
     "*.md",
     "*.json"
   ],
-  "dependencies": {
+  "devDependencies": {
     "tangram-0.2.2": "ourai/tangram#0.2.2",
     "bootstrap-sass-3.3.7": "bootstrap-sass#3.3.7",
     "fontawesome-4.7.0": "fontawesome#4.7.0",

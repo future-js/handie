@@ -1,14 +1,14 @@
 // Compass mixins
-@import "../../../bower_components/compass-mixins-0.12.10/lib/compass";
-@import "../../../bower_components/compass-mixins-0.12.10/lib/compass/layout";
-@import "../../../bower_components/compass-mixins-0.12.10/lib/animation/core";
+@import "../../../libs/compass-mixins/lib/compass";
+@import "../../../libs/compass-mixins/lib/compass/layout";
+@import "../../../libs/compass-mixins/lib/animation/core";
 // Trick Compass extension
-@import "../../../bower_components/trick-0.4.2/trick";
+@import "../../../libs/trick/trick";
 // Tangram layout library
-@import "../../../bower_components/tangram-0.2.2/tangram";
+@import "../../../libs/tangram/tangram";
 
 @import "../reset/variables";
 
 //= Variables and mixins from Bootstrap
-@import "../../../bower_components/bootstrap-sass-3.3.7/assets/stylesheets/bootstrap/variables";
-@import "../../../bower_components/bootstrap-sass-3.3.7/assets/stylesheets/bootstrap/mixins";
+@import "../../../libs/bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "../../../libs/bootstrap-sass/assets/stylesheets/bootstrap/mixins";

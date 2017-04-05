@@ -1,0 +1,45 @@
+{
+  "name": "tangram",
+  "homepage": "https://github.com/ourai/tangram",
+  "authors": [
+    "Ourai Lin <ourairyu@gmail.com> (http://ourai.ws/)"
+  ],
+  "description": "Layout library",
+  "main": [
+    "_tangram.scss",
+    "tangram.min.css"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "src",
+    "test",
+    "tests",
+    "docs",
+    "*.json",
+    "*.md",
+    "*.js",
+    "*.css",
+    "!*.min.css"
+  ],
+  "keywords": [
+    "css",
+    "sass",
+    "ui",
+    "layout"
+  ],
+  "dependencies": {
+    "compass-mixins-0.12.10": "compass-mixins#0.12.10"
+  },
+  "version": "0.2.2",
+  "_release": "0.2.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.2.2",
+    "commit": "e7a110d4f78643302d2084492af75277b07fbfdd"
+  },
+  "_source": "git://github.com/ourai/tangram.git",
+  "_target": "0.2.2",
+  "_originalSource": "ourai/tangram"
+}
