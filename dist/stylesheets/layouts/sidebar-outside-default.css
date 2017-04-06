@@ -11,7 +11,9 @@
  * Font Awesome
  */
 /**
- * Bootstrap
+ * Variables
+ *
+ * parts of them are compatible with Bootstrap
  */
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
@@ -330,7 +332,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, "Pingfang SC", "Microsoft Yahei", Sans-serif;
   font-size: 14px;
   line-height: 1.5;
-  color: #333333;
+  color: #333;
   background-color: #fff;
 }
 
@@ -9036,16 +9038,29 @@ button.close {
   /* 2 */
 }
 
+/**
+ * Variables
+ *
+ * parts of them are compatible with Bootstrap
+ */
 *:focus {
   outline: none;
 }
 
 body {
+  font-family: "Helvetica Neue", Helvetica, Arial, "Pingfang SC", "Microsoft Yahei", Sans-serif;
+  font-size: 14px;
   font-weight: 300;
+  line-height: 1.5;
+  color: #333;
 }
 
 img {
   max-width: 100%;
+}
+
+label {
+  cursor: pointer;
 }
 
 input[type="number"]::-webkit-inner-spin-button {

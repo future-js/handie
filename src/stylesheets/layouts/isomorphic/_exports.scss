@@ -1,5 +1,6 @@
 @import "./variables";
-@import "../../reset/exports";
+@import "../../utils/helper";
+@import "../../../../build/import-styles";
 @import "./base";
 @import "./header";
 @import "./sidebar";

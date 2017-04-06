@@ -1,11 +1,11 @@
 .DS_Store
 .git
+.handie-tmp
+.idea
+.sass-cache
 
 node_modules
 *.log
-
-.sass-cache
-.idea
 
 /bower_components
 /docs/bower_components/*
