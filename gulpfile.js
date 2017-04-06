@@ -15,47 +15,54 @@ const scssimport = require("gulp-shopify-sass");
 
 const pkg = require("./bower.json");
 
+const layoutSrc = "./src/stylesheets/layouts";
+const layoutDist = "./dist/stylesheets/layouts";
+const tmpDir = `.${pkg.name}-tmp`;
 const compileCssTasks = [];
 
+function traverseLayouts( callback ) {
+  fs.readdirSync(path.resolve(__dirname, layoutSrc)).forEach(callback);
+}
+
+function importLayoutTasks() {
+  traverseLayouts(function( layout ) {
+    gulp.task(`import-scss-${layout}`, function() {
+      return gulp.src(`./build/concat-${layout}.scss`)
+        .pipe(scssimport())
+        .pipe(rename(`${layout}.scss`))
+        .pipe(gulp.dest(tmpDir));
+    });
+  });
+}
+
 function concatLayoutTasks() {
-  let layoutDir = "./src/stylesheets/layouts";
-  let exportFile = "_exports.scss";
-  let dir = path.resolve(__dirname, layoutDir);
-
-  fs.readdirSync(dir).forEach(function( d ) {
-    let p = path.resolve(dir, d);
-
-    if ( d.charAt(0) !== "." && fs.statSync(p).isDirectory() && fs.existsSync(path.join(p, exportFile)) ) {
-      gulp.task(`concat-layout-${d}`, function() {
-        return gulp.src(`${layoutDir}/${d}/${exportFile}`)
-          .pipe(scssimport())
-          .pipe(rename(`_${d}.scss`))
-          .pipe(gulp.dest("./dist/stylesheets/layouts"));
-      });
-    }
+  traverseLayouts(function( layout ) {
+    gulp.task(`concat-scss-${layout}`, [`import-scss-${layout}`], function() {
+      return gulp.src([
+          `${layoutSrc}/${layout}/_variables.scss`,
+          "./build/import-handie.scss",
+          `${tmpDir}/${layout}.scss`
+        ])
+        .pipe(concat(`_${layout}.scss`))
+        .pipe(gulp.dest(layoutDist));
+    });
   });
 }
 
 function compileLayoutTasks() {
-  let layoutDir = "./dist/stylesheets/layouts";
-  let dir = path.resolve(__dirname, layoutDir);
+  traverseLayouts(function( layout ) {
+    let taskName = `compile-scss-${layout}`;
 
-  fs.readdirSync(path.resolve(__dirname, "./src/stylesheets/layouts")).forEach(function( d ) {
-    let taskName = `compile-layout-${d}`;
-
-    gulp.task(taskName, [`concat-layout-${d}`], function() {
-      return gulp.src(`${layoutDir}/_${d}.scss`)
-        .pipe(rename(`${d}-default.scss`))
+    gulp.task(taskName, ["concat-scss-main", `concat-scss-${layout}`], function() {
+      return gulp.src(`${layoutDist}/_${layout}.scss`)
+        .pipe(rename(`${layout}-default.scss`))
         .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
-        .pipe(gulp.dest(layoutDir));
+        .pipe(gulp.dest(layoutDist));
     });
 
     compileCssTasks.push(taskName);
   });
 }
-
-concatLayoutTasks();
-compileLayoutTasks();
 
 gulp.task("concat-scss-helper", function() {
   return gulp.src("./src/stylesheets/utils/_helper.scss")
@@ -65,22 +72,26 @@ gulp.task("concat-scss-helper", function() {
 });
 
 gulp.task("import-scss-main", function() {
-  return gulp.src("./build/import-styles.scss")
+  return gulp.src("./build/concat-handie.scss")
     .pipe(scssimport())
     .pipe(rename(`${pkg.name}.scss`))
-    .pipe(gulp.dest(`.${pkg.name}-tmp`));
+    .pipe(gulp.dest(tmpDir));
 });
 
-gulp.task("concat-scss-main", ["import-scss-main"], function() {
+gulp.task("concat-scss-main", ["concat-scss-helper", "import-scss-main"], function() {
   return gulp.src([
       "build/import-helper.scss",
-      `.${pkg.name}-tmp/${pkg.name}.scss`
+      `${tmpDir}/${pkg.name}.scss`
     ])
     .pipe(concat(`_${pkg.name}.scss`))
     .pipe(gulp.dest("./dist/stylesheets"));
 });
 
-gulp.task("compile-css", ["concat-scss-helper", "concat-scss-main"].concat(compileCssTasks));
+importLayoutTasks();
+concatLayoutTasks();
+compileLayoutTasks();
+
+gulp.task("compile-css", compileCssTasks);
 
 gulp.task("compile-js", function() {
   gulp
