@@ -11,6 +11,7 @@ bower_components
 *.log
 *.md
 
+/build
 /docs
 /examples
 /scripts
