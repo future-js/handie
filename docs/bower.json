@@ -24,7 +24,7 @@
     "*.md",
     "*.json"
   ],
-  "dependencies": {
-    "handie-0.3.8": "handie#0.3.8"
+  "devDependencies": {
+    "handie-0.4.1": "handie#0.4.1"
   }
 }
