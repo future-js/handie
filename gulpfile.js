@@ -93,9 +93,8 @@ compileLayoutTasks();
 
 gulp.task("compile-css", compileCssTasks);
 
-gulp.task("compile-js", function() {
-  gulp
-    .src([
+gulp.task("concat-js-main", function() {
+  return gulp.src([
       "variables",
       "other",
       "ajax",
@@ -119,9 +118,10 @@ gulp.task("compile-js", function() {
       }
     }))
     .pipe(gulp.dest("./dist/javascripts"));
+});
 
-  gulp
-    .src("./src/javascripts/layouts/*.js")
+gulp.task("compile-js", ["concat-js-main"], function() {
+  return gulp.src("./src/javascripts/layouts/*.js")
     .pipe(babel({presets: ["es2015"]}))
     .pipe(wrap(`(function() {\n\n<%= contents %>\n\n})();`))
     .pipe(gulp.dest("./dist/javascripts/layouts"));
