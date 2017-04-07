@@ -8,9 +8,3 @@ node_modules
 *.log
 
 /bower_components
-/docs/bower_components/*
-!/docs/bower_components/jquery-*
-!/docs/bower_components/handie-*
-!/docs/bower_components/fontawesome-*
-!/docs/bower_components/h5fx-*
-!/docs/bower_components/bootstrap-sass-*

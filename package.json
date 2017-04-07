@@ -12,8 +12,7 @@
     "embed": "bower install",
     "postembed": "cp -R bower_components libs && node ./scripts/rename.js",
     "precompile": "rm -rf dist && node ./scripts/check.js",
-    "compile": "gulp compile",
-    "prepublish": "npm run compile"
+    "compile": "gulp compile"
   },
   "repository": {
     "type": "git",
