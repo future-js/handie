@@ -27,7 +27,7 @@ function traverseLayouts( callback ) {
 function importLayoutTasks() {
   traverseLayouts(function( layout ) {
     gulp.task(`import-scss-${layout}`, function() {
-      return gulp.src(`./build/concat-${layout}.scss`)
+      return gulp.src(`./build/partials/concat-${layout}.scss`)
         .pipe(scssimport())
         .pipe(rename(`${layout}.scss`))
         .pipe(gulp.dest(tmpDir));
@@ -40,7 +40,7 @@ function concatLayoutTasks() {
     gulp.task(`concat-scss-${layout}`, [`import-scss-${layout}`], function() {
       return gulp.src([
           `${layoutSrc}/${layout}/_variables.scss`,
-          "./build/import-handie.scss",
+          "./build/partials/import-handie.scss",
           `${tmpDir}/${layout}.scss`
         ])
         .pipe(concat(`_${layout}.scss`))
@@ -72,7 +72,7 @@ gulp.task("concat-scss-helper", function() {
 });
 
 gulp.task("import-scss-main", function() {
-  return gulp.src("./build/concat-handie.scss")
+  return gulp.src("./build/partials/concat-handie.scss")
     .pipe(scssimport())
     .pipe(rename(`${pkg.name}.scss`))
     .pipe(gulp.dest(tmpDir));
@@ -80,7 +80,7 @@ gulp.task("import-scss-main", function() {
 
 gulp.task("concat-scss-main", ["concat-scss-helper", "import-scss-main"], function() {
   return gulp.src([
-      "build/import-helper.scss",
+      "build/partials/import-helper.scss",
       `${tmpDir}/${pkg.name}.scss`
     ])
     .pipe(concat(`_${pkg.name}.scss`))

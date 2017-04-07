@@ -7,7 +7,7 @@ const path = require("path");
 
 const execSync = require("child_process").execSync;
 
-const dir = path.resolve(__dirname, "../libs");
+const dir = path.resolve(__dirname, "../../vendor");
 
 if ( fs.existsSync(dir) ) {
   fs.readdirSync(dir).forEach(function( d ) {

@@ -8,10 +8,10 @@
     "test": "tests"
   },
   "scripts": {
-    "preembed": "rm -rf libs",
+    "preembed": "rm -rf vendor",
     "embed": "bower install",
-    "postembed": "cp -R bower_components libs && node ./scripts/rename.js",
-    "precompile": "rm -rf dist && node ./scripts/check.js",
+    "postembed": "cp -R bower_components vendor && node ./build/scripts/rename.js",
+    "precompile": "rm -rf dist && node ./build/scripts/check.js",
     "compile": "gulp compile"
   },
   "repository": {

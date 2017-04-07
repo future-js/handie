@@ -11,8 +11,8 @@ task :check do
   end
 
   cd "_demos" do
-    system "rm -rf libs"
-    system "cp -fR ../../libs ."
+    system "rm -rf vendor"
+    system "cp -fR ../../vendor ."
   end
 end
 

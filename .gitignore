@@ -13,4 +13,4 @@ _site
 node_modules
 
 /bower_components
-/site/_demos/libs
+/site/_demos/vendor
