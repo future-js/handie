@@ -3,11 +3,16 @@ require "time"
 
 desc "检测"
 task :check do
+  cd "_assets" do
+    system "rm -rf javascripts/handie"
+    system "cp -fR ../../dist/javascripts javascripts && mv javascripts/javascripts javascripts/handie"
+    system "rm -rf stylesheets/handie"
+    system "cp -fR ../../dist/stylesheets stylesheets && mv stylesheets/stylesheets stylesheets/handie"
+  end
+
   cd "_demos" do
-    system "rm -rf handie"
-    system "mkdir handie"
-    system "cp -R ../../dist handie"
-    system "cp -R ../../libs handie"
+    system "rm -rf libs"
+    system "cp -fR ../../libs ."
   end
 end
 

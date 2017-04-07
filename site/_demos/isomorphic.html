@@ -5,13 +5,17 @@ flag:
   primary: dashboard
 
 css:
-  - path: /layouts/handie/dist/stylesheets/layouts/isomorphic-default.css
+  - path: demos/isomorphic
+    assets_pipeline: true
+
 js:
-  - path: /layouts/handie/libs/jquery/dist/jquery.min.js
-  - path: /layouts/handie/libs/bootstrap-sass/assets/javascripts/bootstrap.min.js
-  - path: /layouts/handie/libs/h5fx/H5Fx.min.js
-  - path: /layouts/handie/dist/javascripts/handie.js
-  - path: /layouts/handie/dist/javascripts/layouts/isomorphic.js
+  - path: /layouts/libs/jquery/dist/jquery.min.js
+  - path: /layouts/libs/bootstrap-sass/assets/javascripts/bootstrap.min.js
+  - path: /layouts/libs/h5fx/H5Fx.min.js
+  - path: handie/handie.js
+    assets_pipeline: true
+  - path: handie/layouts/isomorphic.js
+    assets_pipeline: true
 ---
 <header class="Page-header Header">
   <div class="Header-brand">

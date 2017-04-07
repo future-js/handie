@@ -18,7 +18,7 @@ collections:
 exclude:
   - .asset-cache
   - .sass-cache
-  - _demos/handie/libs/select2/docs
+  - _demos/libs/select2/docs
   - node_modules
   - Rakefile
   - Gemfile
