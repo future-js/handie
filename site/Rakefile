@@ -1,0 +1,41 @@
+require "date"
+require "time"
+
+desc "检测"
+task :check do
+  cd "_demos" do
+    system "rm -rf handie"
+    system "mkdir handie"
+    system "cp -R ../../dist handie"
+    system "cp -R ../../libs handie"
+  end
+end
+
+desc "运行"
+task :run do
+  system "rake check"
+  system "bundle exec jekyll serve --future --drafts --incremental"
+end
+
+desc "部署"
+task :deploy do
+  dir = "../../../sites/handie"
+
+  if FileTest.directory?(dir)
+    cd dir do
+      # system "git reset --hard HEAD"
+      system "git pull origin gh-pages"
+    end
+  end
+
+  system "JEKYLL_ENV=production bundle exec jekyll build -V -d #{dir} --config _config.yml,_production.yml"
+
+  cd dir do
+    current_time = Time.now.strftime("%Y-%m-%d %H:%M:%S")
+
+    system "touch .nojekyll"
+    system "git add -A"
+    system "git commit -m 'Generate on #{current_time}'"
+    system "git push origin gh-pages"
+  end
+end

@@ -1,10 +1,16 @@
+*.log
+
 .DS_Store
 .git
 .handie-tmp
 .idea
+.jekyll-metadata
+.asset-cache
 .sass-cache
 
+_site
+
 node_modules
-*.log
 
 /bower_components
+/site/_demos/handie

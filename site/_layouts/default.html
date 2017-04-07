@@ -1,0 +1,49 @@
+---
+layout: compress
+---
+<!DOCTYPE html>
+{% if page.flag and page.flag.primary %}
+  {% assign page_flag = page.flag.primary %}
+  {% if page.flag.secondary %}
+    {% assign page_flag = page_flag | append: "-" | append: page.flag.secondary %}
+  {% endif %}
+{% else %}
+  {% assign page_flag = "" %}
+{% endif %}
+{% if page.layout_type == null or page.layout_type == blank %}
+  {% assign page_layout = "" %}
+{% else %}
+  {% assign page_layout = page.layout_type %}
+{% endif %}
+<html lang="zh-CN" dir="ltr" data-layout="{{ page_layout }}" data-page="{{ page_flag }}">
+  <head>
+    {% include head.html %}
+    <!-- 静态资源 -->
+    <!-- {!% stylesheet global %} -->
+    {% if layout.css %}
+      {% for css in layout.css %}{% if css.assets_pipeline == true %}{{ css.path | stylesheet }}{% else %}<link rel="stylesheet" href="{{ css.path | prepend: site.baseurl | prepend: site.url }}">{% endif %}{% endfor %}
+    {% endif %}
+    {% if page.css %}
+      {% for css in page.css %}{% if css.assets_pipeline == true %}{{ css.path | stylesheet }}{% else %}<link rel="stylesheet" href="{{ css.path | prepend: site.baseurl | prepend: site.url }}">{% endif %}{% endfor %}
+    {% endif %}
+    {% ifhascontent head_javascripts %}
+      {% contentblock head_javascripts %}
+    {% endifhascontent %}
+    <!-- {!% if jekyll.environment == "production" and page.statistic != false %}
+      {!% javascript statistic %}
+    {!% endif %} -->
+    <!-- {!% javascript global %} -->
+    <!--[if lt IE 9]>
+    {!% javascript support_ie8 %}
+    <![endif]-->
+  </head>
+  <body class="Page" itemscope itemtype="http://schema.org/WebPage">
+    {{ content }}
+    {% if layout.js %}
+      {% for js in layout.js %}{% if js.assets_pipeline == true %}{{ js.path | javascript }}{% else %}<script src="{{ js.path | prepend: site.baseurl | prepend: site.url }}"></script>{% endif %}{% endfor %}
+    {% endif %}
+    {% if page.js %}
+      {% for js in page.js %}{% if js.assets_pipeline == true %}{{ js.path | javascript }}{% else %}<script src="{{ js.path | prepend: site.baseurl | prepend: site.url }}"></script>{% endif %}{% endfor %}
+    {% endif %}
+  </body>
+</html>

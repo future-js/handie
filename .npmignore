@@ -4,8 +4,8 @@
 .idea
 .editorconfig
 
-node_modules
 bower_components
+node_modules
 
 *.json
 *.log
@@ -15,6 +15,7 @@ bower_components
 /docs
 /examples
 /scripts
+/site
 /src
 
 gulpfile.js

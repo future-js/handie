@@ -1,0 +1,83 @@
+title: Handie
+description: UI stuffs for the dashboard of a website.
+keywords: handie,admin,dashboard,ui,framework
+tagline:
+
+collections:
+  pages:
+    output: true
+    permalink: /:path/
+  demos:
+    output: true
+    permalink: /layouts/:path/
+  cookbook:
+    output: true
+    permalink: /:collection/:path/
+
+# Handling Reading
+exclude:
+  - .asset-cache
+  - .sass-cache
+  - _demos/handie/libs/select2/docs
+  - node_modules
+  - Rakefile
+  - Gemfile
+  - Gemfile.lock
+  - Gruntfile.coffee
+  - bower.json
+  - package.json
+  - CNAME
+  # - README.md
+encoding: utf-8
+
+# Plugins
+gems:
+  - jekyll-assets
+  - jekyll-contentblocks
+  - jekyll-seo-tag
+  - jekyll/tagging
+  - jekyll-tagging-related_posts
+  - jekyll_version_plugin
+
+# Conversion
+markdown: kramdown
+highlighter: pygments
+
+# Outputting
+permalink: /posts/:title/
+timezone: Asia/Shanghai
+
+# YAML frontmatter
+defaults:
+  # 默认
+  - scope:
+      path: ""
+    values:
+      layout: default
+  # 页面
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
+  - scope:
+      path: ""
+      type: demos
+    values:
+      layout: default
+  - scope:
+      path: ""
+      type: cookbook
+    values:
+      layout: cookbook
+
+
+
+# =====
+# Customized configurations
+# =====
+
+# Modules
+module:
+  comment: true
+  share: true
