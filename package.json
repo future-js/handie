@@ -1,6 +1,6 @@
 {
   "name": "handie",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "UI stuffs for the dashboard of a website.",
   "main": "dist/javascripts/handie.js",
   "directories": {
