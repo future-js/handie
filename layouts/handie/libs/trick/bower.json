@@ -1,0 +1,32 @@
+{
+  "name": "trick",
+  "homepage": "https://github.com/ourai/trick",
+  "authors": [
+    "Ourai Lin <ourairyu@gmail.com> (http://ourai.ws/)"
+  ],
+  "description": "Helper kit for Compass",
+  "main": "_trick.scss",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src",
+    "test",
+    "tests",
+    "*.json",
+    "*.md",
+    "*.coffee"
+  ],
+  "keywords": [
+    "css",
+    "sass",
+    "scss",
+    "compass",
+    "mixin",
+    "helper"
+  ],
+  "dependencies": {
+    "compass-mixins-0.12.10": "compass-mixins#0.12.10"
+  }
+}

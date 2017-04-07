@@ -1,0 +1,30 @@
+{
+  "name": "buds",
+  "homepage": "https://github.com/ourai/buds",
+  "authors": [
+    "Ourai Lin <ourairyu@gmail.com>"
+  ],
+  "description": "Basis of all styles",
+  "main": [
+    "scss/_buds.scss",
+    "css/buds.css"
+  ],
+  "keywords": [
+    "css",
+    "sass",
+    "scss",
+    "helper"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "*.json",
+    "*.log",
+    "*.md",
+    "gulpfile.js",
+    "bower_components",
+    "node_modules",
+    "test",
+    "tests"
+  ]
+}
