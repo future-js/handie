@@ -54,6 +54,11 @@ function compileLayoutTasks() {
     let taskName = `compile-scss-${layout}`;
 
     gulp.task(taskName, ["concat-scss-main", `concat-scss-${layout}`], function() {
+      gulp.src(`./examples/stylesheets/${layout}.scss`)
+        .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
+        .pipe(cssmin({keepSpecialComments: 0}))
+        .pipe(gulp.dest("./examples/stylesheets"));
+
       return gulp.src(`${layoutDist}/_${layout}.scss`)
         .pipe(rename(`${layout}-default.scss`))
         .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
