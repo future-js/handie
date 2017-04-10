@@ -24,15 +24,15 @@
     "*.md",
     "gulpfile.js",
     "bower_components",
-    "build",
     "docs",
     "examples",
     "node_modules",
     "test",
     "tests",
-    "scripts",
-    "site",
-    "src"
+    "/build",
+    "/scripts",
+    "/site",
+    "/src"
   ],
   "devDependencies": {
     "tangram-0.2.2": "ourai/tangram#0.2.2",
