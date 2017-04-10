@@ -5749,8 +5749,8 @@ button.close {
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url("../../../vendor/fontawesome/fonts/fontawesome-webfont.eot?v=4.7.0");
-  src: url("../../../vendor/fontawesome/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0") format("embedded-opentype"), url("../../../vendor/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0") format("woff2"), url("../../../vendor/fontawesome/fonts/fontawesome-webfont.woff?v=4.7.0") format("woff"), url("../../../vendor/fontawesome/fonts/fontawesome-webfont.ttf?v=4.7.0") format("truetype"), url("../../../vendor/fontawesome/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
+  src: url("../../../../dist/fontawesome/fonts/fontawesome-webfont.eot?v=4.7.0");
+  src: url("../../../../dist/fontawesome/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0") format("embedded-opentype"), url("../../../../dist/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0") format("woff2"), url("../../../../dist/fontawesome/fonts/fontawesome-webfont.woff?v=4.7.0") format("woff"), url("../../../../dist/fontawesome/fonts/fontawesome-webfont.ttf?v=4.7.0") format("truetype"), url("../../../../dist/fontawesome/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
   font-weight: normal;
   font-style: normal;
 }

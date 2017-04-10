@@ -1,15 +1,15 @@
 //= Compass mixins
-@import "../../../vendor/compass-mixins/lib/compass";
-@import "../../../vendor/compass-mixins/lib/compass/layout";
-@import "../../../vendor/compass-mixins/lib/animation/core";
+@import "../../../dist/compass-mixins/lib/compass";
+@import "../../../dist/compass-mixins/lib/compass/layout";
+@import "../../../dist/compass-mixins/lib/animation/core";
 //= Trick Compass extension
-@import "../../../vendor/trick/trick";
+@import "../../../dist/trick/trick";
 //= Tangram layout library
-@import "../../../vendor/tangram/tangram";
+@import "../../../dist/tangram/tangram";
 //= Reset variables
 @import "../reset/variables";
 //= Variables from Buds
-@import "../../../vendor/buds/scss/variables";
+@import "../../../dist/buds/scss/variables";
 //= Variables and mixins from Bootstrap
-@import "../../../vendor/bootstrap-sass/assets/stylesheets/bootstrap/variables";
-@import "../../../vendor/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import "../../../dist/bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "../../../dist/bootstrap-sass/assets/stylesheets/bootstrap/mixins";

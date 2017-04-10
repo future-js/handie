@@ -8,9 +8,9 @@
     "test": "tests"
   },
   "scripts": {
-    "preembed": "rm -rf vendor",
-    "embed": "bower install",
-    "postembed": "cp -R bower_components vendor && node ./build/scripts/rename.js",
+    "preembed": "bower install",
+    "embed": "cp -R bower_components .handie-tmp/vendors",
+    "postembed": "node ./build/scripts/copy.js",
     "precompile": "rm -rf dist && node ./build/scripts/check.js",
     "compile": "gulp compile"
   },

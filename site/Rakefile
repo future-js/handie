@@ -5,14 +5,16 @@ desc "检测"
 task :check do
   cd "_assets" do
     system "rm -rf javascripts/handie"
-    system "cp -fR ../../dist/javascripts javascripts && mv javascripts/javascripts javascripts/handie"
+    system "cp -fR ../../dist/handie/javascripts javascripts && mv javascripts/javascripts javascripts/handie"
     system "rm -rf stylesheets/handie"
-    system "cp -fR ../../dist/stylesheets stylesheets && mv stylesheets/stylesheets stylesheets/handie"
+    system "cp -fR ../../dist/handie/stylesheets stylesheets && mv stylesheets/stylesheets stylesheets/handie"
   end
 
   cd "_demos" do
     system "rm -rf vendor"
-    system "cp -fR ../../vendor ."
+    system "cp -fR ../../dist ."
+    system "rm -rf dist/handie"
+    system "mv dist vendor"
   end
 end
 

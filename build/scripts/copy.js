@@ -7,7 +7,7 @@ const path = require("path");
 
 const execSync = require("child_process").execSync;
 
-const dir = path.resolve(__dirname, "../../vendor");
+const dir = path.resolve(__dirname, "../../.handie-tmp/vendors");
 
 if ( fs.existsSync(dir) ) {
   fs.readdirSync(dir).forEach(function( d ) {
@@ -16,17 +16,19 @@ if ( fs.existsSync(dir) ) {
 
     if ( d.charAt(0) !== "." && fs.statSync(p).isDirectory() ) {
       if ( regexp.test(d) ) {
-        let newPath = path.resolve(dir, d.replace(regexp, ""));
+        let newPath = path.resolve(dir, `../../dist/${d.replace(regexp, "")}`);
 
         if ( fs.existsSync(newPath) ) {
           execSync(`rm -rf ${newPath}`);
         }
 
-        fs.renameSync(p, newPath);
+        execSync(`mv ${p} ${newPath}`);
       }
       else {
         execSync(`rm -rf ${p}`);
       }
     }
   });
+
+  execSync(`rm -rf ${dir}`);
 }

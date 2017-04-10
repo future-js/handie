@@ -16,7 +16,7 @@ const scssimport = require("gulp-shopify-sass");
 const pkg = require("./bower.json");
 
 const layoutSrc = "./src/stylesheets/layouts";
-const layoutDist = "./dist/stylesheets/layouts";
+const layoutDist = `./dist/${pkg.name}/stylesheets/layouts`;
 const tmpDir = `.${pkg.name}-tmp`;
 const compileCssTasks = [];
 
@@ -68,7 +68,7 @@ gulp.task("concat-scss-helper", function() {
   return gulp.src("./src/stylesheets/utils/_helper.scss")
     .pipe(scssimport())
     .pipe(rename("_helper.scss"))
-    .pipe(gulp.dest("./dist/stylesheets"));
+    .pipe(gulp.dest(`./dist/${pkg.name}/stylesheets`));
 });
 
 gulp.task("import-scss-main", function() {
@@ -84,7 +84,7 @@ gulp.task("concat-scss-main", ["concat-scss-helper", "import-scss-main"], functi
       `${tmpDir}/${pkg.name}.scss`
     ])
     .pipe(concat(`_${pkg.name}.scss`))
-    .pipe(gulp.dest("./dist/stylesheets"));
+    .pipe(gulp.dest(`./dist/${pkg.name}/stylesheets`));
 });
 
 importLayoutTasks();
@@ -117,14 +117,14 @@ gulp.task("concat-js-main", function() {
         return pkg.name;
       }
     }))
-    .pipe(gulp.dest("./dist/javascripts"));
+    .pipe(gulp.dest(`./dist/${pkg.name}/javascripts`));
 });
 
 gulp.task("compile-js", ["concat-js-main"], function() {
   return gulp.src("./src/javascripts/layouts/*.js")
     .pipe(babel({presets: ["es2015"]}))
     .pipe(wrap(`(function() {\n\n<%= contents %>\n\n})();`))
-    .pipe(gulp.dest("./dist/javascripts/layouts"));
+    .pipe(gulp.dest(`./dist/${pkg.name}/javascripts/layouts`));
 });
 
 gulp.task("compile", ["compile-css", "compile-js"]);
