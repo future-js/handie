@@ -2,7 +2,7 @@
   "name": "handie",
   "version": "0.4.1",
   "description": "UI stuffs for the dashboard of a website.",
-  "main": "dist/javascripts/handie.js",
+  "main": "dist/handie/javascripts/handie.js",
   "directories": {
     "example": "examples",
     "test": "tests"

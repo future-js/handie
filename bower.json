@@ -6,9 +6,9 @@
   ],
   "description": "UI stuffs for the dashboard of a website.",
   "main": [
-    "dist/javascripts/handie.js",
-    "dist/stylesheets/themes/isomorphic-default.css",
-    "dist/stylesheets/themes/_isomorphic.scss"
+    "dist/handie/javascripts/handie.js",
+    "dist/handie/stylesheets/themes/isomorphic-default.css",
+    "dist/handie/stylesheets/themes/_isomorphic.scss"
   ],
   "keywords": [
     "ui",
