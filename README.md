@@ -15,7 +15,7 @@ Handie depends on a number of other frameworks and libraries. I copied dependenc
 
 ## Usage
 
-First, you must type command in terminal with `bower install --save handie` or `npm install --save handie` to install it.
+At first, you must type command in terminal with `bower install --save handie` or `npm install --save handie` to install Handie.
 
 Then include assets which you need:
 
@@ -39,3 +39,11 @@ Then include assets which you need:
   </body>
 </html>
 ```
+
+Please visit the [cookbook](https://ourai.github.io/handie/cookbook/) to learn more advanced features. ;-)
+
+## Feedback
+
+If you have any good suggestions, you could create an [issue](https://github.com/maihaoche/handle/issues) or send an [E-mail](mailto:ourairyu@gmail.com) to me.
+
+Thank you. ;-)
