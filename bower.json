@@ -28,7 +28,6 @@
     "docs",
     "examples",
     "node_modules",
-    "scripts",
     "site",
     "src",
     "test",

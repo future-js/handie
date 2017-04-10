@@ -20,6 +20,7 @@ end
 
 desc "运行"
 task :run do
+  system "bundle exec jekyll clean"
   system "rake check"
   system "bundle exec jekyll serve --future --drafts --incremental"
 end
@@ -35,6 +36,7 @@ task :deploy do
     end
   end
 
+  system "bundle exec jekyll clean"
   system "JEKYLL_ENV=production bundle exec jekyll build -V -d #{dir} --config _config.yml,_production.yml"
 
   cd dir do
