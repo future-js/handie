@@ -57,6 +57,34 @@ function resetWaitStatus() {
 }
 
 /**
+ * 将表单字段转换为 JSON 对象
+ *
+ * @param params
+ * @param callback
+ */
+function jsonifyFormParams(params, callback) {
+  var jsonData = {};
+
+  if ($.isPlainObject(params)) {
+    jsonData = params;
+  } else if (Array.isArray(params)) {
+    params.forEach(function (p) {
+      jsonData[p.name] = p.value;
+    });
+  }
+
+  if ($.isFunction(callback)) {
+    var newJson = callback(jsonData);
+
+    if ($.isPlainObject(newJson)) {
+      jsonData = newJson;
+    }
+  }
+
+  return jsonData;
+}
+
+/**
  * 发起 HTTP 请求
  *
  * @param url
@@ -81,6 +109,8 @@ function httpReq(url, method, params, callback, isJson) {
     }
   };
 
+  params = jsonifyFormParams(params);
+
   if (isJson === true) {
     ajaxOpts.data = JSON.stringify(params);
     ajaxOpts.contentType = "application/json; charset=UTF-8";
@@ -98,22 +128,6 @@ function httpReq(url, method, params, callback, isJson) {
 }
 
 utils.ajax = {
-  get: function get(url, params, callback) {
-    if ($.isFunction(params)) {
-      callback = params;
-      params = {};
-    }
-
-    return $.getJSON(url, params, function (res) {
-      resetWaitStatus();
-
-      utils.ajax.result(res, function (result) {
-        if ($.isFunction(callback)) {
-          callback.call(null, result, res);
-        }
-      });
-    });
-  },
   result: function result() {
     var _defaults$ajax;
 
@@ -133,11 +147,17 @@ utils.ajax = {
 
       $("button", $(".modal-header, .modal-footer", $dlg)).prop("disabled", true);
     }
-  }
+  },
+  jsonify: jsonifyFormParams
 };
 
-["post", "put", "delete"].forEach(function (method) {
+["get", "post", "put", "delete"].forEach(function (method) {
   utils.ajax[method] = function (url, params, callback, isJson) {
+    if (method === "get" && $.isFunction(params)) {
+      callback = params;
+      params = {};
+    }
+
     return httpReq(url, method, params, callback, isJson);
   };
 });

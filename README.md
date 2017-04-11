@@ -7,11 +7,9 @@
 [npm-dm]: https://img.shields.io/npm/dm/handie.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/handie
 
-UI stuffs for the dashboard of a website.
+Handie is a collection of UI stuffs for admin dashboard websites.
 
-## Introduction
-
-Handie depends on a number of other frameworks and libraries. I copied dependencies into `/dist` folder as a part of Handie in order to make versions controllable and include them handily.
+It depends on a number of other frameworks and libraries. I copied dependencies into `/dist` folder as a part of Handie in order to make versions controllable and include them handily.
 
 ## Usage
 
