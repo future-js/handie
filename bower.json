@@ -47,6 +47,9 @@
     "trick-0.4.2": "ourai/trick#0.4.2",
     "moment-2.18.0": "moment#2.18.0",
     "bootstrap-datetimepicker-4.17.45": "eonasdan-bootstrap-datetimepicker#4.17.45",
-    "buds-0.1.2": "buds#0.1.2"
+    "buds-0.1.2": "buds#0.1.2",
+    "html5shiv-3.7.3": "html5shiv#3.7.3",
+    "es5-shim-4.5.9": "es5-shim#4.5.9",
+    "es6-shim-0.35.3": "es6-shim#0.35.3"
   }
 }
