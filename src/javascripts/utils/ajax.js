@@ -70,22 +70,6 @@ function httpReq( url, method, params, callback, isJson ) {
 }
 
 utils.ajax = {
-  get: function( url, params, callback ) {
-    if ( $.isFunction(params) ) {
-      callback = params;
-      params = {};
-    }
-
-    return $.getJSON(url, params, function( res ) {
-      resetWaitStatus();
-
-      utils.ajax.result(res, function( result ) {
-        if ( $.isFunction(callback) ) {
-          callback.call(null, result, res);
-        }
-      });
-    });
-  },
   result: function( ...args ) {
     defaults.ajax.responseHandler(...args);
   },
@@ -105,8 +89,13 @@ utils.ajax = {
   }
 };
 
-["post", "put", "delete"].forEach(function( method ) {
+["get", "post", "put", "delete"].forEach(function( method ) {
   utils.ajax[method] = function( url, params, callback, isJson ) {
+    if ( method === "get" && $.isFunction(params) ) {
+      callback = params;
+      params = {};
+    }
+
     return httpReq(url, method, params, callback, isJson);
   };
 });
