@@ -27,6 +27,35 @@ function resetWaitStatus() {
 }
 
 /**
+ * 将表单字段转换为 JSON 对象
+ *
+ * @param params
+ * @param callback
+ */
+function jsonifyFormParams( params, callback ) {
+  let jsonData = {};
+
+  if ( $.isPlainObject(params) ) {
+    jsonData = params;
+  }
+  else if ( Array.isArray(params) ) {
+    params.forEach(function( p ) {
+      jsonData[p.name] = p.value;
+    });
+  }
+
+  if ( $.isFunction(callback) ) {
+    let newJson = callback(jsonData);
+
+    if ( $.isPlainObject(newJson) ) {
+      jsonData = newJson;
+    }
+  }
+
+  return jsonData;
+}
+
+/**
  * 发起 HTTP 请求
  *
  * @param url
@@ -50,6 +79,8 @@ function httpReq( url, method, params, callback, isJson ) {
       });
     }
   };
+
+  params = jsonifyFormParams(params);
 
   if ( isJson === true ) {
     ajaxOpts.data = JSON.stringify(params);
@@ -86,7 +117,8 @@ utils.ajax = {
 
       $("button", $(".modal-header, .modal-footer", $dlg)).prop("disabled", true);
     }
-  }
+  },
+  jsonify: jsonifyFormParams
 };
 
 ["get", "post", "put", "delete"].forEach(function( method ) {
