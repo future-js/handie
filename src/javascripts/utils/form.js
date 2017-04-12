@@ -3,28 +3,18 @@
  *
  * @param     $sel
  */
-function getDefaultOption( $sel ) {
-  let $opt;
-
-  $("option", $sel).each(function() {
-    if ( this.defaultSelected === true ) {
-      $opt = $(this);
-
-      return false;
-    }
-  });
-
-  return $opt || $("option:first", $sel);
+function getDefaultOptions( $sel ) {
+  return $([].filter.call($("option", $sel), function( opt ) {
+    opt.defaultSelected === true;
+  }));
 }
 
 utils.select = {
   change: function( $sel, val, callback ) {
-    let $opt = (val == null || val === "") ? getDefaultOption($sel) : $(`option[value='${val}']`, $sel);
+    let $opts = (val == null || val === "") ? getDefaultOptions($sel) : $(`option[value='${val}']`, $sel);
 
-    $opt
-      .prop("selected", true)
-      .siblings(":selected")
-      .prop("selected", false);
+    $(":selected", $sel).prop("selected", false);
+    $opts.prop("selected", true);
 
     if ( $.isFunction(callback) ) {
       callback.call($sel.get(0));

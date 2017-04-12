@@ -344,25 +344,18 @@ if (SUPPORTS.BS_MODAL) {
  *
  * @param     $sel
  */
-function getDefaultOption($sel) {
-  var $opt = void 0;
-
-  $("option", $sel).each(function () {
-    if (this.defaultSelected === true) {
-      $opt = $(this);
-
-      return false;
-    }
-  });
-
-  return $opt || $("option:first", $sel);
+function getDefaultOptions($sel) {
+  return $([].filter.call($("option", $sel), function (opt) {
+    opt.defaultSelected === true;
+  }));
 }
 
 utils.select = {
   change: function change($sel, val, callback) {
-    var $opt = val == null || val === "" ? getDefaultOption($sel) : $("option[value='" + val + "']", $sel);
+    var $opts = val == null || val === "" ? getDefaultOptions($sel) : $("option[value='" + val + "']", $sel);
 
-    $opt.prop("selected", true).siblings(":selected").prop("selected", false);
+    $(":selected", $sel).prop("selected", false);
+    $opts.prop("selected", true);
 
     if ($.isFunction(callback)) {
       callback.call($sel.get(0));
