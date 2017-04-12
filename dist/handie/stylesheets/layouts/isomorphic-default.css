@@ -1,26 +1,9 @@
 @charset "UTF-8";
-/*!
- * Trick (v0.4.1) - Helper kit for Compass
- * https://github.com/ourai/trick
- *
- * Copyright 2015, 2016 Ourai Lin (http://ourai.ws/)
- *
- * Date: 2016-10-26
- */
-/**
- * Font Awesome
- */
-/**
- * Variables
- *
- * parts of them are compatible with Bootstrap
- */
-/*!
- * Bootstrap v3.3.7 (http://getbootstrap.com)
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
-/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+
+
+
+
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -238,7 +221,7 @@ th {
   padding: 0;
 }
 
-/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+
 @media print {
   *,
   *:before,
@@ -5741,12 +5724,8 @@ button.close {
   }
 }
 
-/*!
- *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
- *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
- */
-/* FONT PATH
- * -------------------------- */
+
+
 @font-face {
   font-family: 'FontAwesome';
   src: url("../../../../dist/fontawesome/fonts/fontawesome-webfont.eot?v=4.7.0");
@@ -5764,7 +5743,7 @@ button.close {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* makes the font 33% larger relative to the icon container */
+
 .fa-lg {
   font-size: 1.33333em;
   line-height: 0.75em;
@@ -5836,7 +5815,7 @@ button.close {
   margin-left: .3em;
 }
 
-/* Deprecated as of 4.4.0 */
+
 .pull-right {
   float: right;
 }
@@ -5956,8 +5935,7 @@ button.close {
   color: #fff;
 }
 
-/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
-   readers do not read off random characters that represent icons */
+
 .fa-glass:before {
   content: "";
 }
@@ -8789,10 +8767,7 @@ button.close {
   clip: auto;
 }
 
-/**
- * Vertical alignment utilities
- * Depends on an appropriate `display` value.
- */
+
 .u-alignBaseline {
   vertical-align: baseline !important;
 }
@@ -8809,9 +8784,7 @@ button.close {
   vertical-align: top !important;
 }
 
-/**
- * Display-type utilities
- */
+
 .u-block {
   display: block !important;
 }
@@ -8820,9 +8793,7 @@ button.close {
   display: none !important;
 }
 
-/**
- * Completely remove from the flow but leave available to screen readers.
- */
+
 .u-hiddenVisually {
   position: absolute !important;
   overflow: hidden !important;
@@ -8837,11 +8808,7 @@ button.close {
   display: inline !important;
 }
 
-/**
- * 1. Fix for Firefox bug: an image styled `max-width:100%` within an
- * inline-block will display at its default size, and not limit its width to
- * 100% of an ancestral container.
- */
+
 .u-inlineBlock {
   display: -moz-inline-stack;
   display: inline-block;
@@ -8849,7 +8816,7 @@ button.close {
   zoom: 1;
   *display: inline;
   max-width: 100%;
-  /* 1 */
+  
 }
 
 .u-table {
@@ -8864,12 +8831,7 @@ button.close {
   display: table-row !important;
 }
 
-/**
- * Contain floats
- *
- * Make an element expand to contain floated children.
- * Uses pseudo-elements (micro clearfix).
- */
+
 .u-cf,
 .u-clearfix {
   *zoom: 1;
@@ -8882,40 +8844,20 @@ button.close {
   clear: both;
 }
 
-/**
- * New block formatting context
- *
- * This affords some useful properties to the element. It won't wrap under
- * floats. Will also contain any floated children.
 
- * N.B. This will clip overflow. Use the alternative method below if this is
- * problematic.
- */
 .u-nbfc {
   overflow: hidden !important;
 }
 
-/**
- * New block formatting context (alternative)
- *
- * Alternative method when overflow must not be clipped.
- *
- * 1. Create a new block formatting context (NBFC).
- * 2. Avoid shrink-wrap behaviour of table-cell.
- *
- * N.B. This breaks down in some browsers when elements within this element
- * exceed its width.
- */
+
 .u-nbfcAlt {
   display: table-cell !important;
-  /* 1 */
+  
   width: 10000px !important;
-  /* 2 */
+  
 }
 
-/**
- * Floats
- */
+
 .u-floatLeft {
   float: left !important;
 }
@@ -8924,56 +8866,29 @@ button.close {
   float: right !important;
 }
 
-/**
- * Clean link
- *
- * A link without any text-decoration at all.
- */
+
 .u-linkClean, .u-linkComplex, .u-linkBlock, .u-linkClean:hover, .u-linkComplex:hover, .u-linkBlock:hover, .u-linkClean:focus, .u-linkComplex:focus, .u-linkBlock:focus, .u-linkClean:active, .u-linkComplex:active, .u-linkBlock:active {
   text-decoration: none !important;
 }
 
-/**
- * Link complex
- *
- * A common pattern is to have a link with several pieces of text and/or an
- * icon, where only one piece of text should display the underline when the
- * link is the subject of user interaction.
- *
- * Example HTML:
- *
- * <a class="u-linkComplex" href="#">
- *   Link complex
- *   <span class="u-linkComplexTarget">target</span>
- * </a>
- */
+
 .u-linkComplex:hover .u-linkComplexTarget,
 .u-linkComplex:focus .u-linkComplexTarget,
 .u-linkComplex:active .u-linkComplexTarget {
   text-decoration: underline !important;
 }
 
-/**
- * Block-level link
- *
- * Combination of traits commonly used in vertical navigation lists.
- */
+
 .u-linkBlock, .u-linkBlock:hover, .u-linkBlock:focus, .u-linkBlock:active {
   display: block !important;
 }
 
-/**
- * Word breaking
- *
- * Break strings when their length exceeds the width of their container.
- */
+
 .u-textBreak {
   word-wrap: break-word !important;
 }
 
-/**
- * Horizontal text alignment
- */
+
 .u-textCenter {
   text-align: center !important;
 }
@@ -8986,63 +8901,38 @@ button.close {
   text-align: right !important;
 }
 
-/**
- * Inherit the ancestor's text color.
- */
+
 .u-textInheritColor {
   color: inherit !important;
 }
 
-/**
- * Enables font kerning in all browsers.
- * http://blog.typekit.com/2014/02/05/kerning-on-the-web/
- *
- * 1. Chrome (not Windows), Firefox, Safari 6+, iOS, Android
- * 2. Chrome (not Windows), Firefox, IE 10+
- * 3. Safari 7 and future browsers
- */
+
 .u-textKern {
   text-rendering: optimizeLegibility;
-  /* 1 */
+  
   font-feature-settings: "kern" 1;
-  /* 2 */
+  
   font-kerning: normal;
-  /* 3 */
+  
 }
 
-/**
- * Prevent whitespace wrapping
- */
+
 .u-textNoWrap {
   white-space: nowrap !important;
 }
 
-/**
- * Text truncation
- *
- * Prevent text from wrapping onto multiple lines, and truncate with an
- * ellipsis.
- *
- * 1. Ensure that the node has a maximum width after which truncation can
- *    occur.
- * 2. Fix for IE 8/9 if `word-wrap: break-word` is in effect on ancestor
- *    nodes.
- */
+
 .u-textTruncate {
   max-width: 100%;
-  /* 1 */
+  
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
   word-wrap: normal !important;
-  /* 2 */
+  
 }
 
-/**
- * Variables
- *
- * parts of them are compatible with Bootstrap
- */
+
 *:focus {
   outline: none;
 }

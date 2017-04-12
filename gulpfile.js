@@ -12,6 +12,7 @@ const babel = require("gulp-babel");
 const umd = require("gulp-umd");
 const wrap = require("gulp-wrap");
 const scssimport = require("gulp-shopify-sass");
+const stripCssComments = require("gulp-strip-css-comments");
 
 const pkg = require("./bower.json");
 
@@ -57,6 +58,7 @@ function compileLayoutTasks() {
       return gulp.src(`${layoutDist}/_${layout}.scss`)
         .pipe(rename(`${layout}-default.scss`))
         .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
+        .pipe(stripCssComments({preserve: false}))
         .pipe(gulp.dest(layoutDist));
     });
 
