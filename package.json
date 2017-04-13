@@ -9,7 +9,8 @@
   },
   "scripts": {
     "precompile": "bower install",
-    "compile": "gulp compile"
+    "compile": "gulp compile",
+    "postpublish": "node ./build/scripts/release.js"
   },
   "repository": {
     "type": "git",
