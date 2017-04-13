@@ -15,28 +15,13 @@ const scssimport = require("gulp-shopify-sass");
 const stripCssComments = require("gulp-strip-css-comments");
 const banner = require("gulp-banner");
 
-const imageToAscii = require("image-to-ascii");
-
 const pkg = require("./package.json");
+const bannerTemplet = require("./build/partials/banner");
 
-const AVATAR_URL = "https://ourai.ws/assets/avatars/ourai-100px-e9d4bf46ea203885c39863bc40a6717ff1946dac1dce4637bba50d691138735c.jpg";
 const layoutSrc = "./src/stylesheets/layouts";
 const layoutDist = `./dist/${pkg.name}/stylesheets/layouts`;
 const tmpDir = `.${pkg.name}-tmp`;
 const compileCssTasks = [];
-
-function getBannerComment( ascii ) {
-  return "/*!\n" +
-    " * <%= pkg.name.charAt(0).toUpperCase() %><%= pkg.name.substring(1) %> v<%= pkg.version %>\n" +
-    " * <%= pkg.description %>\n" +
-    " * <%= pkg.homepage %>\n" +
-    " *\n" +
-    " * Copyright 2017, <%= pkg.author %>\n" +
-    " * Released under the <%= pkg.license %> license.\n" +
-    " *\n" +
-    ` * ${ascii.replace(/\n\b/g, "\n * ")}\n` +
-    " */\n\n";
-}
 
 function traverseLayouts( callback ) {
   fs.readdirSync(path.resolve(__dirname, layoutSrc)).forEach(callback);
@@ -110,12 +95,10 @@ concatLayoutTasks();
 compileLayoutTasks();
 
 gulp.task("compile-css", compileCssTasks, function() {
-  imageToAscii(AVATAR_URL, {colored: false}, function( err, ascii ) {
-    gulp.src(`${layoutDist}/*.css`)
-      .pipe(stripCssComments({preserve: false}))
-      .pipe(banner(getBannerComment(ascii), {pkg}))
-      .pipe(gulp.dest(layoutDist));
-  });
+  return gulp.src(`${layoutDist}/*.css`)
+    .pipe(stripCssComments({preserve: false}))
+    .pipe(banner(bannerTemplet, {pkg}))
+    .pipe(gulp.dest(layoutDist));
 });
 
 gulp.task("concat-js-main", function() {
@@ -153,11 +136,9 @@ gulp.task("compile-js", ["concat-js-main"], function() {
 });
 
 gulp.task("compile", ["compile-css", "compile-js"], function() {
-  imageToAscii(AVATAR_URL, {colored: false}, function( err, ascii ) {
-    gulp.src(`./dist/${pkg.name}/javascripts/**/*.js`)
-      .pipe(banner(getBannerComment(ascii), {pkg}))
-      .pipe(gulp.dest(`./dist/${pkg.name}/javascripts`));
-  });
+  return gulp.src(`./dist/${pkg.name}/javascripts/**/*.js`)
+    .pipe(banner(bannerTemplet, {pkg}))
+    .pipe(gulp.dest(`./dist/${pkg.name}/javascripts`));
 });
 
 gulp.task("watch", function() {

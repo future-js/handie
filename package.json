@@ -37,7 +37,6 @@
     "gulp-shopify-sass": "^0.3.3",
     "gulp-strip-css-comments": "^1.2.0",
     "gulp-umd": "^0.2.1",
-    "gulp-wrap": "^0.13.0",
-    "image-to-ascii": "^3.0.7"
+    "gulp-wrap": "^0.13.0"
   }
 }
