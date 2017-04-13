@@ -10,7 +10,7 @@
 
 Handie is a collection of UI stuffs for admin dashboard websites.
 
-It depends on a number of other frameworks and libraries. I copied dependencies into `/dist` folder as a part of Handie in order to make versions controllable and include them handily.
+It depends on a number of other frameworks and libraries. I copied dependencies as a part of Handie in order to make versions controllable and include them handily.
 
 ## Usage
 
@@ -24,17 +24,17 @@ Then include assets which you need:
     <meta charset="UTF-8">
     <title>Isomorphic layout of Handie</title>
     <!-- Global and layout-specific CSS rules -->
-    <link rel="stylesheet" href="/handie/dist/handie/stylesheets/layouts/isomorphic-default.css">
+    <link rel="stylesheet" href="/handie-latest/handie/stylesheets/layouts/isomorphic-default.css">
   </head>
   <body class="Page">
     ...
     <!-- Dependencies for Handie -->
-    <script src="/handie/dist/jquery/dist/jquery.min.js"></script>
-    <script src="/handie/dist/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
+    <script src="/handie-latest/jquery/dist/jquery.min.js"></script>
+    <script src="/handie-latest/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
     <!-- Utils of Handie -->
-    <script src="/handie/dist/handie/javascripts/handie.js"></script>
+    <script src="/handie-latest/handie/javascripts/handie.js"></script>
     <!-- Layout-specific Logic -->
-    <script src="/handie/dist/handie/javascripts/layouts/Isomorphic.js"></script>
+    <script src="/handie-latest/handie/javascripts/layouts/Isomorphic.js"></script>
   </body>
 </html>
 ```
