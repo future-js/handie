@@ -10,6 +10,7 @@
   "scripts": {
     "precompile": "bower install",
     "compile": "gulp compile",
+    "prepublish": "npm run compile",
     "postpublish": "node ./build/scripts/release.js"
   },
   "repository": {
