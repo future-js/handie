@@ -2,13 +2,10 @@
 
 "use strict";
 
-const fs = require("fs");
 const path = require("path");
 const execSync = require("child_process").execSync;
 const pkg = require("../../bower.json");
 
-fs.readdirSync("../../dist").forEach(function( d ) {
-  if ( d !== pkg.name ) {
-    execSync(`rm -rf ${d}`);
-  }
+execSync(`bower uninstall ${Object.keys(pkg.devDependencies).join(" ")}`, {
+  cwd: path.resolve(__dirname, "../..")
 });

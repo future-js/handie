@@ -1,5 +1,6 @@
 # Handie
 
+[![Bower version](https://img.shields.io/bower/v/handie.svg?style=flat-square)](https://github.com/packagent/handie)
 [![NPM version][npm-ver]][npm-url]
 [![NPM download][npm-dm]][npm-url]
 

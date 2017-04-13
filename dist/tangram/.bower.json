@@ -39,7 +39,7 @@
     "tag": "0.2.2",
     "commit": "e7a110d4f78643302d2084492af75277b07fbfdd"
   },
-  "_source": "git://github.com/ourai/tangram.git",
+  "_source": "https://github.com/ourai/tangram.git",
   "_target": "0.2.2",
   "_originalSource": "ourai/tangram"
 }

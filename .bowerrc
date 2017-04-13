@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "postinstall": "node ./build/scripts/copy.js %",
+    "preuninstall": "node ./build/scripts/remove.js %"
+  }
+}

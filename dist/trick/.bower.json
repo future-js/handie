@@ -36,7 +36,7 @@
     "tag": "0.4.2",
     "commit": "def70c7be5554398b9e5d19012f677a6aa50d493"
   },
-  "_source": "git://github.com/ourai/trick.git",
+  "_source": "https://github.com/ourai/trick.git",
   "_target": "0.4.2",
   "_originalSource": "ourai/trick"
 }

@@ -7,28 +7,20 @@ const path = require("path");
 
 const execSync = require("child_process").execSync;
 
-const dir = path.resolve(__dirname, "../../.handie-tmp/vendors");
+const vendorPath = path.resolve(__dirname, "../../dist");
+const bowerPath = path.resolve(__dirname, "../../bower_components");
 
-if ( fs.existsSync(dir) ) {
-  fs.readdirSync(dir).forEach(function( d ) {
-    let p = path.resolve(dir, d);
-    let regexp = /\-(\d+\.?)+/;
-
-    if ( d.charAt(0) !== "." && fs.statSync(p).isDirectory() ) {
-      if ( regexp.test(d) ) {
-        let newPath = path.resolve(dir, `../../dist/${d.replace(regexp, "")}`);
-
-        if ( fs.existsSync(newPath) ) {
-          execSync(`rm -rf ${newPath}`);
-        }
-
-        execSync(`mv ${p} ${newPath}`);
-      }
-      else {
-        execSync(`rm -rf ${p}`);
-      }
-    }
-  });
-
-  execSync(`rm -rf ${dir}`);
+if ( !fs.existsSync(vendorPath) ) {
+  execSync(`mkdir ${vendorPath}`);
 }
+
+process.argv.slice(2).forEach(function( componentName ) {
+  let vendorName = componentName.replace(/\-(\d+\.?)+/, "");
+  let targetPath = path.resolve(vendorPath, vendorName);
+
+  if ( fs.existsSync(targetPath) ) {
+    execSync(`rm -rf ${targetPath}`);
+  }
+
+  execSync(`cp -R ${path.resolve(bowerPath, componentName)} ${targetPath}`);
+});
