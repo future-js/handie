@@ -4,17 +4,33 @@
  * @param     $sel
  */
 function getDefaultOptions( $sel ) {
-  return $([].filter.call($("option", $sel), function( opt ) {
+  return [].filter.call($("option", $sel), function( opt ) {
     opt.defaultSelected === true;
-  }));
+  });
 }
 
 utils.select = {
   change: function( $sel, val, callback ) {
-    let $opts = (val == null || val === "") ? getDefaultOptions($sel) : $(`option[value='${val}']`, $sel);
+    let opts;
+
+    if ( val == null || val === "" ) {
+      opts = getDefaultOptions($sel);
+    }
+    else {
+      if ( typeof val === "string" && val.split(",") ) {
+        val = val.split(",");
+      }
+
+      opts = Array.isArray(val) ? val.map(function( v ) {
+        return $(`option[value='${v}']`, $sel);
+      }) : $(`option[value='${val}']`, $sel);
+    }
 
     $(":selected", $sel).prop("selected", false);
-    $opts.prop("selected", true);
+
+    opts.forEach(function( opt ) {
+      $(opt).prop("selected", true);
+    });
 
     if ( $.isFunction(callback) ) {
       callback.call($sel.get(0));
