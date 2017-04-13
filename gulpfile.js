@@ -17,7 +17,7 @@ const banner = require("gulp-banner");
 
 const imageToAscii = require("image-to-ascii");
 
-const pkg = require("./bower.json");
+const pkg = require("./package.json");
 
 const AVATAR_URL = "https://ourai.ws/assets/avatars/ourai-100px-e9d4bf46ea203885c39863bc40a6717ff1946dac1dce4637bba50d691138735c.jpg";
 const layoutSrc = "./src/stylesheets/layouts";
@@ -27,11 +27,11 @@ const compileCssTasks = [];
 
 function getBannerComment( ascii ) {
   return "/*!\n" +
-    " * <%= pkg.name.charAt(0).toUpperCase() %><%= pkg.name.substring(1) %> <%= pkg.version %>\n" +
+    " * <%= pkg.name.charAt(0).toUpperCase() %><%= pkg.name.substring(1) %> v<%= pkg.version %>\n" +
     " * <%= pkg.description %>\n" +
     " * <%= pkg.homepage %>\n" +
     " *\n" +
-    " * Copyright 2017, <%= pkg.authors[0] %>\n" +
+    " * Copyright 2017, <%= pkg.author %>\n" +
     " * Released under the <%= pkg.license %> license.\n" +
     " *\n" +
     ` * ${ascii.replace(/\n\b/g, "\n * ")}\n` +
