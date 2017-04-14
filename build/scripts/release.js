@@ -21,4 +21,4 @@ fs.readdirSync(releasePath).forEach(function( dir ) {
 });
 
 execSync("cp -R dist/ ../handie-dist/", {cwd: rootPath});
-execSync(`git add . && git commit -m "Built on ${new Date()}" && git tag -a v${pkg.version} -m "${pkg.version}" && git push --all --tags`, {cwd: releasePath});
+execSync(`git add . && git commit -m "Built on ${new Date()}" && git tag -a v${pkg.version} -m "${pkg.version}" && git push --tags && git push --all`, {cwd: releasePath});

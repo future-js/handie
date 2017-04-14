@@ -24,7 +24,7 @@ utils.generate = {
     let html = actions.map(function( a ) {
       if ( $.isPlainObject(a) ) {
         let btnHtml = [];
-        let btnCls = `btn btn-${a.isDelete === true ? "danger" : "default"} btn-xs js-${a.action}`;
+        let btnCls = `btn btn-${a.isPrimary === true ? "primary" : a.isDelete === true ? "danger" : "default"} btn-xs js-${a.action}`;
         let isLink = $.type(a.url) === "string";
 
         if ( isLink ) {
