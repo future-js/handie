@@ -28,7 +28,7 @@ utils.select = {
 
     $(":selected", $sel).prop("selected", false);
 
-    opts.forEach(function( opt ) {
+    [].forEach.call(opts, function( opt ) {
       $(opt).prop("selected", true);
     });
 
