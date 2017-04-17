@@ -51,6 +51,30 @@ utils.select = {
   }
 };
 
+/**
+ * 将表单字段转换为 JSON 对象
+ *
+ * @param $form
+ * @param callback
+ */
+function jsonifyFormData( $form, callback ) {
+  let jsonData = {};
+
+  (Array.isArray($form) ? $form : $($form).serializeArray()).forEach(function( p ) {
+    jsonData[p.name] = p.value;
+  });
+
+  if ( $.isFunction(callback) ) {
+    let newJson = callback(jsonData);
+
+    if ( $.isPlainObject(newJson) ) {
+      jsonData = newJson;
+    }
+  }
+
+  return jsonData;
+}
+
 utils.form = {
   /**
    * 填充表单
@@ -94,6 +118,7 @@ utils.form = {
       callback.call($form.get(0));
     }
   },
+  jsonify: jsonifyFormData,
   serialize: function( $form, filter ) {
     let settings = $form;
     let serializer;
