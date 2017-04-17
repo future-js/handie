@@ -1,3 +1,12 @@
+defaults.form = {
+  filter: function( data, $field, arr ) {
+    return true;
+  },
+  serializer: function( arr ) {
+    return arr;
+  }
+};
+
 /**
  * 获取下拉列表的默认选项
  *
@@ -84,6 +93,30 @@ utils.form = {
     if ( $.isFunction(callback) ) {
       callback.call($form.get(0));
     }
+  },
+  serialize: function( $form, filter ) {
+    let settings = $form;
+    let serializer;
+
+    if ( $.isPlainObject($form) ) {
+      $form = settings.$form;
+      filter = settings.filter;
+      serializer = settings.serializer;
+    }
+
+    if ( !$.isFunction(filter) ) {
+      filter = defaults.form.filter;
+    }
+
+    if ( !$.isFunction(serializer) ) {
+      serializer = defaults.form.serializer;
+    }
+
+    $form = $($form);
+
+    return serializer($form.serializeArray().filter(function( data, idx, arr ) {
+      return filter(data, $(`[name="${data.name}"]`, $form), arr);
+    }));
   }
 };
 
