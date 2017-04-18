@@ -112,7 +112,7 @@ utils.form = {
       utils.select.change($(this));
     });
 
-    $("[type='hidden']").val("");
+    $("[type='hidden']", $form).val("");
 
     if ( $.isFunction(callback) ) {
       callback.call($form.get(0));
