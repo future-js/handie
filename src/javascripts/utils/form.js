@@ -51,6 +51,23 @@ utils.select = {
   }
 };
 
+function isQueryStr( str ) {
+  return typeof str === "string" &&
+    str.split("&").length > 0 &&
+    str.split("&")[0].split("=").length > 0;
+}
+
+function queryStr2SerializedArr( str ) {
+  return str.split("&").map(function( pair ) {
+    let p = pair.split("=");
+
+    return {
+      name: p[0],
+      value: decodeURIComponent(p[1])
+    };
+  });
+}
+
 /**
  * 将表单字段转换为 JSON 对象
  *
@@ -60,7 +77,9 @@ utils.select = {
 function jsonifyFormData( $form, callback ) {
   let jsonData = {};
 
-  (Array.isArray($form) ? $form : $($form).serializeArray()).forEach(function( p ) {
+  (Array.isArray($form) ? $form :
+    isQueryStr($form) ? queryStr2SerializedArr($form) :
+    $($form).serializeArray()).forEach(function( p ) {
     jsonData[p.name] = p.value;
   });
 
