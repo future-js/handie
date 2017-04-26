@@ -53,6 +53,26 @@ function initDefaults() {
       }
     },
     {
+      dependency: SUPPORTS.BS_DATETIME,
+      initializer: function() {
+        $.extend(true, $.fn.datetimepicker.defaults, {
+          locale: "zh-CN",
+          icons: {
+            time: "fa fa-clock-o",
+            date: "fa fa-calendar",
+            up: "fa fa-chevron-up",
+            down: "fa fa-chevron-down",
+            previous: "fa fa-chevron-left",
+            next: "fa fa-chevron-right",
+            today: "fa fa-crosshairs",
+            clear: "fa fa-trash",
+            close: "fa fa-remove"
+          },
+          showTodayButton: true
+        });
+      }
+    },
+    {
       dependency: SUPPORTS.SELECT2,
       initializer: function() {
         // Select2 下拉列表
