@@ -245,3 +245,55 @@ utils.field = {
     });
   }
 };
+
+if ( SUPPORTS.BS_DATETIME && SUPPORTS.MOMENTJS ) {
+  utils.field.datetimepicker = function( $picker, opts ) {
+    if ( $.isPlainObject($picker) ) {
+      opts = $picker;
+      $picker = null;
+    }
+
+    $picker = $picker == null ? $(".js-pickDateTime") : $($picker);
+    opts = $.extend(true, {}, opts);
+
+    $picker.each(function() {
+      let $p = $(this);
+
+      // 时间段
+      if ( $p.is(".js-pickDatePeriod") ) {
+        let selector = "input:not([type='hidden'])";
+        let $ipts = $(selector, $p);
+
+        if ( $ipts.size() === 2 ) {
+          $ipts.each(function( idx ) {
+            let $ipt = $(this);
+            let method;
+
+            if ( idx === 0 ) {
+              method = "minDate";
+            }
+            else {
+              method = "maxDate";
+              // 请看 https://github.com/Eonasdan/bootstrap-datetimepicker/issues/1075
+              opts.useCurrent = false;
+            }
+
+            $ipt
+              .datetimepicker(opts)
+              .on("dp.change", function( evt ) {
+                let $dt = $(this);
+                let date = evt.date;
+
+                $dt.siblings(selector).data("DateTimePicker")[method](date);
+                $(`input[name='${$dt.attr("data-to")}']`, $dt.closest("form")).val(moment(date).format());
+              });
+          });
+        }
+      }
+      // 时间点
+      else {
+        $p.datetimepicker(opts);
+      }
+    });
+  };
+}
