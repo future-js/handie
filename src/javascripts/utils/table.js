@@ -12,7 +12,7 @@ function getDataTable() {
 try {
   defaults.table.responseHandler = $.fn.bootstrapTable.defaults.responseHandler;
 }
-catch() {}
+catch( e ) {}
 
 utils.table = {
   init: function( opts ) {
