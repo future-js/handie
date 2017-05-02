@@ -124,14 +124,14 @@ function initDefaults() {
       }
     }
   ].forEach(function( lib ) {
-    if ( lib.dependency ) {
+    if ( lib.dependency() ) {
       lib.initializer();
     }
   });
 }
 
 function initDialogs() {
-  if ( !SUPPORTS.BS_MODAL ) {
+  if ( !SUPPORTS.BS_MODAL() ) {
     return;
   }
 
@@ -161,7 +161,7 @@ function initDialogs() {
 }
 
 function initSelects() {
-  if ( !SUPPORTS.SELECT2 ) {
+  if ( !SUPPORTS.SELECT2() ) {
     return;
   }
 

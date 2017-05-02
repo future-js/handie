@@ -95,6 +95,42 @@ function jsonifyFormData( $form, callback ) {
 }
 
 utils.form = {
+  h5f: function( $form ) {
+    H5F.init($form, {immediate: false});
+
+    $("[name]", $form).on({
+      "H5F:valid": function( e, f ) {
+        let $cell = $(e.target).closest("div");
+        let $group = $(".ErrorGroup", $cell);
+
+        $(".Error[data-name='" + f.name + "']", $cell).remove();
+
+        if ( $(".Error", $group).size() === 0 ) {
+          $group.remove();
+        }
+      },
+      "H5F:invalid": function( e, f ) {
+        let $cell = $(e.target).closest("div");
+        let $err = $(".Error[data-name='" + f.name + "']", $cell);
+
+        if ( $(".ErrorGroup", $cell).size() === 0 ) {
+          $cell.append("<div class=\"ErrorGroup\" />");
+        }
+
+        if ( $err.size() === 0 ) {
+          $(".ErrorGroup", $cell).append("<p class=\"Error\" data-name=\"" + f.name + "\" />");
+
+          $err = $(".Error[data-name='" + f.name + "']", $cell);
+        }
+
+        $err.text(f.message);
+      }
+    });
+
+    $form.on("reset", function() {
+      $(".ErrorGroup", $form).remove();
+    });
+  },
   /**
    * 填充表单
    *
@@ -164,45 +200,6 @@ utils.form = {
   }
 };
 
-if ( SUPPORTS.H5FX ) {
-  utils.form.h5f = function( $form ) {
-    H5F.init($form, {immediate: false});
-
-    $("[name]", $form).on({
-      "H5F:valid": function( e, f ) {
-        let $cell = $(e.target).closest("div");
-        let $group = $(".ErrorGroup", $cell);
-
-        $(".Error[data-name='" + f.name + "']", $cell).remove();
-
-        if ( $(".Error", $group).size() === 0 ) {
-          $group.remove();
-        }
-      },
-      "H5F:invalid": function( e, f ) {
-        let $cell = $(e.target).closest("div");
-        let $err = $(".Error[data-name='" + f.name + "']", $cell);
-
-        if ( $(".ErrorGroup", $cell).size() === 0 ) {
-          $cell.append("<div class=\"ErrorGroup\" />");
-        }
-
-        if ( $err.size() === 0 ) {
-          $(".ErrorGroup", $cell).append("<p class=\"Error\" data-name=\"" + f.name + "\" />");
-
-          $err = $(".Error[data-name='" + f.name + "']", $cell);
-        }
-
-        $err.text(f.message);
-      }
-    });
-
-    $form.on("reset", function() {
-      $(".ErrorGroup", $form).remove();
-    });
-  };
-}
-
 utils.field = {
   fill: function( $container, data, callback ) {
     $("[data-field]", $container).each(function() {
@@ -243,11 +240,8 @@ utils.field = {
         });
       }
     });
-  }
-};
-
-if ( SUPPORTS.BS_DATETIME && SUPPORTS.MOMENTJS ) {
-  utils.field.datetimepicker = function( $picker, opts ) {
+  },
+  datetimepicker: function( $picker, opts ) {
     if ( $.isPlainObject($picker) ) {
       opts = $picker;
       $picker = null;
@@ -295,5 +289,5 @@ if ( SUPPORTS.BS_DATETIME && SUPPORTS.MOMENTJS ) {
         $p.datetimepicker(opts);
       }
     });
-  };
-}
+  }
+};
