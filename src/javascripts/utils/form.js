@@ -77,10 +77,12 @@ function queryStr2SerializedArr( str ) {
 function jsonifyFormData( $form, callback ) {
   let jsonData = {};
 
-  (Array.isArray($form) ? $form :
+  (
+    Array.isArray($form) ? $form :
     isQueryStr($form) ? queryStr2SerializedArr($form) :
-    $($form).serializeArray()).forEach(function( p ) {
-    jsonData[p.name] = p.value;
+    $($form).serializeArray()
+  ).forEach(function( p ) {
+    jsonData[p.name] = jsonData.hasOwnProperty(p.name) ? [].concat(jsonData[p.name], p.value) : p.value;
   });
 
   if ( $.isFunction(callback) ) {
