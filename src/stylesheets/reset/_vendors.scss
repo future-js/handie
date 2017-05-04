@@ -2,14 +2,20 @@
  * Bootstrap
  */
 
-.modal.is-scrollable .modal-content {
-  height: 100%;
+.modal {
+  &.is-scrollable .modal-content {
+    height: 100%;
 
-  @include box-fixed-height(
-      ".modal-header", 58px,
-      ".modal-footer", 66px,
-      ".modal-body"
-  );
+    @include box-fixed-height(
+        ".modal-header", 58px,
+        ".modal-footer", 66px,
+        ".modal-body"
+    );
+  }
+
+  &.is-waiting .modal-body {
+    overflow: hidden !important;
+  }
 }
 
 

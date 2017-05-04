@@ -18,12 +18,14 @@ defaults.ajax = {
  * 重置请求等待状态
  */
 function resetWaitStatus() {
-  let $layer = $(".modal:visible .js-waitForResult:visible");
+  $(".modal:visible .js-waitForResult:visible").each(function() {
+    let $layer = $(this);
+    let $modal = $layer.closest(".modal");
 
-  if ( $layer.size() ) {
     $layer.hide();
-    $("button", $(".modal-header, .modal-footer", $layer.closest(".modal"))).prop("disabled", false);
-  }
+    $modal.removeClass("is-waiting");
+    $("button", $(".modal-header, .modal-footer", $modal)).prop("disabled", false);
+  });
 }
 
 /**
@@ -79,6 +81,8 @@ utils.ajax = {
     let $dlg = $target.closest(".modal");
 
     if ( $dlg.size() ) {
+      $dlg.addClass("is-waiting");
+
       if ( $(".js-waitForResult", $dlg).size() ) {
         $(".js-waitForResult", $dlg).show();
       }
