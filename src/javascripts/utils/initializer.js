@@ -26,9 +26,7 @@ function initDefaults() {
           // showPaginationSwitch: false,
           pageList: [],
           queryParams: function( params ) {
-            params = {};
-
-            $(".Area--query form")
+            return utils.form.jsonify($(".Area--query form")
               .serializeArray()
               .concat({
                 name: "pageSize",
@@ -36,12 +34,13 @@ function initDefaults() {
               }, {
                 name: "pageNo",
                 value: this.pageNumber
-              })
-              .forEach(function( p ) {
-                params[p.name] = p.value;
-              });
+              }), function( jsonified ) {
+                Object.keys(jsonified).forEach(function( k ) {
+                  jsonified[k] = jsonified[k].toString();
+                });
 
-            return params;
+                return jsonified;
+              });
           },
           responseHandler: function( res ) {
             return defaults.table.responseHandler.call(this, res);
