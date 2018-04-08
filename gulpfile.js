@@ -171,7 +171,7 @@ gulp.task("convert-components", ["modulize-components"], () => {
     .map(componentName => resolveRollupTask({
       input: path.join(JS_DIR, componentName),
       plugins: [rollupBabel(Object.assign({}, babelConf, {exclude: "node_modules/**"}))],
-      file: `./dist/muu/components/${componentName}`,
+      file: `./dist/handie/components/${componentName}`,
       name: componentName
     }));
   
@@ -182,7 +182,7 @@ gulp.task("convert-components", ["modulize-components"], () => {
       rollupCjsResolver(),
       rollupBabel(babelConf)
     ],
-    file: `./dist/muu/javascripts/${filename}.js`,
+    file: `./dist/handie/javascripts/${filename}.js`,
     name: filename
   })));
 
@@ -246,9 +246,20 @@ gulp.task("compile-css-lite", ["concat-scss-lite"], function() {
     .pipe(gulp.dest(cssDistDir));
 });
 
+gulp.task("compile-css-theme-sidebarfirst", () => {
+  return gulp
+    .src("./src/stylesheets/layouts/sidebar-first/index.scss")
+    .pipe(rename("sidebar-first.scss"))
+    .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
+    .pipe(stripCssComments({preserve: false}))
+    .pipe(banner(bannerTemplate, {pkg}))
+    .pipe(gulp.dest(cssDistDir));
+});
+
 gulp.task("compile-css", [
-    "compile-css-main",
-    "compile-css-lite"
+    // "compile-css-main",
+    // "compile-css-lite",
+    "compile-css-theme-sidebarfirst"
   ], function() {
     return gulp.src(`${cssDistDir}/**/*.css`, {base: cssDistDir})
       .pipe(sourcemaps.init({largeFile: true, loadMaps: true}))
@@ -269,11 +280,7 @@ gulp.task("concat-js-vendors", function() {
     "h5fx-0.2.3/H5Fx"
   ].map(function( base ) {
     return `bower_components/${base}.js`;
-  }).concat([
-    // "@mhc/watermark/dist/watermark"
-  ].map(function( base ) {
-    return `node_modules/${base}.js`;
-  })))
+  }))
     .pipe(concat("vendors.js"))
     .pipe(strip())
     .pipe(gulp.dest(jsDistDir));
@@ -316,7 +323,7 @@ gulp.task("concat-js-all", [
 });
 
 gulp.task("compile-js", [
-    "convert-components",
+    // "convert-components",
     "concat-js-all",
     "concat-js-admin-lite"
   ], function() {
