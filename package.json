@@ -20,8 +20,7 @@
     "pretest": "rm -rf test/assets && cp -R dist test/assets",
     "test": "http-server ./test --cors='*'",
     "prerelease": "npm run compile",
-    "release": "node ./build/scripts/release.js",
-    "postinstall": "cp -R dist/ . && rm -rf dist/"
+    "release": "node ./build/scripts/release.js"
   },
   "repository": {
     "type": "git",

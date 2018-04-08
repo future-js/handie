@@ -27,7 +27,6 @@ const pkg = require("./package.json");
 const libName = pkg.name.replace("@mhc/", "");
 const bannerTemplate = require("./build/partials/banner");
 
-const adaptorSrcDir = "./src/adaptors";
 const cssDistDir = `./dist/${libName}/stylesheets`;
 const jsDistDir = `./dist/${libName}/javascripts`;
 const tmpDir = `.${libName}-tmp`;
@@ -229,42 +228,6 @@ gulp.task("concat-scss-lite", ["export-scss-helper", "export-scss-lite"], functi
     .pipe(gulp.dest(`${cssDistDir}/admin`));
 });
 
-gulp.task("concat-scss-adaptor-adminlte", ["export-scss-helper"], function() {
-  return gulp.src([
-      "./build/partials/import-helper-other.scss",
-      `${adaptorSrcDir}/admin-lte/index.scss`
-    ])
-    .pipe(concat("_admin-lte.scss"))
-    .pipe(gulp.dest(`${cssDistDir}/adaptors`));
-});
-
-gulp.task("compile-css-adaptor-adminlte", ["concat-scss-adaptor-adminlte"], function() {
-  return gulp.src(`${cssDistDir}/adaptors/_admin-lte.scss`)
-    .pipe(rename("adaptor-admin-lte.scss"))
-    .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
-    .pipe(stripCssComments({preserve: false}))
-    .pipe(banner(bannerTemplate, {pkg}))
-    .pipe(gulp.dest(cssDistDir));
-});
-
-gulp.task("concat-scss-adaptor-hui", ["export-scss-helper"], function() {
-  return gulp.src([
-      "./build/partials/import-helper-other.scss",
-      `${adaptorSrcDir}/h-ui-admin/index.scss`
-    ])
-    .pipe(concat("_h-ui-admin.scss"))
-    .pipe(gulp.dest(`${cssDistDir}/adaptors`));
-});
-
-gulp.task("compile-css-adaptor-hui", ["concat-scss-adaptor-hui"], function() {
-  return gulp.src(`${cssDistDir}/adaptors/_h-ui-admin.scss`)
-    .pipe(rename("adaptor-h-ui-admin.scss"))
-    .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
-    .pipe(stripCssComments({preserve: false}))
-    .pipe(banner(bannerTemplate, {pkg}))
-    .pipe(gulp.dest(cssDistDir));
-});
-
 gulp.task("compile-css-main", ["concat-scss-main"], function() {
   return gulp.src(`${cssDistDir}/admin/_exports.scss`)
     .pipe(rename("admin.scss"))
@@ -285,9 +248,7 @@ gulp.task("compile-css-lite", ["concat-scss-lite"], function() {
 
 gulp.task("compile-css", [
     "compile-css-main",
-    "compile-css-lite",
-    "compile-css-adaptor-adminlte",
-    "compile-css-adaptor-hui"
+    "compile-css-lite"
   ], function() {
     return gulp.src(`${cssDistDir}/**/*.css`, {base: cssDistDir})
       .pipe(sourcemaps.init({largeFile: true, loadMaps: true}))
@@ -354,30 +315,10 @@ gulp.task("concat-js-all", [
       .pipe(gulp.dest(jsDistDir));
 });
 
-gulp.task("compile-js-adaptor-adminlte", function() {
-  return gulp.src("src/adaptors/admin-lte/index.js")
-    .pipe(babel({presets: ["es2015"]}))
-    .pipe(strip())
-    .pipe(wrap(`(function() {\n\n<%= contents %>\n\n})();`))
-    .pipe(rename("adaptor-admin-lte.js"))
-    .pipe(gulp.dest(jsDistDir));
-});
-
-gulp.task("compile-js-adaptor-hui", function() {
-  return gulp.src("src/adaptors/h-ui-admin/index.js")
-    .pipe(babel({presets: ["es2015"]}))
-    .pipe(strip())
-    .pipe(wrap(`(function() {\n\n<%= contents %>\n\n})();`))
-    .pipe(rename("adaptor-h-ui-admin.js"))
-    .pipe(gulp.dest(jsDistDir));
-});
-
 gulp.task("compile-js", [
     "convert-components",
     "concat-js-all",
-    "concat-js-admin-lite",
-    "compile-js-adaptor-adminlte",
-    "compile-js-adaptor-hui"
+    "concat-js-admin-lite"
   ], function() {
     return gulp.src(`${jsDistDir}/*.js`)
       .pipe(banner(bannerTemplate, {pkg}))

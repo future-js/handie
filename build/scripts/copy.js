@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-"use strict";
-
 const fs = require("fs");
 const path = require("path");
 
@@ -10,11 +8,7 @@ const execSync = require("child_process").execSync;
 const vendorPath = path.resolve(__dirname, "../../dist");
 const bowerPath = path.resolve(__dirname, "../../bower_components");
 
-const excludedComponents = [
-    "admin-lte",
-    "h-ui-admin",
-    "materialize"
-  ];
+const excludedComponents = [];
 
 if ( !fs.existsSync(vendorPath) ) {
   execSync(`mkdir ${vendorPath}`);

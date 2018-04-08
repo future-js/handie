@@ -1,10 +1,10 @@
 {
   "name": "handle-assets",
-  "homepage": "http://doc.haimaiche.net/muu/",
+  "homepage": "https://ourai.github.io/handie/",
   "authors": [
     "Ourai Lin <ourairyu@gmail.com> (http://ourai.ws/)"
   ],
-  "description": "UI stuffs for the dashboard of a website.",
+  "description": "UI stuffs for the dashboard of a website",
   "private": true,
   "keywords": [
     "ui",
