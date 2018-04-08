@@ -1,0 +1,105 @@
+.Page {
+  background-color: #eee !important;
+}
+
+.Page-header,
+.Page-sidebar,
+.Page-content .Content-header {
+  * {
+    font: {
+      family: $font-family-sans-serif !important;
+      size: $font-size-base;
+      weight: 300 !important;
+    }
+  }
+
+  .fa {
+    font-family: FontAwesome !important;
+  }
+}
+
+.Page-header,
+.Page-sidebar {
+  a {
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+    }
+  }
+  
+  ul,
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none inside none;
+  }
+
+  nav {
+    background-color: transparent;
+    @include box-shadow(none);
+  }
+}
+
+.Page-header {
+  nav {
+    width: auto;
+  }
+
+  .Header-brand {
+    a,
+    span {
+      font-size: $layout-brand-font-size;
+    }
+  }
+}
+
+.Page-body,
+.Page-content {
+  padding-left: 0;
+}
+
+.Page-sidebar {
+  nav {
+    line-height: inherit;
+
+    &,
+    i {
+      height: auto;
+    }
+
+    li {
+      float: none;
+    }
+  }
+
+  .Sidebar-navs > ul > li > a > .fa + span {
+    font-weight: normal !important;
+  }
+
+  .Menu-label * {
+    font-size: 12px;
+  }
+}
+
+.Page-content {
+  .Content {
+    padding: {
+      right: 15px;
+      left: 15px;
+    }
+  }
+
+  .Content-header {
+    color: #333;
+
+    h1 {
+      margin: 0 !important;
+      font: {
+        size: 24px !important;
+        weight: $headings-font-weight !important;
+      }
+      line-height: $headings-line-height !important;
+    }
+  }
+}

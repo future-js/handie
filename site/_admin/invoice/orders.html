@@ -1,0 +1,247 @@
+---
+title: 运单
+
+css:
+  - path: /admin/bower_components/datepicker-0.3.1/dist/datepicker.min.css
+  - path: admin/invoice/orders
+    assets_pipeline: true
+js:
+  - path: /admin/bower_components/datepicker-0.3.1/dist/datepicker.min.js
+  - path: /admin/bower_components/datepicker-0.3.1/i18n/datepicker.zh-CN.js
+  - path: /admin/vendor/moment/min/moment.min.js
+  - path: admin/invoice/orders
+    assets_pipeline: true
+
+flag:
+  primary: invoice
+  secondary: orders
+
+ancestors:
+  - title: 运单管理
+---
+{% contentfor carset_fields %}
+<tr>
+  <th>指导价</th>
+  <td>
+    <div class="FieldGroup"><input class="form-control input-sm" type="number" name="guidePrice" value="0" min="1" data-h5f-label="指导价" required></div>
+  </td>
+</tr>
+{% endcontentfor %}
+
+{% contentfor newdata_dialog %}
+<div class="modal fade js-addNewData">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        <h4 class="modal-title">填写运单信息</h4>
+      </div>
+      <div class="modal-body">
+        <div class="Procedure">
+          <div class="Procedure-labels">
+            <ul>
+              <li class="is-active"><span>添加车辆批次</span></li>
+              <li><span>选择物流公司</span></li>
+              <li><span>完善发车信息</span></li>
+            </ul>
+          </div>
+          <div class="Procedure-steps">
+            <div class="Procedure-step is-active" data-step="cars">
+              <form class="form-horizontal js-selectRoute">
+                <div class="form-group">
+                  <label class="control-label col-sm-2">目的地</label>
+                  <div class="col-sm-10">
+                    <div class="AreaGroup"><select class="form-control input-sm js-chooseProvince" data-placeholder="选择省份" data-minimum-results-for-search="0">
+                      <option value=""></option>
+                    </select>
+                      <select name="startLocationId" class="form-control input-sm js-chooseCity" data-placeholder="选择城市" data-minimum-results-for-search="0">
+                        <option value=""></option>
+                      </select>
+                      <input type="hidden" name="startLocationName" value="">
+                    </div>
+                    <div class="AreaGroup"><select class="form-control input-sm js-chooseProvince" data-placeholder="选择省份" data-minimum-results-for-search="0">
+                      <option value=""></option>
+                    </select>
+                      <select name="arriveLocationId" class="form-control input-sm js-chooseCity" data-placeholder="选择城市" data-minimum-results-for-search="0">
+                        <option value=""></option>
+                      </select>
+                      <input type="hidden" name="arriveLocationName" value="">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-2">运输类型</label>
+                  <div class="col-sm-10">
+                    <label class="radio-inline"><input type="radio" name="transportTypeId" value="1" required data-h5f-label="运输类型" checked> 大板车</label>
+                    <label class="radio-inline"><input type="radio" name="transportTypeId" value="2"> 小板车</label>
+                  </div>
+                </div>
+              </form>
+              <div class="CarSet">
+                <div class="CarSet-item is-editing">
+                  {% include admin/car-props-carset.html %}
+                </div>
+                <div class="CarSet-saveButton"><button class="btn btn-primary btn-sm js-addNewCars" type="button">保存并新增车辆集合</button></div>
+              </div>
+            </div>
+            <div class="Procedure-step" data-step="transporters">
+              <div class="Transportation row">
+                <div class="col-sm-6">
+                  <div class="Transportation-destination">
+                    <div><span></span><i class="fa fa-truck"></i><span></span></div>
+                    <p></p>
+                  </div>
+                  <ul class="Transportation-cars"></ul>
+                </div>
+                <div class="col-sm-6">
+                  <ul class="Transportation-transporters"></ul>
+                  <nav class="Transportation-pager u-hidden">
+                    <ul class="pager">
+                      <li class="previous"><a href="javascript:void(0);">上一页</a></li>
+                      <li class="next"><a href="javascript:void(0);">下一页</a></li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+            <div class="Procedure-step" data-step="delivery">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="Transportation-destination">
+                    <div><span></span><i class="fa fa-truck"></i><span></span></div>
+                    <p></p>
+                  </div>
+                  <div class="Transportation-transporter" data-rate="${invoiceRate}"></div>
+                  <ul class="Transportation-cars"></ul>
+                </div>
+                <div class="col-sm-6">
+                  <form class="form-horizontal js-fillDeliveryInfo">
+                    <div class="form-group">
+                      <label class="control-label col-sm-3 is-required">选择发票</label>
+                      <div class="col-sm-9">
+                        <label class="radio-inline"><input type="radio" name="invoiceStatus" value="0" required checked data-h5f-label="发票"> 无需发票</label>
+                        <label class="radio-inline"><input type="radio" name="invoiceStatus" value="1"> 开具发票</label>
+                        <p class="help-block Notice--invoiceRate">开具发票会产生原价 <span class="js-setInvoiceRate"></span> 的手续费</p>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3">客户</label>
+                      <div class="col-sm-9">
+                        <select name="clientCompanyId" class="form-control input-sm js-selectClient" data-placeholder="请输入客户公司名称" data-h5f-label="客户">
+                          <option value=""></option>
+                        </select>
+                        <input type="hidden" name="clientCompanyName" value="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3 is-required">联系人</label>
+                      <div class="col-sm-9"><input type="text" name="clientStaffName" class="form-control input-sm" required data-h5f-label="联系人" minlength="2" maxlength="5"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3 is-required">联系方式</label>
+                      <div class="col-sm-9"><input type="text" name="clientStaffPhone" class="form-control input-sm" required data-h5f-label="客户联系人的联系方式" pattern="{{MOBILE}}"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3 is-required">发运时间</label>
+                      <div class="col-sm-9">
+                        <input type="text" name="transportFormDateFacker" class="form-control input-sm js-pickDate" data-to="transportFormDate" placeholder="请选择发运时间" required data-h5f-label="发运时间">
+                        <input type="hidden" name="transportFormDate" value="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3 is-required">发车联系人</label>
+                      <div class="col-sm-9"><input type="text" name="pickCarContactName" class="form-control input-sm" required data-h5f-label="发车联系人" minlength="2" maxlength="5"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3 is-required">联系方式</label>
+                      <div class="col-sm-9"><input type="text" name="pickCarContactPhone" class="form-control input-sm" required data-h5f-label="发车联系人的联系方式" pattern="{{MOBILE}}"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3 is-required">发车地址</label>
+                      <div class="col-sm-9"><input type="text" name="pickCarLocation" class="form-control input-sm" required data-h5f-label="发车地址" maxlength="50"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3">调度员备注</label>
+                      <div class="col-sm-9"><textarea class="form-control" name="dispatchRemarks" rows="3" placeholder="请输入备注信息（最多 100 个字）" maxlength="100"></textarea></div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-default js-prev is-hidden">上一步</button>
+        <button type="button" class="btn btn-primary js-next" disabled>下一步</button>
+        <button type="button" class="btn btn-primary js-saveNewData is-hidden">提交</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endcontentfor %}
+
+<div class="Area Area--query">
+  <form class="Card">
+    <div class="Card-content">
+      <div class="row">
+        <div class="form-group col-xs-6 col-sm-4 col-lg-3">
+          <label>运单号</label>
+          <input type="text" name="transportOrderNo" class="form-control input-sm" placeholder="请输入运单号（后六位）">
+        </div>
+        <div class="form-group col-xs-6 col-sm-4 col-lg-3">
+          <label>订单号</label>
+          <input type="text" name="bizOrderNo" class="form-control input-sm" placeholder="请输入订单号（后六位）">
+        </div>
+        <div class="form-group col-xs-6 col-sm-4 col-lg-3">
+          <label>车架号</label>
+          <input type="text" name="carUnique" class="form-control input-sm" placeholder="请输入车架号（后六位）">
+        </div>
+        <div class="form-group col-xs-6 col-sm-4 col-lg-3">
+          <label>起始地</label>
+          <input type="text" name="startCityName" class="form-control input-sm" placeholder="请输入起始地城市">
+        </div>
+        <div class="form-group col-xs-6 col-sm-4 col-lg-3">
+          <label>目的地</label>
+          <input type="text" name="destinationCityName" class="form-control input-sm" placeholder="请输入目的地城市">
+        </div>
+        <div class="form-group col-xs-6 col-sm-4 col-lg-3">
+          <label>承运商</label>
+          <input type="text" name="carrierName" class="form-control input-sm" placeholder="请输入承运商名字">
+        </div>
+        <div class="form-group col-xs-6 col-sm-4 col-lg-3">
+          <label>客户</label>
+          <input type="text" name="clientName" class="form-control input-sm" placeholder="请输入客户姓名">
+        </div>
+        <div class="form-group col-xs-6 col-sm-4 col-lg-3">
+          <label>运输类型</label>
+          <select name="transportType" class="form-control input-sm">
+            <option value="0">全部</option>
+            <option value="1">大板车</option>
+            <option value="2">小板车</option>
+          </select>
+        </div>
+        <div class="form-group col-xs-6 col-sm-4 col-lg-3">
+          <label>状态</label>
+          <select name="orderStatus" class="form-control input-sm">
+            <option value="0">全部</option>
+            <option value="1">待付款</option>
+            <option value="2">进行中</option>
+            <option value="3">已完成</option>
+            <option value="4">作废</option>
+          </select>
+        </div>
+        <div class="form-group col-xs-6 col-sm-4 col-lg-3">
+          <label>运单类型</label>
+          <select name="transportOrderType" class="form-control input-sm">
+            <option value="0">全部</option>
+            <option value="1">订单贷</option>
+            <option value="2">普通</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="Card-footer"><button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-filter"></i><span>筛选</span></button><button type="reset" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i><span>重置</span></button></div>
+  </form>
+</div>

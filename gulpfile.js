@@ -1,144 +1,397 @@
-"use strict";
-
 const fs = require("fs");
 const path = require("path");
+const exec = require("child_process").exec;
 
 const gulp = require("gulp");
 const concat = require("gulp-concat");
 const sass = require("gulp-sass");
 const cssmin = require("gulp-cssmin");
 const rename = require("gulp-rename");
+const template = require("gulp-template");
 const babel = require("gulp-babel");
 const umd = require("gulp-umd");
 const wrap = require("gulp-wrap");
 const scssimport = require("gulp-shopify-sass");
 const stripCssComments = require("gulp-strip-css-comments");
+const strip = require("gulp-strip-comments");
 const banner = require("gulp-banner");
+const uglify = require("gulp-uglify");
+const sourcemaps = require("gulp-sourcemaps");
+
+const rollup = require("rollup");
+const rollupBabel = require("rollup-plugin-babel");
+const rollupNodeResolver = require("rollup-plugin-node-resolve");
+const rollupCjsResolver = require("rollup-plugin-commonjs");
 
 const pkg = require("./package.json");
-const bannerTemplet = require("./build/partials/banner");
+const libName = pkg.name.replace("@mhc/", "");
+const bannerTemplate = require("./build/partials/banner");
 
-const layoutSrc = "./src/stylesheets/layouts";
-const layoutDist = `./dist/${pkg.name}/stylesheets/layouts`;
-const tmpDir = `.${pkg.name}-tmp`;
-const compileCssTasks = [];
+const adaptorSrcDir = "./src/adaptors";
+const cssDistDir = `./dist/${libName}/stylesheets`;
+const jsDistDir = `./dist/${libName}/javascripts`;
+const tmpDir = `.${libName}-tmp`;
+const componentTmpDir = `${tmpDir}/components`;
+const COMPONENT_SRC = path.join(__dirname, "src/components");
 
-function traverseLayouts( callback ) {
-  fs.readdirSync(path.resolve(__dirname, layoutSrc)).forEach(callback);
+const compileComponentTasks = [];
+const compiledComponentFiles = []
+
+function snake2Camel( str ) {
+  return str.split("-").map(part => `${part.charAt(0).toUpperCase()}${part.slice(1)}`).join("");
 }
 
-function importLayoutTasks() {
-  traverseLayouts(function( layout ) {
-    gulp.task(`import-scss-${layout}`, function() {
-      return gulp.src(`./build/partials/concat-${layout}.scss`)
-        .pipe(scssimport())
-        .pipe(rename(`${layout}.scss`))
-        .pipe(gulp.dest(tmpDir));
-    });
-  });
+function resolveRollupTask( opts ) {
+  return rollup
+    .rollup({input: opts.input, plugins: opts.plugins})
+    .then(bundle => bundle.write({file: opts.file, format: "umd", name: opts.name}));
 }
 
-function concatLayoutTasks() {
-  traverseLayouts(function( layout ) {
-    gulp.task(`concat-scss-${layout}`, [`import-scss-${layout}`], function() {
-      return gulp.src([
-          `${layoutSrc}/${layout}/_variables.scss`,
-          "./build/partials/import-handie.scss",
-          `${tmpDir}/${layout}.scss`
-        ])
-        .pipe(concat(`_${layout}.scss`))
-        .pipe(gulp.dest(layoutDist));
-    });
-  });
+function resolveInitializerTask( isLite ) {
+  return () => {
+    return gulp
+      .src(["layout", "responsive", isLite ? "lite" : "initializer"].map(name => `src/adaptors/admin/${name}.js`))
+      .pipe(concat(`${isLite ? "admin-lite" : "admin"}.js`))
+      .pipe(babel({presets: ["es2015"]}))
+      .pipe(strip())
+      .pipe(wrap(`(function() {\n\n<%= contents %>\n\n})();`))
+      .pipe(gulp.dest(jsDistDir));
+  }
 }
 
-function compileLayoutTasks() {
-  traverseLayouts(function( layout ) {
-    let taskName = `compile-scss-${layout}`;
+fs.readdirSync(COMPONENT_SRC)
+  .filter(componentName => fs.statSync(path.join(COMPONENT_SRC, componentName)).isDirectory())
+  .forEach(componentName => {
+    const taskName = `compile-component-${componentName}`;
+    const scssTaskName = `${taskName}-scss`;
+    const jsTaskName = `${taskName}-js`;
+    const componentDir = path.join(COMPONENT_SRC, componentName);
 
-    gulp.task(taskName, ["concat-scss-main", `concat-scss-${layout}`], function() {
-      return gulp.src(`${layoutDist}/_${layout}.scss`)
-        .pipe(rename(`${layout}-default.scss`))
+    compileComponentTasks.push(taskName);
+    compiledComponentFiles.push(`${componentName}.html`);
+
+    gulp.task(scssTaskName, () => {
+      return gulp.src(`src/components/${componentName}/index.scss`)
         .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
-        .pipe(gulp.dest(layoutDist));
-    });
+        .pipe(stripCssComments({preserve: false}))
+        .pipe(cssmin())
+        .pipe(gulp.dest(`${componentTmpDir}/stylesheets/${componentName}`));
+      });
 
-    compileCssTasks.push(taskName);
-  });
-}
+    gulp.task(taskName, [scssTaskName], () => {
+      const charset = "UTF-8";
+      const cssFile = path.resolve(`${componentTmpDir}/stylesheets/${componentName}/index.css`);
 
-gulp.task("concat-scss-helper", function() {
-  return gulp.src("./src/stylesheets/utils/_helper.scss")
-    .pipe(scssimport())
-    .pipe(rename("_helper.scss"))
-    .pipe(gulp.dest(`./dist/${pkg.name}/stylesheets`));
+      let componentStyle = "";
+
+      if ( fs.statSync(cssFile).isFile() ) {
+        componentStyle = fs.readFileSync(cssFile, charset);
+      }
+
+      if ( componentName === "common-style" ) {
+        return gulp.src("build/templates/polymer-style.html")
+          .pipe(template({
+            tagName: componentName,
+            componentStyle
+          }))
+          .pipe(rename({basename: componentName}))
+          .pipe(gulp.dest(`${componentTmpDir}/templates`));
+      }
+      else {
+        const htmlFile = path.join(componentDir, "index.html");
+        const jsFile = path.join(componentDir, "index.js");
+        
+        let templateHtml = "";
+        let classDefinition = "";
+
+        if ( fs.statSync(htmlFile).isFile() ) {
+          templateHtml = fs.readFileSync(htmlFile, charset);
+        }
+
+        if ( fs.statSync(jsFile).isFile() ) {
+          classDefinition = fs.readFileSync(jsFile, charset);
+        }
+
+        return gulp.src("build/templates/polymer-component.html")
+          .pipe(template({
+            tagName: `x-${componentName}`,
+            className: `Muu${snake2Camel(componentName)}`,
+            templateHtml,
+            componentStyle,
+            classDefinition
+          }))
+          .pipe(rename({basename: componentName}))
+          .pipe(gulp.dest(`${componentTmpDir}/templates`));
+      }
+    })
 });
 
-gulp.task("import-scss-main", function() {
-  return gulp.src("./build/partials/concat-handie.scss")
+gulp.task("compile-components", compileComponentTasks, () => {
+  return gulp.src("build/templates/components.html")
+    .pipe(template({
+      files: compiledComponentFiles.map(componentPath => `<link rel="import" href="${componentPath}">`).join("\n")
+    }))
+    .pipe(rename({basename: "index"}))
+    .pipe(gulp.dest(`${componentTmpDir}/templates`));
+});
+
+gulp.task("modulize-components", ["compile-components"], () => {
+  return new Promise(( resolve, reject ) => {
+    exec("npm run modulize", {
+      maxBuffer: 5 * 1024 * 1024
+    }, ( err, stdout, stderr ) => {
+      if ( err ) {
+        console.error(`exec error: ${err}`);
+        reject(err);
+        return;
+      }
+  
+      if ( stderr ) {
+        console.log(`stderr: ${stderr}`);
+      }
+      
+      resolve();
+    })
+    .stdout.on("data", function( data ) {
+      console.log(data.toString());
+    });
+});
+});
+
+gulp.task("convert-components", ["modulize-components"], () => {
+  const JS_DIR = `${componentTmpDir}/javascripts`;
+  const babelConf = {
+    babelrc: false,
+    presets: [
+      ["env", {"modules": false}]
+    ]
+  };
+
+  let tasks = fs.readdirSync(JS_DIR)
+    .filter(componentName => fs.statSync(path.join(JS_DIR, componentName)).isFile() && /.+\.js$/.test(componentName))
+    .map(componentName => resolveRollupTask({
+      input: path.join(JS_DIR, componentName),
+      plugins: [rollupBabel(Object.assign({}, babelConf, {exclude: "node_modules/**"}))],
+      file: `./dist/muu/components/${componentName}`,
+      name: componentName
+    }));
+  
+  tasks = tasks.concat([/*"polymer", */"components"].map(filename => resolveRollupTask({
+    input: `./build/partials/${filename}.js`,
+    plugins: [
+      rollupNodeResolver(),
+      rollupCjsResolver(),
+      rollupBabel(babelConf)
+    ],
+    file: `./dist/muu/javascripts/${filename}.js`,
+    name: filename
+  })));
+
+  return Promise.all(tasks);
+});
+
+gulp.task("export-scss-helper", function() {
+  return gulp.src("./build/partials/export-helper.scss")
     .pipe(scssimport())
-    .pipe(rename(`${pkg.name}.scss`))
+    .pipe(rename("_helper.scss"))
+    .pipe(gulp.dest(`${cssDistDir}/admin`));
+});
+
+gulp.task("export-scss-main", function() {
+  return gulp.src("./build/partials/export-main.scss")
+    .pipe(scssimport())
+    .pipe(rename(`_main.scss`))
     .pipe(gulp.dest(tmpDir));
 });
 
-gulp.task("concat-scss-main", ["concat-scss-helper", "import-scss-main"], function() {
+gulp.task("concat-scss-main", ["export-scss-helper", "export-scss-main"], function() {
   return gulp.src([
-      "build/partials/import-helper.scss",
-      `${tmpDir}/${pkg.name}.scss`
+      "./build/partials/import-helper-main.scss",
+      `${tmpDir}/_main.scss`
     ])
-    .pipe(concat(`_${pkg.name}.scss`))
-    .pipe(gulp.dest(`./dist/${pkg.name}/stylesheets`));
+    .pipe(concat("_exports.scss"))
+    .pipe(gulp.dest(`${cssDistDir}/admin`));
 });
 
-importLayoutTasks();
-concatLayoutTasks();
-compileLayoutTasks();
-
-gulp.task("compile-css", compileCssTasks, function() {
-  return gulp.src(`${layoutDist}/*.css`)
-    .pipe(stripCssComments({preserve: false}))
-    .pipe(banner(bannerTemplet, {pkg}))
-    .pipe(gulp.dest(layoutDist));
+gulp.task("export-scss-lite", function() {
+  return gulp.src("./build/partials/export-lite.scss")
+    .pipe(scssimport())
+    .pipe(rename(`_lite.scss`))
+    .pipe(gulp.dest(tmpDir));
 });
 
-gulp.task("concat-js-main", function() {
+gulp.task("concat-scss-lite", ["export-scss-helper", "export-scss-lite"], function() {
   return gulp.src([
-      "variables",
-      "other",
-      "ajax",
-      "calculation",
-      "dialog",
-      "form",
-      "generator",
-      "table",
-      "initializer"
-    ].map(function( name ) {
-      return `./src/javascripts/utils/${name}.js`;
-    }))
-    .pipe(concat(`${pkg.name}.js`))
-    .pipe(babel({presets: ["es2015"]}))
-    .pipe(umd({
-      exports: function() {
-        return "utils";
-      },
-      namespace: function() {
-        return pkg.name;
-      }
-    }))
-    .pipe(gulp.dest(`./dist/${pkg.name}/javascripts`));
+      "./build/partials/import-helper-main.scss",
+      `${tmpDir}/_lite.scss`
+    ])
+    .pipe(concat("_lite.scss"))
+    .pipe(gulp.dest(`${cssDistDir}/admin`));
 });
 
-gulp.task("compile-js", ["concat-js-main"], function() {
-  return gulp.src("./src/javascripts/layouts/*.js")
+gulp.task("concat-scss-adaptor-adminlte", ["export-scss-helper"], function() {
+  return gulp.src([
+      "./build/partials/import-helper-other.scss",
+      `${adaptorSrcDir}/admin-lte/index.scss`
+    ])
+    .pipe(concat("_admin-lte.scss"))
+    .pipe(gulp.dest(`${cssDistDir}/adaptors`));
+});
+
+gulp.task("compile-css-adaptor-adminlte", ["concat-scss-adaptor-adminlte"], function() {
+  return gulp.src(`${cssDistDir}/adaptors/_admin-lte.scss`)
+    .pipe(rename("adaptor-admin-lte.scss"))
+    .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
+    .pipe(stripCssComments({preserve: false}))
+    .pipe(banner(bannerTemplate, {pkg}))
+    .pipe(gulp.dest(cssDistDir));
+});
+
+gulp.task("concat-scss-adaptor-hui", ["export-scss-helper"], function() {
+  return gulp.src([
+      "./build/partials/import-helper-other.scss",
+      `${adaptorSrcDir}/h-ui-admin/index.scss`
+    ])
+    .pipe(concat("_h-ui-admin.scss"))
+    .pipe(gulp.dest(`${cssDistDir}/adaptors`));
+});
+
+gulp.task("compile-css-adaptor-hui", ["concat-scss-adaptor-hui"], function() {
+  return gulp.src(`${cssDistDir}/adaptors/_h-ui-admin.scss`)
+    .pipe(rename("adaptor-h-ui-admin.scss"))
+    .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
+    .pipe(stripCssComments({preserve: false}))
+    .pipe(banner(bannerTemplate, {pkg}))
+    .pipe(gulp.dest(cssDistDir));
+});
+
+gulp.task("compile-css-main", ["concat-scss-main"], function() {
+  return gulp.src(`${cssDistDir}/admin/_exports.scss`)
+    .pipe(rename("admin.scss"))
+    .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
+    .pipe(stripCssComments({preserve: false}))
+    .pipe(banner(bannerTemplate, {pkg}))
+    .pipe(gulp.dest(cssDistDir));
+});
+
+gulp.task("compile-css-lite", ["concat-scss-lite"], function() {
+  return gulp.src(`${cssDistDir}/admin/_lite.scss`)
+    .pipe(rename("admin-lite.scss"))
+    .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
+    .pipe(stripCssComments({preserve: false}))
+    .pipe(banner(bannerTemplate, {pkg}))
+    .pipe(gulp.dest(cssDistDir));
+});
+
+gulp.task("compile-css", [
+    "compile-css-main",
+    "compile-css-lite",
+    "compile-css-adaptor-adminlte",
+    "compile-css-adaptor-hui"
+  ], function() {
+    return gulp.src(`${cssDistDir}/**/*.css`, {base: cssDistDir})
+      .pipe(sourcemaps.init({largeFile: true, loadMaps: true}))
+      .pipe(cssmin())
+      .pipe(rename({suffix: ".min"}))
+      .pipe(sourcemaps.write("../maps"))
+      .pipe(gulp.dest(cssDistDir));
+});
+
+gulp.task("concat-js-vendors", function() {
+  return gulp.src([
+    "jquery-1.12.0/dist/jquery",
+    "bootstrap-sass-3.3.7/assets/javascripts/bootstrap",
+    "bootstrap-table-1.11.1/dist/bootstrap-table",
+    "bootstrap-table-1.11.1/dist/locale/bootstrap-table-zh-CN",
+    "select2-4.0.3/dist/js/select2.full",
+    "select2-4.0.3/dist/js/i18n/zh-CN",
+    "h5fx-0.2.3/H5Fx"
+  ].map(function( base ) {
+    return `bower_components/${base}.js`;
+  }).concat([
+    // "@mhc/watermark/dist/watermark"
+  ].map(function( base ) {
+    return `node_modules/${base}.js`;
+  })))
+    .pipe(concat("vendors.js"))
+    .pipe(strip())
+    .pipe(gulp.dest(jsDistDir));
+});
+
+gulp.task("concat-js-utils", () => {
+  return resolveRollupTask({
+    input: "src/utils/index.js",
+    plugins: [
+      rollupNodeResolver(),
+      rollupBabel({
+        babelrc: false,
+        presets: [["env", {"modules": false}]],
+        plugins: ["external-helpers"]
+      })
+    ],
+    file: `${jsDistDir}/utils.js`,
+    name: "utils"
+  });
+});
+
+gulp.task("concat-js-admin", resolveInitializerTask());
+
+gulp.task("concat-js-admin-lite", resolveInitializerTask(true));
+
+gulp.task("concat-js-all", [
+    "concat-js-vendors",
+    "concat-js-utils",
+    "concat-js-admin"
+  ], function() {
+    return gulp.src([
+        "vendors",
+        "utils",
+        "admin"
+      ].map(function( name ) {
+        return `${jsDistDir}/${name}.js`;
+      }))
+      .pipe(concat("all.js"))
+      .pipe(gulp.dest(jsDistDir));
+});
+
+gulp.task("compile-js-adaptor-adminlte", function() {
+  return gulp.src("src/adaptors/admin-lte/index.js")
     .pipe(babel({presets: ["es2015"]}))
+    .pipe(strip())
     .pipe(wrap(`(function() {\n\n<%= contents %>\n\n})();`))
-    .pipe(gulp.dest(`./dist/${pkg.name}/javascripts/layouts`));
+    .pipe(rename("adaptor-admin-lte.js"))
+    .pipe(gulp.dest(jsDistDir));
+});
+
+gulp.task("compile-js-adaptor-hui", function() {
+  return gulp.src("src/adaptors/h-ui-admin/index.js")
+    .pipe(babel({presets: ["es2015"]}))
+    .pipe(strip())
+    .pipe(wrap(`(function() {\n\n<%= contents %>\n\n})();`))
+    .pipe(rename("adaptor-h-ui-admin.js"))
+    .pipe(gulp.dest(jsDistDir));
+});
+
+gulp.task("compile-js", [
+    "convert-components",
+    "concat-js-all",
+    "concat-js-admin-lite",
+    "compile-js-adaptor-adminlte",
+    "compile-js-adaptor-hui"
+  ], function() {
+    return gulp.src(`${jsDistDir}/*.js`)
+      .pipe(banner(bannerTemplate, {pkg}))
+      .pipe(gulp.dest(jsDistDir));
 });
 
 gulp.task("compile", ["compile-css", "compile-js"], function() {
-  return gulp.src(`./dist/${pkg.name}/javascripts/**/*.js`)
-    .pipe(banner(bannerTemplet, {pkg}))
-    .pipe(gulp.dest(`./dist/${pkg.name}/javascripts`));
+  return gulp.src(`${jsDistDir}/**/*.js`, {base: jsDistDir})
+    .pipe(sourcemaps.init({largeFile: true, loadMaps: true}))
+    .pipe(uglify())
+    .pipe(rename({suffix: ".min"}))
+    .pipe(banner(bannerTemplate, {pkg}))
+    .pipe(sourcemaps.write("../maps"))
+    .pipe(gulp.dest(jsDistDir));
 });
 
 gulp.task("watch", function() {

@@ -1,21 +1,27 @@
-.DS_Store
-.git
-.sass-cache
-.idea
-.editorconfig
-
-bower_components
-node_modules
-
 *.json
 *.log
 *.md
 
+.*-tmp
+.*-cache
+.bowerrc
+.DS_Store
+.git
+.idea
+.editorconfig
+.tmp
+
+bower_components
+node_modules
+
+/backup
 /build
 /docs
 /examples
 /scripts
 /site
 /src
+/test
+/tests
 
 gulpfile.js

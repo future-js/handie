@@ -1,0 +1,30 @@
+{
+  "name": "handle-assets",
+  "homepage": "http://doc.haimaiche.net/muu/",
+  "authors": [
+    "Ourai Lin <ourairyu@gmail.com> (http://ourai.ws/)"
+  ],
+  "description": "UI stuffs for the dashboard of a website.",
+  "private": true,
+  "keywords": [
+    "ui",
+    "dashboard",
+    "website"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src",
+    "examples",
+    "test",
+    "tests",
+    "gulpfile.js",
+    "*.md",
+    "*.json"
+  ],
+  "dependencies": {
+    "datepicker-0.3.1": "fengyuanchen/datepicker#0.3.1"
+  }
+}

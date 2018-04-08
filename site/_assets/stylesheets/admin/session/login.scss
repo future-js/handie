@@ -1,0 +1,219 @@
+input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px white inset !important;
+}
+
+html,
+body,
+.FormPanel-wrapper {
+  height: 100%;
+}
+
+.Page {
+  background-color: #1e2332;
+  text-align: center;
+
+  &.Page {
+    padding: 0;
+  }
+}
+
+.FormPanel-wrapper:before {
+  content: "\0020";
+  width: 0;
+  height: 100%;
+}
+
+.FormPanel-wrapper:before,
+.FormPanel {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+.FormPanel {
+  max-width: 400px;
+
+  .input-group-addon .fa {
+    width: 14px;
+    text-align: center;
+  }
+
+  form {
+    padding: 27px 30px 0;
+
+    p {
+      position: relative;
+      margin: 30px -10px;
+      color: #fff;
+
+      &:before,
+      &:after {
+        content: "\0020";
+        position: absolute;
+        top: 50%;
+        width: 165px;
+        height: 1px;
+        background-color: #fff;
+      }
+
+      &:before {
+        left: 0;
+      }
+
+      &:after {
+        right: 0;
+      }
+
+      span {
+        position: relative;
+        z-index: 1;
+        background-color: #1e2332;
+        padding: 0 5px;
+      }
+    }
+  }
+
+  button {
+    margin-top: 30px;
+
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: #FD9E28;
+      border-color: #EE9430;
+    }
+  }
+}
+
+.FormPanel-logo {
+  height: 40px;
+  margin-bottom: 50px;
+}
+
+.FormPanel-links {
+  a {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, .15);
+    color: #fff;
+
+    .fa,
+    img {
+      width: 14px;
+      text-align: center;
+      margin-right: 5px;
+    }
+
+    .fa,
+    img,
+    span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}
+
+
+
+.modal {
+  text-align: left;
+}
+
+.modal-footer button.is-hidden {
+  display: none;
+}
+
+.Procedure-step {
+  display: none;
+
+  &.is-active {
+    display: block;
+  }
+
+  input,
+  .help-block {
+    font-size: 12px;
+  }
+
+  .help-block {
+    display: none;
+  }
+
+  .form-group.has-error .help-block {
+    display: block;
+  }
+
+  .input-group-addon .fa {
+    width: 14px;
+    text-align: center;
+  }
+}
+
+.Form-row {
+  height: 58px;
+  overflow: hidden;
+}
+
+.Form-cell--code {
+  transition: margin-top 0.3s;
+
+  &.is-hidden {
+    margin-top: -50px;
+
+    + .Form-cell--captcha {
+     display: block;
+    }
+  }
+}
+
+.Form-cell--captcha {
+  display: none;
+}
+
+.Form-cell--captcha,
+.Form-cell--code {
+  > .Form-action {
+    float: right;
+    width: 100px;
+    height: 35px;
+    margin-left: 5px;
+  }
+}
+
+.Form-cell--captcha {
+  img,
+  button {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  img {
+    width: 70px;
+    height: 100%;
+  }
+
+  button {
+    margin-left: 5px;
+  }
+}
+
+.Form-cell--code {
+  button {
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+
+    .fa {
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+
+    span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}

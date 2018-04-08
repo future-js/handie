@@ -1,0 +1,24 @@
+.Card {
+  background-color: #fefefe;
+  @include box-shadow(0 1px 4px 0 rgba(0, 0, 0, 0.14));
+  @include border-radius(2px);
+
+  .Card-content,
+  .Card-footer {
+    padding: 12px 15px;
+  }
+
+  .Card-footer {
+    border-top: 1px solid rgba(160, 160, 160, .2);
+
+    .btn {
+      .fa {
+        margin-right: 5px;
+      }
+
+      + .btn {
+        margin-left: 10px;
+      }
+    }
+  }
+}

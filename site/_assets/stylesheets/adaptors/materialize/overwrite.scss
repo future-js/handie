@@ -1,0 +1,170 @@
+@import "../../admin/common/helper";
+//response
+nav .brand-logo,.side-nav a,.side-nav li>a>i, .side-nav li>a>[class^="mdi-"], .side-nav li>a>[class*="mdi-"], .side-nav li>a>i.material-icons{
+  color:#d4d5d6;
+}
+nav ul a{
+  font-size: 12px;
+}
+nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons{
+  font-size: 20px;
+}
+.side-nav li>a>i, .side-nav li>a>[class^="mdi-"], .side-nav li>a>[class*="mdi-"], .side-nav li>a>i.material-icons{
+  margin-right: 10px;
+}
+.side-nav{
+  z-index: 90;
+}
+header, main, footer{
+  padding-left:190px;
+}
+@media only screen and (min-width: 601px){
+  nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i{
+    height: 50px;
+    line-height: 50px;
+  }
+}
+@media only screen and (max-width: 992px){
+  nav .nav-wrapper {
+    text-align: center
+  }
+  header, main, footer {
+    padding-left:0
+  }
+}
+
+//select overwrite
+select{
+  display: inherit;
+}
+.select2-container{
+  input{
+    height: auto;
+    margin: 0;
+  }
+  color:#555;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow b{
+  margin-top: 2px;
+}
+.select2-container .select2-selection--single{
+  height: 36px !important;
+  border:0;
+  @include border-radius(0);
+  background: transparent;
+  border-bottom: 1px solid #aaa;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+  line-height: 36px;
+}
+.select2-container--default.select2-container--disabled .select2-selection--single{
+  border-bottom:1px dotted rgba(0,0,0,0.26) ;
+}
+select.hide+.select2-container{
+  display: none;
+}
+
+//datepicker
+.xdsoft_datetimepicker .xdsoft_label > .xdsoft_select > div > .xdsoft_option.xdsoft_current {
+  background: #2bbbad;
+  box-shadow: #178fe5 0 1px 3px 0 inset;
+  color: #fff;
+  font-weight: 700;
+}
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_default,
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_current,
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box >div >div.xdsoft_current {
+  background: #2bbbad;
+  box-shadow: #178fe5 0 1px 3px 0 inset;
+  color: #fff;
+  font-weight: 700;
+}
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_current.xdsoft_disabled:hover,
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box>div>div.xdsoft_current.xdsoft_disabled:hover {
+  background: #2bbbad !important;
+  box-shadow: #178fe5 0 1px 3px 0 inset !important;
+  color: #fff !important;
+}
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_default, .xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_current, .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box>div>div.xdsoft_current{
+  background: #2bbbad !important;
+}
+
+//toast
+#toast-container{
+  right:50%;
+  top:20%;
+  @include transform(translate3d(50%,0,0));
+}
+@media only screen and (min-width: 993px){
+  #toast-container{
+    right:50%;
+    top:20%;
+    @include transform(translate3d(50%,0,0));
+  }
+}
+
+//checkbox
+[type="checkbox"]+label{
+  padding-left: 22px;
+  font-size: 12px;
+}
+[type="checkbox"].filled-in:not(:checked)+label:before {
+  width: 0;
+  height: 0;
+  border: 3px solid transparent;
+  left: 6px;
+  top: 50%;
+  margin-top: -8px;
+  -webkit-transform: rotateZ(37deg);
+  transform: rotateZ(37deg);
+  -webkit-transform-origin: 20% 40%;
+  transform-origin: 100% 100%
+}
+[type="checkbox"].filled-in:not(:checked)+label:after {
+  height: 15px;
+  width: 15px;
+  background-color: transparent;
+  border: 2px solid #5a5a5a;
+  top: 50%;
+  margin-top: -8px;
+  z-index: 0
+}
+[type="checkbox"].filled-in:checked+label:before {
+  top: 50%;
+  margin-top: -8px;
+  left: 1px;
+  width: 6px;
+  height: 11px;
+  border-top: 2px solid transparent;
+  border-left: 2px solid transparent;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  -webkit-transform: rotateZ(37deg);
+  transform: rotateZ(37deg);
+  -webkit-transform-origin: 100% 100%;
+  transform-origin: 100% 100%
+}
+[type="checkbox"].filled-in:checked+label:after {
+  top: 50%;
+  margin-top: -8px;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #26a69a;
+  background-color: #26a69a;
+  z-index: 0
+}
+input:not([type]), input[type=text], input[type=password], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime], input[type=datetime-local], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea{
+  font-size: 12px;
+}
+//右侧按钮
+.card.horizontal .card-image{
+  width: 70px;
+}
+
+#sidenav-overlay{
+  z-index:80;
+}
+.btn, .btn-large, .btn-flat{
+  height: 34px;
+  line-height: 34px;
+}

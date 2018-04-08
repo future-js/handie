@@ -1,0 +1,116 @@
+---
+title: 工作台
+permalink: /showcase/
+
+css:
+  - path: admin/dashboard
+    assets_pipeline: true
+js:
+  - path: admin/dashboard
+    assets_pipeline: true
+
+flag:
+  primary: dashboard
+---
+
+<!-- <div class="Area">
+  <div class="u-cf">
+    <div class="u-floatLeft">
+      <div class="input-group input-group-sm">
+        <div class="input-group-btn">
+          <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span>名称</span><span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="javascript:void(0);">测试</a></li>
+          </ul>
+        </div>
+        <input type="text" class="form-control">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="button"><i class="fa fa-search fa-fw"></i><span class="sr-only">查询</span></button>
+          <button class="btn btn-default" type="button"><i class="fa fa-filter fa-fw"></i><span class="sr-only">筛选</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="Area Area--systemSettings Card">
+  <div class="Card-content InfoSection">
+    <h4 class="InfoSection-title">系统配置</h4>
+    <div>
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="[data-flag='apps']" data-toggle="tab">应用</a></li>
+        <li><a href="[data-flag='menus']" data-toggle="tab">菜单</a></li>
+        <li><a href="[data-flag='roles']" data-toggle="tab">权限与角色</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" data-flag="apps">
+          <table class="js-showApps"></table>
+        </div>
+        <div class="tab-pane" data-flag="menus">
+          <table class="js-showMenuItems"></table>
+        </div>
+        <div class="tab-pane" data-flag="roles">
+          <div class="row">
+            <div class="col-xs-6">
+              <table class="js-showPermissions"></table>
+            </div>
+            <div class="col-xs-6">
+              <table class="js-showRoles"></table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade js-addNewData">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        <h4 class="modal-title">填写系统信息</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="control-label col-sm-3 is-required">系统名称</label>
+            <div class="col-sm-9"><input type="text" class="form-control input-sm" name="name" required data-h5f-label="系统名称" placeholder="请输入系统名称"></div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-3 is-required">首页地址</label>
+            <div class="col-sm-9"><input type="text" class="form-control input-sm" name="indexPath" required data-h5f-label="首页地址" placeholder="请输入首页地址"></div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-3 is-required">重定向地址</label>
+            <div class="col-sm-9"><input type="text" class="form-control input-sm" name="redirectPath" required data-h5f-label="重定向地址" placeholder="请输入重定向地址"></div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-3 is-required">登出地址</label>
+            <div class="col-sm-9"><input type="text" class="form-control input-sm" name="logoutPath" required data-h5f-label="登出地址" placeholder="请输入登出地址"></div>
+          </div>
+          <div class="form-group">
+            <span class="control-label col-sm-3">单点登录</span>
+            <div class="col-sm-9">
+              <label class="radio-inline"><input type="radio" name="isSSO" value="1" data-h5f-label="单点登录" checked> 启用</label>
+              <label class="radio-inline"><input type="radio" name="isSSO" value="0"> 禁用</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-3">加密方式</label>
+            <div class="col-sm-9">
+              <select name="encryption" class="form-control input-sm" style="width: 100%;">
+                <option value="1">使用 SecureRandom 的 AES 加密</option>
+                <option value="2">标准 AES 加密</option>
+              </select>
+            </div>
+          </div>
+          <input type="hidden" name="id" value="">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary js-saveNewData">提交</button>
+      </div>
+    </div>
+  </div>
+</div>

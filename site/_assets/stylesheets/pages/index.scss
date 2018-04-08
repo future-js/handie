@@ -1,0 +1,166 @@
+@import "../admin/common/helper";
+
+.Page {
+  padding-top: 0;
+
+  &,
+  .Page-body {
+    overflow: visible;;
+  }
+
+  .Page-header {
+    margin-top: 0;
+    margin-bottom: -($layout-header-height);
+    border-bottom-color: #050835;
+    @include box-shadow(none);
+  }
+
+  .Page-body {
+    min-height: 100%;
+
+    &,
+    .Page-content {
+      height: auto;
+    }
+
+    &:before,
+    &:after {
+      content: $UN-space;
+      display: block;
+    }
+
+    &:before {
+      height: $layout-header-height;
+    }
+
+    &:after {
+      height: 80px;
+    }
+  }
+
+  .Page-footer {
+    height: auto;
+    padding: 50px 0 80px;
+    border-top: 1px solid #313444;
+    background-color: $layout-header-bg-color;
+    color: #ddd;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    a {
+      border-bottom: 1px dotted #eee;
+
+      &:hover {
+        color: #fff;
+        border-bottom: 1px solid #fff;
+      }
+    }
+  }
+}
+
+.Content {
+  padding-top: 0;
+}
+
+.Content-header {
+  position: relative;
+  min-height: 300px;
+  padding: 80px 0 100px;
+  border-top: 1px solid #313444;
+  border-bottom: 1px solid $layout-header-border-color;
+  @include covered_background("banner.jpg");
+  @include box-shadow(0 1px 8px rgba(0, 0, 0, .3));
+
+  &:before {
+    content: $UN-space;
+    background-color: rgba($layout-header-bg-color, .75);
+    z-index: 1;
+    @include stretch;
+  }
+
+  > .container {
+    position: relative;
+    z-index: 2;
+    max-width: 960px;
+    color: #fff;
+  }
+
+  h1 {
+    font-size: 54px;
+    text-shadow: none;
+  }
+
+  p {
+    margin: 40px 0 0;
+    font-size: 20px;
+    line-height: 1.8;
+  }
+}
+
+.Banner-links,
+.Banner-info {
+  @include pie-clearfix;
+}
+
+.Banner-links {
+  margin: 50px 0 30px;
+
+  a {
+    float: left;
+    border-radius: 100px;
+    border: 1px solid #fff;
+    padding: 5px 20px;
+    font-size: 18px;
+
+    &:hover {
+      background-color: #fff;
+      color: $layout-header-bg-color;
+    }
+
+    span {
+      margin-left: 10px;
+    }
+
+    + a {
+      margin-left: 20px;
+    }
+  }
+}
+
+.Banner-info {
+  color: #ddd;
+
+  li {
+    float: left;
+
+    + li:before {
+      content: "·";
+      margin: 0 10px;
+    }
+  }
+
+  a {
+    color: #eee;
+    border-bottom: 1px dotted #eee;
+
+    &:hover {
+      color: #fff;
+      border-bottom: 1px solid #fff;
+    }
+  }
+}
+
+.Section--features {
+  h2 {
+    margin-bottom: 20px;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  p {
+    margin-bottom: 0;
+    font-size: 16px;
+  }
+}
