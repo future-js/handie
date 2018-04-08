@@ -1,7 +1,4 @@
-html,
-.Page,
 .Page-body,
-.Page-sidebar,
 .Page-content {
   height: 100%;
 }
@@ -39,13 +36,4 @@ html.is-legacy .Page,
 .Page-sidebar,
 .Page-content {
   overflow: auto;
-}
-
-.Page-sidebar {
-  width: $layout-sidebar-width;
-  padding: {
-    top: $layout-sidebar-top-padding;
-    bottom: $layout-sidebar-bottom-padding;
-  }
-  float: left;
 }

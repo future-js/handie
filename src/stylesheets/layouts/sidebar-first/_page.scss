@@ -1,0 +1,8 @@
+.Page-sidebar,
+.Page-main {
+  min-height: 100%;
+}
+
+.Page-sidebar {
+  @include box-shadow(2px 0 6px rgba(0, 21, 41, .35));
+}
