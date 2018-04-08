@@ -95,7 +95,7 @@
 }
 
 @mixin sidebar-menu-iconic {
-  $menuGap: 25px;
+  $menuGap: $layout-sidebar-item-padding;
 
   padding: 0 $menuGap;
   @include text-middle("> .fa, > .fa + span");
@@ -120,7 +120,7 @@
 
 @mixin sidebar-menu-primary {
   position: relative;
-  height: 48px;
+  height: $layout-sidebar-item-height;
   font-weight: normal;
   @include sidebar-menu-iconic;
 }

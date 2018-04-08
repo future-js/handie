@@ -45,9 +45,10 @@ body {
 .Page-sidebar {
   float: left;
   width: $layout-sidebar-width;
-  padding: {
-    top: $layout-sidebar-top-padding;
-    bottom: $layout-sidebar-bottom-padding;
-  }
   background-color: $layout-sidebar-bg-color;
+}
+
+.Page-header {
+  border-bottom: $layout-header-border-width solid $layout-header-border-color;
+  background-color: $layout-header-bg-color;
 }

@@ -6,7 +6,8 @@
 
 $layout-header-height: $navbar-height !default;
 $layout-header-bg-color: #1e2332 !default;
-$layout-header-border-color: #ffa200 !default;
+$layout-header-border-color: transparent !default;
+$layout-header-border-width: 0 !default;
 
 $layout-brand-image-height: 24px !default;
 $layout-brand-font-size: 22px !default;
@@ -33,6 +34,8 @@ $layout-sidebar-width: 220px !default;
 $layout-sidebar-bg-color: transparent !default;
 $layout-sidebar-text-color: inherit !default;
 $layout-sidebar-text-hover: $layout-sidebar-text-color !default;
+$layout-sidebar-item-height: 48px !default;
+$layout-sidebar-item-padding: 25px !default;
 $layout-sidebar-item-hover: transparent !default;
 $layout-sidebar-top-padding: 20px !default;
 $layout-sidebar-bottom-padding: 50px !default;

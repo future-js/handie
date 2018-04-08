@@ -26,8 +26,6 @@ html.is-legacy .Page,
     right: 15px;
     left: 15px;
   }
-  border-bottom: 1px solid $layout-header-border-color;
-  background-color: $layout-header-bg-color;
   overflow: visible !important;
   @include pie-clearfix;
   @include box-shadow(0 1px 8px rgba(0, 0, 0, .3));
@@ -36,4 +34,11 @@ html.is-legacy .Page,
 .Page-sidebar,
 .Page-content {
   overflow: auto;
+}
+
+.Page-sidebar {
+  padding: {
+    top: $layout-sidebar-top-padding;
+    bottom: $layout-sidebar-bottom-padding;
+  }
 }
