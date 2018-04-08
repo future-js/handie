@@ -1,24 +1,37 @@
 {
   "name": "handie",
-  "version": "0.6.9",
-  "description": "UI stuffs for the dashboard of a website.",
+  "version": "1.0.0",
+  "description": "UI stuffs for the dashboard of a website",
   "main": "dist/handie/javascripts/handie.js",
   "directories": {
-    "example": "examples",
-    "test": "tests"
+    "example": "site",
+    "test": "test"
   },
   "scripts": {
-    "precompile": "bower install",
+    "ascii": "node ./build/scripts/ascii.js",
+    "modulize": "modulizer --in .handie-tmp/components/templates --out .handie-tmp/components/javascripts --npm-name handie-components --npm-version 0.0.0 --force",
+    "cc": "gulp convert-components",
+    "precompile": "rm -rf dist/handie && bower install --force-latest",
     "compile": "gulp compile",
-    "prepublish": "npm run compile",
-    "postpublish": "node ./build/scripts/release.js"
+    "postcompile": "cp -R src/images/ dist/handie/images/",
+    "serve": "polymer serve",
+    "prestart": "npm run compile",
+    "start": "polymer serve",
+    "pretest": "rm -rf test/assets && cp -R dist test/assets",
+    "test": "http-server ./test --cors='*'",
+    "prerelease": "npm run compile",
+    "release": "node ./build/scripts/release.js",
+    "postinstall": "cp -R dist/ . && rm -rf dist/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ourai/handie.git"
+    "url": "https://github.com/ourai/handie.git"
   },
   "keywords": [
-    "ui"
+    "ui",
+    "dashboard",
+    "admin",
+    "website"
   ],
   "author": "Ourai Lin <ourairyu@gmail.com> (http://ourai.ws/)",
   "license": "MIT",
@@ -27,6 +40,12 @@
   },
   "homepage": "https://ourai.github.io/handie/",
   "devDependencies": {
+    "@mhc/lbs": "0.0.3",
+    "@mhc/ntks": "0.0.1",
+    "@mhc/watermark": "^0.1.4",
+    "@polymer/polymer": "^3.0.0-pre.4",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.18.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
@@ -34,10 +53,20 @@
     "gulp-concat": "^2.6.0",
     "gulp-cssmin": "^0.1.7",
     "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.3.2",
+    "gulp-sass": "^3.1.0",
     "gulp-shopify-sass": "^0.3.3",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-strip-comments": "^2.4.5",
     "gulp-strip-css-comments": "^1.2.0",
+    "gulp-template": "^5.0.0",
+    "gulp-uglify": "^3.0.0",
     "gulp-umd": "^0.2.1",
-    "gulp-wrap": "^0.13.0"
+    "gulp-wrap": "^0.13.0",
+    "http-server": "^0.11.1",
+    "polymer-cli": "^1.5.7",
+    "rollup": "^0.54.1",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-commonjs": "^8.2.6",
+    "rollup-plugin-node-resolve": "^3.0.2"
   }
 }

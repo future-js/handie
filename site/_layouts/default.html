@@ -10,40 +10,75 @@ layout: compress
 {% else %}
   {% assign page_flag = "" %}
 {% endif %}
+
 {% if page.layout_type == null or page.layout_type == blank %}
   {% assign page_layout = "" %}
 {% else %}
   {% assign page_layout = page.layout_type %}
 {% endif %}
+
+{% if layout.body_class == null or layout.body_class == blank %}
+  {% assign body_class = "Page" %}
+{% else %}
+  {% assign body_class = layout.body_class %}
+{% endif %}
 <html lang="zh-CN" dir="ltr" data-layout="{{ page_layout }}" data-page="{{ page_flag }}">
   <head>
     {% include head.html %}
     <!-- 静态资源 -->
-    <!-- {!% stylesheet global %} -->
     {% if layout.css %}
-      {% for css in layout.css %}{% if css.assets_pipeline == true %}{{ css.path | stylesheet }}{% else %}<link rel="stylesheet" href="{{ css.path | prepend: site.baseurl | prepend: site.url }}">{% endif %}{% endfor %}
+      {% for css in layout.css %}
+        {% if css.assets_pipeline == true %}
+          {{ css.path | stylesheet }}
+        {% elsif css.external_link == true %}
+          <link rel="stylesheet" href="{{ css.path }}">
+        {% else %}
+          <link rel="stylesheet" href="{{ css.path | prepend: site.baseurl | prepend: site.url }}">
+        {% endif %}
+      {% endfor %}
     {% endif %}
     {% if page.css %}
-      {% for css in page.css %}{% if css.assets_pipeline == true %}{{ css.path | stylesheet }}{% else %}<link rel="stylesheet" href="{{ css.path | prepend: site.baseurl | prepend: site.url }}">{% endif %}{% endfor %}
+      {% for css in page.css %}
+        {% if css.assets_pipeline == true %}
+          {{ css.path | stylesheet }}
+        {% elsif css.external_link == true %}
+          <link rel="stylesheet" href="{{ css.path }}">
+        {% else %}
+          <link rel="stylesheet" href="{{ css.path | prepend: site.baseurl | prepend: site.url }}">
+        {% endif %}
+      {% endfor %}
     {% endif %}
+    <!--[if lt IE 9]>
+    <script>document.documentElement.className += ((document.documentElement.className ? " " : "") + "is-legacy");</script>
+    {% javascript html5shiv %}
+    <![endif]-->
     {% ifhascontent head_javascripts %}
       {% contentblock head_javascripts %}
     {% endifhascontent %}
-    <!-- {!% if jekyll.environment == "production" and page.statistic != false %}
-      {!% javascript statistic %}
-    {!% endif %} -->
-    <!-- {!% javascript global %} -->
-    <!--[if lt IE 9]>
-    {!% javascript support_ie8 %}
-    <![endif]-->
   </head>
-  <body class="Page" itemscope itemtype="http://schema.org/WebPage">
+  <body class="{{ body_class }}" itemscope itemtype="http://schema.org/WebPage">
     {{ content }}
     {% if layout.js %}
-      {% for js in layout.js %}{% if js.assets_pipeline == true %}{{ js.path | javascript }}{% else %}<script src="{{ js.path | prepend: site.baseurl | prepend: site.url }}"></script>{% endif %}{% endfor %}
+      {% for js in layout.js %}
+        {% if js.assets_pipeline == true %}
+          {{ js.path | javascript }}
+        {% elsif external_link == true %}
+          <script src="{{ js.path }}"></script>
+        {% else %}
+          <script src="{{ js.path | prepend: site.baseurl | prepend: site.url }}"></script>
+        {% endif %}
+      {% endfor %}
     {% endif %}
     {% if page.js %}
-      {% for js in page.js %}{% if js.assets_pipeline == true %}{{ js.path | javascript }}{% else %}<script src="{{ js.path | prepend: site.baseurl | prepend: site.url }}"></script>{% endif %}{% endfor %}
+      {% for js in page.js %}
+        {% if js.assets_pipeline == true %}
+          {{ js.path | javascript }}
+        {% elsif external_link == true %}
+          <script src="{{ js.path }}"></script>
+        {% else %}
+          <script src="{{ js.path | prepend: site.baseurl | prepend: site.url }}"></script>
+        {% endif %}
+      {% endfor %}
     {% endif %}
   </body>
 </html>

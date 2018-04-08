@@ -1,0 +1,54 @@
+---
+title: 日志
+
+flag:
+  primary: basic
+  secondary: logs
+
+css:
+  - path: /admin/vendor/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css
+js:
+  - path: /admin/vendor/moment/min/moment.min.js
+  - path: /admin/vendor/moment/locale/zh-cn.js
+  - path: /admin/vendor/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js
+  - path: admin/basic/logs
+    assets_pipeline: true
+
+ancestors:
+  - title: 基础信息
+---
+
+<div class="Area Area--query">
+  <form class="Card">
+    <div class="Card-content">
+      <div class="row">
+        <div class="form-group col-xs-6 col-sm-4 col-lg-3">
+          <label>操作类型</label>
+          <select name="transportType" class="form-control input-sm" multiple="multiple" data-placeholder="请选择">
+            <option value="1">登入</option>
+            <option value="2">新增业务</option>
+            <option value="3">作废业务</option>
+            <option value="4">分配仓库</option>
+            <option value="5">重新分配</option>
+            <option value="6">入库</option>
+            <option value="7">盘点</option>
+            <option value="8">上报异常</option>
+          </select>
+        </div>
+        <div class="form-group col-xs-6 col-sm-4 col-lg-3 js-choosePeriod">
+          <label>操作时间</label>
+          <div class="FieldGroup--period"><input type="text" class="form-control input-sm js-pickDate" data-to="startTime" placeholder="请选择开始时间" /><span>至</span><input type="text" class="form-control input-sm js-pickDate" data-to="endTime" placeholder="请选择结束时间" /></div>
+          <input type="hidden" name="startTime" value="" />
+          <input type="hidden" name="endTime" value="" />
+        </div>
+        <div class="form-group col-xs-6 col-sm-4 col-lg-3">
+          <label>操作内容</label>
+          <input type="text" name="bizOrderNo" class="form-control input-sm" placeholder="请输入订单号（后六位）" />
+        </div>
+      </div>
+    </div>
+    <div class="Card-footer">
+      <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-filter"></i><span>筛选</span></button><button type="reset" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i><span>重置</span></button>
+    </div>
+  </form>
+</div>

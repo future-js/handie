@@ -1,8 +1,43 @@
 ---
-layout: default
+layout: page
+
 permalink: index.html
+
+css:
+  - path: pages/index
+    assets_pipeline: true
 ---
-<h1>Handie</h1>
-<ul>
-  <li><a href="{{ '/cookbook/' | prepend: site.baseurl | prepend: site.url }}">Cookbook</a></li>
-</ul>
+{% capture ver %}{% project_version %}{% endcapture %}
+<article class="Content">
+  <header class="Content-header">
+    <div class="container Banner">
+      <h1 class="Banner-title">卖好车统一 UI 框架</h1>
+      <p class="Banner-description">使卖好车后台类系统保持界面风格、技术栈一致，<br>提高开发效率和稳定性的 UI 框架。</p>
+      <div class="Banner-links">
+        <a href="{{ '/cookbook/' | prepend: site.baseurl | prepend: site.url }}"><i class="fa fa-book"></i><span>起步</span></a>
+        <a href="{{ '/cookbook/installation/' | prepend: site.baseurl | prepend: site.url }}"><i class="fa fa-download"></i><span>下载</span></a>
+      </div>
+      <ul class="Banner-info">
+        <li>版本为 {{ ver | split: "-" | first }}</li>
+        <li><a href="{{ site.data.lib.repo }}" target="_blank">Git 仓库</a></li>
+        <li>由 <a href="https://ourai.ws" target="_blank">欧雷</a> 发起</li>
+      </ul>
+    </div>
+  </header>
+  <div class="container">
+    <div class="row Section Section--features">
+      <div class="col-xs-4">
+        <h2>一致</h2>
+        <p>结束后台系统各自为政的局面，使页面风格和技术栈统一，便于全局统筹、整体规划。</p>
+      </div>
+      <div class="col-xs-4">
+        <h2>易用</h2>
+        <p>以 jQuery 和 Bootstrap 两大简单易用的第三方库/框架作为底层支持，基本零门槛。</p>
+      </div>
+      <div class="col-xs-4">
+        <h2>全面</h2>
+        <p>为后台业务提供全方位服务，丰富的组件系统使业务开发人员省去对 UI 及交互的思考。</p>
+      </div>
+    </div>
+  </div>
+</article>

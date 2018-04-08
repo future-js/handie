@@ -1,0 +1,19 @@
+@import "../../stylesheets/helper";
+
+:host-context(.is-legacy),
+:host(.is-legacy) {
+  padding-top: $layout-header-height + 1px + 24px !important;
+}
+
+:host {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  background-color: #eee;
+  
+  @include box-fixed-height(
+    "::slotted(x-app-header)", $layout-header-height + 1px,
+    "::slotted(x-app-footer)", 0,
+    "::slotted(x-app-body)"
+  );
+}

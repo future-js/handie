@@ -1,5 +1,5 @@
 title: Handie
-description: UI stuffs for the dashboard of a website.
+description: UI stuffs for the dashboard of a website
 keywords: handie,admin,dashboard,ui,framework
 tagline:
 
@@ -7,10 +7,16 @@ collections:
   pages:
     output: true
     permalink: /:path/
-  demos:
+  adaptors:
     output: true
-    permalink: /layouts/:path/
+    permalink: /:collection/:path/
+  admin:
+    output: true
+    permalink: /:collection/:path/
   cookbook:
+    output: true
+    permalink: /:collection/:path/
+  showcase:
     output: true
     permalink: /:collection/:path/
 
@@ -18,8 +24,10 @@ collections:
 exclude:
   - .asset-cache
   - .sass-cache
-  - _demos/vendor/select2/docs
+  - _admin/vendor/select2/docs
+  - _admin/vendor/select2-bootstrap-theme/docs
   - node_modules
+  - src
   - Rakefile
   - Gemfile
   - Gemfile.lock
@@ -67,9 +75,19 @@ defaults:
       layout: default
   - scope:
       path: ""
+      type: admin
+    values:
+      layout: admin
+  - scope:
+      path: ""
       type: cookbook
     values:
-      layout: cookbook
+      layout: page
+  - scope:
+      path: ""
+      type: showcase
+    values:
+      layout: showcase
 
 
 

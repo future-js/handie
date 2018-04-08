@@ -1,0 +1,474 @@
+/*!
+ * MUU v1.6.8
+ * Unified UI framework for admin websites of MaiHaoChe.com
+ * http://doc.haimaiche.net/muu/
+ *
+ * Copyright 2017, Ourai Lin <ourairyu@gmail.com> (http://ourai.ws/)
+ * Released under the MIT license.
+ *
+ * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ * @@@@@@@@@@8888888888888888888888888888888888@@@@@@@@@@
+ * @@@@@@@@@0LffffffffffffffffffffffffffffffffL0@@@@@@@@@
+ * @@@@@@@@8LffffffffffffffffffffffffffffffffffL8@@@@@@@@
+ * @@@@@@@8LfffffGGGGGGGGGGGGGGGGGGGGGGGGGGfffffL8@@@@@@@
+ * @@@@@@@Cfffff0@@@@@@@@@@@@@@@@@@@@@@@@@@0fffffC@@@@@@@
+ * @@@@@@GLffffG@@@@@@@@@@.880088.@@@@@@@@@@GffffLG@@@@@@
+ * @@@@@0LffffC@@@@@@@@80CLLffffLLC08@@@@@@@@CffffL0@@@@@
+ * @@@@@Cfffff8@@@@@@@0LffffffffffffL0@@@@@@@8fffffC@@@@@
+ * @@@@8LffffG@@@@@@@GffffffLCCLffffffG@@@@@@@GffffL8@@@@
+ * @@@@8fffff0@@@@@@0LffffC8@@@@8CffffL0@@@@@@0fffff8@@@@
+ * @@@@8ffffL8@@@@@@Cfffff0@@@@@@0fffffC@@@@@@8Lffff8@@@@
+ * @@@@0ffffL8@@@@@@GLffffG8@@@@8GffffLG@@@@@@8Lffff0@@@@
+ * @@@@0ffffL8@@@@@@@GfffffLC8@@8LffffG@@@@@@@8Lffff0@@@@
+ * @@@@0ffffL8@@@@@@@8GLfttttLC8@@0CLG@@@@@@@@8Ltttt0@@@@
+ * @@@@0ttttL8@@@@@@@@@8GLfttttfC8@@8@@@@@@@@@8Ltttt0@@@@
+ * @@@@0ttttL8@@@@@@@@@@@8GLftttffC0@@@@@@@@@@8Ltttt0@@@@
+ * @@@@0ttttL8@@@@@80GCLG8@80LtttttffCG08@@@@@8Ltttt0@@@@
+ * @@@@0ttttfffffffftttttLG@@:GLftttttttfffffffftttt0@@@@
+ * @@@@0tttttttttttttttffLG8@@@@8GLffttttttttttttttt0@@@@
+ * @@@@8LLLLLLLLLLCCGG00@@@@@@@@@@@@00GGCCLLLLLLLLLL8@@@@
+ * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ */
+
+
+
+@-moz-keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-o-keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-ms-keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+body {
+  overflow: hidden;
+}
+
+.navbar-wrapper,
+.Hui-header {
+  position: relative;
+  z-index: 999;
+  height: 60px !important;
+  border-bottom: 1px solid #ffa200;
+  -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-wrapper .navbar,
+.Hui-header {
+  background-color: #1e2332;
+}
+
+.navbar-wrapper .navbar .logo,
+.navbar-wrapper .navbar-nav > ul > li,
+.navbar-wrapper .navbar-nav > ul > li > a,
+.Hui-header .Hui-logo,
+.Hui-header .Hui-userbox > ul > li,
+.Hui-header .Hui-userbox > ul > li > a {
+  height: 60px !important;
+  line-height: 60px !important;
+}
+
+.navbar-wrapper .navbar .navbar-logo,
+.Hui-header .Hui-logo {
+  position: relative;
+  margin-left: 5px;
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.1 !important;
+}
+
+.navbar-wrapper .navbar .navbar-logo:before,
+.Hui-header .Hui-logo:before {
+  content: " ";
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  width: 0;
+  height: 100%;
+}
+
+.navbar-wrapper .navbar .navbar-logo img, .navbar-wrapper .navbar .navbar-logo span,
+.Hui-header .Hui-logo img,
+.Hui-header .Hui-logo span {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+}
+
+.navbar-wrapper .navbar .navbar-logo img,
+.Hui-header .Hui-logo img {
+  width: 122.88px;
+  height: 24px;
+  max-height: 100%;
+}
+
+.navbar-wrapper .navbar .navbar-logo img + span,
+.Hui-header .Hui-logo img + span {
+  position: relative;
+  padding-left: 21px;
+}
+
+.navbar-wrapper .navbar .navbar-logo img + span:before,
+.Hui-header .Hui-logo img + span:before {
+  content: " ";
+  width: 1px;
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 10px;
+  right: auto;
+}
+
+.navbar-wrapper .navbar .navbar-logo span,
+.Hui-header .Hui-logo span {
+  padding-left: 10px;
+  color: #fff;
+}
+
+.navbar-wrapper *,
+.Hui-header *,
+.Hui-aside * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.Header-toggle,
+.navbar-logo,
+.Hui-logo,
+.Hui-aside {
+  font-family: "Helvetica Neue", Helvetica, Arial, "Pingfang SC", "Microsoft Yahei", Sans-serif;
+  -webkit-font-smoothing: auto;
+}
+
+.Hui-aside,
+.Hui-article-box,
+.Hui-main {
+  top: 61px;
+}
+
+.Hui-aside,
+.Hui-tabNav {
+  background-color: #eee;
+}
+
+.Hui-aside {
+  width: 220px;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  line-height: 1.5;
+  border-right-style: none !important;
+}
+
+.Hui-aside .menu_dropdown dt,
+.Hui-aside .menu_dropdown dd ul li {
+  line-height: inherit;
+}
+
+.Hui-aside .menu_dropdown dt, .Hui-aside .menu_dropdown dt:hover,
+.Hui-aside .menu_dropdown dd ul li a,
+.Hui-aside .menu_dropdown dd ul li a:hover {
+  color: #666;
+}
+
+.Hui-aside .menu_dropdown dt:hover,
+.Hui-aside .menu_dropdown dd ul li a:hover {
+  background-color: #e7e7e7;
+}
+
+.Hui-aside .menu_dropdown dt {
+  height: 48px;
+  border-bottom-style: none;
+  font-weight: normal;
+}
+
+.Hui-aside .menu_dropdown dt,
+.Hui-aside .menu_dropdown dt > a {
+  padding: 0 25px;
+}
+
+.Hui-aside .menu_dropdown dt:before,
+.Hui-aside .menu_dropdown dt > a:before {
+  content: " ";
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  width: 0;
+  height: 100%;
+}
+
+.Hui-aside .menu_dropdown dt > .fa, .Hui-aside .menu_dropdown dt > .fa + span,
+.Hui-aside .menu_dropdown dt > a > .fa,
+.Hui-aside .menu_dropdown dt > a > .fa + span {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+}
+
+.Hui-aside .menu_dropdown dt > .fa,
+.Hui-aside .menu_dropdown dt > a > .fa {
+  width: 1.28571em;
+  font-size: 16px;
+  text-align: center;
+}
+
+.Hui-aside .menu_dropdown dt > .fa + span,
+.Hui-aside .menu_dropdown dt > a > .fa + span {
+  max-width: 135.42857px;
+  margin-left: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+
+.Hui-aside .menu_dropdown dt > a {
+  color: inherit;
+  text-decoration: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.Hui-aside .menu_dropdown dl.selected .Menu-switcher .fa,
+.Hui-aside .menu_dropdown dt.selected .Menu-switcher .fa {
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.Hui-aside .menu_dropdown dd ul {
+  padding: 0;
+}
+
+.Hui-aside .menu_dropdown dd ul a {
+  font-weight: 300;
+  padding: 7px 10px 7px 59px;
+  line-height: 22px;
+  word-wrap: break-word;
+  word-wrap: normal\0;
+  word-break: break-all;
+  white-space: normal;
+}
+
+.Hui-article-box,
+.Hui-main .Hui-article {
+  left: 220px;
+}
+
+.Hui-header {
+  width: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.Hui-header .Hui-logo {
+  display: block !important;
+}
+
+.Hui-header .Hui-userbox {
+  position: static;
+  float: right;
+}
+
+.Hui-header .Hui-userbox .btn {
+  display: block;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.Hui-main .Hui-aside {
+  top: 0;
+  height: auto;
+}
+
+.Header-toggle {
+  display: none;
+  float: left;
+  margin-top: 21px;
+  margin-right: 10px;
+  padding: 0;
+  border-style: none;
+  line-height: 1 !important;
+  font-size: 18px;
+  color: #fff;
+  background-color: transparent;
+}
+
+.Menu-label {
+  margin-top: 10px;
+  font-weight: 300;
+  margin-bottom: 5px;
+  line-height: 20px;
+  font-size: 12px;
+  color: #999;
+}
+
+.Menu-label,
+.Menu-label span {
+  position: relative;
+}
+
+.Menu-label span {
+  z-index: 1;
+  margin-left: 15px;
+  padding: 0 5px;
+  text-shadow: 1px 1px 3px #fff;
+  background-color: #eee;
+}
+
+.Menu-label:before {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.Menu-switcher {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  margin-top: -7px;
+  line-height: 1;
+}
+
+.Menu-switcher .fa {
+  margin-right: 5px;
+  -webkit-transition: transform 0.3s ease;
+  -o-transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-logo img,
+  .Hui-header .Hui-logo img {
+    position: absolute;
+    top: 18px;
+    left: 0;
+    max-width: none;
+    max-height: none;
+    clip: rect(0px, 34px, 24px, 0px);
+  }
+  .navbar-logo img + span,
+  .Hui-header .Hui-logo img + span {
+    margin-left: 30px;
+  }
+  .Hui-aside {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999999999;
+    display: none;
+    float: none;
+    width: auto;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  .Hui-aside > .menu_dropdown {
+    width: 220px;
+    height: 100%;
+    padding-top: 20px;
+    padding-bottom: 50px;
+    overflow: auto;
+    background-color: #eee;
+  }
+  .Hui-aside.is-shown {
+    display: block;
+  }
+  .Hui-article {
+    top: 61px;
+  }
+  .Hui-main {
+    top: 0;
+  }
+  .Hui-main.is-shown {
+    z-index: 999999999;
+  }
+  .Hui-main .Hui-article {
+    left: 0;
+  }
+  .Header-toggle {
+    display: block;
+  }
+}

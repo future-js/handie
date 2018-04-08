@@ -1,0 +1,91 @@
+---
+layout: default
+title: 卖好车统一 UI 框架
+
+css:
+  - path: //img.maihaoche.com/saab-web/src/main/webapp/bower_components/materialize-0.97.8/dist/css/materialize.min.css
+    external_link: true
+  - path: //img.maihaoche.com/saab-web/src/main/webapp/bower_components/material-design-icons-3.0.1/iconfont/material-icons.css
+    external_link: true
+  - path: adaptors/materialize/util
+    assets_pipeline: true
+  - path: adaptors/materialize/overwrite
+    assets_pipeline: true
+  - path: /adaptors/vendor/fontawesome/css/font-awesome.min.css
+  - path: muu/admin-lite
+    assets_pipeline: true
+js:
+  - path: /adaptors/vendor/jquery/dist/jquery.min.js
+  - path: muu/admin-lite
+    assets_pipeline: true
+---
+{% include header.html %}
+<main class="Page-body">
+  <div class="Page-sidebar Sidebar">
+    <nav class="Sidebar-navs Navs">
+      <ul class="Navs-menu Menu">
+        <li data-flag="dashboard" class="is-active"><a href="{{ '/admin/dashboard/' | prepend: site.baseurl | prepend: site.url }}"><i class="fa fa-fw fa-dashboard"></i><span>工作台</span></a></li>
+      </ul>
+      <ul class="Navs-menu Menu Menu--grouped">
+        <li class="Menu-label"><span>仓储管理系统</span></li>
+        <li data-flag="checkIn">
+          <a href="javascript:void(0);"><i class="fa fa-fw fa-sign-in"></i><span>入库管理</span></a>
+          <div class="Navs">
+            <ul>
+              <li data-flag="orders"><a href="javascript:void(0);">业务订单</a></li>
+              <li data-flag="assignment"><a href="javascript:void(0);">入库分配</a></li>
+              <li data-flag="notices"><a href="javascript:void(0);">入库通知单</a></li>
+              <li data-flag="checkIn"><a href="{{ '/admin/checkIn/checkInWarehouses/' | prepend: site.baseurl | prepend: site.url }}">待入库</a></li>
+            </ul>
+          </div>
+        </li>
+        <li data-flag="checkOut">
+          <a href="javascript:void(0);"><i class="fa fa-fw fa-sign-out"></i><span>出库管理</span></a>
+          <div class="Navs">
+            <ul>
+              <li data-flag="checking"><a href="javascript:void(0);">出库审核</a></li>
+              <li data-flag="checkOut"><a href="javascript:void(0);">待出库</a></li>
+            </ul>
+          </div>
+        </li>
+        <li data-flag="basic">
+          <a href="javascript:void(0);"><i class="fa fa-fw fa-info-circle"></i><span>基础信息</span></a>
+          <div class="Navs">
+            <ul>
+              <li data-flag="warehouses"><a href="{{ '/admin/basic/warehouses/' | prepend: site.baseurl | prepend: site.url }}">仓库</a></li>
+              <li data-flag="logs"><a href="{{ '/admin/basic/logs/' | prepend: site.baseurl | prepend: site.url }}">日志</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      <ul class="Navs-menu Menu Menu--grouped">
+        <li class="Menu-label"><span>运输管理系统</span></li>
+        <li data-flag="itinerary">
+          <a href="javascript:void(0);"><i class="fa fa-fw fa-map"></i><span>路线管理</span></a>
+          <div class="Navs">
+            <ul>
+              <li data-flag="routes"><a href="javascript:void(0);">路线</a></li>
+              <li data-flag="warehouses"><a href="javascript:void(0);">物流库</a></li>
+            </ul>
+          </div>
+        </li>
+        <li data-flag="invoice">
+          <a href="javascript:void(0);"><i class="fa fa-fw fa-file-excel-o"></i><span>运单管理</span></a>
+          <div class="Navs">
+            <ul>
+              <li data-flag="orders"><a href="{{ '/admin/invoice/orders/' | prepend: site.baseurl | prepend: site.url }}">运单</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="Page-content">
+    <div class="Content">
+      <div class="Content-header">
+        <h1>工作台</h1>
+      </div>
+      {{ content }}
+    </div>
+  </div>
+</main>

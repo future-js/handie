@@ -1,0 +1,254 @@
+@import "../../stylesheets/helper";
+
+:host {
+  display: block;
+  position: relative;
+  z-index: 99;
+  padding: {
+    right: 15px;
+    left: 15px;
+  }
+  border-bottom: 1px solid $layout-header-border-color;
+  background-color: $layout-header-bg-color;
+  overflow: visible !important;
+  @include pie-clearfix;
+  @include box-shadow(0 1px 8px rgba(0, 0, 0, .3));
+}
+
+.Header-navs,
+.Header-navs ul,
+.Header-navs li,
+.Header-brand,
+.Header-brand a,
+.Header-extra,
+.Header-operations,
+.Header-action {
+  height: 100%;
+}
+
+.Header-navs {
+  &,
+  ul,
+  li {
+    float: left;
+  }
+
+  li {
+    padding: 0 5px;
+    @include text-middle("> a");
+  }
+
+  a {
+    color: #fff;
+  }
+}
+
+.Header-toggle,
+.Header-brand,
+.Header-operations,
+.Header-action {
+  float: left;
+}
+
+.Header-toggle {
+  display: none;
+  margin: {
+    top: ($layout-header-height - 18px) / 2;
+    right: 10px;
+  }
+  padding: 0;
+  border-style: none;
+  line-height: 1;
+  font-size: 18px;
+  color: $layout-action-trigger-color;
+  background-color: transparent;
+}
+
+.Header-brand {
+  margin-left: 5px;
+
+  a {
+    display: block;
+    @include header-brand-logo;
+  }
+
+  + .Header-navs {
+    margin-left: 50px;
+
+    li.is-active a,
+    a:hover {
+      border-bottom-color: $layout-header-border-color;
+    }
+
+    a {
+      height: 100%;
+      padding: 0 20px;
+      line-height: $layout-header-height;
+      font-size: 16px;
+      border-bottom: 2px solid transparent;
+    }
+  }
+}
+
+.Header-extra {
+  float: right;
+
+  .Header-navs {
+    li.is-active a,
+    a:hover {
+      background-color: $layout-header-border-color;
+    }
+
+    a {
+      $h: 30px;
+
+      height: $h;
+      padding: 0 15px;
+      line-height: $h;
+      border-radius: 3px;
+    }
+  }
+}
+
+.Header-operations {
+  position: relative;
+}
+
+.Header-action {
+  padding: 0 15px;
+  @include text-middle(".Action-trigger");
+
+  .Action-trigger {
+    &.fa {
+      width: 18px;
+      font-size: 18px;
+      color: $layout-action-trigger-color;
+    }
+  }
+
+  button.Action-trigger {
+    padding: 0;
+    border-style: none;
+    background-color: transparent;
+  }
+
+  &.Action--notification {
+    .Action-trigger {
+      position: relative;
+    }
+
+    .Notification-counter {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      margin-bottom: -5px;
+      padding: 0 4px;
+      font: {
+        family: $font-family-sans-serif;
+        size: 12px;
+        weight: 300;
+      }
+      line-height: 1.3;
+      -webkit-font-smoothing: auto;
+      background-color: #f00;
+      @include border-radius(100px);
+    }
+  }
+
+  &.Action--avatar {
+    .Action-trigger {
+      img,
+      span {
+        display: block;
+        width: $layout-navbar-avatar-size;
+        height: $layout-navbar-avatar-size;
+        border-radius: 50%;
+      }
+
+      span {
+        line-height: $layout-navbar-avatar-size;
+        text-align: center;
+        font: {
+          size: 10px;
+          weight: $font-weight-base;
+        }
+        background-color: #E0F2F1;
+        @include ellipsis;
+      }
+    }
+  }
+
+  .Action-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 10px;
+    min-width: 200px;
+    margin-top: -2px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border: {
+      color: rgba(0, 0, 0, .2);
+      radius: 2px;
+    }
+    background-color: #fff;
+    @include box-shadow(0 2px 10px rgba(0, 0, 0, .2));
+
+    .Card-content,
+    .Card-footer {
+      margin: {
+        right: -20px;
+        left: -20px;
+      }
+    }
+
+    .Card-content {
+      padding-top: 0;
+
+      ul {
+        list-style: none inside none;
+        margin-bottom: 0;
+        padding-left: 0;
+      }
+    }
+
+    .Card-footer {
+      padding-bottom: 0;
+    }
+  }
+
+  &.is-active {
+    &:after {
+      position: absolute;
+      top: 100%;
+      content: $UN-space;
+      width: 0;
+      height: 0;
+      margin: {
+        top: -9px;
+        left: 1px;
+      }
+      border: 8px solid transparent;
+      border-top-width: 0;
+      border-bottom-color: #fff;
+    }
+
+    &.Action--avatar:after {
+      margin-left: 7px;
+    }
+
+    .Action-content {
+      display: block;
+    }
+  }
+}
+
+@media screen and (max-width: $screen-sm-min) {
+  .Header-toggle {
+    display: block;
+  }
+
+  .Header-brand {
+    @include header-brand-logo-in-mobile;
+  }
+}

@@ -1,0 +1,40 @@
+.Operation {
+  .caret {
+    margin-left: 5px;
+  }
+
+  &.btn-xs {
+    .Operation-icon + .Operation-label {
+      margin-left: 3px;
+    }
+  }
+}
+
+.Operation-icon + .Operation-label {
+  margin-left: 5px;
+}
+
+.Operation-menu {
+  min-width: 0;
+  font-size: 12px;
+
+  a {
+    color: inherit !important;
+  }
+}
+
+.OperationGroup {
+  @include nowrap;
+
+  > .Operation,
+  > .btn-group {
+    + .Operation,
+    + .btn-group {
+      margin-left: 5px;
+    }
+  }
+
+  > .btn-group .Operation + .Operation .caret {
+    margin-left: 0;
+  }
+}

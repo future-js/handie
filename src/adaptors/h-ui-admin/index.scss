@@ -1,0 +1,251 @@
+body {
+  overflow: hidden;
+}
+
+.navbar-wrapper,
+.Hui-header {
+  position: relative;
+  z-index: 999;
+  height: $layout-header-height !important;
+  border-bottom: 1px solid $layout-header-border-color;
+  @include box-shadow(0 1px 8px rgba(0, 0, 0, .3));
+}
+
+.navbar-wrapper .navbar,
+.Hui-header {
+  background-color: $layout-header-bg-color;
+}
+
+.navbar-wrapper .navbar .logo,
+.navbar-wrapper .navbar-nav > ul > li,
+.navbar-wrapper .navbar-nav > ul > li > a,
+.Hui-header .Hui-logo,
+.Hui-header .Hui-userbox > ul > li,
+.Hui-header .Hui-userbox > ul > li > a {
+  height: $layout-header-height !important;
+  line-height: $layout-header-height !important;
+}
+
+.navbar-wrapper .navbar .navbar-logo,
+.Hui-header .Hui-logo {
+  position: relative;
+  margin-left: 5px;
+  font: {
+    size: $layout-brand-font-size;
+    weight: $layout-brand-font-weight;
+  }
+  line-height: 1.1 !important;
+  @include text-middle("img, span");
+
+  img {
+    width: 256px / 50px * $layout-brand-image-height;
+    height: $layout-brand-image-height;
+    max-height: 100%;
+
+    + span {
+      position: relative;
+      padding-left: $layout-brand-separator-gap;
+
+      &:before {
+        content: $UN-space;
+        width: 1px;
+        background-color: $layout-brand-separator-color;
+        @include stretch(0, auto, 0, 10px);
+      }
+    }
+  }
+
+  span {
+    padding-left: 10px;
+    color: $layout-brand-text-color;
+  }
+}
+
+.navbar-wrapper,
+.Hui-header,
+.Hui-aside {
+  * {
+    @include box-sizing(border-box);
+  }
+}
+
+.Header-toggle,
+.navbar-logo,
+.Hui-logo,
+.Hui-aside {
+  font-family: $font-family-sans-serif;
+  -webkit-font-smoothing: auto;
+}
+
+.Hui-aside,
+.Hui-article-box,
+.Hui-main {
+  top: $layout-header-height + 1px;
+}
+
+.Hui-aside,
+.Hui-tabNav {
+  background-color: #eee;
+}
+
+.Hui-aside {
+  width: $layout-sidebar-width;
+  padding: {
+    top: $layout-sidebar-top-padding;
+    bottom: $layout-sidebar-bottom-padding;
+  }
+  line-height: 1.5;
+  border-right-style: none !important;
+
+  .menu_dropdown {
+    dt,
+    dd ul li {
+      line-height: inherit;
+    }
+
+    dt,
+    dd ul li a {
+      &,
+      &:hover {
+        color: #666;
+      }
+
+      &:hover {
+        background-color: $layout-sidebar-item-hover;
+      }
+    }
+
+    dt {
+      height: 48px;
+      border-bottom-style: none;
+      font-weight: normal;
+
+      &,
+      > a {
+        @include sidebar-menu-iconic;
+      }
+
+      > a {
+        color: inherit;
+        text-decoration: none;
+        @include stretch;
+      }
+    }
+
+    dl,
+    dt {
+      &.selected .Menu-switcher .fa {
+        @include rotate(90deg);
+      }
+    }
+
+    dd {
+      ul {
+        padding: 0;
+
+        a {
+          font-weight: $font-weight-base;
+          @include sidebar-menu-secondary;
+        }
+      }
+    }
+  }
+}
+
+.Hui-article-box,
+.Hui-main .Hui-article {
+  left: $layout-sidebar-width;
+}
+
+.Hui-header {
+  width: auto;
+  padding: {
+    right: 15px;
+    left: 15px;
+  }
+
+  .Hui-logo {
+    display: block !important;
+  }
+
+  .Hui-userbox {
+    position: static;
+    float: right;
+
+    .btn {
+      display: block;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+}
+
+.Hui-main .Hui-aside {
+  top: 0;
+  height: auto;
+}
+
+.Header-toggle {
+  display: none;
+  float: left;
+  margin: {
+    top: ($layout-header-height - 18px) / 2;
+    right: 10px;
+  }
+  padding: 0;
+  border-style: none;
+  line-height: 1 !important;
+  font-size: 18px;
+  color: $layout-action-trigger-color;
+  background-color: transparent;
+}
+
+.Menu-label {
+  margin-top: 10px;
+  font-weight: $font-weight-base;
+  @include sidebar-menu-label;
+}
+
+.Menu-switcher {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  margin-top: -7px;
+  line-height: 1;
+
+  .fa {
+    margin-right: 5px;
+    @include transition(transform .3s ease);
+  }
+}
+
+@media screen and (max-width: $screen-sm-min) {
+  .navbar-logo,
+  .Hui-header .Hui-logo {
+    @include header-brand-logo-in-mobile;
+  }
+
+  .Hui-aside {
+    @include sidebar-in-mobile("> .menu_dropdown");
+  }
+
+  .Hui-article {
+    top: $layout-header-height + 1px;
+  }
+
+  .Hui-main {
+    top: 0;
+
+    &.is-shown {
+      z-index: 999999999;
+    }
+
+    .Hui-article {
+      left: 0;
+    }
+  }
+
+  .Header-toggle {
+    display: block;
+  }
+}

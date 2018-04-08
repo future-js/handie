@@ -1,0 +1,38 @@
+---
+layout: default
+title: 卖好车统一 UI 框架
+
+css:
+  - path: admin
+    assets_pipeline: true
+  - path: article
+    assets_pipeline: true
+js:
+  - path: global.js
+    assets_pipeline: true
+---
+{% include header.html %}
+<main class="Page-body">
+  {% if page.collection == "cookbook" %}
+    {% include sidebar-cookbook.html %}
+  {% endif %}
+  <div class="Page-content">
+    {% if page.collection == "cookbook" %}
+      <article class="Content Article container-fluid">
+        <header class="Content-header Article-header">
+          <h1 class="Article-title">{{ page.title }}</h1>
+        </header>
+        <div class="Article-content">{{ content }}</div>
+      </article>
+    {% else %}
+      {{ content }}
+    {% endif %}
+  </div>
+</main>
+{% if page.collection == "pages" %}
+  <footer class="Page-footer">
+    <div class="container">
+      <p>&copy; 2017 <a href="http://mdc.maihaoche.com/" target="_blank">卖好车研发中心前端团队</a> 出品</p>
+    </div>
+  </footer>
+{% endif %}

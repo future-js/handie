@@ -1,0 +1,367 @@
+@import "../common/helper";
+
+.modal-footer button.is-hidden {
+  display: none;
+}
+
+.Procedure-labels {
+  margin-bottom: 30px;
+
+  ul {
+    width: 100%;
+    @include pie-clearfix;
+  }
+
+  li {
+    $h: 40px;
+
+    position: relative;
+    float: left;
+    width: 33.3333333%;
+    height: $h;
+    line-height: $h;
+    text-align: center;
+
+    span {
+      display: block;
+      background-color: #ebebeb;
+    }
+
+    + li:before,
+    &:not(:last-of-type):after {
+      content: $UN-space;
+      position: absolute;
+      top: 0;
+      width: 0;
+      height: 0;
+      border: ($h / 2) solid transparent;
+      border-right-width: 0;
+    }
+
+    + li:before {
+      left: 0;
+      border-left-color: #fff;
+    }
+
+    &:not(:last-of-type) {
+      &:after {
+        right: 0;
+        border-left-color: #ebebeb;
+      }
+
+      span {
+        margin-right: ($h / 2);
+      }
+    }
+
+    &.is-active,
+    &.is-over {
+      font-weight: normal;
+      color: #fff;
+    }
+
+    &.is-over {
+      &:after {
+        border-left-color: #F8C431;
+      }
+
+      span {
+        background-color: #F8C431;
+      }
+    }
+
+    &.is-active {
+      &:after {
+        border-left-color: #EE9430;
+      }
+
+      span {
+        background-color: #EE9430;
+      }
+    }
+  }
+}
+
+.Procedure-step {
+  display: none;
+
+  &.is-active {
+    display: block;
+  }
+}
+
+
+
+.AreaGroup {
+  float: left;
+  padding-top: 5px;
+
+  + .AreaGroup {
+    &:before {
+      content: "至";
+      display: inline-block;
+      vertical-align: middle;
+      margin: {
+        right: 1em;
+        left: 1em;
+      }
+    }
+  }
+}
+
+
+
+.CarSet {
+  padding: {
+    right: 15px;
+    left: 15px;
+  }
+  border-top: 1px solid #a6a6a6;
+}
+
+.CarSet-item {
+  padding: 15px 5px;
+
+  + .CarSet-item {
+    border-top: 1px dashed #ebebeb;
+  }
+
+  &.Car {
+    font-size: 12px;
+
+    .Car-name {
+      margin: 0 0 5px;
+      font-size: inherit;
+    }
+
+    .Car-prop {
+      margin: 0;
+      color: #9b9b9b;
+
+      span + span {
+        margin-left: 5px;
+        padding-left: 5px;
+        border-left: 1px solid #a6a6a6;
+      }
+    }
+
+    .Car-count {
+      p,
+      ul {
+        margin-bottom: 0;
+      }
+
+      p:before {
+        content: "数量：";
+        display: inline;
+      }
+
+      ul {
+        padding-left: 0;
+        list-style: none inside none;
+        @include pie-clearfix;
+      }
+
+      li {
+        float: left;
+
+        &:first-of-type:before {
+          content: "车架号：";
+          display: inline;
+        }
+
+        + li:before {
+          content: "、";
+          display: inline;
+        }
+      }
+    }
+  }
+
+  button + button {
+    margin-left: 5px;
+  }
+}
+
+.CarSet-saveButton {
+  margin: {
+    top: 20px;
+    bottom: 30px;
+  }
+  text-align: center;
+}
+
+
+
+.Transportation-destination {
+  text-align: center;
+
+  div {
+    span {
+      position: relative;
+      @include inline-block;
+
+      &:first-of-type:after,
+      &:last-of-type:before {
+        position: absolute;
+        top: 50%;
+        content: $UN-space;
+        display: inline-block;
+        width: 50px;
+        height: 1px;
+        background-color: #a6a6a6;
+      }
+
+      &:first-of-type {
+        padding-right: 70px;
+
+        &:after {
+          right: 10px;
+        }
+      }
+
+      &:last-of-type {
+        padding-left: 70px;
+
+        &:before {
+          left: 10px;
+        }
+      }
+    }
+
+    .fa {
+      font-size: 16px;
+      vertical-align: middle;
+      @include scaleX(-1);
+    }
+  }
+
+  p {
+    margin: {
+      top: 5px;
+      bottom: 0;
+    }
+    font-size: 12px;
+
+    &:before,
+    &:after {
+      display: inline;
+    }
+
+    &:before {
+      content: "（";
+    }
+
+    &:after {
+      content: "）";
+    }
+  }
+
+  + .Transportation-transporter {
+    margin-top: 20px;
+  }
+}
+
+.Transportation-cars {
+  margin-top: 20px;
+
+  li {
+    padding: 10px 0;
+
+    + li {
+      border-top: 1px dashed #e6e6e6;
+    }
+  }
+}
+
+.Transportation-transporters {
+  li,
+  label {
+    position: relative;
+  }
+
+  label {
+    display: block;
+    margin: 0;
+    font-weight: inherit;
+    cursor: pointer;
+  }
+
+  input {
+    position: absolute;
+    z-index: -1;
+    clip: rect(0, 0, 0, 0);
+
+    &:checked ~ label {
+      border-color: #EE9430;
+    }
+  }
+
+  > li {
+    + li {
+      margin-top: 10px;
+    }
+  }
+}
+
+.Transportation-transporter {
+  padding: 5px 10px;
+  font-size: 12px;
+  border: 2px solid #ebebeb;
+  border-radius: 6px;
+
+  h4 {
+    margin: 0 0 5px;
+    font-size: 14px;
+    line-height: inherit;
+  }
+
+  ul {
+    @include pie-clearfix;
+  }
+
+  li,
+  p {
+    span + span {
+      margin-left: 5px;
+      color: #f00;
+    }
+  }
+
+  li {
+    float: left;
+    width: 33.3333333%;
+  }
+
+  p {
+    margin: {
+      top: 5px;
+      bottom: 0;
+    }
+    padding-top: 5px;
+    border-top: 1px solid #f5f5f5;
+    font-weight: normal;
+
+    span {
+      + span {
+        font-weight: bold;
+      }
+
+      &.is-deleted {
+        font-style: italic;
+        color: #aaa;
+        text-decoration: line-through;
+      }
+    }
+  }
+}
+
+.Notice--invoiceRate {
+  margin-bottom: 0;
+  font-size: 12px;
+
+  span {
+    font-weight: bold;
+    color: #f00;
+  }
+}
