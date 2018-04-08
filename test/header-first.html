@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Header first</title>
+    <link rel="stylesheet" href="./assets/handie/stylesheets/header-first.css">
+  </head>
+  <body class="Page">
+    <header class="Page-header Header">
+      <button class="Header-toggle" type="button"><i class="fa fa-bars"></i></button>
+      <div class="Header-brand">
+        <a href="/"><img alt="卖好车" srcset="//img.maihaoche.com/mhc-fe/muu/1.6.8/muu/images/logo-2x.png 2x" src="//img.maihaoche.com/mhc-fe/muu/1.6.8/muu/images/logo.png"><span>Handie</span></a>
+      </div>
+      <div class="Header-extra">
+        <div class="Header-operations">
+            <div class="Header-action Action Action--avatar"><a class="Action-trigger" href="javascript:void(0);"><span>欧雷</span></a>
+              <div class="Action-content Card">
+                <div class="Card-content">
+                  <ul>
+                    <li>13067847489</li>
+                    <li>oulei@maihaoche.com</li>
+                  </ul>
+                </div>
+                <div class="Card-footer">
+                  <a class="btn btn-default btn-xs" href="/logout.htm">退出</a>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </header>
+    <main class="Page-body">
+      <div class="Page-sidebar Sidebar">
+        <nav class="Sidebar-navs Navs">
+          <ul class="Navs-menu Menu Menu--grouped" data-flag="2.407798168104961E15">
+            <li class="Menu-label"><span>金融平台</span></li>
+            <li data-flag="我的工作台" class="is-childless">
+              <a href="http://tida.maihaoche.com/myDashboard.htm"><i class="fa fa-fw fa-dashboard"></i><span>我的工作台</span></a>
+              
+            </li>
+            <li data-flag="节点监控" class="is-childless">
+              <a href="http://tida.maihaoche.com/getNodeControl.htm"><i class="fa fa-fw fa-sliders"></i><span>节点监控</span></a>
+              
+            </li>
+            <li data-flag="订单管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-th"></i><span>订单管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="库融宝列表"><a href="http://tida.maihaoche.com/carLoan/orderList.htm">库融宝列表</a></li>
+                  <li data-flag="订单宝列表"><a href="http://tida.maihaoche.com/orderLoan/orderList.htm">订单宝列表</a></li>
+                  <li data-flag="接车宝列表"><a href="http://tida.maihaoche.com/receiveCar/orderList.htm">接车宝列表</a></li>
+                  <li data-flag="数据订正列表"><a href="http://tida.maihaoche.com/dataCorrection/dataList.htm">数据订正列表</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="车辆管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-car"></i><span>车辆管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="自定义车型人工处理"><a href="http://tida.maihaoche.com/carMgn/diyCarList.htm">自定义车型人工处理</a></li>
+                  <li data-flag="核价列表"><a href="http://tida.maihaoche.com/carMgn/pricesList.htm">核价列表</a></li>
+                  <li data-flag="三方监管列表"><a href="http://tida.maihaoche.com/supervision/list.htm">三方监管列表</a></li>
+                  <li data-flag="可出库手续列表"><a href="http://tida.maihaoche.com/supervision/outCar.htm?status=2">可出库手续列表</a></li>
+                  <li data-flag="手续承诺函"><a href="http://tida.maihaoche.com/commitment/list.htm">手续承诺函</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="合同管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-file-excel-o"></i><span>合同管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="模版管理"><a href="http://tida.maihaoche.com/contracttemplates.htm">模版管理</a></li>
+                  <li data-flag="资方合同模板管理"><a href="http://tida.maihaoche.com/template/capitalTemplateList.htm">资方合同模板管理</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="金融产品中心">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-balance-scale"></i><span>金融产品中心</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="模版列表"><a href="http://tida.maihaoche.com/geely/template/templateList.htm">模版列表</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="结算管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-rmb"></i><span>结算管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="金融结算单列表"><a href="http://tida.maihaoche.com/payment/list.htm">金融结算单列表</a></li>
+                  <li data-flag="基础结算列表"><a href="http://tida.maihaoche.com/proceeds/list.htm">基础结算列表</a></li>
+                  <li data-flag="计费模板列表"><a href="http://tida.maihaoche.com/calcualteRule/list.htm">计费模板列表</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="风险管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-area-chart"></i><span>风险管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="风险商家列表"><a href="http://tida.maihaoche.com/blacklist.htm">风险商家列表</a></li>
+                  <li data-flag="企业关联查询"><a href="http://tida.maihaoche.com/riskManagement/relatedResultList.htm">企业关联查询</a></li>
+                  <li data-flag="预警规则列表"><a href="http://tida.maihaoche.com/riskManagement/riskRule/list.htm">预警规则列表</a></li>
+                  <li data-flag="预警消息列表"><a href="http://tida.maihaoche.com/riskManagement/riskFact/list.htm">预警消息列表</a></li>
+                  <li data-flag="信用测评列表"><a href="http://tida.maihaoche.com/riskReport/riskReportList.htm">信用测评列表</a></li>
+                  <li data-flag="商家授信列表"><a href="http://tida.maihaoche.com/venucia/credit/creditList.htm">商家授信列表</a></li>
+                  <li data-flag="个人信用测评"><a href="http://tida.maihaoche.com/personRiskReport/personRiskReportList.htm">个人信用测评</a></li>
+                  <li data-flag="企业简版测评"><a href="http://tida.maihaoche.com/companyRiskReport/companyRiskReportList.htm">企业简版测评</a></li>
+                  <li data-flag="还款承诺函列表"><a href="http://tida.maihaoche.com/repayment/repaymentList.htm">还款承诺函列表</a></li>
+                  <li data-flag="测评配置管理"><a href="http://tida.maihaoche.com/assessmentConfig/list.htm">测评配置管理</a></li>
+                  <li data-flag="个人灰黑名单"><a href="http://tida.maihaoche.com/personalBlacklist/list.htm">个人灰黑名单</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="资方管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-university"></i><span>资方管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="资方基础信息列表"><a href="http://tida.maihaoche.com/capitalManagement/capitalBasicInfoList.htm">资方基础信息列表</a></li>
+                  <li data-flag="资方合作信息列表"><a href="http://tida.maihaoche.com/capitalManagement/capitalPartnerInfoList.htm">资方合作信息列表</a></li>
+                  <li data-flag="资方银行卡列表"><a href="http://tida.maihaoche.com/capitalAccount/list.htm">资方银行卡列表</a></li>
+                  <li data-flag="资方合同管理"><a href="http://tida.maihaoche.com/capitalContract/list.htm">资方合同管理</a></li>
+                  <li data-flag="资方准入要求"><a href="http://tida.maihaoche.com/capitalAccess/accessList.htm">资方准入要求</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="资产管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-credit-card-alt"></i><span>资产管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="借据信息列表"><a href="http://tida.maihaoche.com/debt/debtList.htm">借据信息列表</a></li>
+                  <li data-flag="资产统计"><a href="http://tida.maihaoche.com/statistics/assetsStatistics.htm">资产统计</a></li>
+                  <li data-flag="超期借据列表"><a href="http://tida.maihaoche.com/overdue/overdueList.htm">超期借据列表</a></li>
+                  <li data-flag="可用资金配置"><a href="http://tida.maihaoche.com/capitalConfig/list.htm">可用资金配置</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="标签管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-paperclip"></i><span>标签管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="标签列表"><a href="http://tida.maihaoche.com/label/labelManage.htm">标签列表</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="债权转让管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-gavel"></i><span>债权转让管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="债权转让项目"><a href="http://tida.maihaoche.com/debtAssign/projectList.htm">债权转让项目</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="资金撮合平台">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-money"></i><span>资金撮合平台</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="资金撮合待办"><a href="http://tida.maihaoche.com/budgetAudit/auditList.htm">资金撮合待办</a></li>
+                  <li data-flag="资方资金管理"><a href="http://tida.maihaoche.com/capitalPool/capitalPoolList.htm">资方资金管理</a></li>
+                  <li data-flag="预算通知配置"><a href="http://tida.maihaoche.com/staffConfig/staffConfigList.htm">预算通知配置</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="商户审批">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-address-card-o"></i><span>商户审批</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="签章人列表"><a href="http://tida.maihaoche.com/sign/certification/list.htm">签章人列表</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="账单管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-money"></i><span>账单管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="费用类型"><a href="http://tida.maihaoche.com/fee/feeEntList.htm">费用类型</a></li>
+                  <li data-flag="计费产品"><a href="http://tida.maihaoche.com/fee/productList.htm">计费产品</a></li>
+                  <li data-flag="账单列表"><a href="http://tida.maihaoche.com/fee/billRecordList.htm">账单列表</a></li>
+                  <li data-flag="费用明细"><a href="http://tida.maihaoche.com/fee/feeDetail.htm">费用明细</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <ul class="Navs-menu Menu Menu--grouped" data-flag="2.407798168104962E15">
+            <li class="Menu-label"><span>运输管理系统</span></li>
+            <li data-flag="工作台" class="is-childless">
+              <a href="https://tms.maihaoche.com/dashboard/workbench.htm"><i class="fa fa-fw fa-th"></i><span>工作台</span></a>
+              
+            </li>
+            <li data-flag="运单管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-file-text"></i><span>运单管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="运单（新）"><a href="https://tms.maihaoche.com/invoice/ordersNew.htm">运单（新）</a></li>
+                  <li data-flag="在途监控"><a href="https://tms.maihaoche.com/invoice/monitor.htm">在途监控</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="费用账单">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-rmb"></i><span>费用账单</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="费用列表"><a href="https://tms.maihaoche.com/feeBills/feeList.htm">费用列表</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="报价管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-money"></i><span>报价管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="保险费"><a href="https://tms.maihaoche.com/fee/insurance.htm">保险费</a></li>
+                  <li data-flag="批量规则模版"><a href="https://tms.maihaoche.com/quoteManagement/quantityRates.htm">批量规则模版</a></li>
+                  <li data-flag="车型规则模版"><a href="https://tms.maihaoche.com/quoteManagement/modalRates.htm">车型规则模版</a></li>
+                  <li data-flag="客户报价"><a href="https://tms.maihaoche.com/quoteManagement/customers.htm">客户报价</a></li>
+                  <li data-flag="费用类型"><a href="https://tms.maihaoche.com/transportation/costs.htm">费用类型</a></li>
+                  <li data-flag="承运商报价"><a href="https://tms.maihaoche.com/quoteManagement/carriers.htm">承运商报价</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="资源管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-server"></i><span>资源管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="物流库"><a href="https://tms.maihaoche.com/itinerary/warehouses.htm">物流库</a></li>
+                  <li data-flag="承运商"><a href="https://tms.maihaoche.com/organization/transporters.htm">承运商</a></li>
+                  <li data-flag="承运商人员"><a href="https://tms.maihaoche.com/staff/transporter.htm">承运商人员</a></li>
+                  <li data-flag="区域管理"><a href="https://tms.maihaoche.com/location/areas.htm">区域管理</a></li>
+                  <li data-flag="地区集合"><a href="https://tms.maihaoche.com/organization/cityPartition.htm">地区集合</a></li>
+                  <li data-flag="GPS设备管理"><a href="https://tms.maihaoche.com/resource/queryGPSList.htm">GPS设备管理</a></li>
+                  <li data-flag="轿运车辆"><a href="https://tms.maihaoche.com/resource/queryVehicleList.htm">轿运车辆</a></li>
+                  <li data-flag="物流大区"><a href="https://tms.maihaoche.com/location/logisticsArea.htm">物流大区</a></li>
+                  <li data-flag="调度城市区域"><a href="https://tms.maihaoche.com/location/schedulingCityArea.htm">调度城市区域</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="应用设置">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-dot-circle-o"></i><span>应用设置</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="运输类型"><a href="https://tms.maihaoche.com/transportation/types.htm">运输类型</a></li>
+                  <li data-flag="车辆类型"><a href="https://tms.maihaoche.com/transportation/cars.htm">车辆类型</a></li>
+                  <li data-flag="更新到达时间"><a href="https://tms.maihaoche.com/transportation/updateArriveTime.htm">更新到达时间</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="客户端设置">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-asterisk"></i><span>客户端设置</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="强制更新"><a href="https://tms.maihaoche.com/app/versions.htm">强制更新</a></li>
+                  <li data-flag="活动路线"><a href="https://tms.maihaoche.com/app/routes.htm">活动路线</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="竞价管理" class="is-childless">
+              <a href="https://tms.maihaoche.com/quoteManagement/bidManage.htm"><i class="fa fa-fw fa-bullhorn"></i><span>竞价管理</span></a>
+              
+            </li>
+          </ul>
+          <ul class="Navs-menu Menu Menu--grouped" data-flag="2.407798168104963E15">
+            <li class="Menu-label"><span>仓储管理系统</span></li>
+            <li data-flag="工作台" class="is-active is-childless">
+              <a href="/page/shortcut.htm"><i class="fa fa-fw fa-dashboard"></i><span>工作台</span></a>
+              
+            </li>
+            <li data-flag="报表管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-pie-chart"></i><span>报表管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="库存报表"><a href="/page/stock.htm">库存报表</a></li>
+                  <li data-flag="入库日报"><a href="/page/checkIn.htm">入库日报</a></li>
+                  <li data-flag="出库日报"><a href="/page/checkOut.htm">出库日报</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="入库管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-sign-in"></i><span>入库管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="业务订单"><a href="/page/orders.htm">业务订单</a></li>
+                  <li data-flag="入库分配"><a href="/page/assignment.htm">入库分配</a></li>
+                  <li data-flag="入库单"><a href="/page/notices.htm">入库单</a></li>
+                  <li data-flag="待入库"><a href="/page/checkInWarehouses.htm">待入库</a></li>
+                  <li data-flag="入库单审核"><a href="/page/storageList.htm">入库单审核</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="在库管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-car"></i><span>在库管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="在库车辆"><a href="/page/inStock.htm">在库车辆</a></li>
+                  <li data-flag="异常车辆"><a href="/page/damaged.htm">异常车辆</a></li>
+                  <li data-flag="盘点车辆"><a href="/page/inspection.htm">盘点车辆</a></li>
+                  <li data-flag="待匹配"><a href="/page/matching.htm">待匹配</a></li>
+                  <li data-flag="待验车"><a href="/page/inspecting.htm">待验车</a></li>
+                  <li data-flag="在库换车"><a href="/page/carUpdate.htm">在库换车</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="出库管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-sign-out"></i><span>出库管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="出库审核"><a href="/page/checking.htm">出库审核</a></li>
+                  <li data-flag="待出库"><a href="/page/checkOutWarehouses.htm">待出库</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="基础信息">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-info-circle"></i><span>基础信息</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="仓库管理"><a href="/page/warehouses.htm">仓库管理</a></li>
+                  <li data-flag="日志"><a href="/page/logs.htm">日志</a></li>
+                  <li data-flag="仓库地图"><a href="/page/warehouseWeather.htm">仓库地图</a></li>
+                  <li data-flag="托管方/合作方"><a href="/page/hostingPartner.htm">托管方/合作方</a></li>
+                  <li data-flag="经销商管理"><a href="/page/dealerManage.htm">经销商管理</a></li>
+                  <li data-flag="费用类型"><a href="/page/costType.htm">费用类型</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="PDA数据">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-exchange"></i><span>PDA数据</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="版本列表"><a href="/page/pdaVersionList.htm">版本列表</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="库存调拨管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-arrows-h"></i><span>库存调拨管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="库存调拨管理"><a href="/page/stockTransfer.htm">库存调拨管理</a></li>
+                  <li data-flag="库存调拨明细"><a href="/page/stockTransferDetail.htm">库存调拨明细</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="仓库直播监控">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-video-camera"></i><span>仓库直播监控</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="抽检"><a href="/page/samplingCheck.htm">抽检</a></li>
+                  <li data-flag="抽检记录"><a href="/page/allCheckRecord.htm">抽检记录</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="计费规则">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-money"></i><span>计费规则</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="应收计费规则"><a href="/page/receivable.htm">应收计费规则</a></li>
+                  <li data-flag="应付计费规则"><a href="/page/payables.htm">应付计费规则</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="费用结算">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-cc-mastercard"></i><span>费用结算</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="应收定期结算费用"><a href="/page/receivableFix.htm">应收定期结算费用</a></li>
+                  <li data-flag="应收即时结算费用"><a href="/page/receiveImmediate.htm">应收即时结算费用</a></li>
+                  <li data-flag="应付定期费用结算"><a href="/page/payablesFix.htm">应付定期费用结算</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="日志">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-book"></i><span>日志</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="库存日志"><a href="/page/stockLog.htm">库存日志</a></li>
+                  <li data-flag="操作日志"><a href="/page/operateLog.htm">操作日志</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="仓库运营设置">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-scissors"></i><span>仓库运营设置</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="仓库业务限制设置"><a href="/page/businessRestrict.htm">仓库业务限制设置</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <ul class="Navs-menu Menu Menu--grouped" data-flag="2.407798168104964E15">
+            <li class="Menu-label"><span>平台运营后台</span></li>
+            <li data-flag="商品管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-car"></i><span>商品管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="商品列表"><a href="http://tesla.maihaoche.com/product/carList.htm">商品列表</a></li>
+                  <li data-flag="拼团商品列表"><a href="http://tesla.maihaoche.com/product/groupBuyList.htm">拼团商品列表</a></li>
+                  <li data-flag="在库商品列表"><a href="http://tesla.maihaoche.com/product/seckillList.htm">在库商品列表</a></li>
+                  <li data-flag="在库商品库存列表"><a href="http://tesla.maihaoche.com/product/seckillCarList.htm">在库商品库存列表</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="线上交易管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-handshake-o"></i><span>线上交易管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="担保交易列表"><a href="http://tesla.maihaoche.com/dealOnline/secureTransOrderList.htm">担保交易列表</a></li>
+                  <li data-flag="惠拼车交易列表"><a href="http://tesla.maihaoche.com/dealOnline/groupBuyOrderList.htm">惠拼车交易列表</a></li>
+                  <li data-flag="秒车库交易列表"><a href="http://tesla.maihaoche.com/dealOnline/seckillOrderList.htm">秒车库交易列表</a></li>
+                  <li data-flag="竞价寻车交易列表"><a href="http://tesla.maihaoche.com/dealOnline/seekCarBidOrderList.htm">竞价寻车交易列表</a></li>
+                  <li data-flag="惠拼车拼团管理"><a href="http://tesla.maihaoche.com/dealOnline/carpoolList.htm">惠拼车拼团管理</a></li>
+                  <li data-flag="极速发车交易列表"><a href="http://tesla.maihaoche.com/dealOnline/fastOrderList.htm">极速发车交易列表</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="工具管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-wrench"></i><span>工具管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="车型添加"><a href="http://tesla.maihaoche.com/tools/modelSave.htm">车型添加</a></li>
+                  <li data-flag="更改创建人"><a href="http://tesla.maihaoche.com/tools/changeCreator.htm">更改创建人</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="商家管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-users"></i><span>商家管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="供应商列表（供车宝）"><a href="http://tesla.maihaoche.com/partnerSupplier/supplierList.htm">供应商列表（供车宝）</a></li>
+                  <li data-flag="上下游关系（供车宝）"><a href="http://tesla.maihaoche.com/partnerSupplier/supplierDealerList.htm">上下游关系（供车宝）</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="支付管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-credit-card"></i><span>支付管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="支付记录列表"><a href="http://tesla.maihaoche.com/pay/payRecordList.htm">支付记录列表</a></li>
+                  <li data-flag="余额管理列表"><a href="http://tesla.maihaoche.com/pay/payBalanceList.htm">余额管理列表</a></li>
+                  <li data-flag="提现管理列表"><a href="http://tesla.maihaoche.com/pay/withdrawList.htm">提现管理列表</a></li>
+                  <li data-flag="对账单列表"><a href="http://tesla.maihaoche.com/pay/checkList.htm">对账单列表</a></li>
+                  <li data-flag="线下转账发起"><a href="http://tesla.maihaoche.com/pay/offlineList.htm">线下转账发起</a></li>
+                  <li data-flag="线下转账审核"><a href="http://tesla.maihaoche.com/pay/offlineReviewList.htm">线下转账审核</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <ul class="Navs-menu Menu Menu--grouped" data-flag="2.407798168104965E15">
+            <li class="Menu-label"><span>工作流平台</span></li>
+            <li data-flag="任务委托管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-circle-o"></i><span>任务委托管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="自动委托"><a href="http://fiat.maihaoche.com/delegate/delegate-listDelegateInfos.do">自动委托</a></li>
+                  <li data-flag="自动委托记录"><a href="http://fiat.maihaoche.com/delegate/delegate-listDelegateHistories.do">自动委托记录</a></li>
+                  <li data-flag="忙闲设置"><a href="http://fiat.maihaoche.com/holiday/holiday-listHolidayInfos.do">忙闲设置</a></li>
+                  <li data-flag="流程包设置"><a href="http://fiat.maihaoche.com/process-package/processPackage-listProcessPackages.do">流程包设置</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="我的流程">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-circle-o"></i><span>我的流程</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="发起流程"><a href="http://fiat.maihaoche.com/bpm/workspace-home.do">发起流程</a></li>
+                  <li data-flag="未结流程"><a href="http://fiat.maihaoche.com/bpm/workspace-listRunningProcessInstances.do">未结流程</a></li>
+                  <li data-flag="办结流程"><a href="http://fiat.maihaoche.com/bpm/workspace-listCompletedProcessInstances.do">办结流程</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="我的任务">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-circle-o"></i><span>我的任务</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="待办任务"><a href="http://fiat.maihaoche.com/humantask/workspace-personalTasks.do">待办任务</a></li>
+                  <li data-flag="待领任务"><a href="http://fiat.maihaoche.com/humantask/workspace-groupTasks.do">待领任务</a></li>
+                  <li data-flag="已办任务"><a href="http://fiat.maihaoche.com/humantask/workspace-historyTasks.do">已办任务</a></li>
+                  <li data-flag="经手任务"><a href="http://fiat.maihaoche.com/humantask/workspace-delegatedTasks.do">经手任务</a></li>
+                  <li data-flag="我关注的任务"><a href="http://fiat.maihaoche.com/unified-task/admin-task-portal.do">我关注的任务</a></li>
+                  <li data-flag="任务监控"><a href="http://fiat.maihaoche.com/monitor/list-process-monitors.do">任务监控</a></li>
+                  <li data-flag="超时任务"><a href="http://fiat.maihaoche.com/monitor/overtime-task-list.do">超时任务</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="技术部应用发布" class="is-childless">
+              <a href="http://fiat.maihaoche.com/publish-process/list-historic-publish-instances.do"><i class="fa fa-fw fa-circle-o"></i><span>技术部应用发布</span></a>
+              
+            </li>
+            <li data-flag="待办任务中心" class="is-childless">
+              <a href="http://fiat.maihaoche.com/unified-task/my-task-portal.do"><i class="fa fa-fw fa-hourglass-end"></i><span>待办任务中心</span></a>
+              
+            </li>
+          </ul>
+          <ul class="Navs-menu Menu Menu--grouped" data-flag="2.407798168104966E15">
+            <li class="Menu-label"><span>金融服务中心</span></li>
+            <li data-flag="请款单管理" class="is-childless">
+              <a href="http://pay.maihaoche.com/receipt/index.htm"><i class="fa fa-fw fa-server"></i><span>请款单管理</span></a>
+              
+            </li>
+            <li data-flag="出款结算管理列表" class="is-childless">
+              <a href="http://pay.maihaoche.com/outSettle/outSettleList.htm"><i class="fa fa-fw fa-circle-o"></i><span>出款结算管理列表</span></a>
+              
+            </li>
+            <li data-flag="在线支付管理">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-exchange"></i><span>在线支付管理</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="支付方式管理"><a href="http://pay.maihaoche.com/pay/payWay/index.htm">支付方式管理</a></li>
+                  <li data-flag="渠道管理"><a href="http://pay.maihaoche.com/pay/bankChannel/index.htm">渠道管理</a></li>
+                  <li data-flag="银行卡列表"><a href="http://pay.maihaoche.com/pay/bankCard/index.htm">银行卡列表</a></li>
+                  <li data-flag="异步认证管理"><a href="http://pay.maihaoche.com/pay/bankCard/asynAuth.htm">异步认证管理</a></li>
+                  <li data-flag="支付记录"><a href="http://pay.maihaoche.com/pay/payRecord/index.htm">支付记录</a></li>
+                  <li data-flag="支付管理员审批"><a href="http://pay.maihaoche.com/pay/manager/index.htm">支付管理员审批</a></li>
+                  <li data-flag="白名单列表"><a href="http://pay.maihaoche.com/pay/whiteList/index.htm">白名单列表</a></li>
+                  <li data-flag="银行列表"><a href="http://pay.maihaoche.com/pay/bank/index.htm">银行列表</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="客户结算信息管理" class="is-childless">
+              <a href="http://pay.maihaoche.com/seat/customerInfoList.htm"><i class="fa fa-fw fa-odnoklassniki"></i><span>客户结算信息管理</span></a>
+              
+            </li>
+            <li data-flag="线下转账管理" class="is-childless">
+              <a href="http://pay.maihaoche.com/pay/offlineTransfer/index.htm"><i class="fa fa-fw fa-circle-o"></i><span>线下转账管理</span></a>
+              
+            </li>
+            <li data-flag="账单中心">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-circle-o"></i><span>账单中心</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="金融订单"><a href="http://pay.maihaoche.com/bills/index">金融订单</a></li>
+                  <li data-flag="记账凭证"><a href="http://pay.maihaoche.com/billsCert/index">记账凭证</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <ul class="Navs-menu Menu Menu--grouped" data-flag="2.407798168104967E15">
+            <li class="Menu-label"><span>汇金管理系统</span></li>
+            <li data-flag="付款管理" class="is-childless">
+              <a href="http://f.maihaoche.net/payment/item.htm"><i class="fa fa-fw fa-rmb"></i><span>付款管理</span></a>
+              
+            </li>
+            <li data-flag="交易流水账单" class="is-childless">
+              <a href="http://f.maihaoche.net/cash/journalList.htm"><i class="fa fa-fw fa-exchange"></i><span>交易流水账单</span></a>
+              
+            </li>
+            <li data-flag="账户管理" class="is-childless">
+              <a href="http://f.maihaoche.net/financeAccount/list.htm"><i class="fa fa-fw fa-credit-card"></i><span>账户管理</span></a>
+              
+            </li>
+            <li data-flag="操作日志" class="is-childless">
+              <a href="http://f.maihaoche.net/oplog/list.htm"><i class="fa fa-fw fa-file-text-o"></i><span>操作日志</span></a>
+              
+            </li>
+            <li data-flag="外部流水" class="is-childless">
+              <a href="http://f.maihaoche.net/outterCash/outerCashList"><i class="fa fa-fw fa-circle-o"></i><span>外部流水</span></a>
+              
+            </li>
+            <li data-flag="存管账户">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-user"></i><span>存管账户</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="会员子账户管理"><a href="http://f.maihaoche.net/dp/account/list">会员子账户管理</a></li>
+                  <li data-flag="会员资金明细"><a href="http://f.maihaoche.net/dp/deal/list">会员资金明细</a></li>
+                  <li data-flag="会员交易记录"><a href="http://f.maihaoche.net/dp/cash/list">会员交易记录</a></li>
+                  <li data-flag="平台子账户管理"><a href="http://f.maihaoche.net/dp/platform/list">平台子账户管理</a></li>
+                  <li data-flag="充值管理"><a href="http://f.maihaoche.net/dp/recharge/list">充值管理</a></li>
+                  <li data-flag="提现管理"><a href="http://f.maihaoche.net/dp/withdraw/list">提现管理</a></li>
+                  <li data-flag="会员银行卡管理"><a href="http://f.maihaoche.net/dp/bankCard/list">会员银行卡管理</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <ul class="Navs-menu Menu Menu--grouped" data-flag="2.407798168104968E15">
+            <li class="Menu-label"><span>BI门户</span></li>
+            <li data-flag="基础配置">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-circle-o"></i><span>基础配置</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="菜单配置"><a href="http://bi.maihaoche.com/unify?name=菜单配置&amp;url=/menu/list">菜单配置</a></li>
+                  <li data-flag="报表模板配置"><a href="http://bi.maihaoche.com/unify?name=报表模板配置&amp;url=/reportModel/modelList.htm">报表模板配置</a></li>
+                  <li data-flag="报表邮件配置"><a href="http://bi.maihaoche.com/unify?name=报表邮件配置&amp;url=/rptmailconfig/list">报表邮件配置</a></li>
+                  <li data-flag="报表图表配置"><a href="http://bi.maihaoche.com/unify?name=报表图表配置&amp;url=/reportModel/chartList.htm">报表图表配置</a></li>
+                  <li data-flag="数据源配置"><a href="http://bi.maihaoche.com/unify?name=数据源配置&amp;url=/datasource/list">数据源配置</a></li>
+                  <li data-flag="简易模板配置"><a href="http://bi.maihaoche.com/unify?name=简易模板配置&amp;url=/reportModel/easyModelList.htm">简易模板配置</a></li>
+                  <li data-flag="数据表配置"><a href="http://bi.maihaoche.com/unify?name=数据表配置&amp;url=/table/list">数据表配置</a></li>
+                  <li data-flag="组合报表模板配置"><a href="http://bi.maihaoche.com/unify?name=组合报表模板配置&amp;url=/comboModel/modelList.htm">组合报表模板配置</a></li>
+                  <li data-flag="钉钉通知模板配置"><a href="http://bi.maihaoche.com/unify?name=钉钉通知模板配置&amp;url=/dingding/informModel/modelList.htm">钉钉通知模板配置</a></li>
+                  <li data-flag="钉钉通知人员配置"><a href="http://bi.maihaoche.com/unify?name=钉钉通知人员配置&amp;url=/senderDingDing/dingInformConfigList.htm">钉钉通知人员配置</a></li>
+                  <li data-flag="需求申请入口"><a href="http://bi.maihaoche.com/unify?name=需求申请入口&amp;url=/proposer/applyListView">需求申请入口</a></li>
+                  <li data-flag="需求审批入口"><a href="http://bi.maihaoche.com/unify?name=需求审批入口&amp;url=/approval/approveListView">需求审批入口</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="数据工具">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-circle-o"></i><span>数据工具</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="数据查询"><a href="http://bi.maihaoche.com/unify?name=数据查询&amp;url=/dataquery/index">数据查询</a></li>
+                  <li data-flag="数据导出"><a href="http://bi.maihaoche.com/unify?name=数据导出&amp;url=/exportapply/list">数据导出</a></li>
+                  <li data-flag="数据查询权限配置"><a href="http://bi.maihaoche.com/unify?name=数据查询权限配置&amp;url=/queryauth/list">数据查询权限配置</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="BI数据仓库">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-circle-o"></i><span>BI数据仓库</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="WDM埋点表"><a href="http://bi.maihaoche.com/unify?name=WDM埋点表&amp;url=/table/102/data/list">WDM埋点表</a></li>
+                  <li data-flag="活动车源ID"><a href="http://bi.maihaoche.com/unify?name=活动车源ID&amp;url=/table/103/data/list">活动车源ID</a></li>
+                  <li data-flag="线下订单明细"><a href="http://bi.maihaoche.com/unify?name=线下订单明细&amp;url=/table/104/data/list">线下订单明细</a></li>
+                  <li data-flag="贷款车辆手续表"><a href="http://bi.maihaoche.com/unify?name=贷款车辆手续表&amp;url=/table/106/data/list">贷款车辆手续表</a></li>
+                  <li data-flag="区域月度目标表"><a href="http://bi.maihaoche.com/unify?name=区域月度目标表&amp;url=/table/108/data/list">区域月度目标表</a></li>
+                  <li data-flag="检测是否注册的手机号码"><a href="http://bi.maihaoche.com/unify?name=检测是否注册的手机号码&amp;url=/table/109/data/list">检测是否注册的手机号码</a></li>
+                  <li data-flag="订单宝逾期天数设置"><a href="http://bi.maihaoche.com/unify?name=订单宝逾期天数设置&amp;url=/table/114/data/list">订单宝逾期天数设置</a></li>
+                  <li data-flag="线上订单车辆线下回款"><a href="http://bi.maihaoche.com/unify?name=线上订单车辆线下回款&amp;url=/table/115/data/list">线上订单车辆线下回款</a></li>
+                  <li data-flag="线下订单车辆信息"><a href="http://bi.maihaoche.com/unify?name=线下订单车辆信息&amp;url=/table/117/data/list">线下订单车辆信息</a></li>
+                  <li data-flag="线下订单车辆到达信息"><a href="http://bi.maihaoche.com/unify?name=线下订单车辆到达信息&amp;url=/table/118/data/list">线下订单车辆到达信息</a></li>
+                  <li data-flag="大客户可申请额度表"><a href="http://bi.maihaoche.com/unify?name=大客户可申请额度表&amp;url=/table/120/data/list">大客户可申请额度表</a></li>
+                  <li data-flag="业务经理每月目标表"><a href="http://bi.maihaoche.com/unify?name=业务经理每月目标表&amp;url=/table/123/data/list">业务经理每月目标表</a></li>
+                  <li data-flag="物流运输车辆信息表"><a href="http://bi.maihaoche.com/unify?name=物流运输车辆信息表&amp;url=/table/124/data/list">物流运输车辆信息表</a></li>
+                  <li data-flag="app观察用户日常录入表"><a href="http://bi.maihaoche.com/unify?name=app观察用户日常录入表&amp;url=/table/112/data/list">app观察用户日常录入表</a></li>
+                  <li data-flag="app观察用户特殊录入表"><a href="http://bi.maihaoche.com/unify?name=app观察用户特殊录入表&amp;url=/table/113/data/list">app观察用户特殊录入表</a></li>
+                  <li data-flag="WDM埋点路径表"><a href="http://bi.maihaoche.com/unify?name=WDM埋点路径表&amp;url=/table/127/data/list">WDM埋点路径表</a></li>
+                  <li data-flag="仓储仓库设备信息表"><a href="http://bi.maihaoche.com/unify?name=仓储仓库设备信息表ID&amp;url=/table/129/data/list">仓储仓库设备信息表</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="ODPS配置">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-circle-o"></i><span>ODPS配置</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="监控验证规则"><a href="http://bi.maihaoche.com/unify?name=监控验证规则&amp;url=/verifyrule/list">监控验证规则</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="DMS报表">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-circle-o"></i><span>DMS报表</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="DMS商家操作明细表"><a href="http://bi.maihaoche.com/unify?name=DMS商家操作明细表&amp;url=/reportModel/reportShow/225">DMS商家操作明细表</a></li>
+                  <li data-flag="DMS商家操作统计表"><a href="http://bi.maihaoche.com/unify?name=DMS商家操作统计表&amp;url=/reportModel/easyReportShow/20">DMS商家操作统计表</a></li>
+                  <li data-flag="DMS用户使用情况明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/19&amp;name=DMS用户使用情况明细表">DMS用户使用情况明细表</a></li>
+                  <li data-flag="DMS业务统计日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/229&amp;name=DMS业务统计日报">DMS业务统计日报</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="CRM报表">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-circle-o"></i><span>CRM报表</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="业务经理预算提报明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/317&amp;name=业务经理预算提报明细表">业务经理预算提报明细表</a></li>
+                  <li data-flag="CRM区域使用日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/303&amp;name=CRM区域使用日报">CRM区域使用日报</a></li>
+                  <li data-flag="线索跟进记录明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/319&amp;name=CRM线索跟进记录明细表">线索跟进记录明细表</a></li>
+                  <li data-flag="CRM业务经理使用日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/289&amp;name=CRM业务经理使用日报">CRM业务经理使用日报</a></li>
+                  <li data-flag="区域预算提报统计日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/318&amp;name=区域预算提报统计日报">区域预算提报统计日报</a></li>
+                  <li data-flag="CRM区域线索跟进统计日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/320&amp;name=CRM区域线索跟进统计日报">CRM区域线索跟进统计日报</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="财务报表">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-circle-o"></i><span>财务报表</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="财务订单计费明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/265&amp;name=财务订单计费明细表">财务订单计费明细表</a></li>
+                  <li data-flag="财务订单状态统计表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/28&amp;name=财务订单状态统计表">财务订单状态统计表</a></li>
+                  <li data-flag="订单手续管理明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/322&amp;name=订单手续管理明细表">订单手续管理明细表</a></li>
+                  <li data-flag="资方账户余额明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/263&amp;name=资方账户余额明细表">资方账户余额明细表</a></li>
+                  <li data-flag="财务订单回款明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/267&amp;name=财务订单回款明细表">财务订单回款明细表</a></li>
+                  <li data-flag="垫款金额回购汇总表菜单"><a href="http://bi.maihaoche.com/unify?url=/comboModel/show/20&amp;name=垫款金额回购汇总表">垫款金额回购汇总表菜单</a></li>
+                  <li data-flag="财务台账明细报表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/323&amp;name=财务台账明细报表">财务台账明细报表</a></li>
+                  <li data-flag="财务订单回款统计表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/27&amp;name=财务订单回款统计表">财务订单回款统计表</a></li>
+                  <li data-flag="财务订单状态明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/266&amp;name=财务订单状态明细表">财务订单状态明细表</a></li>
+                  <li data-flag="财务订单计息统计表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/29&amp;name=财务订单计息统计表">财务订单计息统计表</a></li>
+                  <li data-flag="资方金额使用统计表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/41&amp;name=资方金额使用统计表">资方金额使用统计表</a></li>
+                  <li data-flag="展期保证金明细"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/363&amp;name=展期保证金明细">展期保证金明细</a></li>
+                  <li data-flag="存管账户信息看板"><a href="http://bi.maihaoche.com/unify?url=/comboModel/show/31&amp;name=存管账户信息看板">存管账户信息看板</a></li>
+                  <li data-flag="资方出款与放款实时统计表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/75&amp;name=资方出款与放款实时统计表">资方出款与放款实时统计表</a></li>
+                  <li data-flag="当月车辆计息表"><a href="http://bi.maihaoche.com/unify?name=当月车辆计息表&amp;url=/reportModel/reportShow/411">当月车辆计息表</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="大区业务报表">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-circle-o"></i><span>大区业务报表</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="金融经销商流失统计表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/290&amp;name=金融经销商流失统计表">金融经销商流失统计表</a></li>
+                  <li data-flag="业务经理订单合同金额统计表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/26&amp;name=业务经理订单合同金额统计表">业务经理订单合同金额统计表</a></li>
+                  <li data-flag="区域平台商家金融转化月报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/304&amp;name=区域平台商家金融转化月报">区域平台商家金融转化月报</a></li>
+                  <li data-flag="订单时间组合报表"><a href="http://bi.maihaoche.com/unify?url=/comboModel/show/22&amp;name=订单时间组合报表">订单时间组合报表</a></li>
+                  <li data-flag="B2B车辆综合明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/278&amp;name=B2B车辆综合明细表">B2B车辆综合明细表</a></li>
+                  <li data-flag="区域业绩汇总统计表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/5&amp;name=区域业绩汇总统计表">区域业绩汇总统计表</a></li>
+                  <li data-flag="B2B业务订单明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/221&amp;name=B2B业务订单明细表">B2B业务订单明细表</a></li>
+                  <li data-flag="订单核价信息明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/357&amp;name=订单核价信息明细表">订单核价信息明细表</a></li>
+                  <li data-flag="业务经理每日业绩统计表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/364&amp;name=业务经理每日业绩统计表">业务经理每日业绩统计表</a></li>
+                  <li data-flag="供车宝业务成交日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/361&amp;name=供车宝业务成交日报">供车宝业务成交日报</a></li>
+                  <li data-flag="金融商家合作情况-月"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/380&amp;name=金融商家合作情况-月">金融商家合作情况-月</a></li>
+                  <li data-flag="供车宝业务情况"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/381&amp;name=供车宝业务情况">供车宝业务情况</a></li>
+                  <li data-flag="供车宝金融交易统计报表-供应商大区"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/64&amp;name=供车宝金融交易统计报表-供应商大区">供车宝金融交易统计报表-供应商大区</a></li>
+                  <li data-flag="客户经理业绩日报"><a href="http://bi.maihaoche.com/unify?name=业务经理业绩日报&amp;url=/reportModel/reportShow/406">客户经理业绩日报</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="金融产品报表">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-circle-o"></i><span>金融产品报表</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="金融产品明细表-库融宝"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/287&amp;name=金融产品明细表-库融宝">金融产品明细表-库融宝</a></li>
+                  <li data-flag="金融产品明细表-订单宝及接车宝"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/286&amp;name=金融产品明细表-订单宝及接车宝">金融产品明细表-订单宝及接车宝</a></li>
+                  <li data-flag="机构合作数据月报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/302&amp;name=机构合作数据月报">机构合作数据月报</a></li>
+                  <li data-flag="订单审核人员时间节点表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/355&amp;name=订单审核人员时间节点表">订单审核人员时间节点表</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="仓储报表">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-circle-o"></i><span>仓储报表</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="周仓储数据统计表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/261&amp;name=周仓储数据统计表">周仓储数据统计表</a></li>
+                  <li data-flag="出入库车辆明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/254&amp;name=出入库车辆明细表">出入库车辆明细表</a></li>
+                  <li data-flag="在库车辆明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/258&amp;name=在库车辆明细表">在库车辆明细表</a></li>
+                  <li data-flag="日仓储数据统计表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/260&amp;name=日仓储数据统计表">日仓储数据统计表</a></li>
+                  <li data-flag="月仓储数据统计表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/262&amp;name=月仓储数据统计表">月仓储数据统计表</a></li>
+                  <li data-flag="在库车辆质损明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/256&amp;name=在库车辆质损明细表">在库车辆质损明细表</a></li>
+                  <li data-flag="在库车辆库龄结构统计表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/268&amp;name=在库车辆库龄结构统计表">在库车辆库龄结构统计表</a></li>
+                  <li data-flag="盘点信息明细表"><a href="http://bi.maihaoche.com/unify?name=盘点信息明细表&amp;url=/reportModel/reportShow/353">盘点信息明细表</a></li>
+                  <li data-flag="库位维护情况报表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/67&amp;name=库位维护情况报表">库位维护情况报表</a></li>
+                  <li data-flag="剩余库容"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/393&amp;name=剩余库容">剩余库容</a></li>
+                  <li data-flag="月仓储数据统计表（过渡）"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/400&amp;name=月仓储数据统计表_过渡">月仓储数据统计表（过渡）</a></li>
+                  <li data-flag="日仓储数据统计表（过渡）"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/399&amp;name=日仓储数据统计表_过渡">日仓储数据统计表（过渡）</a></li>
+                  <li data-flag="出入库车辆明细表（过渡）"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/398&amp;name=出入库车辆明细表_过渡">出入库车辆明细表（过渡）</a></li>
+                  <li data-flag="在库车辆明细表（过渡）"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/397&amp;name=在库车辆明细表_过渡">在库车辆明细表（过渡）</a></li>
+                  <li data-flag="周仓储数据统计表（过渡）"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/396&amp;name=周仓储数据统计表_过渡">周仓储数据统计表（过渡）</a></li>
+                  <li data-flag="剩余库容（过渡）"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/395&amp;name=剩余库容_过渡">剩余库容（过渡）</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="物流报表">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-circle-o"></i><span>物流报表</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="物流车辆信息综合表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/356&amp;name=物流车辆信息综合表">物流车辆信息综合表</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="风控报表">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-circle-o"></i><span>风控报表</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="经销商授信评分报表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/316&amp;name=经销商授信评分报表">经销商授信评分报表</a></li>
+                  <li data-flag="经销商金融得分报表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/291&amp;name=经销商金融得分报表">经销商金融得分报表</a></li>
+                  <li data-flag="超期订单车辆明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/248&amp;name=超期订单车辆明细表">超期订单车辆明细表</a></li>
+                  <li data-flag="产品周期超期明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/344&amp;name=产品周期超期明细表">产品周期超期明细表</a></li>
+                  <li data-flag="区域财务风控日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/335&amp;name=区域财务风控日报">区域财务风控日报</a></li>
+                  <li data-flag="风险黑名单信息表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/359&amp;name=风险黑名单信息表">风险黑名单信息表</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="平台-寻车报表">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-circle-o"></i><span>平台-寻车报表</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="寻车业务统计日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/245&amp;name=寻车业务统计日报">寻车业务统计日报</a></li>
+                  <li data-flag="寻车浏览详情明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/6&amp;name=寻车浏览详情明细表">寻车浏览详情明细表</a></li>
+                  <li data-flag="寻车浏览统计日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/209&amp;name=寻车浏览统计日报">寻车浏览统计日报</a></li>
+                  <li data-flag="在线报价统计表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/24&amp;name=在线报价统计表">在线报价统计表</a></li>
+                  <li data-flag="寻车信息明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/237&amp;name=寻车信息明细表">寻车信息明细表</a></li>
+                  <li data-flag="寻车电话详情明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/7&amp;name=寻车电话详情明细表">寻车电话详情明细表</a></li>
+                  <li data-flag="寻车自主发车明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/213&amp;name=寻车自主发车明细表">寻车自主发车明细表</a></li>
+                  <li data-flag="区域寻车统计日报（周累计）"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/264&amp;name=区域寻车统计日报">区域寻车统计日报（周累计）</a></li>
+                  <li data-flag="寻车活跃用户统计日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/208&amp;name=寻车活跃用户统计日报">寻车活跃用户统计日报</a></li>
+                  <li data-flag="寻车报价详情明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/23&amp;name=寻车报价详情明细表">寻车报价详情明细表</a></li>
+                  <li data-flag="竞价寻车统计日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/275&amp;name=竞价寻车统计日报">竞价寻车统计日报</a></li>
+                  <li data-flag="寻车电话评价明细日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/236&amp;name=寻车电话评价明细日报">寻车电话评价明细日报</a></li>
+                  <li data-flag="寻车业务统计日报-按来源"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/214&amp;name=寻车业务统计日报-按来源">寻车业务统计日报-按来源</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="平台-基础报表">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-circle-o"></i><span>平台-基础报表</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="站内UV浏览转化日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/219&amp;name=站内UV浏览转化日报">站内UV浏览转化日报</a></li>
+                  <li data-flag="站内UV浏览数据日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/217&amp;name=站内UV浏览数据日报">站内UV浏览数据日报</a></li>
+                  <li data-flag="商家平台信用分统计表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/276&amp;name=商家平台信用分统计表">商家平台信用分统计表</a></li>
+                  <li data-flag="区域商家类型统计日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/288&amp;name=区域商家类型统计日报">区域商家类型统计日报</a></li>
+                  <li data-flag="搜索明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/11&amp;name=搜索明细表">搜索明细表</a></li>
+                  <li data-flag="搜索概况日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/207&amp;name=搜索概况日报">搜索概况日报</a></li>
+                  <li data-flag="微信爬取号码去重数据日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/244&amp;name=微信爬取号码去重数据日报">微信爬取号码去重数据日报</a></li>
+                  <li data-flag="线下号码注册明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/255&amp;name=线下号码注册明细表">线下号码注册明细表</a></li>
+                  <li data-flag="客服小二跟进记录明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/17&amp;name=客服小二跟进记录明细表">客服小二跟进记录明细表</a></li>
+                  <li data-flag="推送PUSH效果统计表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/25&amp;name=推送PUSH效果统计表">推送PUSH效果统计表</a></li>
+                  <li data-flag="认证商家用户概况日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/216&amp;name=认证商家用户概况日报">认证商家用户概况日报</a></li>
+                  <li data-flag="app页面流量日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/250&amp;name=app页面流量日报">app页面流量日报</a></li>
+                  <li data-flag="平台运营日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/238&amp;name=平台运营日报">平台运营日报</a></li>
+                  <li data-flag="平台运营周报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/239&amp;name=平台运营周报">平台运营周报</a></li>
+                  <li data-flag="客服实名认证审核报表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/38&amp;name=客服实名认证审核报表">客服实名认证审核报表</a></li>
+                  <li data-flag="客服企业认证审核报表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/39&amp;name=客服企业认证审核报表">客服企业认证审核报表</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="平台-车源报表">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-circle-o"></i><span>平台-车源报表</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="车源电话拨打评价明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/13&amp;name=车源电话拨打评价明细表">车源电话拨打评价明细表</a></li>
+                  <li data-flag="线上车系分析日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/226&amp;name=线上车系分析日报">线上车系分析日报</a></li>
+                  <li data-flag="在线车源分析统计表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/204&amp;name=在线车源分析统计表">在线车源分析统计表</a></li>
+                  <li data-flag="在线车源明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/10&amp;name=在线车源明细表">在线车源明细表</a></li>
+                  <li data-flag="供应商自主发车统计日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/205&amp;name=供应商自主发车统计日报">供应商自主发车统计日报</a></li>
+                  <li data-flag="商家车源概况明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/203&amp;name=商家车源概况明细表">商家车源概况明细表</a></li>
+                  <li data-flag="车源新增及在线统计表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/331&amp;name=车源新增及在线数据">车源新增及在线统计表</a></li>
+                  <li data-flag="车源详情页访问用户明细信息表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/377&amp;name=车源详情页访问用户明细信息表">车源详情页访问用户明细信息表</a></li>
+                  <li data-flag="车源电话拨打明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/easyReportShow/12&amp;name=车源电话拨打明细表">车源电话拨打明细表</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="平台-交易报表">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-circle-o"></i><span>平台-交易报表</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="区域线上交易统计日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/312&amp;name=区域线上交易统计日报">区域线上交易统计日报</a></li>
+                  <li data-flag="活动车源数据统计日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/272&amp;name=活动车源数据统计日报">活动车源数据统计日报</a></li>
+                  <li data-flag="定金担保交易统计日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/252&amp;name=定金担保交易统计日报">定金担保交易统计日报</a></li>
+                  <li data-flag="秒车库活动卖家数据明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/301&amp;name=秒车库活动卖家数据明细表">秒车库活动卖家数据明细表</a></li>
+                  <li data-flag="秒车库商品信息明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/315&amp;name=秒车库商品信息明细表">秒车库商品信息明细表</a></li>
+                  <li data-flag="秒车库活动买家数据明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/298&amp;name=秒车库活动买家数据明细表">秒车库活动买家数据明细表</a></li>
+                  <li data-flag="线索推送明细日报"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/285&amp;name=线索推送明细日报">线索推送明细日报</a></li>
+                  <li data-flag="秒车库交易车辆明细报表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/371&amp;name=秒车库交易车辆明细报表">秒车库交易车辆明细报表</a></li>
+                  <li data-flag="铺车入库及金融交易车辆明细表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/391&amp;name=铺车入库及金融交易车辆明细表">铺车入库及金融交易车辆明细表</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="平台-活动报表">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-circle-o"></i><span>平台-活动报表</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="H5活动埋点数据统计表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/292&amp;name=H5活动埋点数据统计表">H5活动埋点数据统计表</a></li>
+                  <li data-flag="H5活动访问报表"><a href="http://bi.maihaoche.com/unify?url=/reportModel/reportShow/349&amp;name=H5活动访问报表">H5活动访问报表</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <ul class="Navs-menu Menu Menu--grouped" data-flag="9.3743219128426496E16">
+            <li class="Menu-label"><span>消息中心系统</span></li>
+            <li data-flag="消息中心">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-line-chart"></i><span>消息中心</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="模板"><a href="https://camaro.maihaoche.com/tpl/tplList.htm">模板</a></li>
+                  <li data-flag="任务"><a href="https://camaro.maihaoche.com/task/taskList.htm">任务</a></li>
+                  <li data-flag="发送记录"><a href="https://camaro.maihaoche.com/sendLog/sendLogList.htm">发送记录</a></li>
+                  <li data-flag="频道"><a href="https://camaro.maihaoche.com/bizType/bizTypeList.htm">频道</a></li>
+                  <li data-flag="通道路由配置"><a href="https://camaro.maihaoche.com/routeConfig/config.htm">通道路由配置</a></li>
+                </ul>
+              </div>
+            </li>
+            <li data-flag="RocketMQ">
+              <a href="javascript:void(0);"><i class="fa fa-fw fa-rocket"></i><span>RocketMQ</span><span class="Menu-switcher"><i class="fa fa-angle-right"></i></span></a>
+              <div class="Navs">
+                <ul>
+                  <li data-flag="主题"><a href="https://camaro.maihaoche.com/topic/list.htm">主题</a></li>
+                  <li data-flag="消息"><a href="https://camaro.maihaoche.com/message/list.htm">消息</a></li>
+                  <li data-flag="消费者"><a href="https://camaro.maihaoche.com/consumer/list.htm">消费者</a></li>
+                  <li data-flag="OPS"><a href="https://camaro.maihaoche.com/cluster/list">OPS</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="Page-content">
+        <div class="Content container-fluid">
+          <div class="Content-header">
+            <div class="Breadcrumb"><i class="fa fa-map-marker"></i><ul>
+              <li>工作台</li>
+              <li>快捷入口</li>
+            </ul></div>
+            <h1>快捷入口</h1>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

@@ -4,6 +4,7 @@
   @include transition(background-color .3s);
 
   &:hover {
+    color: $layout-sidebar-text-hover;
     background-color: $layout-sidebar-item-hover;
   }
 }

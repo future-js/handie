@@ -246,7 +246,17 @@ gulp.task("compile-css-lite", ["concat-scss-lite"], function() {
     .pipe(gulp.dest(cssDistDir));
 });
 
-gulp.task("compile-css-theme-sidebarfirst", () => {
+gulp.task("compile-css-layout-headerfirst", () => {
+  return gulp
+    .src("./src/stylesheets/layouts/header-first/index.scss")
+    .pipe(rename("header-first.scss"))
+    .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
+    .pipe(stripCssComments({preserve: false}))
+    .pipe(banner(bannerTemplate, {pkg}))
+    .pipe(gulp.dest(cssDistDir));
+});
+
+gulp.task("compile-css-layout-sidebarfirst", () => {
   return gulp
     .src("./src/stylesheets/layouts/sidebar-first/index.scss")
     .pipe(rename("sidebar-first.scss"))
@@ -259,7 +269,8 @@ gulp.task("compile-css-theme-sidebarfirst", () => {
 gulp.task("compile-css", [
     // "compile-css-main",
     // "compile-css-lite",
-    "compile-css-theme-sidebarfirst"
+    "compile-css-layout-headerfirst",
+    "compile-css-layout-sidebarfirst"
   ], function() {
     return gulp.src(`${cssDistDir}/**/*.css`, {base: cssDistDir})
       .pipe(sourcemaps.init({largeFile: true, loadMaps: true}))

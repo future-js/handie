@@ -32,7 +32,8 @@ $layout-body-bg-color: #fff !default;
 $layout-sidebar-width: 220px !default;
 $layout-sidebar-bg-color: transparent !default;
 $layout-sidebar-text-color: inherit !default;
-$layout-sidebar-item-hover: #e7e7e7 !default;
+$layout-sidebar-text-hover: $layout-sidebar-text-color !default;
+$layout-sidebar-item-hover: transparent !default;
 $layout-sidebar-top-padding: 20px !default;
 $layout-sidebar-bottom-padding: 50px !default;
 
