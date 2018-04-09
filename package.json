@@ -9,8 +9,6 @@
   },
   "scripts": {
     "ascii": "node ./build/scripts/ascii.js",
-    "modulize": "modulizer --in .handie-tmp/components/templates --out .handie-tmp/components/javascripts --npm-name handie-components --npm-version 0.0.0 --force",
-    "cc": "gulp convert-components",
     "precompile": "rm -rf dist/handie && bower install --force-latest",
     "compile": "gulp compile",
     "postcompile": "cp -R src/images/ dist/handie/images/",
@@ -18,7 +16,7 @@
     "prestart": "npm run compile",
     "start": "polymer serve",
     "pretest": "rm -rf test/assets && cp -R dist test/assets",
-    "test": "http-server ./test --cors='*'",
+    "test": "http-server ./test -p 3000 --cors *",
     "prerelease": "npm run compile",
     "release": "node ./build/scripts/release.js"
   },
@@ -42,7 +40,6 @@
     "@mhc/lbs": "0.0.3",
     "@mhc/ntks": "0.0.1",
     "@mhc/watermark": "^0.1.4",
-    "@polymer/polymer": "^3.0.0-pre.4",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.18.0",
@@ -60,7 +57,6 @@
     "gulp-uglify": "^3.0.0",
     "gulp-wrap": "^0.13.0",
     "http-server": "^0.11.1",
-    "polymer-cli": "^1.5.7",
     "rollup": "^0.54.1",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-commonjs": "^8.2.6",

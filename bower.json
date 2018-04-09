@@ -50,8 +50,7 @@
     "select2-bootstrap-theme-0.1.0": "select2-bootstrap-theme#0.1.0-beta.10",
     "suitcss-sass-0.1.0": "suitcss-sass#0.1.0",
     "tangram-0.2.2": "ourai/tangram#0.2.2",
-    "trick-0.4.2": "ourai/trick#0.4.2",
-    "webcomponentsjs-1.0.22": "webcomponents/webcomponentsjs#1.0.22"
+    "trick-0.4.2": "ourai/trick#0.4.2"
   },
   "resolutions": {
     "jquery": ">=3.2.1"

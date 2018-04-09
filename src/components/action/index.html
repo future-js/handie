@@ -1,8 +1,0 @@
-<template is="dom-if" if="{{ __isCustom }}"><slot></slot></template>
-<template is="dom-if" if="{{ !__isCustom }}">
-  <a class="Action-trigger" href$="{{ url }}"><slot name="trigger"></slot></a>
-  <div class="Action-content Card">
-    <div class="Card-content"><slot></slot></div>
-    <div class="Card-footer"><slot name="footer"></slot></div>
-  </div>
-</template>
