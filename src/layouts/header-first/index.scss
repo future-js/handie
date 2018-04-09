@@ -1,11 +1,11 @@
 //= Reset variables
 @import "./variables";
-//= Common variables and mixins
-@import "../common/reset";
+//= Base variables and mixins
+@import "../base/reset";
 @import "../../../dist/bootstrap-sass/assets/stylesheets/bootstrap/variables";
-@import "../common/mixins";
-//= Common layout
-@import "../common/exports";
+@import "../base/mixins";
+//= Base layout
+@import "../base/exports";
 //= Current layout
 @import "./page";
 @import "./content";

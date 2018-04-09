@@ -1,1 +1,1 @@
-import "../common/initializer";
+import "../base/initializer";

@@ -1,13 +1,13 @@
 $layout-header-height: 60px !default;
-$layout-header-bg-color: #1e2332 !default;
+$layout-header-bg-color: transparent !default;
 $layout-header-border-color: transparent !default;
 $layout-header-border-width: 0 !default;
 
 $layout-brand-image-height: 24px !default;
 $layout-brand-font-size: 22px !default;
-$layout-brand-font-weight: 300 !default;
-$layout-brand-text-color: #fff !default;
-$layout-brand-separator-color: #fff !default;
+$layout-brand-font-weight: inherit !default;
+$layout-brand-text-color: inherit !default;
+$layout-brand-separator-color: $layout-brand-text-color !default;
 $layout-brand-separator-gap: 21px !default;
 
 $layout-navbar-avatar-size: 30px !default;
