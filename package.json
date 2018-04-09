@@ -11,7 +11,6 @@
     "ascii": "node ./build/scripts/ascii.js",
     "precompile": "rm -rf dist/handie && bower install --force-latest",
     "compile": "gulp compile",
-    "postcompile": "cp -R src/images/ dist/handie/images/",
     "serve": "polymer serve",
     "prestart": "npm run compile",
     "start": "polymer serve",
@@ -59,7 +58,6 @@
     "http-server": "^0.11.1",
     "rollup": "^0.54.1",
     "rollup-plugin-babel": "^3.0.3",
-    "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.2"
   }
 }

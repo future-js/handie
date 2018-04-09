@@ -13,7 +13,6 @@ const sourcemaps = require("gulp-sourcemaps");
 
 const rollupBabel = require("rollup-plugin-babel");
 const rollupNodeResolver = require("rollup-plugin-node-resolve");
-const rollupCjsResolver = require("rollup-plugin-commonjs");
 
 const {
     LIB_NAME,
@@ -29,44 +28,16 @@ const {
 
 const TMP_DIR = `.${LIB_NAME}-tmp`;
 
-gulp.task("compile-css-admin", resolveScssTask(`./src/stylesheets/admin/index.scss`, {
-  renameTo: "admin.scss",
-  dest: TMP_DIR
+gulp.task("compile-css-admin", resolveScssTask(`./src/stylesheets/admin/index.scss`, {renameTo: "admin.scss"}));
+
+gulp.task("compile-css-theme-antd-pro", resolveScssTask("./src/themes/antd-pro/index.scss", {
+  renameTo: "antd-pro.scss",
+  dest: `${CSS_DIST}/themes`
 }));
-
-gulp.task("compile-css-layout-header-first", resolveScssTask("./src/layouts/header-first/index.scss", {
-  renameTo: "header-first.scss",
-  dest: `${TMP_DIR}/layouts`
-}));
-
-gulp.task("compile-css-layout-sidebar-first", resolveScssTask("./src/layouts/sidebar-first/index.scss", {
-  renameTo: "sidebar-first.scss",
-  dest: `${TMP_DIR}/layouts`
-}));
-
-gulp.task("compile-css-admin-with-header-first", [
-    "compile-css-admin",
-    "compile-css-layout-header-first"
-  ], () => {
-    return gulp
-      .src([`${TMP_DIR}/admin.css`, `${TMP_DIR}/layouts/header-first.css`])
-      .pipe(concat("admin-hf.css"))
-      .pipe(gulp.dest(CSS_DIST));
-});
-
-gulp.task("compile-css-admin-with-sidebar-first", [
-    "compile-css-admin",
-    "compile-css-layout-sidebar-first"
-  ], () => {
-    return gulp
-      .src([`${TMP_DIR}/admin.css`, `${TMP_DIR}/layouts/sidebar-first.css`])
-      .pipe(concat("admin-sf.css"))
-      .pipe(gulp.dest(CSS_DIST));
-});
 
 gulp.task("compile-css", [
-    "compile-css-admin-with-header-first",
-    "compile-css-admin-with-sidebar-first"
+    "compile-css-admin",
+    "compile-css-theme-antd-pro"
   ], () => {
     return gulp
       .src(`${CSS_DIST}/**/*.css`, {base: CSS_DIST})
@@ -109,9 +80,19 @@ gulp.task("concat-js-utils", () => {
   });
 });
 
-gulp.task("concat-js-layout-header-first", () => {
+gulp.task("concat-js-admin", [
+    "concat-js-vendors",
+    "concat-js-utils"
+  ], () => {
+    return gulp
+      .src([`${JS_DIST}/vendors.js`, `${JS_DIST}/utils.js`])
+      .pipe(concat("admin.js"))
+      .pipe(gulp.dest(JS_DIST));
+});
+
+gulp.task("concat-js-theme-antd-pro", () => {
   return resolveRollupTask({
-    input: "src/layouts/header-first/index.js",
+    input: "src/themes/antd-pro/index.js",
     plugins: [
       rollupBabel({
         babelrc: false,
@@ -119,59 +100,14 @@ gulp.task("concat-js-layout-header-first", () => {
         plugins: ["external-helpers"]
       })
     ],
-    file: `${TMP_DIR}/layouts/header-first.js`,
-    name: "header-first"
+    file: `${JS_DIST}/themes/antd-pro.js`,
+    name: "antd-pro"
   });
-});
-
-gulp.task("concat-js-layout-sidebar-first", () => {
-  return resolveRollupTask({
-    input: "src/layouts/sidebar-first/index.js",
-    plugins: [
-      rollupBabel({
-        babelrc: false,
-        presets: [["env", {"modules": false}]],
-        plugins: ["external-helpers"]
-      })
-    ],
-    file: `${TMP_DIR}/layouts/sidebar-first.js`,
-    name: "sidebar-first"
-  });
-});
-
-gulp.task("concat-js-admin-with-header-first", [
-    "concat-js-vendors",
-    "concat-js-utils",
-    "concat-js-layout-header-first"
-  ], () => {
-    return gulp
-      .src([
-        `${JS_DIST}/vendors.js`,
-        `${JS_DIST}/utils.js`,
-        `${TMP_DIR}/layouts/header-first.js`
-      ])
-      .pipe(concat("admin-hf.js"))
-      .pipe(gulp.dest(JS_DIST));
-});
-
-gulp.task("concat-js-admin-with-sidebar-first", [
-    "concat-js-vendors",
-    "concat-js-utils",
-    "concat-js-layout-sidebar-first"
-  ], () => {
-    return gulp
-      .src([
-        `${JS_DIST}/vendors.js`,
-        `${JS_DIST}/utils.js`,
-        `${TMP_DIR}/layouts/sidebar-first.js`
-      ])
-      .pipe(concat("admin-sf.js"))
-      .pipe(gulp.dest(JS_DIST));
 });
 
 gulp.task("compile-js", [
-    "concat-js-admin-with-header-first",
-    "concat-js-admin-with-sidebar-first"
+    "concat-js-admin",
+    "concat-js-theme-antd-pro"
   ], () => {
     return gulp.src(`${JS_DIST}/*.js`)
       .pipe(resolveBanner())

@@ -1,0 +1,9 @@
+//= Reset variables
+@import "./variables";
+//= Base variables and mixins
+@import "../../layouts/base/reset";
+@import "../../layouts/base/mixins";
+//= Base layout
+@import "../../layouts/base/exports";
+//= Current layout
+@import "./page";

@@ -1,0 +1,71 @@
+.Page {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.Page-sidebar,
+.Page-main {
+  min-height: 100%;
+}
+
+.Page-sidebar {
+  @include box-shadow(2px 0 6px rgba(0, 21, 41, .35));
+
+  .Sidebar-brand {
+    height: $layout-header-height;
+    padding-left: $layout-sidebar-item-padding;
+    background-color: #002140;
+
+    a {
+      display: block;
+      font: {
+        size: 20px;
+        weight: 600;
+      }
+      line-height: $layout-header-height;
+      color: #fff;
+    }
+  }
+
+  .Sidebar-navs {
+    padding: {
+      top: $layout-sidebar-top-padding;
+      bottom: $layout-sidebar-bottom-padding;
+    }
+
+    > ul > li {
+      > a > .fa + span {
+        margin-left: 10px;
+      }
+      
+      > .Navs a {
+        font-weight: normal;
+      }
+
+      &.is-active {
+        > a,
+        > .Navs .is-active a {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+.Page-main {
+  margin-left: $layout-sidebar-width;
+
+  @include box-fixed-height(
+    ".Page-header", $layout-header-height + $layout-header-border-width,
+    ".Page-footer", 0,
+    ".Page-body"
+  );
+}
+
+.Page-header {
+  @include box-shadow(0 1px 4px rgba(0, 21, 41, .08));
+}
+
+.Page-body {
+  padding: 24px;
+}
