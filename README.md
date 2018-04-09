@@ -43,6 +43,6 @@ Please visit the [cookbook](https://ourai.github.io/handie/cookbook/) to learn m
 
 ## Feedback
 
-If you have any good suggestions, you could create an [issue](https://github.com/maihaoche/handle/issues) or send an [E-mail](mailto:ourairyu@gmail.com) to me.
+If you have any good suggestions, you could create an [issue](https://github.com/ourai/handie/issues) or send an [E-mail](mailto:ourairyu@gmail.com) to me.
 
 Thank you. ;-)
