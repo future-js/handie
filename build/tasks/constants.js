@@ -1,5 +1,7 @@
 const PACKAGE_INFO = require("../../package.json");
+
 const LIB_NAME = PACKAGE_INFO.name;
+
 const CSS_DIST = `./dist/${LIB_NAME}/stylesheets`
 const JS_DIST = `./dist/${LIB_NAME}/javascripts`;
 
