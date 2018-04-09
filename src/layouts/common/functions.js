@@ -22,30 +22,6 @@ function toggleStatus( $target, selector, callback ) {
   }
 }
 
-function initNavbar() {
-  $(document).on("click", function( e ) {
-    if ( $(".Action.is-active").length ) {
-      let $at = $(e.target).closest(".Action-trigger");
-      let $ac = $(e.target).closest(".Action-content");
-      let $aw = $ac.closest(".Action.is-active");
-
-      if ( !$.contains($(".Header-operations").get(0), e.target) || (!$at.length && !($ac.length && $aw.length)) ) {
-        $(".Action.is-active").removeClass("is-active");
-      }
-    }
-  });
-
-  $(".Header-operations .Action-trigger").on("click", function() {
-    let $t = $(this);
-
-    toggleStatus($t.closest(".Action"), ".Action", function( cls ) {
-      if ( $t.siblings(".Action-content").length ) {
-        $(this).addClass(cls);
-      }
-    });
-  });
-}
-
 /**
  * 给选中的菜单项添加标记
  */
@@ -113,7 +89,31 @@ function scrollSidebar() {
   }
 }
 
-function initSidebar() {
+export function initNavbar() {
+  $(document).on("click", function( e ) {
+    if ( $(".Action.is-active").length ) {
+      let $at = $(e.target).closest(".Action-trigger");
+      let $ac = $(e.target).closest(".Action-content");
+      let $aw = $ac.closest(".Action.is-active");
+
+      if ( !$.contains($(".Header-operations").get(0), e.target) || (!$at.length && !($ac.length && $aw.length)) ) {
+        $(".Action.is-active").removeClass("is-active");
+      }
+    }
+  });
+
+  $(".Header-operations .Action-trigger").on("click", function() {
+    let $t = $(this);
+
+    toggleStatus($t.closest(".Action"), ".Action", function( cls ) {
+      if ( $t.siblings(".Action-content").length ) {
+        $(this).addClass(cls);
+      }
+    });
+  });
+}
+
+export function initSidebar() {
   resolveActiveStatus();
   resolveChildStatus();
   scrollSidebar();
@@ -123,6 +123,23 @@ function initSidebar() {
       toggleStatus($(this).closest("li"));
 
       return false;
+    }
+  });
+}
+
+export function initResponsiveActions() {
+  $(".Header-toggle").on("click", function() {
+    $(".Page-sidebar").addClass("is-shown");
+
+    return false;
+  });
+
+  $(".Page-sidebar").on("click", function( evt ) {
+    const $sidebar = $(this);
+    const $navs = $(".Sidebar-navs", $sidebar);
+
+    if ( !($.contains($navs.get(0), evt.target) || $(evt.target).is($navs)) ) {
+      $sidebar.removeClass("is-shown");
     }
   });
 }

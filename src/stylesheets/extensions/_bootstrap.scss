@@ -84,8 +84,8 @@
  */
 
 .select2-container {
-  .muu-Select2-container,
-  .muu-Select2-dropdown {
+  .handie-Select2-container,
+  .handie-Select2-dropdown {
     font-size: 12px;
   }
 }
@@ -200,7 +200,7 @@
   .select2-container {
     $h: 30px;
 
-    .muu-Select2-container {
+    .handie-Select2-container {
       &.select2-selection--single {
         height: $h;
       }
@@ -214,7 +214,7 @@
       }
     }
 
-    &:not(.select2-container--open) .muu-Select2-container.select2-selection--multiple {
+    &:not(.select2-container--open) .handie-Select2-container.select2-selection--multiple {
       height: $h;
 
       .select2-selection__rendered {

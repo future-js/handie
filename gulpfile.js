@@ -24,7 +24,6 @@ const {
     snake2Camel,
     resolveBanner,
     resolveRollupTask,
-    resolveInitializerTask,
     resolveScssTask
   } = require("./build/tasks/functions");
 
@@ -244,22 +243,70 @@ gulp.task("concat-js-utils", () => {
   });
 });
 
-gulp.task("concat-js-admin", resolveInitializerTask());
+gulp.task("concat-js-layout-header-first", () => {
+  return resolveRollupTask({
+    input: "src/layouts/header-first/index.js",
+    plugins: [
+      rollupBabel({
+        babelrc: false,
+        presets: [["env", {"modules": false}]],
+        plugins: ["external-helpers"]
+      })
+    ],
+    file: `${TMP_DIR}/layouts/header-first.js`,
+    name: "header-first"
+  });
+});
 
-gulp.task("concat-js-all", [
+gulp.task("concat-js-layout-sidebar-first", () => {
+  return resolveRollupTask({
+    input: "src/layouts/sidebar-first/index.js",
+    plugins: [
+      rollupBabel({
+        babelrc: false,
+        presets: [["env", {"modules": false}]],
+        plugins: ["external-helpers"]
+      })
+    ],
+    file: `${TMP_DIR}/layouts/sidebar-first.js`,
+    name: "sidebar-first"
+  });
+});
+
+gulp.task("concat-js-admin-with-header-first", [
     "concat-js-vendors",
     "concat-js-utils",
-    "concat-js-admin"
+    "concat-js-layout-header-first"
   ], () => {
     return gulp
-      .src(["vendors", "utils", "admin"].map(name => `${JS_DIST}/${name}.js`))
-      .pipe(concat("all.js"))
+      .src([
+        `${JS_DIST}/vendors.js`,
+        `${JS_DIST}/utils.js`,
+        `${TMP_DIR}/layouts/header-first.js`
+      ])
+      .pipe(concat("admin-hf.js"))
+      .pipe(gulp.dest(JS_DIST));
+});
+
+gulp.task("concat-js-admin-with-sidebar-first", [
+    "concat-js-vendors",
+    "concat-js-utils",
+    "concat-js-layout-sidebar-first"
+  ], () => {
+    return gulp
+      .src([
+        `${JS_DIST}/vendors.js`,
+        `${JS_DIST}/utils.js`,
+        `${TMP_DIR}/layouts/sidebar-first.js`
+      ])
+      .pipe(concat("admin-sf.js"))
       .pipe(gulp.dest(JS_DIST));
 });
 
 gulp.task("compile-js", [
     // "convert-components",
-    "concat-js-all"
+    "concat-js-admin-with-header-first",
+    "concat-js-admin-with-sidebar-first"
   ], () => {
     return gulp.src(`${JS_DIST}/*.js`)
       .pipe(resolveBanner())

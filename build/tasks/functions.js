@@ -28,18 +28,6 @@ function resolveRollupTask( opts ) {
     .then(bundle => bundle.write({file: opts.file, format: "umd", name: opts.name}));
 }
 
-function resolveInitializerTask( isLite ) {
-  return () => {
-    return gulp
-      .src(["layout", "responsive", isLite ? "lite" : "initializer"].map(name => `src/adaptors/admin/${name}.js`))
-      .pipe(concat(`${isLite ? "admin-lite" : "admin"}.js`))
-      .pipe(babel({presets: ["es2015"]}))
-      .pipe(strip())
-      .pipe(wrap(`(function() {\n\n<%= contents %>\n\n})();`))
-      .pipe(gulp.dest(JS_DIST));
-  }
-}
-
 function resolveScssTask( src, opts ) {
   return () => {
     const { renameTo } = opts;
@@ -70,6 +58,5 @@ module.exports = {
   snake2Camel,
   resolveBanner,
   resolveRollupTask,
-  resolveInitializerTask,
   resolveScssTask
 };
