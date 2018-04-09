@@ -47,7 +47,7 @@ function resolveScssTask( src, opts ) {
     let task = gulp.src(src);
     
     if ( renameTo ) {
-      task = task.pipe(rename(renameTo));
+      task = task.pipe(Array.isArray(src) ? concat(renameTo) : rename(renameTo));
     }
 
     task = task

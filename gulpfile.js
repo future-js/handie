@@ -164,16 +164,44 @@ gulp.task("convert-components", ["modulize-components"], () => {
   return Promise.all(tasks);
 });
 
-gulp.task("compile-css-main", resolveScssTask(`./src/stylesheets/admin/index.scss`, {renameTo: "admin.scss"}));
+gulp.task("compile-css-admin", resolveScssTask(`./src/stylesheets/admin/index.scss`, {
+  renameTo: "admin.scss",
+  dest: TMP_DIR
+}));
 
-gulp.task("compile-css-layout-headerfirst", resolveScssTask("./src/layouts/header-first/index.scss", {renameTo: "layout.header-first.scss"}));
+gulp.task("compile-css-layout-header-first", resolveScssTask("./src/layouts/header-first/index.scss", {
+  renameTo: "header-first.scss",
+  dest: `${TMP_DIR}/layouts`
+}));
 
-gulp.task("compile-css-layout-sidebarfirst", resolveScssTask("./src/layouts/sidebar-first/index.scss", {renameTo: "layout.sidebar-first.scss"}));
+gulp.task("compile-css-layout-sidebar-first", resolveScssTask("./src/layouts/sidebar-first/index.scss", {
+  renameTo: "sidebar-first.scss",
+  dest: `${TMP_DIR}/layouts`
+}));
+
+gulp.task("compile-css-admin-with-header-first", [
+    "compile-css-admin",
+    "compile-css-layout-header-first"
+  ], () => {
+    return gulp
+      .src([`${TMP_DIR}/admin.css`, `${TMP_DIR}/layouts/header-first.css`])
+      .pipe(concat("admin-hf.css"))
+      .pipe(gulp.dest(CSS_DIST));
+});
+
+gulp.task("compile-css-admin-with-sidebar-first", [
+    "compile-css-admin",
+    "compile-css-layout-sidebar-first"
+  ], () => {
+    return gulp
+      .src([`${TMP_DIR}/admin.css`, `${TMP_DIR}/layouts/sidebar-first.css`])
+      .pipe(concat("admin-sf.css"))
+      .pipe(gulp.dest(CSS_DIST));
+});
 
 gulp.task("compile-css", [
-    "compile-css-main",
-    "compile-css-layout-headerfirst",
-    "compile-css-layout-sidebarfirst"
+    "compile-css-admin-with-header-first",
+    "compile-css-admin-with-sidebar-first"
   ], () => {
     return gulp
       .src(`${CSS_DIST}/**/*.css`, {base: CSS_DIST})
@@ -185,8 +213,8 @@ gulp.task("compile-css", [
 });
 
 gulp.task("concat-js-vendors", () => {
-  return gulp.src(
-      [
+  return gulp
+    .src([
         "jquery-1.12.0/dist/jquery",
         "bootstrap-sass-3.3.7/assets/javascripts/bootstrap",
         "bootstrap-table-1.11.1/dist/bootstrap-table",
@@ -194,8 +222,7 @@ gulp.task("concat-js-vendors", () => {
         "select2-4.0.3/dist/js/select2.full",
         "select2-4.0.3/dist/js/i18n/zh-CN",
         "h5fx-0.2.3/H5Fx"
-      ].map(base => `bower_components/${base}.js`)
-    )
+      ].map(base => `bower_components/${base}.js`))
     .pipe(concat("vendors.js"))
     .pipe(strip())
     .pipe(gulp.dest(JS_DIST));
