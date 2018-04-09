@@ -212,22 +212,6 @@ gulp.task("concat-scss-main", ["export-scss-helper", "export-scss-main"], functi
     .pipe(gulp.dest(`${cssDistDir}/admin`));
 });
 
-gulp.task("export-scss-lite", function() {
-  return gulp.src("./build/partials/export-lite.scss")
-    .pipe(scssimport())
-    .pipe(rename(`_lite.scss`))
-    .pipe(gulp.dest(tmpDir));
-});
-
-gulp.task("concat-scss-lite", ["export-scss-helper", "export-scss-lite"], function() {
-  return gulp.src([
-      "./build/partials/import-helper-main.scss",
-      `${tmpDir}/_lite.scss`
-    ])
-    .pipe(concat("_lite.scss"))
-    .pipe(gulp.dest(`${cssDistDir}/admin`));
-});
-
 gulp.task("compile-css-main", ["concat-scss-main"], function() {
   return gulp.src(`${cssDistDir}/admin/_exports.scss`)
     .pipe(rename("admin.scss"))
@@ -237,19 +221,10 @@ gulp.task("compile-css-main", ["concat-scss-main"], function() {
     .pipe(gulp.dest(cssDistDir));
 });
 
-gulp.task("compile-css-lite", ["concat-scss-lite"], function() {
-  return gulp.src(`${cssDistDir}/admin/_lite.scss`)
-    .pipe(rename("admin-lite.scss"))
-    .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
-    .pipe(stripCssComments({preserve: false}))
-    .pipe(banner(bannerTemplate, {pkg}))
-    .pipe(gulp.dest(cssDistDir));
-});
-
 gulp.task("compile-css-layout-headerfirst", () => {
   return gulp
     .src("./src/stylesheets/layouts/header-first/index.scss")
-    .pipe(rename("header-first.scss"))
+    .pipe(rename("layout.header-first.scss"))
     .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
     .pipe(stripCssComments({preserve: false}))
     .pipe(banner(bannerTemplate, {pkg}))
@@ -259,7 +234,7 @@ gulp.task("compile-css-layout-headerfirst", () => {
 gulp.task("compile-css-layout-sidebarfirst", () => {
   return gulp
     .src("./src/stylesheets/layouts/sidebar-first/index.scss")
-    .pipe(rename("sidebar-first.scss"))
+    .pipe(rename("layout.sidebar-first.scss"))
     .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
     .pipe(stripCssComments({preserve: false}))
     .pipe(banner(bannerTemplate, {pkg}))
@@ -267,8 +242,7 @@ gulp.task("compile-css-layout-sidebarfirst", () => {
 });
 
 gulp.task("compile-css", [
-    // "compile-css-main",
-    // "compile-css-lite",
+    "compile-css-main",
     "compile-css-layout-headerfirst",
     "compile-css-layout-sidebarfirst"
   ], function() {

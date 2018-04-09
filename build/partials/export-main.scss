@@ -5,7 +5,6 @@
 @import "../../dist/buds/scss/buds";
 @import "../../src/stylesheets/reset/base";
 //= Components
-// @#import "../../src/stylesheets/lite/layout";
 @import "../../src/stylesheets/components/item";
 @import "../../src/stylesheets/components/card";
 @import "../../src/stylesheets/components/layer";
@@ -14,8 +13,6 @@
 @import "../../src/stylesheets/components/table";
 //= Extensions
 @import "../../src/stylesheets/extensions/bootstrap";
-//= Responsive web design
-@import "../../src/stylesheets/reset/responsive";
 
 .ErrorGroup {
   font-size: 12px;
