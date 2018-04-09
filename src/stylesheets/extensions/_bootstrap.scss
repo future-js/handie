@@ -96,25 +96,25 @@
  * Bootstrap
  */
 
-span.control-label {
+ span.control-label {
   font-weight: 700;
   cursor: default;
 }
 
-.control-label.is-required:after {
-  content: "*";
-  margin-left: 3px;
-  color: #f00;
-}
+.control-label.is-required {
+  &:after {
+    content: "*";
+    margin-left: 3px;
+    color: #f00;
+  }
 
-.form-horizontal .control-label.is-required {
-  &:before {
+  .form-horizontal &:before {
     content: "*";
     margin-right: 3px;
     color: #f00;
   }
 
-  &:after {
+  .form-horizontal &:after {
     display: none;
   }
 }

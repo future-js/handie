@@ -189,31 +189,8 @@ gulp.task("convert-components", ["modulize-components"], () => {
   return Promise.all(tasks);
 });
 
-gulp.task("export-scss-helper", function() {
-  return gulp.src("./build/partials/export-helper.scss")
-    .pipe(scssimport())
-    .pipe(rename("_helper.scss"))
-    .pipe(gulp.dest(`${cssDistDir}/admin`));
-});
-
-gulp.task("export-scss-main", function() {
-  return gulp.src("./build/partials/export-main.scss")
-    .pipe(scssimport())
-    .pipe(rename(`_main.scss`))
-    .pipe(gulp.dest(tmpDir));
-});
-
-gulp.task("concat-scss-main", ["export-scss-helper", "export-scss-main"], function() {
-  return gulp.src([
-      "./build/partials/import-helper-main.scss",
-      `${tmpDir}/_main.scss`
-    ])
-    .pipe(concat("_exports.scss"))
-    .pipe(gulp.dest(`${cssDistDir}/admin`));
-});
-
-gulp.task("compile-css-main", ["concat-scss-main"], function() {
-  return gulp.src(`${cssDistDir}/admin/_exports.scss`)
+gulp.task("compile-css-main", () => {
+  return gulp.src(`./src/stylesheets/admin/index.scss`)
     .pipe(rename("admin.scss"))
     .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
     .pipe(stripCssComments({preserve: false}))
@@ -289,8 +266,6 @@ gulp.task("concat-js-utils", () => {
 
 gulp.task("concat-js-admin", resolveInitializerTask());
 
-gulp.task("concat-js-admin-lite", resolveInitializerTask(true));
-
 gulp.task("concat-js-all", [
     "concat-js-vendors",
     "concat-js-utils",
@@ -309,8 +284,7 @@ gulp.task("concat-js-all", [
 
 gulp.task("compile-js", [
     // "convert-components",
-    "concat-js-all",
-    "concat-js-admin-lite"
+    "concat-js-all"
   ], function() {
     return gulp.src(`${jsDistDir}/*.js`)
       .pipe(banner(bannerTemplate, {pkg}))
