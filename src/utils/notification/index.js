@@ -6,7 +6,7 @@ import {
 import { supportWebNotification, supportLocalStorage } from "../common/supports";
 import { defaults } from "../common/settings";
 
-const NOTIFICATION_STORAGE_KEY = "MUU:NotificationCount";
+const NOTIFICATION_STORAGE_KEY = "HANDIE:NotificationCount";
 const noticeLayerTypes = ["info", "success", "warning", "danger"];
 
 let noticeTotalCount = 0;

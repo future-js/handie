@@ -58,7 +58,7 @@ function resolveUploader( settings, opts ) {
 
     uploader = Qiniu.uploader(settings);
 
-    uploader.__muu = processed.stashed;
+    uploader.__handie = processed.stashed;
 
     uploader.bind("FileUploaded", function( up, file, result ) {
       setImageItemUrl($(`[data-file-id="${file.id}"]`), `${up.getOption("domain")}${JSON.parse(result.response).key}`);
@@ -193,12 +193,12 @@ export function image( $btn, opts ) {
 
     uploader = initializer(mixin(true, defaultSettings, opts.settings), opts);
 
-    if ( hasOwnProp("__muu", uploader) ) {
-      arrayEach(objectKeys(uploader.__muu), function( name ) {
-        uploader.bind(name, uploader.__muu[name]);
+    if ( hasOwnProp("__handie", uploader) ) {
+      arrayEach(objectKeys(uploader.__handie), function( name ) {
+        uploader.bind(name, uploader.__handie[name]);
       });
 
-      delete uploader.__muu;
+      delete uploader.__handie;
     }
   }
 

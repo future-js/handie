@@ -17,7 +17,7 @@ import * as upload from "./uploader";
 import { watermark } from "./watermark";
 import { setDefaults, set, get, alert, $el } from "./misc";
 
-window.muu = {
+window.handie = {
   setDefaults, set, get, alert, $el,
   ajax, socket,
   table, dialog, form, field, select,
