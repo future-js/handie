@@ -11,6 +11,8 @@
 @import "../variables";
 //= Variables from Buds
 @import "../../../../dist/buds/scss/variables";
+//= Variables from Bootstrap
+@import "../../../../dist/bootstrap-sass/assets/stylesheets/bootstrap/variables";
 
 @import "../../utils/animations";
 @import "../../utils/mixins";
@@ -21,3 +23,6 @@
 
 @import "./page";
 @import "./content";
+
+//= Responsive web design
+@import "./responsive";

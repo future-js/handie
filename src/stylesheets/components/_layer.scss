@@ -33,7 +33,7 @@
 
 .Layer--notice {
   display: none;
-  top: $layout-header-height + 1px;
+  // top: $layout-header-height + 1px;
   z-index: 10;
 
   &.is-over {
