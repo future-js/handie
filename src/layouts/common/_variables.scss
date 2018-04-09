@@ -1,10 +1,4 @@
-@import "../utils/variables";
-
-
-
-//= Header
-
-$layout-header-height: $navbar-height !default;
+$layout-header-height: 60px !default;
 $layout-header-bg-color: #1e2332 !default;
 $layout-header-border-color: transparent !default;
 $layout-header-border-width: 0 !default;
@@ -20,15 +14,7 @@ $layout-navbar-avatar-size: 30px !default;
 
 $layout-action-trigger-color: $layout-brand-text-color !default;
 
-
-
-//= Body
-
 $layout-body-bg-color: #fff !default;
-
-
-
-//= Sidebar
 
 $layout-sidebar-width: 220px !default;
 $layout-sidebar-bg-color: transparent !default;
@@ -41,10 +27,6 @@ $layout-sidebar-item-active: $layout-sidebar-item-hover !default;
 $layout-sidebar-sub-bg-color: transparent !default;
 $layout-sidebar-top-padding: 20px !default;
 $layout-sidebar-bottom-padding: 50px !default;
-
-
-
-//= Content
 
 $layout-content-top-padding: 30px !default;
 $layout-content-bottom-padding: 30px !default;

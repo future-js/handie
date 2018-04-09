@@ -223,7 +223,7 @@ gulp.task("compile-css-main", ["concat-scss-main"], function() {
 
 gulp.task("compile-css-layout-headerfirst", () => {
   return gulp
-    .src("./src/stylesheets/layouts/header-first/index.scss")
+    .src("./src/layouts/header-first/index.scss")
     .pipe(rename("layout.header-first.scss"))
     .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
     .pipe(stripCssComments({preserve: false}))
@@ -233,7 +233,7 @@ gulp.task("compile-css-layout-headerfirst", () => {
 
 gulp.task("compile-css-layout-sidebarfirst", () => {
   return gulp
-    .src("./src/stylesheets/layouts/sidebar-first/index.scss")
+    .src("./src/layouts/sidebar-first/index.scss")
     .pipe(rename("layout.sidebar-first.scss"))
     .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
     .pipe(stripCssComments({preserve: false}))

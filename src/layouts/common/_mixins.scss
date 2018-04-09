@@ -1,0 +1,154 @@
+@import "../../stylesheets/utils/external-mixins";
+
+
+
+@mixin header-brand-logo {
+  position: relative;
+  font: {
+    size: $layout-brand-font-size;
+    weight: $layout-brand-font-weight;
+  }
+  line-height: 1.1;
+  @include text-middle("img, span");
+
+  img {
+    width: 256px / 50px * $layout-brand-image-height;
+    height: $layout-brand-image-height;
+    max-height: 100%;
+
+    + span {
+      position: relative;
+      padding-left: $layout-brand-separator-gap;
+
+      &:before {
+        content: $UN-space;
+        width: 1px;
+        background-color: $layout-brand-separator-color;
+        @include stretch(0, auto, 0, 10px);
+      }
+    }
+  }
+
+  span {
+    padding-left: 10px;
+    color: $layout-brand-text-color;
+  }
+}
+
+@mixin sidebar-menu-label {
+  margin-bottom: 5px;
+  line-height: 20px;
+  font-size: 12px;
+  color: #999;
+
+  &,
+  span {
+    position: relative;
+  }
+
+  span {
+    z-index: 1;
+    margin-left: 15px;
+    padding: 0 5px;
+    text-shadow: 1px 1px 3px #fff;
+    background-color: #eee;
+  }
+
+  &:before {
+    content: $UN-space;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    height: 1px;
+    background-color: #ddd;
+  }
+}
+
+@mixin sidebar-menu-iconic {
+  $menuGap: $layout-sidebar-item-padding;
+
+  padding: 0 $menuGap;
+  @include text-middle("> .fa, > .fa + span");
+
+  > .fa {
+    $iconWidth: (18 / 14);      // 与 Font Awesome 的 .fa-fw 相同
+    $iconFontSize: 16px;
+
+    width: #{$iconWidth}em;
+    font-size: $iconFontSize;
+    text-align: center;
+
+    + span {
+      $menuTextGap: 14px;
+
+      max-width: ($layout-sidebar-width - $menuGap * 2 - $iconWidth * $iconFontSize - $menuTextGap);
+      margin-left: $menuTextGap;
+      @include ellipsis;
+    }
+  }
+}
+
+@mixin sidebar-menu-primary {
+  position: relative;
+  height: $layout-sidebar-item-height;
+  font-weight: normal;
+  @include sidebar-menu-iconic;
+}
+
+@mixin sidebar-menu-secondary {
+  $subHeight: 22px;
+  $subGap: (36px - $subHeight) / 2;
+
+  padding: $subGap 10px $subGap 59px;
+  line-height: $subHeight;
+  @include line_feed;
+}
+
+
+
+@mixin header-brand-logo-in-mobile {
+  img {
+    position: absolute;
+    top: ($layout-header-height - $layout-brand-image-height) / 2;
+    left: 0;
+    max-width: none;
+    max-height: none;
+    clip: rect(0px, 34px, 24px, 0px);
+
+    + span {
+      margin-left: 30px;
+    }
+  }
+}
+
+@mixin sidebar-in-mobile( $target: "" ) {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999999999;
+  display: none;
+  float: none;
+  width: auto;
+  padding: 0;
+  background-color: rgba(0, 0, 0, .4);
+
+  @if $target != "" {
+    #{$target} {
+      width: $layout-sidebar-width;
+      height: 100%;
+      padding: {
+        top: $layout-sidebar-top-padding;
+        bottom: $layout-sidebar-bottom-padding;
+      }
+      overflow: auto;
+      background-color: #eee;
+    }
+  }
+
+  &.is-shown {
+    display: block;
+  }
+}
