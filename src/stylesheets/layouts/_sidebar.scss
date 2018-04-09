@@ -20,6 +20,7 @@
 
       > .Navs {
         display: none;
+        background-color: $layout-sidebar-sub-bg-color;
 
         a {
           font-weight: $font-weight-base;
@@ -30,7 +31,7 @@
       &.is-active {
         &.is-childless > a,
         > .Navs .is-active a {
-          background-color: $layout-sidebar-item-hover;
+          background-color: $layout-sidebar-item-active;
         }
 
         > .Navs {

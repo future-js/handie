@@ -32,6 +32,23 @@
       top: $layout-sidebar-top-padding;
       bottom: $layout-sidebar-bottom-padding;
     }
+
+    > ul > li {
+      > a > .fa + span {
+        margin-left: 10px;
+      }
+      
+      > .Navs a {
+        font-weight: normal;
+      }
+
+      &.is-active {
+        > a,
+        > .Navs .is-active a {
+          color: #fff;
+        }
+      }
+    }
   }
 }
 
