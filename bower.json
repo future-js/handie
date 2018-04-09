@@ -5,7 +5,7 @@
   "authors": [
     "Ourai Lin <ourairyu@gmail.com> (http://ourai.ws/)"
   ],
-  "description": "Born for the admin websites",
+  "description": "UI stuffs for the dashboard of a website",
   "main": [
     "dist/handie/stylesheets/admin.css",
     "dist/handie/stylesheets/admin.js"
@@ -35,17 +35,14 @@
     "/dist/handie"
   ],
   "devDependencies": {
-    "admin-lte-2.3.11": "admin-lte#2.3.11",
     "bootstrap-datetimepicker-4.17.47": "eonasdan-bootstrap-datetimepicker#4.17.47",
     "bootstrap-sass-3.3.7": "bootstrap-sass#3.3.7",
     "bootstrap-table-1.11.1": "bootstrap-table#1.11.1",
     "buds-0.1.2": "buds#0.1.2",
     "fontawesome-4.7.0": "fontawesome#4.7.0",
-    "h-ui-admin-3.1.2": "jackying/H-ui.admin",
     "h5fx-0.2.3": "h5fx#0.2.3",
     "html5shiv-3.7.3": "html5shiv#3.7.3",
     "jquery-1.12.0": "jquery#1.12.0",
-    "materialize-0.99.0": "materialize#0.99.0",
     "moment-2.18.0": "moment#2.18.0",
     "plupload-2.1.1": "plupload#2.1.1",
     "qiniu-1.0.19": "qiniu#1.0.19",

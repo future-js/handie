@@ -1,97 +1,23 @@
 <!DOCTYPE html>
-<html lang="zh-CN" dir="ltr" data-page="2332164775485440-仓库直播监控-抽检">
+<html lang="zh-CN" dir="ltr">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-    <title>MUU</title>
-    <meta name="description" content="muu description">
-    <!-- See https://goo.gl/OOhYW5 -->
-    <link rel="manifest" href="../manifest.json">
-    <link rel="stylesheet" href="../dist/muu/stylesheets/admin.css">
-    <script src="../dist/webcomponentsjs/webcomponents-loader.js"></script>
-    <script src="../dist/webcomponentsjs/custom-elements-es5-adapter.js"></script>
-    <script src="../dist/muu/javascripts/all.js"></script>
-    <script src="../dist/muu/javascripts/components.js"></script>
+    <title>Test</title>
   </head>
-  <body class="Page">
-    <x-app-header class="Page-header" site-title="认证">
-      <x-action type="custom"><button class="Action-trigger fa fa-plus js-add--header" type="button" data-toggle="modal" data-target="#dialogOut" title="新增"><span class="sr-only">新增</span></button></x-action>
-      <x-action type="user">
-        <span slot="trigger">欧雷</span>
+  <body>
+    <header>
+      <h1>Test for Handie</h1>
+    </header>
+    <main>
+      <section>
+        <header>
+          <h2>Layouts</h2>
+        </header>
         <ul>
-          <li>13188288222</li>
-          <li>ourairyu@gmail.com</li>
+          <li><a href="/layouts/header-first.html">Header first</a></li>
+          <li><a href="/layouts/sidebar-first.html">Sidebar first</a></li>
         </ul>
-        <a href="/out.htm" class="btn btn-default btn-xs" slot="footer">退出</a>
-      </x-action>
-    </x-app-header>
-    <main class="Page-body">
-      <x-app-sidebar></x-app-sidebar>
-      <div class="Page-content">
-        <div class="Content container-fluid">
-          <div class="Content-header">
-            <h1>员工</h1>
-          </div>
-          <p>内容区域</p>
-          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="x-dialog">打开对话框</button>
-          <x-dialog dialog-title="对话框">
-            <p>对话框</p>
-            <input type="text" value="123">
-          </x-dialog>
-          <div id="dialogOut" class="modal fade" data-backdrop="static">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <slot name="header">
-                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                    <h4 class="modal-title">{{ dataTitle }}</h4>
-                  </slot>
-                </div>
-                <div class="modal-body">
-                  <x-form>
-                    <x-field label="花名" name="nickname" value="ourai" required></x-field>
-                    <x-field label="部门" name="department" value="frontend" type="textarea"></x-field>
-                  </x-form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                  <button type="button" class="btn btn-primary js-submitFormData">提交</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      </section>
     </main>
-    <script>
-      document.querySelector("x-app-sidebar").initMenu(JSON.parse('[{"domain":"","name":"仓储管理系统","id":2332164775485440,"views":[{"name":"工作台","icon":"dashboard","url":"/page/shortcut.htm"},{"children":[{"name":"库存报表","icon":"","url":"/page/stock.htm"},{"name":"入库日报","icon":"","url":"/page/checkIn.htm"},{"name":"出库日报","icon":"","url":"/page/checkOut.htm"}],"name":"报表管理","icon":"pie-chart","url":""},{"children":[{"name":"业务订单","icon":"","url":"/page/orders.htm"},{"name":"入库分配","icon":"","url":"/page/assignment.htm"},{"name":"入库通知单","icon":"","url":"/page/notices.htm"},{"name":"待入库","icon":"","url":"/page/checkInWarehouses.htm"},{"name":"入库单审核","icon":"","url":"/page/storageList.htm"}],"name":"入库管理","icon":"sign-in","url":""},{"children":[{"name":"在库车辆","icon":"","url":"/page/inStock.htm"},{"name":"异常车辆","icon":"","url":"/page/damaged.htm"},{"name":"盘点车辆","icon":"","url":"/page/inspection.htm"},{"name":"待验车","icon":"","url":"/page/inspecting.htm"},{"name":"待匹配","icon":"","url":"/page/matching.htm"},{"name":"车辆数据更新","icon":"","url":"/page/carUpdate.htm"}],"name":"在库管理","icon":"car","url":""},{"children":[{"name":"出库审核","icon":"","url":"/page/checking.htm"},{"name":"待出库","icon":"","url":"/page/checkOutWarehouses.htm"}],"name":"出库管理","icon":"sign-out","url":""},{"children":[{"name":"仓库管理","icon":"","url":"/page/warehouses.htm"},{"name":"日志","icon":"","url":"/page/logs.htm"},{"name":"经销商管理","icon":"","url":"/page/dealerManage.htm"},{"name":"托管方/合作方","icon":"","url":"/page/hostingPartner.htm"},{"name":"费用类型","icon":"","url":"/page/costType.htm"},{"name":"告警管理","icon":"","url":"/page/alarmManage.htm"}],"name":"基础信息","icon":"info-circle","url":""},{"children":[{"name":"异常同步数据","icon":"","url":"/page/exceptionalSyncPdaCarData.htm"},{"name":"盘点记录","icon":"","url":"/page/checkRecordList.htm"},{"name":"版本列表","icon":"","url":"/page/pdaVersionList.htm"}],"name":"PDA数据","icon":"exchange","url":""},{"children":[{"name":"库存调拨管理","icon":"","url":"/page/stockTransfer.htm"},{"name":"库存调拨明细","icon":"","url":"/page/stockTransferDetail.htm"}],"name":"库存调拨管理","icon":"arrows-h","url":""},{"children":[{"name":"设备管理","icon":"","url":"/page/device.htm"},{"name":"审核管理","icon":"","url":"/page/verify.htm"},{"name":"任务数据","icon":"","url":"/page/missionData.htm"},{"name":"报警数据","icon":"","url":"/page/alarmData.htm"},{"name":"监控中心","icon":"","url":"/page/monitorCenter.htm"}],"name":"物联网设备管理","icon":"circle-o","url":""},{"children":[{"name":"抽检","icon":"","url":"/page/samplingCheck.htm"},{"name":"抽检记录","icon":"","url":"/page/allCheckRecord.htm"}],"name":"仓库直播监控","icon":"video-camera","url":""},{"children":[{"name":"应收计费规则","icon":"","url":"/page/receivable.htm"},{"name":"应付计费规则","icon":"","url":"/page/payables.htm"}],"name":"计费规则","icon":"money","url":""},{"children":[{"name":"应收即时结算费用","icon":"","url":"/page/receiveImmediate.htm"},{"name":"应付定期费用结算","icon":"","url":"/page/payablesFix.htm"},{"name":"应付即时费用结算","icon":"","url":"/page/payImmediate.htm"},{"name":"应收定期结算费用","icon":"","url":"/page/receivableFix.htm"}],"name":"费用结算","icon":"vcard","url":""}]},{"domain":"http://localhost:8081","name":"汇金系统","id":5595619229999104,"views":[{"name":"付款管理","icon":"rmb","url":"/payment/item.htm"},{"name":"交易流水账单","icon":"exchange","url":"/cash/journalList.htm"},{"name":"账户管理","icon":"credit-card","url":"/financeAccount/list.htm"},{"name":"操作日志","icon":"file-text-o","url":"/oplog/list.htm"},{"name":"外部流水","icon":"","url":"/outterCash/outerCashList"},{"children":[{"name":"会员子账户管理","icon":"","url":"/dp/account/list"},{"name":"会员资金明细","icon":"","url":"/dp/deal/list"},{"name":"会员交易记录","icon":"","url":"/dp/cash/list"},{"name":"平台子账户管理","icon":"","url":"/dp/platform/list"},{"name":"充值管理","icon":"","url":"/dp/recharge/list"},{"name":"提现管理","icon":"","url":"/dp/withdraw/list"},{"name":"会员银行卡管理","icon":"","url":"/dp/bankCard/list"}],"name":"存管账户","icon":"user","url":""}]},{"domain":"http://localhost:8080","name":"运输管理系统","id":24438773538398210,"views":[{"name":"工作台","icon":"th","url":"/dashboard/workbench.htm"},{"children":[{"name":"运单","icon":"","url":"/invoice/orders.htm"},{"name":"在途监控","icon":"","url":"/invoice/monitor.htm"}],"name":"运单管理","icon":"file-text","url":""},{"children":[{"name":"费用列表","icon":"","url":"/feeBills/feeList.htm"}],"name":"费用账单","icon":"rmb","url":""},{"children":[{"name":"保险费","icon":"","url":"/fee/insurance.htm"},{"name":"运价规则","icon":"","url":"/fee/tariffsRule.htm"},{"name":"固定运价","icon":"","url":"/fee/fixedTariff.htm"},{"name":"大板车报价","icon":"","url":"/itinerary/routes.htm"},{"name":"费用类型","icon":"","url":"/transportation/costs.htm"},{"name":"批量车规则","icon":"","url":"/fee/batchRule.htm"},{"name":"承运商报价","icon":"","url":"/quoteManagement/carriers.htm"},{"name":"客户报价","icon":"","url":"/quoteManagement/customers.htm"},{"name":"车型费率模版","icon":"","url":"/quoteManagement/modalRates.htm"},{"name":"数量费率模版","icon":"","url":"/quoteManagement/quantityRates.htm"},{"name":"竞价管理","icon":"","url":"/quoteManagement/bidManage.htm"},{"name":"费用类型","icon":"","url":"/quoteManagement/feeTypes.htm"}],"name":"报价管理","icon":"money","url":""},{"children":[{"name":"物流库","icon":"","url":"/itinerary/warehouses.htm"},{"name":"承运商","icon":"","url":"/organization/transporters.htm"},{"name":"承运商人员","icon":"","url":"/staff/transporter.htm"},{"name":"区域管理","icon":"","url":"/location/areas.htm"},{"name":"城市集合","icon":"","url":"/location/citySet.htm"},{"name":"地区集合","icon":"","url":"/organization/cityPartition.htm"},{"name":"区间模版","icon":"","url":"/organization/rangeTemplate.htm"}],"name":"资源管理","icon":"server","url":""},{"children":[{"name":"运输类型","icon":"","url":"/transportation/types.htm"},{"name":"车辆类型","icon":"","url":"/transportation/cars.htm"},{"name":"更新到达时间","icon":"","url":"/transportation/updateArriveTime.htm"}],"name":"应用设置","icon":"dot-circle-o","url":""},{"children":[{"name":"强制更新","icon":"","url":"/app/versions.htm"},{"name":"活动路线","icon":"","url":"/app/routes.htm"}],"name":"客户端设置","icon":"asterisk","url":""}]}]'));
-
-      $("x-form").on({
-        "submit": function( evt ) {
-          console.log("from external");
-        }
-      });
-
-      $(document).on("submit", function( evt ) {
-        console.log("from external document");
-      });
-
-      $(document).on("submit", "x-form", function( evt ) {
-        console.log("from external document delegate");
-      });
-
-      $("body").on("submit", function( evt ) {
-        console.log("from external body");
-        return false;
-      });
-
-      $("html").on("submit", function( evt ) {
-        console.log("from external html");
-      });
-
-      $(".js-submitFormData").on("click", function() {
-        $("x-form").trigger("submit");
-      });
-    </script>
   </body>
 </html>

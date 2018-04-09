@@ -7,9 +7,6 @@ collections:
   pages:
     output: true
     permalink: /:path/
-  adaptors:
-    output: true
-    permalink: /:collection/:path/
   admin:
     output: true
     permalink: /:collection/:path/

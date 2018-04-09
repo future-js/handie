@@ -1,0 +1,54 @@
+html,
+body,
+.Page,
+.Page-main,
+.Page-sidebar,
+.Page-header {
+  @include box-sizing(border-box);
+}
+
+html,
+body,
+.Page {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.Page {
+  background-color: $layout-body-bg-color;
+}
+
+.Page-sidebar,
+.Page-header {
+  font: {
+    size: $font-size-base;
+    family: $font-family-sans-serif;
+    weight: $font-weight-base;
+  }
+  line-height: $line-height-base;
+
+  ul,
+  ol {
+    list-style: none inside none;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.Page-sidebar {
+  float: left;
+  width: $layout-sidebar-width;
+  background-color: $layout-sidebar-bg-color;
+}
+
+.Page-header {
+  border-bottom: $layout-header-border-width solid $layout-header-border-color;
+  background-color: $layout-header-bg-color;
+}
