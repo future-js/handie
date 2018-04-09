@@ -4,59 +4,35 @@ const exec = require("child_process").exec;
 
 const gulp = require("gulp");
 const concat = require("gulp-concat");
-const sass = require("gulp-sass");
 const cssmin = require("gulp-cssmin");
 const rename = require("gulp-rename");
 const template = require("gulp-template");
-const babel = require("gulp-babel");
-const umd = require("gulp-umd");
-const wrap = require("gulp-wrap");
-const scssimport = require("gulp-shopify-sass");
-const stripCssComments = require("gulp-strip-css-comments");
 const strip = require("gulp-strip-comments");
-const banner = require("gulp-banner");
 const uglify = require("gulp-uglify");
 const sourcemaps = require("gulp-sourcemaps");
 
-const rollup = require("rollup");
 const rollupBabel = require("rollup-plugin-babel");
 const rollupNodeResolver = require("rollup-plugin-node-resolve");
 const rollupCjsResolver = require("rollup-plugin-commonjs");
 
-const pkg = require("./package.json");
-const libName = pkg.name.replace("@mhc/", "");
-const bannerTemplate = require("./build/partials/banner");
+const {
+    LIB_NAME,
+    CSS_DIST,
+    JS_DIST
+  } = require("./build/tasks/constants");
+const {
+    snake2Camel,
+    resolveBanner,
+    resolveRollupTask,
+    resolveScssTask
+  } = require("./build/tasks/functions");
 
-const cssDistDir = `./dist/${libName}/stylesheets`;
-const jsDistDir = `./dist/${libName}/javascripts`;
-const tmpDir = `.${libName}-tmp`;
-const componentTmpDir = `${tmpDir}/components`;
+const TMP_DIR = `.${LIB_NAME}-tmp`;
+const COMPONENT_TMP = `${TMP_DIR}/components`;
 const COMPONENT_SRC = path.join(__dirname, "src/components");
 
 const compileComponentTasks = [];
 const compiledComponentFiles = []
-
-function snake2Camel( str ) {
-  return str.split("-").map(part => `${part.charAt(0).toUpperCase()}${part.slice(1)}`).join("");
-}
-
-function resolveRollupTask( opts ) {
-  return rollup
-    .rollup({input: opts.input, plugins: opts.plugins})
-    .then(bundle => bundle.write({file: opts.file, format: "umd", name: opts.name}));
-}
-
-function resolveInitializerTask( isLite ) {
-  return () => {
-    return gulp
-      .src(["layout", "responsive", isLite ? "lite" : "initializer"].map(name => `src/adaptors/admin/${name}.js`))
-      .pipe(concat(`${isLite ? "admin-lite" : "admin"}.js`))
-      .pipe(babel({presets: ["es2015"]}))
-      .pipe(strip())
-      .pipe(wrap(`(function() {\n\n<%= contents %>\n\n})();`))
-      .pipe(gulp.dest(jsDistDir));
-  }
-}
 
 fs.readdirSync(COMPONENT_SRC)
   .filter(componentName => fs.statSync(path.join(COMPONENT_SRC, componentName)).isDirectory())
@@ -69,17 +45,15 @@ fs.readdirSync(COMPONENT_SRC)
     compileComponentTasks.push(taskName);
     compiledComponentFiles.push(`${componentName}.html`);
 
-    gulp.task(scssTaskName, () => {
-      return gulp.src(`src/components/${componentName}/index.scss`)
-        .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
-        .pipe(stripCssComments({preserve: false}))
-        .pipe(cssmin())
-        .pipe(gulp.dest(`${componentTmpDir}/stylesheets/${componentName}`));
-      });
+    gulp.task(scssTaskName, resolveScssTask(`src/components/${componentName}/index.scss`, {
+      dest: `${COMPONENT_TMP}/stylesheets/${componentName}`,
+      hasBanner: false,
+      minify: true
+    }));
 
     gulp.task(taskName, [scssTaskName], () => {
       const charset = "UTF-8";
-      const cssFile = path.resolve(`${componentTmpDir}/stylesheets/${componentName}/index.css`);
+      const cssFile = path.resolve(`${COMPONENT_TMP}/stylesheets/${componentName}/index.css`);
 
       let componentStyle = "";
 
@@ -94,7 +68,7 @@ fs.readdirSync(COMPONENT_SRC)
             componentStyle
           }))
           .pipe(rename({basename: componentName}))
-          .pipe(gulp.dest(`${componentTmpDir}/templates`));
+          .pipe(gulp.dest(`${COMPONENT_TMP}/templates`));
       }
       else {
         const htmlFile = path.join(componentDir, "index.html");
@@ -120,9 +94,9 @@ fs.readdirSync(COMPONENT_SRC)
             classDefinition
           }))
           .pipe(rename({basename: componentName}))
-          .pipe(gulp.dest(`${componentTmpDir}/templates`));
+          .pipe(gulp.dest(`${COMPONENT_TMP}/templates`));
       }
-    })
+    });
 });
 
 gulp.task("compile-components", compileComponentTasks, () => {
@@ -131,7 +105,7 @@ gulp.task("compile-components", compileComponentTasks, () => {
       files: compiledComponentFiles.map(componentPath => `<link rel="import" href="${componentPath}">`).join("\n")
     }))
     .pipe(rename({basename: "index"}))
-    .pipe(gulp.dest(`${componentTmpDir}/templates`));
+    .pipe(gulp.dest(`${COMPONENT_TMP}/templates`));
 });
 
 gulp.task("modulize-components", ["compile-components"], () => {
@@ -151,14 +125,14 @@ gulp.task("modulize-components", ["compile-components"], () => {
       
       resolve();
     })
-    .stdout.on("data", function( data ) {
+    .stdout.on("data", data => {
       console.log(data.toString());
     });
 });
 });
 
 gulp.task("convert-components", ["modulize-components"], () => {
-  const JS_DIR = `${componentTmpDir}/javascripts`;
+  const JS_DIR = `${COMPONENT_TMP}/javascripts`;
   const babelConf = {
     babelrc: false,
     presets: [
@@ -189,86 +163,68 @@ gulp.task("convert-components", ["modulize-components"], () => {
   return Promise.all(tasks);
 });
 
-gulp.task("export-scss-helper", function() {
-  return gulp.src("./build/partials/export-helper.scss")
-    .pipe(scssimport())
-    .pipe(rename("_helper.scss"))
-    .pipe(gulp.dest(`${cssDistDir}/admin`));
+gulp.task("compile-css-admin", resolveScssTask(`./src/stylesheets/admin/index.scss`, {
+  renameTo: "admin.scss",
+  dest: TMP_DIR
+}));
+
+gulp.task("compile-css-layout-header-first", resolveScssTask("./src/layouts/header-first/index.scss", {
+  renameTo: "header-first.scss",
+  dest: `${TMP_DIR}/layouts`
+}));
+
+gulp.task("compile-css-layout-sidebar-first", resolveScssTask("./src/layouts/sidebar-first/index.scss", {
+  renameTo: "sidebar-first.scss",
+  dest: `${TMP_DIR}/layouts`
+}));
+
+gulp.task("compile-css-admin-with-header-first", [
+    "compile-css-admin",
+    "compile-css-layout-header-first"
+  ], () => {
+    return gulp
+      .src([`${TMP_DIR}/admin.css`, `${TMP_DIR}/layouts/header-first.css`])
+      .pipe(concat("admin-hf.css"))
+      .pipe(gulp.dest(CSS_DIST));
 });
 
-gulp.task("export-scss-main", function() {
-  return gulp.src("./build/partials/export-main.scss")
-    .pipe(scssimport())
-    .pipe(rename(`_main.scss`))
-    .pipe(gulp.dest(tmpDir));
-});
-
-gulp.task("concat-scss-main", ["export-scss-helper", "export-scss-main"], function() {
-  return gulp.src([
-      "./build/partials/import-helper-main.scss",
-      `${tmpDir}/_main.scss`
-    ])
-    .pipe(concat("_exports.scss"))
-    .pipe(gulp.dest(`${cssDistDir}/admin`));
-});
-
-gulp.task("compile-css-main", ["concat-scss-main"], function() {
-  return gulp.src(`${cssDistDir}/admin/_exports.scss`)
-    .pipe(rename("admin.scss"))
-    .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
-    .pipe(stripCssComments({preserve: false}))
-    .pipe(banner(bannerTemplate, {pkg}))
-    .pipe(gulp.dest(cssDistDir));
-});
-
-gulp.task("compile-css-layout-headerfirst", () => {
-  return gulp
-    .src("./src/stylesheets/layouts/header-first/index.scss")
-    .pipe(rename("layout.header-first.scss"))
-    .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
-    .pipe(stripCssComments({preserve: false}))
-    .pipe(banner(bannerTemplate, {pkg}))
-    .pipe(gulp.dest(cssDistDir));
-});
-
-gulp.task("compile-css-layout-sidebarfirst", () => {
-  return gulp
-    .src("./src/stylesheets/layouts/sidebar-first/index.scss")
-    .pipe(rename("layout.sidebar-first.scss"))
-    .pipe(sass({outputStyle: "expanded", noLineComments: true}).on("error", sass.logError))
-    .pipe(stripCssComments({preserve: false}))
-    .pipe(banner(bannerTemplate, {pkg}))
-    .pipe(gulp.dest(cssDistDir));
+gulp.task("compile-css-admin-with-sidebar-first", [
+    "compile-css-admin",
+    "compile-css-layout-sidebar-first"
+  ], () => {
+    return gulp
+      .src([`${TMP_DIR}/admin.css`, `${TMP_DIR}/layouts/sidebar-first.css`])
+      .pipe(concat("admin-sf.css"))
+      .pipe(gulp.dest(CSS_DIST));
 });
 
 gulp.task("compile-css", [
-    "compile-css-main",
-    "compile-css-layout-headerfirst",
-    "compile-css-layout-sidebarfirst"
-  ], function() {
-    return gulp.src(`${cssDistDir}/**/*.css`, {base: cssDistDir})
+    "compile-css-admin-with-header-first",
+    "compile-css-admin-with-sidebar-first"
+  ], () => {
+    return gulp
+      .src(`${CSS_DIST}/**/*.css`, {base: CSS_DIST})
       .pipe(sourcemaps.init({largeFile: true, loadMaps: true}))
       .pipe(cssmin())
       .pipe(rename({suffix: ".min"}))
       .pipe(sourcemaps.write("../maps"))
-      .pipe(gulp.dest(cssDistDir));
+      .pipe(gulp.dest(CSS_DIST));
 });
 
-gulp.task("concat-js-vendors", function() {
-  return gulp.src([
-    "jquery-1.12.0/dist/jquery",
-    "bootstrap-sass-3.3.7/assets/javascripts/bootstrap",
-    "bootstrap-table-1.11.1/dist/bootstrap-table",
-    "bootstrap-table-1.11.1/dist/locale/bootstrap-table-zh-CN",
-    "select2-4.0.3/dist/js/select2.full",
-    "select2-4.0.3/dist/js/i18n/zh-CN",
-    "h5fx-0.2.3/H5Fx"
-  ].map(function( base ) {
-    return `bower_components/${base}.js`;
-  }))
+gulp.task("concat-js-vendors", () => {
+  return gulp
+    .src([
+        "jquery-1.12.0/dist/jquery",
+        "bootstrap-sass-3.3.7/assets/javascripts/bootstrap",
+        "bootstrap-table-1.11.1/dist/bootstrap-table",
+        "bootstrap-table-1.11.1/dist/locale/bootstrap-table-zh-CN",
+        "select2-4.0.3/dist/js/select2.full",
+        "select2-4.0.3/dist/js/i18n/zh-CN",
+        "h5fx-0.2.3/H5Fx"
+      ].map(base => `bower_components/${base}.js`))
     .pipe(concat("vendors.js"))
     .pipe(strip())
-    .pipe(gulp.dest(jsDistDir));
+    .pipe(gulp.dest(JS_DIST));
 });
 
 gulp.task("concat-js-utils", () => {
@@ -282,52 +238,92 @@ gulp.task("concat-js-utils", () => {
         plugins: ["external-helpers"]
       })
     ],
-    file: `${jsDistDir}/utils.js`,
+    file: `${JS_DIST}/utils.js`,
     name: "utils"
   });
 });
 
-gulp.task("concat-js-admin", resolveInitializerTask());
+gulp.task("concat-js-layout-header-first", () => {
+  return resolveRollupTask({
+    input: "src/layouts/header-first/index.js",
+    plugins: [
+      rollupBabel({
+        babelrc: false,
+        presets: [["env", {"modules": false}]],
+        plugins: ["external-helpers"]
+      })
+    ],
+    file: `${TMP_DIR}/layouts/header-first.js`,
+    name: "header-first"
+  });
+});
 
-gulp.task("concat-js-admin-lite", resolveInitializerTask(true));
+gulp.task("concat-js-layout-sidebar-first", () => {
+  return resolveRollupTask({
+    input: "src/layouts/sidebar-first/index.js",
+    plugins: [
+      rollupBabel({
+        babelrc: false,
+        presets: [["env", {"modules": false}]],
+        plugins: ["external-helpers"]
+      })
+    ],
+    file: `${TMP_DIR}/layouts/sidebar-first.js`,
+    name: "sidebar-first"
+  });
+});
 
-gulp.task("concat-js-all", [
+gulp.task("concat-js-admin-with-header-first", [
     "concat-js-vendors",
     "concat-js-utils",
-    "concat-js-admin"
-  ], function() {
-    return gulp.src([
-        "vendors",
-        "utils",
-        "admin"
-      ].map(function( name ) {
-        return `${jsDistDir}/${name}.js`;
-      }))
-      .pipe(concat("all.js"))
-      .pipe(gulp.dest(jsDistDir));
+    "concat-js-layout-header-first"
+  ], () => {
+    return gulp
+      .src([
+        `${JS_DIST}/vendors.js`,
+        `${JS_DIST}/utils.js`,
+        `${TMP_DIR}/layouts/header-first.js`
+      ])
+      .pipe(concat("admin-hf.js"))
+      .pipe(gulp.dest(JS_DIST));
+});
+
+gulp.task("concat-js-admin-with-sidebar-first", [
+    "concat-js-vendors",
+    "concat-js-utils",
+    "concat-js-layout-sidebar-first"
+  ], () => {
+    return gulp
+      .src([
+        `${JS_DIST}/vendors.js`,
+        `${JS_DIST}/utils.js`,
+        `${TMP_DIR}/layouts/sidebar-first.js`
+      ])
+      .pipe(concat("admin-sf.js"))
+      .pipe(gulp.dest(JS_DIST));
 });
 
 gulp.task("compile-js", [
     // "convert-components",
-    "concat-js-all",
-    "concat-js-admin-lite"
-  ], function() {
-    return gulp.src(`${jsDistDir}/*.js`)
-      .pipe(banner(bannerTemplate, {pkg}))
-      .pipe(gulp.dest(jsDistDir));
+    "concat-js-admin-with-header-first",
+    "concat-js-admin-with-sidebar-first"
+  ], () => {
+    return gulp.src(`${JS_DIST}/*.js`)
+      .pipe(resolveBanner())
+      .pipe(gulp.dest(JS_DIST));
 });
 
-gulp.task("compile", ["compile-css", "compile-js"], function() {
-  return gulp.src(`${jsDistDir}/**/*.js`, {base: jsDistDir})
+gulp.task("compile", ["compile-css", "compile-js"], () => {
+  return gulp.src(`${JS_DIST}/**/*.js`, {base: JS_DIST})
     .pipe(sourcemaps.init({largeFile: true, loadMaps: true}))
     .pipe(uglify())
     .pipe(rename({suffix: ".min"}))
-    .pipe(banner(bannerTemplate, {pkg}))
+    .pipe(resolveBanner())
     .pipe(sourcemaps.write("../maps"))
-    .pipe(gulp.dest(jsDistDir));
+    .pipe(gulp.dest(JS_DIST));
 });
 
-gulp.task("watch", function() {
+gulp.task("watch", () => {
   gulp.watch("./src/**/*.scss", ["compile-css"]);
   gulp.watch("./src/**/*.js", ["compile-js"]);
 });

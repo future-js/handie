@@ -184,7 +184,7 @@ export const defaults = {
           const $btn = $(this);
           const $t = $btn.closest("table");
     
-          let ajaxOpts = arrayLast($t.data("bootstrap.table").columns).__muuAjaxOpts || {};
+          let ajaxOpts = arrayLast($t.data("bootstrap.table").columns).__handieAjaxOpts || {};
     
           if ( hasOwnProp("delete", ajaxOpts) ) {
             ajaxOpts = ajaxOpts.delete;

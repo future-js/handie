@@ -84,8 +84,8 @@
  */
 
 .select2-container {
-  .muu-Select2-container,
-  .muu-Select2-dropdown {
+  .handie-Select2-container,
+  .handie-Select2-dropdown {
     font-size: 12px;
   }
 }
@@ -96,25 +96,25 @@
  * Bootstrap
  */
 
-span.control-label {
+ span.control-label {
   font-weight: 700;
   cursor: default;
 }
 
-.control-label.is-required:after {
-  content: "*";
-  margin-left: 3px;
-  color: #f00;
-}
+.control-label.is-required {
+  &:after {
+    content: "*";
+    margin-left: 3px;
+    color: #f00;
+  }
 
-.form-horizontal .control-label.is-required {
-  &:before {
+  .form-horizontal &:before {
     content: "*";
     margin-right: 3px;
     color: #f00;
   }
 
-  &:after {
+  .form-horizontal &:after {
     display: none;
   }
 }
@@ -200,7 +200,7 @@ span.control-label {
   .select2-container {
     $h: 30px;
 
-    .muu-Select2-container {
+    .handie-Select2-container {
       &.select2-selection--single {
         height: $h;
       }
@@ -214,7 +214,7 @@ span.control-label {
       }
     }
 
-    &:not(.select2-container--open) .muu-Select2-container.select2-selection--multiple {
+    &:not(.select2-container--open) .handie-Select2-container.select2-selection--multiple {
       height: $h;
 
       .select2-selection__rendered {

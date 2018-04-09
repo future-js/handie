@@ -90,7 +90,7 @@ function generateAjaxUtil( method ) {
     let $waiting, waitingText, alertType;
 
     /**
-     * muu.ajax[method]({
+     * handie.ajax[method]({
      *    url: "",
      *    data: {},
      *    callback: $.noop,
@@ -114,14 +114,14 @@ function generateAjaxUtil( method ) {
       alertType = opts.alertType;
     }
     else {
-      // muu.ajax[method](url, callback, isJson)
+      // handie.ajax[method](url, callback, isJson)
       if ( isFunction(params) ) {
         isJson = callback;
         callback = params;
         params = {};
       }
       /**
-       * muu.ajax[method](url, params, {
+       * handie.ajax[method](url, params, {
        *    callback: $.noop,
        *    isJson: false,
        *    $waiting: $(),
@@ -139,7 +139,7 @@ function generateAjaxUtil( method ) {
         callback = callback.callback;
       }
       /**
-       * muu.ajax[method](url, params, callback, {
+       * handie.ajax[method](url, params, callback, {
        *    isJson: false,
        *    $waiting: $(),
        *    waitingText: "",
