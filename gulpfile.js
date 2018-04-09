@@ -30,6 +30,11 @@ const TMP_DIR = `.${LIB_NAME}-tmp`;
 
 gulp.task("compile-css-admin", resolveScssTask(`./src/stylesheets/admin/index.scss`, {renameTo: "admin.scss"}));
 
+gulp.task("compile-css-theme-google-plus", resolveScssTask("./src/themes/google-plus/index.scss", {
+  renameTo: "google-plus.scss",
+  dest: `${CSS_DIST}/themes`
+}));
+
 gulp.task("compile-css-theme-antd-pro", resolveScssTask("./src/themes/antd-pro/index.scss", {
   renameTo: "antd-pro.scss",
   dest: `${CSS_DIST}/themes`
@@ -37,6 +42,7 @@ gulp.task("compile-css-theme-antd-pro", resolveScssTask("./src/themes/antd-pro/i
 
 gulp.task("compile-css", [
     "compile-css-admin",
+    "compile-css-theme-google-plus",
     "compile-css-theme-antd-pro"
   ], () => {
     return gulp
@@ -90,6 +96,21 @@ gulp.task("concat-js-admin", [
       .pipe(gulp.dest(JS_DIST));
 });
 
+gulp.task("concat-js-theme-google-plus", () => {
+  return resolveRollupTask({
+    input: "src/themes/google-plus/index.js",
+    plugins: [
+      rollupBabel({
+        babelrc: false,
+        presets: [["env", {"modules": false}]],
+        plugins: ["external-helpers"]
+      })
+    ],
+    file: `${JS_DIST}/themes/google-plus.js`,
+    name: "google-plus"
+  });
+});
+
 gulp.task("concat-js-theme-antd-pro", () => {
   return resolveRollupTask({
     input: "src/themes/antd-pro/index.js",
@@ -107,6 +128,7 @@ gulp.task("concat-js-theme-antd-pro", () => {
 
 gulp.task("compile-js", [
     "concat-js-admin",
+    "concat-js-theme-google-plus",
     "concat-js-theme-antd-pro"
   ], () => {
     return gulp.src(`${JS_DIST}/*.js`)

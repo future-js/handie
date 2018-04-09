@@ -1,3 +1,13 @@
+.Header {
+  position: relative;
+  z-index: 99;
+  overflow: visible !important;
+  border-bottom: $layout-header-border-width solid $layout-header-border-color;
+  background-color: $layout-header-bg-color;
+  @include pie-clearfix;
+  @include box-shadow($layout-header-box-shadow);
+}
+
 .Header-navs,
 .Header-navs ul,
 .Header-navs li,

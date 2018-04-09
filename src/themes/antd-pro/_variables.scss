@@ -1,5 +1,11 @@
 $layout-header-height: 64px;
 $layout-header-bg-color: #fff;
+$layout-header-box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
+
+$layout-brand-font-size: 20px;
+$layout-brand-font-weight: 600;
+$layout-brand-text-color: #fff;
+$layout-brand-bg-color: #002140;
 
 $layout-body-bg-color: #f0f2f5;
 
@@ -13,3 +19,4 @@ $layout-sidebar-item-active: #1890ff;
 $layout-sidebar-sub-bg-color: #000c17;
 $layout-sidebar-top-padding: 16px;
 $layout-sidebar-bottom-padding: 16px;
+$layout-sidebar-box-shadow: 2px 0 6px rgba(0, 21, 41, .35);

@@ -1,12 +1,14 @@
-$layout-header-height: 60px !default;
+$layout-header-height: auto !default;
 $layout-header-bg-color: transparent !default;
 $layout-header-border-color: transparent !default;
 $layout-header-border-width: 0 !default;
+$layout-header-box-shadow: none !default;
 
 $layout-brand-image-height: 24px !default;
 $layout-brand-font-size: 22px !default;
 $layout-brand-font-weight: inherit !default;
 $layout-brand-text-color: inherit !default;
+$layout-brand-bg-color: transparent !default;
 $layout-brand-separator-color: $layout-brand-text-color !default;
 $layout-brand-separator-gap: 21px !default;
 
@@ -16,7 +18,7 @@ $layout-action-trigger-color: $layout-brand-text-color !default;
 
 $layout-body-bg-color: #fff !default;
 
-$layout-sidebar-width: 220px !default;
+$layout-sidebar-width: auto !default;
 $layout-sidebar-bg-color: transparent !default;
 $layout-sidebar-text-color: inherit !default;
 $layout-sidebar-text-hover: $layout-sidebar-text-color !default;
@@ -27,7 +29,10 @@ $layout-sidebar-item-active: $layout-sidebar-item-hover !default;
 $layout-sidebar-sub-bg-color: transparent !default;
 $layout-sidebar-top-padding: 20px !default;
 $layout-sidebar-bottom-padding: 50px !default;
+$layout-sidebar-box-shadow: none !default;
 
 $layout-content-top-padding: 30px !default;
 $layout-content-bottom-padding: 30px !default;
 $layout-content-heading-font-size: 24px !default;
+
+$layout-footer-height: 0 !default;

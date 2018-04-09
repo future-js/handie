@@ -1,11 +1,18 @@
-.Sidebar .Navs > ul > li > a {
-  display: block;
-  color: $layout-sidebar-text-color;
-  @include transition(background-color .3s);
+.Sidebar {
+  float: left;
+  width: $layout-sidebar-width;
+  background-color: $layout-sidebar-bg-color;
+  @include box-shadow($layout-sidebar-box-shadow);
 
-  &:hover {
-    color: $layout-sidebar-text-hover;
-    background-color: $layout-sidebar-item-hover;
+  .Navs > ul > li > a {
+    display: block;
+    color: $layout-sidebar-text-color;
+    @include transition(background-color .3s);
+  
+    &:hover {
+      color: $layout-sidebar-text-hover;
+      background-color: $layout-sidebar-item-hover;
+    }
   }
 }
 

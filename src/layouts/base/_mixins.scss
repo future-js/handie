@@ -2,6 +2,14 @@
 
 
 
+@mixin base-layout {
+  @include box-fixed-height(
+    ".Page-header", $layout-header-height + $layout-header-border-width,
+    ".Page-footer", $layout-footer-height,
+    ".Page-body"
+  );
+}
+
 @mixin header-brand-logo {
   position: relative;
   font: {

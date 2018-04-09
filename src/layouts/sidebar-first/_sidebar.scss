@@ -1,0 +1,15 @@
+.Sidebar-brand {
+  height: $layout-header-height;
+  padding-left: $layout-sidebar-item-padding;
+  background-color: $layout-brand-bg-color;
+
+  a {
+    display: block;
+    font: {
+      size: $layout-brand-font-size;
+      weight: $layout-brand-font-weight;
+    }
+    line-height: $layout-header-height;
+    color: $layout-brand-text-color;
+  }
+}

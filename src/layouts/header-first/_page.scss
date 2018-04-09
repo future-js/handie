@@ -1,44 +1,20 @@
-.Page-body,
-.Page-content {
-  height: 100%;
-}
-
-html.is-legacy .Page,
-.Page.is-legacy {
-  padding-top: $layout-header-height + 1px + 24px !important;
-}
-
 .Page {
   overflow: hidden;
-  background-color: #eee;
+  @include base-layout;
 
-  @include box-fixed-height(
-    ".Page-header", $layout-header-height + 1px,
-    ".Page-footer", 0,
-    ".Page-body"
-  );
+  html.is-legacy &,
+  &.is-legacy {
+    padding-top: $layout-header-height + 1px + 24px !important;
+  }
 }
 
-.Page-header {
-  position: relative;
-  z-index: 99;
-  padding: {
-    right: 15px;
-    left: 15px;
-  }
-  overflow: visible !important;
-  @include pie-clearfix;
-  @include box-shadow(0 1px 8px rgba(0, 0, 0, .3));
+.Page-body,
+.Page-sidebar,
+.Page-content {
+  height: 100%;
 }
 
 .Page-sidebar,
 .Page-content {
   overflow: auto;
-}
-
-.Page-sidebar {
-  padding: {
-    top: $layout-sidebar-top-padding;
-    bottom: $layout-sidebar-bottom-padding;
-  }
 }
