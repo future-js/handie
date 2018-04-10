@@ -1,12 +1,7 @@
 # Handie
 
-[![Bower version](https://img.shields.io/bower/v/handie.svg?style=flat-square)](https://github.com/packagent/handie)
-[![NPM version][npm-ver]][npm-url]
-[![NPM download][npm-dm]][npm-url]
-
-[npm-ver]: https://img.shields.io/npm/v/handie.svg?style=flat-square
-[npm-dm]: https://img.shields.io/npm/dm/handie.svg?style=flat-square
-[npm-url]: https://www.npmjs.com/package/handie
+[![Bower version](https://badge.fury.io/bo/handie.svg)](https://github.com/packagent/handie)
+[![NPM version](https://badge.fury.io/js/handie.svg)](https://www.npmjs.com/package/handie)
 
 Handie is a collection of UI stuffs for admin dashboard websites.
 
