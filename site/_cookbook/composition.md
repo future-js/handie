@@ -39,8 +39,8 @@ flag:
 
 {% highlight text %}
 .
+├── bootstrap/
 ├── bootstrap-datetimepicker/
-├── bootstrap-sass/
 ├── bootstrap-table/
 ├── fontawesome/
 ├── handie/

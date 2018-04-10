@@ -35,8 +35,8 @@
     "/dist/handie"
   ],
   "devDependencies": {
+    "bootstrap-3.3.7": "bootstrap-sass#3.3.7",
     "bootstrap-datetimepicker-4.17.47": "eonasdan-bootstrap-datetimepicker#4.17.47",
-    "bootstrap-sass-3.3.7": "bootstrap-sass#3.3.7",
     "bootstrap-table-1.11.1": "bootstrap-table#1.11.1",
     "buds-0.1.2": "buds#0.1.2",
     "fontawesome-4.7.0": "fontawesome#4.7.0",
