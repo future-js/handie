@@ -1,23 +1,23 @@
 # Handie
 
-[![Bower version](https://badge.fury.io/bo/handie.svg)](https://github.com/packagent/handie)
 [![NPM version](https://badge.fury.io/js/handie.svg)](https://www.npmjs.com/package/handie)
+[![Bower version](https://badge.fury.io/bo/handie.svg)](https://github.com/packagent/handie)
 
 Handie is a collection of UI stuffs for admin dashboard websites.
 
-It depends on a number of other frameworks and libraries. I copied dependencies as a part of Handie in order to make versions controllable and include them handily.
+It depends on a number of other libraries and frameworks. I included dependencies as parts of Handie in order to make versions controllable and import them handily.
 
 ## Usage
 
-At first, you must type command in terminal with `bower install --save handie` or `npm install --save handie` to install Handie.
+At first, you should type command in terminal with `bower install --save handie` or `npm install --save handie` to download Handie.
 
-Then include assets which you need:
+Then import assets which you need:
 
 ```html
-<html lang="zh-CN" dir="ltr" data-page="dashboard-tasks">
+<html>
   <head>
     <meta charset="UTF-8">
-    <title>Isomorphic layout of Handie</title>
+    <title>Handie</title>
     <!-- Global and layout-specific CSS rules -->
     <link rel="stylesheet" href="/handie-latest/handie/stylesheets/layouts/isomorphic-default.css">
   </head>
@@ -38,6 +38,6 @@ Please visit the [cookbook](https://ourai.github.io/handie/cookbook/) to learn m
 
 ## Feedback
 
-If you have any good suggestions, you could create an [issue](https://github.com/ourai/handie/issues) or send an [E-mail](mailto:ourairyu@gmail.com) to me.
+If you have any good suggestions, you could create an [issue](https://github.com/ourai/handie/issues) or send [E-mail](mailto:ourairyu@gmail.com) to me.
 
 Thank you. ;-)
