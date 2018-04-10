@@ -1,8 +1,4 @@
-//= Compass mixins
-@import "../../../dist/compass-mixins/lib/compass";
-@import "../../../dist/compass-mixins/lib/compass/layout";
-@import "../../../dist/compass-mixins/lib/animation/core";
-//= Trick Compass extension
-@import "../../../dist/trick/trick";
-//= Tangram layout library
+@import "../../../dist/trick/lib/core";
+@import "../../../dist/trick/lib/vendors/compass/compass/layout";
+@import "../../../dist/trick/lib/vendors/compass/animation/core";
 @import "../../../dist/tangram/tangram";

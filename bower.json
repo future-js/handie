@@ -49,8 +49,8 @@
     "select2-4.0.3": "select2#4.0.3",
     "select2-bootstrap-theme-0.1.0": "select2-bootstrap-theme#0.1.0-beta.10",
     "suitcss-sass-0.1.0": "suitcss-sass#0.1.0",
-    "tangram-0.2.2": "ourai/tangram#0.2.2",
-    "trick-0.4.2": "ourai/trick#0.4.2"
+    "tangram-0.2.3": "ourai/tangram#0.2.3",
+    "trick-1.0.0": "packagent/trick#1.0.0"
   },
   "resolutions": {
     "jquery": ">=3.2.1"

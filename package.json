@@ -11,11 +11,10 @@
     "ascii": "node ./build/scripts/ascii.js",
     "precompile": "rm -rf dist/handie && bower install --force-latest",
     "compile": "gulp compile",
-    "serve": "polymer serve",
-    "prestart": "npm run compile",
-    "start": "polymer serve",
     "pretest": "rm -rf test/assets && cp -R dist test/assets",
     "test": "http-server ./test -p 3000 --cors *",
+    "prestart": "npm run compile",
+    "start": "npm test",
     "prerelease": "npm run compile",
     "release": "node ./build/scripts/release.js"
   },

@@ -48,7 +48,6 @@ flag:
 ├── bootstrap-sass/
 ├── bootstrap-table/
 ├── buds/
-├── compass-mixins/
 ├── fontawesome/
 ├── h5fx/
 ├── html5shiv/
