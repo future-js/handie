@@ -2,8 +2,8 @@
 //= Reset
 @import "../reset/bootstrap";
 @import "../reset/font-awesome";
-@import "../../../dist/suitcss-sass/index";
-@import "../../../dist/buds/scss/buds";
+@import "../vendors/suitcss-sass/index";
+@import "../vendors/buds/scss/buds";
 @import "../reset/base";
 //= Components
 @import "../components/item";

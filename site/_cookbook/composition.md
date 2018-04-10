@@ -28,12 +28,7 @@ flag:
 [Qiniu SDK](https://github.com/qiniu/js-sdk){:target="_blank"}{:rel="nofollow external"} | 1.0.19 | 上传文件到七牛
 [H5Fx](https://ourai.github.io/H5Fx/){:target="_blank"}{:rel="nofollow external"} | 0.2.3 | 基于 [HTML Forms](https://www.w3.org/TR/html5/forms.html){:target="_blank"}{:rel="nofollow external"} 规范进行表单校验
 [Moment.js](http://momentjs.com/){:target="_blank"}{:rel="nofollow external"} | 2.18.0 | 日期时间格式化
-[Tangram](https://github.com/ourai/tangram){:target="_blank"}{:rel="nofollow external"} | 0.2.2 | 网页布局
-[Trick](https://github.com/ourai/trick){:target="_blank"}{:rel="nofollow external"} | 0.4.2 | Sass mixin 库（不与 [Compass](http://compass-style.org){:target="_blank"}{:rel="nofollow external"} 重叠）
-[SUIT CSS](https://github.com/ourai/suitcss-sass){:target="_blank"}{:rel="nofollow external"} | 0.1.0 | 辅助性的原子类
-[Buds](https://github.com/ourai/buds){:target="_blank"}{:rel="nofollow external"} | 0.1.2 | 通用基础样式
 [Font Awesome](https://fontawesome.com/v4.7.0/){:target="_blank"}{:rel="nofollow external"} | 4.7.0 | 丰富的字体图标
-[Web Components Polyfill](https://www.webcomponents.org/){:target="_blank"}{:rel="nofollow external"} | 1.0.22 | 兼容 Web Components 相关 API
 {:.table.table-bordered}
 
 ### 结构 {#structure}
@@ -47,13 +42,8 @@ flag:
 ├── bootstrap-datetimepicker/
 ├── bootstrap-sass/
 ├── bootstrap-table/
-├── buds/
 ├── fontawesome/
-├── h5fx/
-├── html5shiv/
-├── jquery/
-├── moment/
-├── muu/
+├── handie/
 │   ├── images/
 │   │   ├── favicon.png
 │   │   ├── logo-2x.png
@@ -101,14 +91,14 @@ flag:
 │       ├── admin-lite.min.css
 │       ├── admin.css
 │       └── admin.min.css
+├── h5fx/
+├── html5shiv/
+├── jquery/
+├── moment/
 ├── plupload/
 ├── qiniu/
 ├── select2/
-├── select2-bootstrap-theme/
-├── suitcss-sass/
-├── tangram/
-├── trick/
-└── webcomponentsjs/
+└── select2-bootstrap-theme/
 {% endhighlight %}
 
 ## 样式 {#classes}

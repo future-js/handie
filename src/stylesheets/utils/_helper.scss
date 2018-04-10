@@ -1,8 +1,8 @@
-@import "./external-mixins";
+@import "./vendors";
 //= Reset variables
 @import "./variables";
 //= Variables from Buds
-@import "../../../dist/buds/scss/variables";
+@import "../vendors/buds/scss/variables";
 //= Variables and mixins from Bootstrap
 @import "../../../dist/bootstrap-sass/assets/stylesheets/bootstrap/variables";
 @import "../../../dist/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
