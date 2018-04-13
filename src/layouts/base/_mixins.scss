@@ -3,7 +3,7 @@
 
 
 @mixin base-layout {
-  @include box-fixed-height(
+  @include fixed-body-height(
     ".Page-header", $layout-header-height + $layout-header-border-width,
     ".Page-footer", $layout-footer-height,
     ".Page-body"

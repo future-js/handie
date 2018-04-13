@@ -38,7 +38,7 @@
     "bootstrap-3.3.7": "bootstrap-sass#3.3.7",
     "bootstrap-datetimepicker-4.17.47": "eonasdan-bootstrap-datetimepicker#4.17.47",
     "bootstrap-table-1.11.1": "bootstrap-table#1.11.1",
-    "buds-0.1.2": "buds#0.1.2",
+    "buds-0.2.3": "packagent/buds#0.2.3",
     "fontawesome-4.7.0": "fontawesome#4.7.0",
     "h5fx-0.2.3": "h5fx#0.2.3",
     "html5shiv-3.7.3": "html5shiv#3.7.3",
@@ -47,10 +47,7 @@
     "plupload-2.1.1": "plupload#2.1.1",
     "qiniu-1.0.19": "qiniu#1.0.19",
     "select2-4.0.3": "select2#4.0.3",
-    "select2-bootstrap-theme-0.1.0": "select2-bootstrap-theme#0.1.0-beta.10",
-    "suitcss-sass-0.1.0": "suitcss-sass#0.1.0",
-    "tangram-0.2.3": "ourai/tangram#0.2.3",
-    "trick-1.0.0": "packagent/trick#1.0.0"
+    "select2-bootstrap-theme-0.1.0": "select2-bootstrap-theme#0.1.0-beta.10"
   },
   "resolutions": {
     "jquery": ">=3.2.1"

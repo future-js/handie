@@ -6,7 +6,7 @@
   &.is-scrollable .modal-content {
     height: 100%;
 
-    @include box-fixed-height(
+    @include fixed-body-height(
       ".modal-header", $modal-header-height,
       ".modal-footer", $modal-footer-height,
       ".modal-body"
