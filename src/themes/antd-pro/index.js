@@ -1,1 +1,1 @@
-import "../../layouts/base/initializer";
+import "../../layouts/initializer";

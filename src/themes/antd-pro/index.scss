@@ -1,9 +1,7 @@
 //= Variables and mixins
-@import "./variables";
-@import "../../layouts/base/reset";
-@import "../../layouts/base/mixins";
+@import "variables";
 //= Layout
-@import "../../layouts/sidebar-first/exports";
+@import "../../layouts/sidebar-first";
 //= Theme
-@import "./page";
-@import "./sidebar";
+@import "layout";
+@import "sidebar";

@@ -1,10 +1,7 @@
 //= Variables and mixins
-@import "./variables";
-@import "../../layouts/base/reset";
-@import "../../../dist/bootstrap/assets/stylesheets/bootstrap/variables";
-@import "../../layouts/base/mixins";
+@import "variables";
 //= Layout
-@import "../../layouts/header-first/exports";
+@import "../../layouts/header-first";
 //= Theme
-@import "./header";
-@import "./sidebar";
+@import "header";
+@import "sidebar";
