@@ -1,0 +1,15 @@
+@import "../../vendors/buds/scss/base/reset";
+
+@include keyframes(fadeout) {
+  0% {
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

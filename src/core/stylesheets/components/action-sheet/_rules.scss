@@ -1,0 +1,75 @@
+.ActionSheet-content,
+.ActionSheet-mask {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.ActionSheet-content {
+  font-size: $action-sheet-font-size;
+  text-align: center;
+  background-color: $action-sheet-bg-color;
+  z-index: 9999;
+}
+
+.ActionSheet-mask {
+  top: 0;
+  z-index: 9998;
+  background-color: $action-sheet-mask-bg-color;
+}
+
+.ActionSheet-header,
+.ActionSheet-body,
+.ActionSheet-footer {
+  background-color: $action-sheet-item-bg-color;
+}
+
+.ActionSheet-header,
+.ActionSheet-body li {
+  @include one-pixel-border(bottom, $action-sheet-item-border-color);
+}
+
+.ActionSheet-header h6,
+.ActionSheet-body ul {
+  margin: 0;
+}
+
+.ActionSheet-header h6 {
+  line-height: $action-sheet-title-height;
+  font: {
+    size: $action-sheet-title-font-size;
+    weight: $action-sheet-title-font-weight;
+  }
+  color: $action-sheet-title-text-color;
+}
+
+.ActionSheet-body li,
+.ActionSheet-footer button {
+  line-height: $action-sheet-item-height;
+}
+
+.ActionSheet-body {
+  color: $action-sheet-text-color;
+
+  ul {
+    padding-left: 0;
+    list-style: none inside none;
+  }
+}
+
+.ActionSheet-footer {
+  margin-top: $action-sheet-footer-siblings-space;
+
+  button {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    color: $action-sheet-cancel-button-text-color;
+    background-color: transparent;
+    border-style: none;
+    @include one-pixel-border(top, $action-sheet-item-border-color);
+  }
+}

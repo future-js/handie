@@ -10,6 +10,7 @@
 .idea
 .editorconfig
 .tmp
+.vscode
 
 bower_components
 node_modules

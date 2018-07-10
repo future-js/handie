@@ -1,0 +1,22 @@
+{
+  "name": "handie",
+  "version": "1.0.0",
+  "description": "为前端开发提供统一的布局、组件和工具方法",
+  "main": "utils/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+git@github.com:ourai/handie.git"
+  },
+  "keywords": [
+    "ui",
+    "framework",
+    "foundation",
+    "enterprise"
+  ],
+  "author": "Ourai Lin <ourairyu@gmail.com> (http://ourai.ws/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ourai/handie/issues"
+  },
+  "homepage": "https://github.com/ourai/handie"
+}

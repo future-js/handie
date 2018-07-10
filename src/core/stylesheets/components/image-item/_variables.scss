@@ -1,0 +1,19 @@
+$image-item-deletion-width: rem(30px) !default;
+$image-item-deletion-height: $image-item-deletion-width !default;
+$image-item-deletion-offset-top: -(half($image-item-deletion-height)) !default;
+$image-item-deletion-offset-right: -(half($image-item-deletion-width)) !default;
+$image-item-deletion-border-radius: 50% !default;
+$image-item-deletion-bg-color: #000 !default;
+$image-item-deletion-text-color: #fff !default;
+$image-item-deletion-font-size: rem(20px) !default;
+
+$image-item-placeholder-border-width: rem(2px) !default;
+$image-item-placeholder-border-color: $figure-bg-color !default;
+$image-item-placeholder-bg-color: transparent !default;
+$image-item-placeholder-text-color: inherit !default;
+$image-item-placeholder-font-size: inherit !default;
+$image-item-placeholder-icon-size: rem(50px) !default;
+$image-item-placeholder-icon-font-size: $image-item-placeholder-icon-size !default;
+
+$image-item-waiting-text: "图片正在上传" !default;
+$image-item-blank-text: "暂无图片" !default;

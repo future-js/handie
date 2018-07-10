@@ -10,15 +10,16 @@
 
 _site
 
+bower_components
 node_modules
 
 /backup
-/bower_components
 /dist
 /site/_adaptors/vendor
 /site/_admin/bower_components
 /site/_admin/vendor
 /site/_cookbook/_book
-/src/stylesheets/vendors
+/src/core/vendors
 /test/assets
-/test/works
+/test/jquery/assets
+/test/vue/*.bundle.js

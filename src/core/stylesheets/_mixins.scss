@@ -1,0 +1,89 @@
+@import "../vendors/buds/scss/mixins";
+
+@mixin contained_background( $url: none, $color: transparent ) {
+  @if $url != none {
+    $url: url($url);
+  }
+
+  background: $color $url no-repeat 50% 50%;
+  background-size: contain;
+}
+
+@mixin bg-icon( $path, $ext: "png" ) {
+  $url: $path + "." + $ext;
+  $url2x: $path + "-2x." + $ext;
+
+  @include covered_background($url);
+  @include image-set(
+      url($url) 1x,
+      url($url2x) 2x
+  );
+}
+
+@mixin bg-icon-contained( $path, $ext: "png" ) {
+  $url: $path + "." + $ext;
+  $url2x: $path + "-2x." + $ext;
+
+  @include contained_background($url);
+  @include image-set(
+      url($url) 1x,
+      url($url2x) 2x
+  );
+}
+
+@mixin hd-device() {
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+    @content;
+  }
+}
+
+@mixin one-pixel-border( $position: top, $color: transparent ) {
+  border: 0 solid $color;
+  
+  @if $position == both {
+    border-width: 1px 0;
+  }
+  @else {
+    border-#{$position}-width: 1px;
+  }
+
+  @include hd-device {
+    position: relative;
+    border-width: 0;
+
+    @if $position == both {
+      &:before,
+      &:after {
+        content: $UN-space;
+        position: absolute;
+        right: 0;
+        left: 0;
+        height: 1px;
+        background-color: $color;
+        @include scaleY(.5);
+      }
+
+      &:before {
+        top: 0;
+      }
+
+      &:after {
+        bottom: 0;
+      }
+    }
+    @else {
+      $pseudo: if($position == top, before, after);
+  
+      &:#{$pseudo} {
+        content: $UN-space;
+        position: absolute;
+        #{$position}: 0;
+        right: 0;
+        left: 0;
+        height: 1px;
+        background-color: $color;
+        @include scaleY(.5);
+      }
+    }
+  }
+}

@@ -5,10 +5,10 @@
   "authors": [
     "Ourai Lin <ourairyu@gmail.com> (http://ourai.ws/)"
   ],
-  "description": "UI stuffs for the dashboard of a website",
+  "description": "为前端开发提供统一的布局、组件和工具方法",
   "main": [
-    "dist/handie/stylesheets/admin.css",
-    "dist/handie/stylesheets/admin.js"
+    "dist/jquery/stylesheets/admin.css",
+    "dist/jquery/stylesheets/admin.js"
   ],
   "keywords": [
     "ui",
@@ -38,7 +38,7 @@
     "bootstrap-3.3.7": "bootstrap-sass#3.3.7",
     "bootstrap-datetimepicker-4.17.47": "eonasdan-bootstrap-datetimepicker#4.17.47",
     "bootstrap-table-1.11.1": "bootstrap-table#1.11.1",
-    "buds-0.2.3": "packagent/buds#0.2.3",
+    "buds-0.2.17": "packagent/buds#0.2.17",
     "fontawesome-4.7.0": "fontawesome#4.7.0",
     "h5fx-0.2.3": "h5fx#0.2.3",
     "html5shiv-3.7.3": "html5shiv#3.7.3",
