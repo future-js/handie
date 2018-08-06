@@ -1,43 +1,28 @@
-# Handie
+# [Handie](https://ourai.github.io/handie/)
 
-[![NPM version](https://badge.fury.io/js/handie.svg)](https://www.npmjs.com/package/handie)
-[![Bower version](https://badge.fury.io/bo/handie.svg)](https://github.com/packagent/handie)
+## 为何要有这个
 
-Handie is a collection of UI stuffs for admin dashboard websites.
+技术在发展，业务场景也在不断地变化，要在一家企业中始终如一地使用同一套技术几乎是不可能的。
 
-It depends on a number of other libraries and frameworks. I included dependencies as parts of Handie in order to make versions controllable and import them handily.
+在使用不同的技术开发了多个应用之后，让其他未接触过相关技术的人来接手开发时，不仅要熟悉业务，还要花时间去了解学习相关技术并理解原有代码。
 
-## Usage
+熟悉业务是不可避免的，但在业务开发中由于切换技术栈所带来的成本是否能够尽可能地降低呢？答案必然是肯定的！这就是 Handie 所存在的意义！
 
-At first, you should type command in terminal with `bower install --save handie` or `npm install --save handie` to download Handie.
+## 如何解决问题
 
-Then import assets which you need:
+Handie 的目标不是统一技术栈，更不是统一界面风格，而是——
 
-```html
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Handie</title>
-    <!-- Global and layout-specific CSS rules -->
-    <link rel="stylesheet" href="/handie-latest/handie/stylesheets/layouts/isomorphic-default.css">
-  </head>
-  <body class="Page">
-    ...
-    <!-- Dependencies for Handie -->
-    <script src="/handie-latest/jquery/dist/jquery.min.js"></script>
-    <script src="/handie-latest/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
-    <!-- Utils of Handie -->
-    <script src="/handie-latest/handie/javascripts/handie.js"></script>
-    <!-- Layout-specific Logic -->
-    <script src="/handie-latest/handie/javascripts/layouts/Isomorphic.js"></script>
-  </body>
-</html>
-```
+- 为做业务开发的前端开发人员提供在任何技术栈中都一致的开发体验，减少切换技术栈的成本；
+- 便捷、快速地开发页面，从枯燥、繁重的业务开发中解放出来。
 
-Please visit the [cookbook](https://ourai.github.io/handie/cookbook/) to learn more advanced features. ;-)
+为了达成目标，Handie 主要提供以下材料：
 
-## Feedback
+- 通用的工具方法；
+- 通用的页面布局；
+- 通用的 CSS 组件及以此在各技术栈中封装的组件；
+- 大量的 Sass mixin；
+- 自定义主题机制。
 
-If you have any good suggestions, you could create an [issue](https://github.com/ourai/handie/issues) or send [E-mail](mailto:ourairyu@gmail.com) to me.
+## 怎么反馈问题
 
-Thank you. ;-)
+如果你有问题要反馈或什么好的建议，可以提交 [issue](https://github.com/ourai/handie/issues) 或钉钉联系[欧雷](dingtalk://dingtalkclient/action/sendmsg?dingtalk_id=ourairyu)。
