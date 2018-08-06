@@ -40,7 +40,7 @@ function resolveThemeJsTask( fileName, renameTo, version ) {
 }
 
 function resolveThemeTasks( type, version ) {
-  const files = version === "v1" ? ["index", "lite", "admin-lte", "h-ui-admin"] : ["index"];
+  const files = version === "v1" ? ["index", "lite"] : ["index"];
 
   files.forEach(fileName => {
     const taskPrefix = `compile-${type}-theme-${version}`;
