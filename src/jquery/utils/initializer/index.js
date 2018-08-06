@@ -112,8 +112,8 @@ function initDefaults() {
       initializer: () => {
         // Select2 下拉列表
         each({
-          containerCssClass: "muu-Select2-container",
-          dropdownCssClass: "muu-Select2-dropdown",
+          containerCssClass: "handie-Select2-container",
+          dropdownCssClass: "handie-Select2-dropdown",
           minimumResultsForSearch: "Infinity"
         }, ( v, k ) => {
           $.fn.select2.defaults.set(k, v);

@@ -40,7 +40,7 @@ function resolveDialogForm( $dlg, opts ) {
 function resolveRequestHandler( method, params, ctx ) {
   let handler = method;
   
-  // 应该返回 `'post'`、`'put'` 或 `muu.ajax.post`、`muu.ajax.put`
+  // 应该返回 `'post'`、`'put'` 或 `handie.ajax.post`、`handie.ajax.put`
   if ( isFunction(handler) ) {
     handler = handler.call(ctx, params);
   }
@@ -84,7 +84,7 @@ function resolveSubmitHandler( $dlg, opts ) {
   const { method, params, callback } = ajaxOpts;
 
   // 删除用于构造处理函数的属性
-  // 其余部分作为 `muu.ajax.METHOD()` 的最后一个参数传入
+  // 其余部分作为 `handie.ajax.METHOD()` 的最后一个参数传入
   each(['url', 'method', 'params', 'callback'], key => {
     delete ajaxOpts[key];
   });

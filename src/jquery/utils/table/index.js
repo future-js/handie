@@ -91,7 +91,7 @@ function constructOperationColumn( col, opts ) {
     }
   }
 
-  col.__muuAjaxOpts = opts.ajax;
+  col.__handieAjaxOpts = opts.ajax;
   col.formatter = formatter;
   col.events = mixin(true, {}, opts.events, events);
 

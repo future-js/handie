@@ -7,7 +7,7 @@ $(document).ready(() => {
   initResponsiveActions();
 
   $("form").on("reset", function() {
-    muu.form.reset($(this));
+    handie.form.reset($(this));
   });
 
   $(".Area--query .Card-content .form-group select").each(function() {
@@ -16,7 +16,7 @@ $(document).ready(() => {
 
   // 按条件查询数据
   $(".Area--query form").on("submit", () => {
-    muu.table.refresh(true);
+    handie.table.refresh(true);
 
     return false;
   });

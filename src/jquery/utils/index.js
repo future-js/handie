@@ -19,7 +19,7 @@ import { alert, $el } from './misc';
 
 import './initializer';
 
-window.muu = {
+window.handie = {
   setDefaults, set, get, alert, $el,
   http, socket,
   table, dialog, form, field, select,
