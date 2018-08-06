@@ -44,16 +44,10 @@ gulp.task("jquery-compile-css-t1", ["jquery-compile-css-main"], resolveScssTask(
 
 gulp.task("jquery-compile-css-t2", ["jquery-compile-css-main"], resolveScssTask([`${CSS_DIST}/admin/_exports.scss`, `${JQUERY_ROOT}/themes/v2/index.scss`], {imported: true, renameTo: "admin-t2.scss"}));
 
-gulp.task("jquery-compile-css-mazda", resolveScssTask(`${JQUERY_ROOT}/apps/mazda/index.scss`, {renameTo: "mazda.scss", dest: `${CSS_DIST}/apps`}));
-
-gulp.task("jquery-compile-css-tida", resolveScssTask(`${JQUERY_ROOT}/apps/tida/index.scss`, {renameTo: "tida.scss", dest: `${CSS_DIST}/apps`}));
-
 gulp.task("jquery-compile-css", THEME_CSS_TASKS.concat([
     "jquery-export-scss-helper",
     "jquery-compile-css-t1",
-    "jquery-compile-css-t2",
-    "jquery-compile-css-mazda",
-    "jquery-compile-css-tida"
+    "jquery-compile-css-t2"
   ]), () => {
     return gulp
       .src(`${CSS_DIST}/**/*.css`, {base: CSS_DIST})

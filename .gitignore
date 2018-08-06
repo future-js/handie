@@ -22,7 +22,6 @@ node_modules
 /site/_cookbook/_book
 
 /src/core/vendors
-/src/jquery/apps
 
 /test/assets
 /test/jquery/assets
