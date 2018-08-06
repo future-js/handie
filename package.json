@@ -28,6 +28,11 @@
     "pack:core": "cp src/core/*.json src/core/*.md dist/core",
     "prerelease:core": "npm run compile:core && npm run pack:core",
     "release:core": "cd dist/core && npm publish",
+    "update:jquery": "cd src/jquery && npm r -D handie && npm i -D handie && cd ../..",
+    "precompile:jquery": "rm -rf dist/jquery/handie && bower install --force-latest",
+    "compile:jquery": "gulp compile-jquery",
+    "prerelease:jquery": "npm run compile:jquery",
+    "release:jquery": "node ./build/scripts/release.js",
     "up2qiniu": "node ./build/scripts/upload.js qiniu",
     "up2wantu": "node ./build/scripts/upload.js wantu"
   },

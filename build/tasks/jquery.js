@@ -2,8 +2,6 @@ const gulp = require("gulp");
 const concat = require("gulp-concat");
 const cssmin = require("gulp-cssmin");
 const rename = require("gulp-rename");
-const babel = require("gulp-babel");
-const umd = require("gulp-umd");
 const scssimport = require("gulp-shopify-sass");
 const strip = require("gulp-strip-comments");
 const uglify = require("gulp-uglify");
@@ -13,13 +11,11 @@ const rollupBabel = require("rollup-plugin-babel");
 const rollupNodeResolver = require("rollup-plugin-node-resolve");
 const cleanup = require("rollup-plugin-cleanup");
 
-const { LIB_NAME, CSS_DIST, JS_DIST } = require("./constants");
+const { CSS_DIST, JS_DIST } = require("./constants");
 const { THEME_CSS_TASKS, THEME_JS_TASKS } = require("./theme");
 const {
-    snake2Camel,
     resolveBanner,
     resolveScssTask,
-    resolveJsTask,
     resolveRollupTask
   } = require("./functions");
 
