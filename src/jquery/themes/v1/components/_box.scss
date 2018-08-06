@@ -1,0 +1,46 @@
+$box-bg-color: #fefefe !default;
+$box-border-radius: rem(2px) !default;
+$box-vertical-padding: rem(12px) !default;
+
+$box-border-color-default: #ddd !default;
+$box-border-color-primary: $brand-primary !default;
+$box-border-color-success: $brand-success !default;
+$box-border-color-info: $brand-info !default;
+$box-border-color-warning: $brand-warning !default;
+$box-border-color-danger: $brand-danger !default;
+
+@import "../../../node_modules/handie/stylesheets/components/box";
+@import "../../../stylesheets/components/box";
+@import "../../../../../dist/jquery/bootstrap/assets/stylesheets/bootstrap/variables";
+
+.Box {
+  border-top: rem(3px) solid $box-border-color-default;
+
+  &.is-default {
+    border-top-color: $box-border-color-default;
+  }
+
+  &.is-primary {
+    border-top-color: $box-border-color-primary;
+  }
+
+  &.is-success {
+    border-top-color: $box-border-color-success;
+  }
+
+  &.is-info {
+    border-top-color: $box-border-color-info;
+  }
+
+  &.is-warning {
+    border-top-color: $box-border-color-warning;
+  }
+
+  &.is-danger {
+    border-top-color: $box-border-color-danger;
+  }
+
+  &.is-rimless {
+    border-top-style: none;
+  }
+}

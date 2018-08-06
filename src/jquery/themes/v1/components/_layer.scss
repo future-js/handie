@@ -1,0 +1,5 @@
+@import "../utils/helper";
+
+.Layer--notice {
+  top: $page-header-height + rem(1px);
+}

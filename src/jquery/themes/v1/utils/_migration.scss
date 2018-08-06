@@ -1,0 +1,32 @@
+@mixin header-brand-logo {
+  position: relative;
+  font: {
+    size: $header-brand-font-size;
+    weight: $header-brand-font-weight;
+  }
+  line-height: 1.1;
+  @include text-middle("img, span");
+
+  img {
+    width: rem(256px) / rem(50px) * $header-brand-image-height;
+    height: $header-brand-image-height;
+    max-height: 100%;
+
+    + span {
+      position: relative;
+      padding-left: $header-brand-separator-gap;
+
+      &:before {
+        content: $UN-space;
+        width: 1px;
+        background-color: $header-brand-separator-color;
+        @include stretch(0, auto, 0, rem(10px));
+      }
+    }
+  }
+
+  span {
+    padding-left: rem(10px);
+    color: $header-brand-text-color;
+  }
+}

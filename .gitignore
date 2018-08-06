@@ -15,11 +15,15 @@ node_modules
 
 /backup
 /dist
+
 /site/_adaptors/vendor
 /site/_admin/bower_components
 /site/_admin/vendor
 /site/_cookbook/_book
+
 /src/core/vendors
+/src/jquery/apps
+
 /test/assets
 /test/jquery/assets
 /test/vue/*.bundle.js

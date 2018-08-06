@@ -1,0 +1,10 @@
+.ImageList {
+  &:not(.u-hidden) + .ImageList:not(.u-hidden) {
+    margin-top: rem(15px);
+  }
+}
+
+$figure-border-radius: rem(6px) !default;
+$figure-bg-color: #a6a6a6 !default;
+
+@import "../../node_modules/handie/stylesheets/components/image-item";

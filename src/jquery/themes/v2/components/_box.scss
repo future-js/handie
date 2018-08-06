@@ -1,0 +1,7 @@
+$box-border-radius: rem(2px) !default;
+$box-box-shadow: none !default;
+$box-padding: rem(24px) !default;
+$box-siblings-space: $box-padding !default;
+
+@import "../../../node_modules/handie/stylesheets/components/box";
+@import "../../../stylesheets/components/box";

@@ -1,0 +1,20 @@
+@import "./flexible";
+
+//= Override Bootstrap
+
+$font-family-sans-serif: "Helvetica Neue", Helvetica, Arial, "Pingfang SC", "Microsoft Yahei", Sans-serif;
+$font-size-base: rem(14px);
+$line-height-base: 1.5;
+
+$navbar-height: rem(60px);
+
+
+
+//= Override Font Awesome
+
+$fa-font-path: "../../fontawesome/fonts" !default;
+
+
+
+$modal-header-height: rem(58px);
+$modal-footer-height: rem(66px);
