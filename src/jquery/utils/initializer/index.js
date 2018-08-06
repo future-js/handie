@@ -13,7 +13,6 @@ import { getDefaults } from '../storage/helper';
 
 import { jsonify } from "../form";
 import { levelUp, levelDown } from "../dialog";
-import { watermark } from "../encryption";
 import { setImageItemUrl } from "../uploader/helper";
 import { moveImageItemsForward } from "../generator/helper";
 import { initNotificationCounter } from "../notification/helper";
@@ -165,35 +164,9 @@ function initDefaults() {
   });
 }
 
-function initDialogWatermark( $m ) {
-  const $container = $(".modal-content", $m);
-  const flag = "watermarkInited";
-
-  if ( $container.data(flag) !== true ) {
-    watermark({
-      container: $container.get(0),
-      left: 0,
-      top: 0,
-      style: {
-        height: "auto",
-        position: "absolute"
-      }
-    });
-
-    $(`[id^="watermark"]`, $container).addClass("Layer Layer--watermark js-watermark");
-    $container.data(flag, true);
-  }
-}
-
 function initDialogs() {
   if ( !supportBootstrapModal() ) {
     return;
-  }
-
-  if ( getDefaults('watermark.mainOnly') !== true ) {
-    $(document).on("show.bs.modal", ".modal", function() {
-      initDialogWatermark($(this));
-    });
   }
 
   $(document).on("shown.bs.modal", ".modal", function() {
@@ -241,10 +214,6 @@ $(document).ready(function() {
   initDialogs();
   initSelects();
   initNotificationCounter();
-
-  if ( getDefaults('watermark.autoInit') === true ) {
-    watermark();
-  }
 
   // 阻止滑动引起的数字增减
   $("input[type='number']").on("mousewheel", function( e ) {
