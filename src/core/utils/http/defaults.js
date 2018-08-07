@@ -1,7 +1,7 @@
 import { hasOwnProp } from '../common/helper';
 import { isString, isFunction, isPlainObject } from '../is/type';
 import { getDefaults } from '../storage/helper';
-import { invoke } from '../../adaptors/bridge';
+import { invoke } from '../../adapters/bridge';
 
 export default {
   serverErrorText: '服务器开小差啦～',
@@ -10,6 +10,14 @@ export default {
    */
   jsonify( params ) {
     return params;
+  },
+  /**
+   * 判断是否为一个 RESTful 的请求响应
+   * 
+   * @param {*} res 请求返回
+   */
+  isRestful( res ) {
+    return !(res !== undefined && hasOwnProp('success', res) && hasOwnProp('message', res));
   },
   /**
    * 请求发生错误时的处理
@@ -48,11 +56,25 @@ export default {
    * 对请求返回数据的处理
    */
   responseHandler( res, callback ) {
-    if ( isString(res) && res !== '' ) {
-      invoke('notice.alert', res);
+    const hasCallback = isFunction(callback);
+
+    // RESTful 请求的情况
+    if ( getDefaults('http.isRestful')(res) ) {
+      if ( isString(res) && res !== '' ) {
+        invoke('notice.alert', res);
+      }
+      else if ( hasCallback ) {
+        callback.call(null, res);
+      }
     }
-    else if ( isFunction(callback) ) {
-      callback.call(null, res);
+    // 返回结构为 {success: true, message: ""} 的情况
+    else {
+      if ( !res.success ) {
+        invoke('notice.alert', res.message);
+      }
+      else if ( hasCallback ) {
+        callback.call(null, res.data);
+      }
     }
   },
   /**
