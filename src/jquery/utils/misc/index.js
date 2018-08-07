@@ -50,12 +50,6 @@ function alertMessage( message, settings ) {
   }
 }
 
-export const $el = {
-  triggerType: ( $el ) => {
-    return $el.attr("class").match(/js\-([a-zA-Z]+)/)[1];
-  }
-};
-
 export {
   alertMessage as alert
 }
