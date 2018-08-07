@@ -1,5 +1,5 @@
 import {
-  isString, isArray, isFunction, isPlainObject, isRestful,
+  isString, isArray, isFunction, isPlainObject,
   last, hasOwnProp } from '../common/helper';
 import { getDefaults } from '../storage/helper';
 import { post as ajaxPost, delete as ajaxDelete } from '../http';
@@ -169,7 +169,7 @@ export default {
   responseHandler( res ) {
     const resolved = resolveListResponse(res);
   
-    if ( isRestful(res) ) {
+    if ( getDefaults('http.isRestful')(res) ) {
       if ( isString(res) ) {
         alertMessage(res);
       }

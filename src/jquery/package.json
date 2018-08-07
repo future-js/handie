@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/ourai/handie",
   "devDependencies": {
-    "handie": "^1.0.0"
+    "handie": "^1.0.1"
   }
 }

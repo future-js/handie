@@ -1,15 +1,6 @@
 import { mixin } from 'handie/utils/collection';
 
 /**
- * 判断是否为一个 RESTful 请求
- * 
- * @param {*} res 请求返回
- */
-export function isRestful( res ) {
-  return !(res !== undefined && hasOwnProp('success', res) && hasOwnProp('message', res));
-}
-
-/**
  * 初始化 Bootstrap 所提供的工具提示
  * 
  * https://getbootstrap.com/docs/3.3/javascript/#tooltips
