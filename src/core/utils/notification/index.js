@@ -1,7 +1,7 @@
 import { isString, isFunction, isPlainObject } from '../is/type';
 import { mixin } from '../collection';
 import { setDefaults, getDefaults } from '../storage/helper';
-import { invoke } from '../../adaptors/bridge';
+import { invoke } from '../../adapters/bridge';
 
 import NOTIFICATION_DEFAULTS from './defaults';
 

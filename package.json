@@ -22,7 +22,7 @@
     "major:core": "cd src/core && npm version major && cd ../..",
     "minor:core": "cd src/core && npm version minor && cd ../..",
     "patch:core": "cd src/core && npm version patch && cd ../..",
-    "babel:core": "babel src/core/utils -d dist/core/utils && babel src/core/adaptors -d dist/core/adaptors",
+    "babel:core": "babel src/core/utils -d dist/core/utils && babel src/core/adapters -d dist/core/adapters",
     "precompile:core": "rm -rf dist/core",
     "compile:core": "gulp compile-core",
     "pack:core": "cp src/core/*.json src/core/*.md dist/core",
