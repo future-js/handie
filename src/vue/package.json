@@ -19,7 +19,9 @@
     "url": "https://github.com/ourai/handie/issues"
   },
   "homepage": "https://github.com/ourai/handie",
-  "dependencies": {},
+  "dependencies": {
+    "handie": "^1.0.1"
+  },
   "peerDependencies": {
     "vue": "^2.5.16",
     "vue-router": "^3.0.1"

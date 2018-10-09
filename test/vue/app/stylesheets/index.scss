@@ -1,0 +1,60 @@
+@import "./helper";
+
+$box-siblings-space: rem(16px);
+
+$list-siblings-space: rem(40px);
+$list-item-min-height: rem(90px);
+$list-item-vertical-padding: rem(20px);
+$list-item-horizontal-padding: rem(30px);
+$list-item-font-size: rem(28px);
+$list-item-multiline-gap: rem(6px);
+$list-brief-font-size: rem(24px);
+$list-extra-icon-size: rem(52px);
+$list-extra-icon-offset-left: rem(-7px);
+$list-extra-icon-offset-right: rem(-15px);
+
+$figure-aspect-ratio-width: 1;
+$figure-aspect-ratio-height: 1;
+$figure-caption-font-size: rem(24px);
+$image-item-placeholder-border-width: 0;
+$image-item-placeholder-icon-size: rem(50px);
+
+$tab-bar-item-font-size: rem(20px);
+$tab-bar-item-font-weight: 400;
+$tab-bar-item-text-color: #626262;
+$tab-bar-item-icon-width: rem(50px);
+$tab-bar-item-icon-gap: rem(8px);
+
+$view-box-bg-color: transparent;
+$view-box-footer-height: rem(100px);
+$view-box-footer-bg-color: #fff;
+
+@import "../../../../src/vue/stylesheets/base";
+@import "../../../../src/vue/stylesheets/components";
+
+body {
+  margin: 0;
+  background-color: #f3f4f5;
+}
+
+.List:not(.is-headless) {
+  .List-item:first-child {
+    position: relative;
+
+    &:before {
+      content: $UN-space;
+      position: absolute;
+      top: rem(33px);
+      bottom: rem(33px);
+      left: 0;
+      width: rem(6px);
+      background-color: $theme-color;
+    }
+  }
+}
+
+.ListItem--sizeFull {
+  .ListItem-content {
+    width: 100% !important;
+  }
+}

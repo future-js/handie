@@ -25,5 +25,4 @@ node_modules
 
 /test/assets
 /test/jquery/assets
-/test/vue
 /test/vue/*.bundle.js
