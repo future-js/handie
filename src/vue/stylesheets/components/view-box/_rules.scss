@@ -1,0 +1,10 @@
+.ViewBox {
+  background-color: $view-box-bg-color;
+
+  > .Sticky-footer {
+    height: $view-box-footer-height;
+    background-color: $view-box-footer-bg-color;
+    
+    @include box-shadow($view-box-footer-box-shadow);
+  }
+}

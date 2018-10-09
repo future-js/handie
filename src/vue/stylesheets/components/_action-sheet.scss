@@ -1,0 +1,25 @@
+@import "../../node_modules/handie/stylesheets/components/action-sheet";
+
+.muu-action-sheet-fade-enter,
+.muu-action-sheet-fade-enter-active,
+.muu-action-sheet-fade-leave,
+.muu-action-sheet-fade-leave-active {
+  @include transition(opacity .2s linear);
+}
+
+.muu-action-sheet-fade-enter,
+.muu-action-sheet-fade-leave-active {
+  opacity: 0;
+}
+
+.muu-action-sheet-slide-enter,
+.muu-action-sheet-slide-enter-active,
+.muu-action-sheet-slide-leave,
+.muu-action-sheet-slide-leave-active {
+  @include transition(transform .2s ease-out);
+}
+
+.muu-action-sheet-slide-enter,
+.muu-action-sheet-slide-leave-active {
+  @include translateY(100%);
+}

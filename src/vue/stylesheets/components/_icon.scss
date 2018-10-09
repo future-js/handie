@@ -1,0 +1,34 @@
+$hd: 2px !default;
+
+$icon-size-xxs: 15 * $hd !default;
+$icon-size-xs: 18 * $hd !default;
+$icon-size-sm: 21 * $hd !default;
+$icon-size-md: 22 * $hd !default;
+$icon-size-lg: 36 * $hd !default;
+
+.Icon {
+  fill: currentColor;
+  background-size: cover;
+  @include inline-block(none);
+  @include square(rem($icon-size-md));
+
+  &.Icon--xxs {
+    @include square(rem($icon-size-xxs));
+  }
+
+  &.Icon--xs {
+    @include square(rem($icon-size-xs));
+  }
+
+  &.Icon--sm {
+    @include square(rem($icon-size-sm));
+  }
+
+  &.Icon--md {
+    @include square(rem($icon-size-md));
+  }
+
+  &.Icon--lg {
+    @include square(rem($icon-size-lg));
+  }
+}
