@@ -8,7 +8,7 @@ import * as text from './text';
 import { setDefaults, set, get } from './storage';
 
 window.handie = {
-  setDefaults, set, get, alert,
+  setDefaults, set, get,
   http, socket,
   generate, text, calc,
   data, url,
