@@ -41,7 +41,7 @@ function sendRequestViaJquery( opts ) {
   const httpDefaults = getDefaults('http');
   const params = httpDefaults.jsonify(opts.params);
   const { url, method, callback } = opts;
-  const resolved = {url, method, type: method};
+  const resolved = {url, method, type: method, global: false};
 
   if ( opts.isJson === true ) {
     resolved.data = JSON.stringify(params);
