@@ -1,6 +1,6 @@
 {
   "name": "handie-jquery",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "为前端开发提供统一的布局、组件和工具方法",
   "main": "index.js",
   "repository": {

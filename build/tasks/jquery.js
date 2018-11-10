@@ -94,9 +94,32 @@ gulp.task("jquery-extract-js-utils", () => {
   });
 });
 
-gulp.task("jquery-concat-js-admin", THEME_JS_TASKS.concat(["jquery-concat-js-vendors", "jquery-extract-js-utils"]), () => {
+gulp.task("jquery-extract-js-utils-lite", () => {
+  return resolveRollupTask({
+    input: `${JQUERY_ROOT}/utils/lite.js`,
+    plugins: [
+      rollupNodeResolver(),
+      rollupBabel({
+        babelrc: false,
+        presets: [["env", {"modules": false}]],
+        plugins: ["external-helpers"]
+      }),
+      cleanup({
+        comments: "none",
+        maxEmptyLines: 1
+      })
+    ],
+    file: `${JS_DIST}/utils-lite.js`,
+    name: "utils-lite"
+  });
+});
+
+gulp.task("jquery-concat-js-admin", THEME_JS_TASKS.concat([
+  "jquery-concat-js-vendors",
+  "jquery-extract-js-utils",
+  "jquery-extract-js-utils-lite"]), () => {
   return gulp
-    .src(["vendors", "utils"].map(name => `${JS_DIST}/${name}.js`).concat(`${JS_DIST}/themes/v1/main.js`))
+    .src(["vendors", "utils", "utils-lite"].map(name => `${JS_DIST}/${name}.js`).concat(`${JS_DIST}/themes/v1/main.js`))
     .pipe(concat("admin.js"))
     .pipe(gulp.dest(JS_DIST));
 });
