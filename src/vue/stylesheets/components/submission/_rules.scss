@@ -1,0 +1,45 @@
+.Submission > .Sticky-footer {
+  height: $submission-footer-height;
+  padding: $submission-footer-padding;
+  background-color: $submission-footer-bg-color;
+
+  @if $submission-footer-box-shadow != "none" {
+    @include box-shadow($submission-footer-box-shadow);
+  }
+}
+
+.Submission-button {
+  display: block;
+  width: $submission-button-width;
+  height: $submission-button-height;
+  margin: 0;
+  padding: 0;
+  font: {
+    size: $submission-button-font-size;
+    weight: $submission-button-font-weight;
+  }
+  border: 1px solid $submission-button-border-color;
+  @include border-radius($submission-button-border-radius);
+
+  &:not(:last-child) {
+    margin-right: $submission-button-siblings-space;
+  }
+}
+
+.Submission-button--primary {
+  @if $submission-primary-width != $submission-button-width {
+    width: $submission-primary-width;
+  }
+
+  color: $submission-primary-text-color;
+  background-color: $submission-primary-bg-color;
+}
+
+.Submission-button--secondary {
+  @if $submission-secondary-width != $submission-button-width {
+    width: $submission-secondary-width;
+  }
+
+  color: $submission-secondary-text-color;
+  background-color: $submission-secondary-bg-color;
+}

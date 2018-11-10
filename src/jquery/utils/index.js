@@ -13,12 +13,12 @@ import * as notice from './notification';
 import * as text from './text';
 import * as upload from './uploader';
 import { setDefaults, set, get } from './storage';
-import { alert, $el } from './misc';
+import { alert } from './misc';
 
 import './initializer';
 
 window.handie = {
-  setDefaults, set, get, alert, $el,
+  setDefaults, set, get, alert,
   http, socket,
   table, dialog, form, field, select,
   generate, text, calc,

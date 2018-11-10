@@ -4,6 +4,9 @@ import { getDefaults } from '../storage/helper';
 import { invoke } from '../../adapters/bridge';
 
 export default {
+  // 用于相对路径的基础 URL
+  baseURL: '',
+  // 服务器错误（HTTP 状态码 5xx）时的提示
   serverErrorText: '服务器开小差啦～',
   /**
    * 将请求参数转换为 JSON

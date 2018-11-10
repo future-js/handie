@@ -1,0 +1,2 @@
+import './dingtalk';
+import './web';

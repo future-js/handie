@@ -1,0 +1,22 @@
+.Button {
+  margin: 0;
+  padding: 0;
+  border: 0 none transparent;
+  background-color: transparent;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+
+  &:not(.Button--inline) {
+    display: block;
+  }
+
+  > span,
+  > .Icon {
+    @include inline-block;
+  }
+}
+
+.Button--inline {
+  @include inline-block(none);
+}

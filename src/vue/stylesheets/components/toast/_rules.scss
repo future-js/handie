@@ -1,0 +1,32 @@
+.Toast {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99999;
+  text-align: center;
+  @include text-middle(".Toast-body");
+}
+
+.Toast-body {
+  min-width: 7em;
+  max-width: 80%;
+  padding: $toast-vertical-padding $toast-horizontal-padding;
+  font-size: $toast-font-size;
+  color: $toast-text-color;
+  background-color: $toast-bg-color;
+  @include border-radius($toast-border-radius);
+}
+
+.muu-toast-fade-enter,
+.muu-toast-fade-enter-active,
+.muu-toast-fade-leave,
+.muu-toast-fade-leave-active {
+  @include transition(opacity $toast-fade-duration linear);
+}
+
+.muu-toast-fade-enter,
+.muu-toast-fade-leave-active {
+  opacity: 0;
+}
