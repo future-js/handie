@@ -99,6 +99,10 @@ function sendHttpRequest( opts ) {
       isJson: false
     }, opts);
   
+  if ( !/^http(s)?\:\/\//.test(resolved.url) ) {
+    resolved.url = getDefaults('http.baseURL') + resolved.url;
+  }
+
   return requestSender === 'jquery' ? sendRequestViaJquery(resolved) : requestSender === 'axios' ? sendRequestViaAxios(resolved) : null;
 }
 
