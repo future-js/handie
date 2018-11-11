@@ -11,3 +11,19 @@ $header-brand-text-color: #fff;
 $page-action-trigger-color: $header-brand-text-color;
 
 @import "../../../node_modules/handie/stylesheets/layouts/header-first";
+
+.Page-main,
+.SubNavs,
+.Content {
+  height: 100%;
+}
+
+.SubNavs {
+  float: left;
+  width: 180px;
+  background-color: #eaedf1;
+}
+
+.Content {
+  @include box-sizing(border-box);
+}
