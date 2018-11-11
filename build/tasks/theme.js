@@ -1,10 +1,10 @@
-const gulp = require("gulp");
-const rollupBabel = require("rollup-plugin-babel");
+const gulp = require('gulp');
+const rollupBabel = require('rollup-plugin-babel');
 
-const { CSS_DIST, JS_DIST } = require("./constants");
-const { resolveRollupTask, resolveScssTask, resolveJsTask } = require("./functions");
+const { CSS_DIST, JS_DIST } = require('./constants');
+const { resolveRollupTask, resolveScssTask, resolveJsTask } = require('./functions');
 
-const THEME_SRC = "src/jquery/themes";
+const THEME_SRC = 'src/jquery/themes';
 const THEME_CSS_TASKS = [];
 const THEME_JS_TASKS = [];
 
@@ -29,8 +29,8 @@ function resolveThemeJsTask( fileName, renameTo, version ) {
       plugins: [
         rollupBabel({
           babelrc: false,
-          presets: [["env", {"modules": false}]],
-          plugins: ["external-helpers"]
+          presets: [['env', {'modules': false}]],
+          plugins: ['external-helpers']
         })
       ],
       file: `${JS_DIST}/themes/${version}/${renameTo}.js`,
@@ -40,7 +40,7 @@ function resolveThemeJsTask( fileName, renameTo, version ) {
 }
 
 function resolveThemeTasks( type, version ) {
-  const files = version === "v1" ? ["index", "lite"] : ["index"];
+  const files = version === 'v1' ? ['index', 'lite'] : ['index'];
 
   files.forEach(fileName => {
     const taskPrefix = `compile-${type}-theme-${version}`;
@@ -48,15 +48,15 @@ function resolveThemeTasks( type, version ) {
     let taskName, renameTo,
         tasks, resolver;
 
-    if ( fileName === "index" ) {
+    if ( fileName === 'index' ) {
       taskName = taskPrefix;
-      renameTo = "main";
+      renameTo = 'main';
     }
     else {
       taskName = `${taskPrefix}-${fileName}`;
     }
 
-    if ( type === "js" ) {
+    if ( type === 'js' ) {
       tasks = THEME_JS_TASKS;
       resolver = resolveThemeJsTask;
     }
@@ -71,9 +71,10 @@ function resolveThemeTasks( type, version ) {
   });
 }
 
-["js", "css"].forEach(type => {
-  resolveThemeTasks(type, "v1");
-  resolveThemeTasks(type, "v2");
+['js', 'css'].forEach(type => {
+  resolveThemeTasks(type, 'v1');
+  resolveThemeTasks(type, 'v2');
+  resolveThemeTasks(type, 'v3');
 });
 
 module.exports = {

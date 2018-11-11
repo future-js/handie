@@ -1,6 +1,6 @@
 import { isNumeric, supportLocalStorage } from '../common/helper';
 
-const NOTIFICATION_STORAGE_KEY = 'MUU:NotificationCount';
+const NOTIFICATION_STORAGE_KEY = 'handie:NotificationCount';
 
 let noticeTotalCount = 0;
 
