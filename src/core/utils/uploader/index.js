@@ -11,8 +11,8 @@ setDefaults('uploader', UPLOADER_DEFAULTS);
 
 /**
  * 提取可用的获取七牛 uptoken 的配置项
- * 
- * @param {*} settings 
+ *
+ * @param {*} settings
  */
 function pickUpAvailableUptoken( settings ) {
   return hasOwnProp('uptoken', settings) ? 'uptoken' :
@@ -22,9 +22,9 @@ function pickUpAvailableUptoken( settings ) {
 
 /**
  * 处理七牛 uptoken 相关配置项
- * 
- * @param {*} settings 
- * @param {*} key 
+ *
+ * @param {*} settings
+ * @param {*} key
  */
 function resolveUptoken( settings, key ) {
   const val = settings[key];
@@ -47,20 +47,37 @@ function resolveUptoken( settings, key ) {
 
 /**
  * 处理七牛通过配置项传进来的事件处理函数
- * 
- * @param {*} evts 
+ *
+ * @param {*} evts
  */
 function resolveEvents( evts ) {
   const storage = {
       reserved: {},
       stashed: {}
     };
-  
+
   if ( isPlainObject(evts) ) {
     each(evts, ( handler, name ) => (storage[name === 'Key' ? 'reserved' : 'stashed'][name] = handler));
   }
-  
+
   return storage;
+}
+
+/**
+ * 初始化文件上传成功回调处理函数
+ *
+ * @param {Function} fn 上传结果回调处理函数
+ * @param {Function} urlResolver
+ */
+function initFileUploadedHandler ( fn, urlResolver ) {
+  return ( ...args ) => fn(
+    urlResolver(JSON.parse(
+      supportQiniu()
+        ? last(args)
+        : last(args).response
+    )),
+    ...args
+  );
 }
 
 function resolveUploader( settings, opts ) {
@@ -97,7 +114,6 @@ function resolveUploader( settings, opts ) {
     }
 
     uploader = Qiniu.uploader(settings);
-
   }
   else {
     let urlMaker;
@@ -110,7 +126,7 @@ function resolveUploader( settings, opts ) {
     if ( !isFunction(urlResolver) ) {
       urlResolver = res => isPlainObject(res) && hasOwnProp('url', res) ? res.url : res;
     }
-  
+
     uploader = new plupload.Uploader(settings);
 
     uploader.init();
@@ -126,7 +142,6 @@ function resolveUploader( settings, opts ) {
     if ( isFunction(hooks.upload) ) {
       uploader.bind('FileUploaded', initFileUploadedHandler(hooks.upload, urlResolver));
     }
-
   }
 
   each(events.stashed, ( handler, name ) => uploader.bind(name, handler));
@@ -134,28 +149,11 @@ function resolveUploader( settings, opts ) {
   return uploader;
 }
 
-/**
- * 初始化文件上传成功回调处理函数
- *
- * @param {Function} fn 上传结果回调处理函数
- * @param {Function} urlResolver
- */
-function initFileUploadedHandler ( fn, urlResolver ) {
-  return ( ...args ) => fn(
-    urlResolver(JSON.parse(
-      supportQiniu()
-        ? last(args)
-        : last(args).response
-    )),
-    ...args
-  );
-}
-
 function initUploader( opts ) {
   const { multiple, draggable, immediate, max, cdn: { domain } } = getDefaults('uploader');
 
   opts = mixin({draggable, immediate, max, domain, hooks: {}}, opts);
-  
+
   if ( !supportPlupload() || !hasOwnProp('el', opts) || !isPlainObject(opts.settings) ) {
     return;
   }
@@ -167,7 +165,7 @@ function initUploader( opts ) {
         prevent_duplicates: true
       }
     };
-  
+
   if ( draggable === true ) {
     settings.drop_element = opts.el;
   }
