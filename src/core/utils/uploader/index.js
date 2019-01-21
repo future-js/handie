@@ -88,11 +88,16 @@ function resolveUploader( settings, opts ) {
 
     delete settings.url;
 
-    uploader = Qiniu.uploader(settings);
-    
     if ( !isFunction(urlResolver) ) {
       urlResolver = res => `${uploader.getOption("domain")}${res.key}`;
     }
+
+    if ( isFunction(hooks.upload) ) {
+      settings.init.FileUploaded = initFileUploadedHandler(hooks.upload, urlResolver);
+    }
+
+    uploader = Qiniu.uploader(settings);
+
   }
   else {
     let urlMaker;
@@ -117,18 +122,33 @@ function resolveUploader( settings, opts ) {
     if ( immediate ) {
       uploader.bind('FilesAdded', () => uploader.start());
     }
-  }
 
-  if ( isFunction(hooks.upload) ) {
-    uploader.bind('FileUploaded', ( ...args ) => hooks.upload(
-      urlResolver(JSON.parse(last(args).response)),
-      ...args
-    ));
+    if ( isFunction(hooks.upload) ) {
+      uploader.bind('FileUploaded', initFileUploadedHandler(hooks.upload, urlResolver));
+    }
+
   }
 
   each(events.stashed, ( handler, name ) => uploader.bind(name, handler));
 
   return uploader;
+}
+
+/**
+ * 初始化文件上传成功回调处理函数
+ *
+ * @param {Function} fn 上传结果回调处理函数
+ * @param {Function} urlResolver
+ */
+function initFileUploadedHandler ( fn, urlResolver ) {
+  return ( ...args ) => fn(
+    urlResolver(JSON.parse(
+      supportQiniu()
+        ? last(args)
+        : last(args).response
+    )),
+    ...args
+  );
 }
 
 function initUploader( opts ) {
