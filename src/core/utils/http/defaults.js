@@ -16,11 +16,11 @@ export default {
   },
   /**
    * 判断是否为一个 RESTful 的请求响应
-   * 
+   *
    * @param {*} res 请求返回
    */
   isRestful( res ) {
-    return !(res !== undefined && hasOwnProp('success', res) && hasOwnProp('message', res));
+    return !(res !== undefined && hasOwnProp('success', res) && (hasOwnProp('message', res) || hasOwnProp('errorMsg', res)));
   },
   /**
    * 请求发生错误时的处理
@@ -47,9 +47,9 @@ export default {
         }
       }
 
-      // 支持 {"message": ""} 形式的错误信息
-      if ( isPlainObject(resJson) && hasOwnProp('message', resJson) ) {
-        resText = resJson.message;
+      // 支持 {"message": ""} 或 {"errorMsg": ""} 形式的错误信息
+      if ( isPlainObject(resJson) && (hasOwnProp('message', resJson) || hasOwnProp('errorMsg', resJson)) ) {
+        resText = hasOwnProp('message', resJson) ? resJson.message : resJson.errorMsg;
       }
 
       invoke('notice.alert', resText);
@@ -70,10 +70,10 @@ export default {
         callback.call(null, res);
       }
     }
-    // 返回结构为 {success: true, message: ""} 的情况
+    // 返回结构为 {success: true, message: ""} 或 {success: true, errorMsg: ""} 的情况
     else {
       if ( !res.success ) {
-        invoke('notice.alert', res.message);
+        invoke('notice.alert', hasOwnProp('message', res) ? res.message : res.errorMsg);
       }
       else if ( hasCallback ) {
         callback.call(null, res.data);
