@@ -1,6 +1,6 @@
 {
   "name": "handie",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "为前端开发提供统一的布局、组件和工具方法",
   "main": "utils/index.js",
   "repository": {

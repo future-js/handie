@@ -18,7 +18,7 @@ function resolveRequestSender() {
 
 /**
  * 处理请求响应
- * 
+ *
  * @param {*} res 原始响应信息
  * @param {*} callback 回调函数
  */
@@ -34,14 +34,14 @@ function resolveResponseResult( res, callback ) {
 
 /**
  * 用 `jQuery.ajax()` 发送 HTTP 请求
- * 
+ *
  * @param {*} opts 配置项
  */
 function sendRequestViaJquery( opts ) {
   const httpDefaults = getDefaults('http');
   const params = httpDefaults.jsonify(opts.params);
   const { url, method, callback } = opts;
-  const resolved = {url, method, type: method, global: false};
+  const resolved = { url, method, type: method, global: !httpDefaults.ignoreSenderGlobal };
 
   if ( opts.isJson === true ) {
     resolved.data = JSON.stringify(params);
@@ -74,7 +74,7 @@ function sendRequestViaJquery( opts ) {
 
 /**
  * 用 `axios()` 发送 HTTP 请求
- * 
+ *
  * @param {*} opts 配置项
  */
 function sendRequestViaAxios( opts ) {
@@ -83,7 +83,7 @@ function sendRequestViaAxios( opts ) {
 
 /**
  * 发送 HTTP 请求
- * 
+ *
  * @param {*} opts 配置项
  */
 function sendHttpRequest( opts ) {
@@ -98,7 +98,7 @@ function sendHttpRequest( opts ) {
       callback: null,
       isJson: false
     }, opts);
-  
+
   if ( !/^http(s)?\:\/\//.test(resolved.url) ) {
     resolved.url = getDefaults('http.baseURL') + resolved.url;
   }
@@ -108,7 +108,7 @@ function sendHttpRequest( opts ) {
 
 /**
  * 生成 HTTP 工具方法
- * 
+ *
  * @param {*} method 请求方式
  */
 function generateHttpUtil( method ) {

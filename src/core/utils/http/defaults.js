@@ -8,6 +8,8 @@ export default {
   baseURL: '',
   // 服务器错误（HTTP 状态码 5xx）时的提示
   serverErrorText: '服务器开小差啦～',
+  // 忽略请求库的全局配置
+  ignoreSenderGlobal: true,
   /**
    * 将请求参数转换为 JSON
    */
