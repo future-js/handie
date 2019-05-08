@@ -6,6 +6,7 @@ const scssimport = require("gulp-shopify-sass");
 const rename = require("gulp-rename");
 
 const nodeResolver = require("rollup-plugin-node-resolve");
+const cjsResolver = require("rollup-plugin-commonjs");
 const babel = require("rollup-plugin-babel");
 const cleanup = require("rollup-plugin-cleanup");
 
@@ -16,7 +17,7 @@ const CORE_ROOT = "src/core";
 const CORE_DIST = "dist/core";
 const CORE_TMP = `${TMP_DIR}/core`;
 
-gulp.task("core-extract-scss", () => {
+gulp.task('core-extract-scss', () => {
   return gulp
     .src(`${CORE_ROOT}/stylesheets/**/*.scss`)
     .pipe(scssimport())
@@ -27,7 +28,7 @@ gulp.task("core-extract-scss", () => {
     .pipe(gulp.dest(`${CORE_DIST}/stylesheets`));
 });
 
-gulp.task("core-compile-js", () => {
+gulp.task('core-compile-js', () => {
   return new Promise(( resolve, reject ) => {
     exec("npm run babel:core", {
       cwd: path.resolve(__dirname, "../.."),
@@ -38,11 +39,11 @@ gulp.task("core-compile-js", () => {
         reject(err);
         return;
       }
-  
+
       if ( stderr ) {
         console.log(`stderr: ${stderr}`);
       }
-      
+
       resolve();
     })
     .stdout.on("data", function( data ) {
@@ -51,46 +52,68 @@ gulp.task("core-compile-js", () => {
   });
 });
 
-gulp.task("core-extract-js", ["core-compile-js"], () => {
-  const vendorRefs = [
-      "calc/index",
-      "common/helper",
-      "is/index",
-      "lbs/index",
-      "url/helper",
-      "url/index",
-      "watermark/index"
-    ];
-  
-  function resolveDistFile( dn ) {
-    return `${CORE_DIST}/utils/${dn}.js`;
-  }
+// gulp.task("core-extract-js", ["core-compile-js"], () => {
+//   const vendorRefs = [
+//       "calc/index",
+//       "common/helper",
+//       "is/index",
+//       "lbs/index",
+//       "url/helper",
+//       "url/index",
+//       "watermark/index"
+//     ];
 
-  execSync(`rm -rf ${vendorRefs.map(resolveDistFile).join(" ")}`);
+//   function resolveDistFile( dn ) {
+//     return `${CORE_DIST}/utils/${dn}.js`;
+//   }
 
-  return Promise.all(vendorRefs.map(dn => resolveRollupTask({
-    input: `${CORE_ROOT}/utils/${dn}.js`,
+//   execSync(`rm -rf ${vendorRefs.map(resolveDistFile).join(" ")}`);
+
+//   return Promise.all(vendorRefs.map(dn => resolveRollupTask({
+//     input: `${CORE_ROOT}/utils/${dn}.js`,
+//     plugins: [
+//       nodeResolver(),
+//       babel({
+//         babelrc: false,
+//         presets: [["env", {"modules": false}]],
+//         plugins: ["external-helpers"]
+//       }),
+//       cleanup({
+//         comments: "none",
+//         maxEmptyLines: 1
+//       })
+//     ],
+//     format: "es",
+//     file: resolveDistFile(dn),
+//     name: dn
+//   })));
+// });
+
+gulp.task('core-extract-js-vendors', ['core-compile-js'], () => {
+  return resolveRollupTask({
+    input: `${CORE_ROOT}/utils/calc/index.js`,
     plugins: [
       nodeResolver(),
+      cjsResolver(),
       babel({
         babelrc: false,
-        presets: [["env", {"modules": false}]],
-        plugins: ["external-helpers"]
+        presets: [['env', {'modules': false}]],
+        plugins: ['external-helpers']
       }),
       cleanup({
-        comments: "none",
+        comments: 'none',
         maxEmptyLines: 1
       })
     ],
-    format: "es",
-    file: resolveDistFile(dn),
-    name: dn
-  })));
+    format: 'es',
+    file: `${CORE_DIST}/utils/calc/index.js`,
+    name: 'calc'
+  });
 });
 
 module.exports = {
   CORE_TASKS: [
     "core-extract-scss",
-    "core-compile-js"
+    "core-extract-js-vendors"
   ]
 };
