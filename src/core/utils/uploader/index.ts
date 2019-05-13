@@ -14,7 +14,7 @@ setDefaults('uploader', UPLOADER_DEFAULTS);
  *
  * @param {*} settings
  */
-function pickUpAvailableUptoken( settings ) {
+function pickUpAvailableUptoken( settings: any ): any {
   return hasOwnProp('uptoken', settings) ? 'uptoken' :
     isString(settings.uptoken_url) ? 'uptoken_url' :
     isFunction(settings.uptoken_func) ? 'uptoken_func' : false;
@@ -26,7 +26,7 @@ function pickUpAvailableUptoken( settings ) {
  * @param {*} settings
  * @param {*} key
  */
-function resolveUptoken( settings, key ) {
+function resolveUptoken( settings: any, key: string ): any {
   const val = settings[key];
 
   if ( key === 'uptoken' ) {
@@ -38,7 +38,7 @@ function resolveUptoken( settings, key ) {
     }
   }
 
-  each(['uptoken', 'uptoken_url', 'uptoken_func'], k => delete settings[k]);
+  each(['uptoken', 'uptoken_url', 'uptoken_func'], ( k: string ) => delete settings[k]);
 
   settings[key] = val;
 
@@ -50,14 +50,14 @@ function resolveUptoken( settings, key ) {
  *
  * @param {*} evts
  */
-function resolveEvents( evts ) {
-  const storage = {
+function resolveEvents( evts: any ): any {
+  const storage: any = {
       reserved: {},
       stashed: {}
     };
 
   if ( isPlainObject(evts) ) {
-    each(evts, ( handler, name ) => (storage[name === 'Key' ? 'reserved' : 'stashed'][name] = handler));
+    each(evts, ( handler: Function, name: string ) => (storage[name === 'Key' ? 'reserved' : 'stashed'][name] = handler));
   }
 
   return storage;
@@ -69,8 +69,8 @@ function resolveEvents( evts ) {
  * @param {Function} fn 上传结果回调处理函数
  * @param {Function} urlResolver
  */
-function initFileUploadedHandler ( fn, urlResolver ) {
-  return ( ...args ) => fn(
+function initFileUploadedHandler ( fn: Function, urlResolver: Function ): Function {
+  return ( ...args: any[] ) => fn(
     urlResolver(JSON.parse(
       supportQiniu()
         ? last(args)
@@ -80,13 +80,13 @@ function initFileUploadedHandler ( fn, urlResolver ) {
   );
 }
 
-function resolveUploader( settings, opts ) {
+function resolveUploader( settings: any, opts: any ): any {
   const { immediate, hooks } = opts;
   const uptoken = pickUpAvailableUptoken(settings);
   const events = resolveEvents(settings.init);
 
   let urlResolver = opts.resolver;
-  let uploader;
+  let uploader: any;
 
   if ( uptoken && supportQiniu() ) {
     settings = resolveUptoken(mixin({
@@ -106,7 +106,7 @@ function resolveUploader( settings, opts ) {
     delete settings.url;
 
     if ( !isFunction(urlResolver) ) {
-      urlResolver = res => `${uploader.getOption("domain")}${res.key}`;
+      urlResolver = ( res: any ) => `${uploader.getOption("domain")}${res.key}`;
     }
 
     if ( isFunction(hooks.upload) ) {
@@ -116,7 +116,7 @@ function resolveUploader( settings, opts ) {
     uploader = Qiniu.uploader(settings);
   }
   else {
-    let urlMaker;
+    let urlMaker: any;
 
     if ( isFunction(settings.url) ) {
       urlMaker = settings.url;
@@ -124,7 +124,7 @@ function resolveUploader( settings, opts ) {
     }
 
     if ( !isFunction(urlResolver) ) {
-      urlResolver = res => isPlainObject(res) && hasOwnProp('url', res) ? res.url : res;
+      urlResolver = ( res: any ) => isPlainObject(res) && hasOwnProp('url', res) ? res.url : res;
     }
 
     uploader = new plupload.Uploader(settings);
@@ -144,12 +144,12 @@ function resolveUploader( settings, opts ) {
     }
   }
 
-  each(events.stashed, ( handler, name ) => uploader.bind(name, handler));
+  each(events.stashed, ( handler: Function, name: string ) => uploader.bind(name, handler));
 
   return uploader;
 }
 
-function initUploader( opts ) {
+function initUploader( opts: any ): any {
   const { multiple, draggable, immediate, max, cdn: { domain } } = getDefaults('uploader');
 
   opts = mixin({draggable, immediate, max, domain, hooks: {}}, opts);
@@ -158,7 +158,7 @@ function initUploader( opts ) {
     return;
   }
 
-  const settings = {
+  const settings: any = {
       browse_button: opts.el,
       multi_selection: multiple,
       filters: {

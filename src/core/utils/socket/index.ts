@@ -8,7 +8,7 @@ import { each } from '../collection';
  *
  * @param {*} url
  */
-function resolveSocketUrl( url ) {
+function resolveSocketUrl( url: string ): string {
   const isNoProtocol = url.indexOf('//') === 0;
 
   // 本地开发时强制替换为 ws 协议
@@ -29,7 +29,7 @@ function resolveSocketUrl( url ) {
  * @param {*} ws 连接实例
  * @param {*} interval 发送信息间隔
  */
-function keepSocketAlive( ws, interval ) {
+function keepSocketAlive( ws: WebSocket, interval: number ): void {
   setTimeout(() => {
     ws.send('使 WebSocket 连接保持活跃');
     keepSocketAlive(ws, interval);
@@ -48,7 +48,7 @@ function keepSocketAlive( ws, interval ) {
  *   onError: function() {}
  * }
  */
-export function init( opts ) {
+export function init( opts: any ): void | WebSocket {
   if ( isString(opts) ) {
     opts = {url: opts};
   }
@@ -74,7 +74,7 @@ export function init( opts ) {
   }
 
   // 绑定指定事件
-  each(['open', 'close', 'message', 'error'], evtName => {
+  each(['open', 'close', 'message', 'error'], ( evtName: string ) => {
     const handler = opts[`on${capitalize(evtName)}`];
 
     if ( isFunction(handler) ) {

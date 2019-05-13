@@ -1,8 +1,8 @@
 import { isString } from '../is/type';
 import { sliceUrlPart, jsonifyQueryString } from './helper';
 
-function generateUrlUtil( part ) {
-  return url => sliceUrlPart(part, url);
+function generateUrlUtil( part: string ): Function {
+  return ( url: string ) => sliceUrlPart(part, url);
 }
 
 const urlSearchUtil = generateUrlUtil('search');
@@ -27,7 +27,7 @@ export const password = generateUrlUtil('password');
 
 export const origin = generateUrlUtil('origin');
 
-export function query( url, key ) {
+export function query( url: string, key: string ): string {
   const defaultUrl = window.location.href;
   const length = arguments.length;
 
@@ -40,7 +40,7 @@ export function query( url, key ) {
     url = defaultUrl;
   }
 
-  const jsonified = jsonifyQueryString(urlSearchUtil(url));
+  const jsonified: any = jsonifyQueryString(urlSearchUtil(url));
 
   return key == null ? jsonified : jsonified[key];
 }

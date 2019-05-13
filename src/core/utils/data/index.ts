@@ -9,8 +9,8 @@ import { includes, each } from '../collection';
  * @param excluded
  * @returns {{}}
  */
-function filterUnchanged( data, raw, excluded ) {
-  let filtered = {};
+function filterUnchanged( data: any, raw: any, excluded: string[] ): object {
+  let filtered: any = {};
 
   if ( isPlainObject(data) ) {
     if ( isPlainObject(raw) ) {
@@ -18,7 +18,7 @@ function filterUnchanged( data, raw, excluded ) {
         excluded = [];
       }
 
-      each(data, function( k, v ) {
+      each(data, function( k: string, v: any ) {
         if ( (excluded.length > 0 && includes(k, excluded)) || v !== raw[k] ) {
           filtered[k] = v;
         }

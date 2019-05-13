@@ -3,7 +3,7 @@ import { hasOwnProp } from './helper';
 /**
  * 判断是否支持 CSS 的 `pointer-events`
  */
-export function supportPointerEvents() {
+export function supportPointerEvents(): boolean {
   const style = document.createElement('a').style;
 
   style.cssText = 'pointer-events:auto';
@@ -14,20 +14,20 @@ export function supportPointerEvents() {
 /**
  * 判断是否支持 Web Sockets API
  */
-export function supportWebSocket() {
+export function supportWebSocket(): boolean {
   return hasOwnProp('WebSocket', window);
 }
 
 /**
  * 判断是否支持 Web Notifications API
  */
-export function supportWebNotification() {
+export function supportWebNotification(): boolean {
   return hasOwnProp('Notification', window);
 }
 
 /**
  * 判断是否支持 Local Storage API
  */
-export function supportLocalStorage() {
+export function supportLocalStorage(): boolean {
   return hasOwnProp('localStorage', window);
 }

@@ -4,10 +4,10 @@ import { includes, each } from '../collection';
 
 /**
  * 创建一个临时 `<a>` 用于获取 URL 信息
- * 
+ *
  * @param {*} url URL
  */
-function createTemporaryLinkElement( url ) {
+function createTemporaryLinkElement( url: string ): any {
   const el = document.createElement('a');
 
   el.setAttribute('href', url);
@@ -17,11 +17,11 @@ function createTemporaryLinkElement( url ) {
 
 /**
  * 获取指定 URL 片段
- * 
+ *
  * @param {*} part 目标片段
  * @param {*} url URL
  */
-export function sliceUrlPart( part, url ) {
+export function sliceUrlPart( part: string, url: string ): string {
   if ( !isString(url) || !isUrl(url) && url.indexOf('URL_PLACEHOLDER') === -1 ) {
     url = window.location.href;
   }
@@ -33,10 +33,10 @@ export function sliceUrlPart( part, url ) {
 
 /**
  * 获取指定 URL 的文件扩展名
- * 
+ *
  * @param {*} url URL
  */
-export function resolveFileExtension( url ) {
+export function resolveFileExtension( url: string ): string {
   const segments = sliceUrlPart('pathname', url).split('\/');
   const length = segments.length;
 
@@ -56,11 +56,12 @@ export function resolveFileExtension( url ) {
  *
  * @param {*} str
  */
-export function jsonifyQueryString( str ) {
-  let jsonData = {};
+export function jsonifyQueryString( str: string ): object {
+  const jsonData: any = {};
 
-  each(str.split('&'), pair => {
-    pair = pair.split('=');
+  each(str.split('&'), ( seg: string ) => {
+    const pair = seg.split('=');
+
     jsonData[pair[0]] = decodeURIComponent(pair[1]);
   });
 

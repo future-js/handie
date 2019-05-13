@@ -13,7 +13,7 @@ export default {
   /**
    * 将请求参数转换为 JSON
    */
-  jsonify( params ) {
+  jsonify( params: any ): any {
     return params;
   },
   /**
@@ -21,13 +21,13 @@ export default {
    *
    * @param {*} res 请求返回
    */
-  isRestful( res ) {
+  isRestful( res: any ): boolean {
     return !(res !== undefined && hasOwnProp('success', res) && (hasOwnProp('message', res) || hasOwnProp('errorMsg', res)));
   },
   /**
    * 请求发生错误时的处理
    */
-  errorHandler( res ) {
+  errorHandler( res: any ): void {
     const code = res.status;
 
     if ( code >= 500 ) {
@@ -60,7 +60,7 @@ export default {
   /**
    * 对请求返回数据的处理
    */
-  responseHandler( res, callback ) {
+  responseHandler( res: any, callback: Function ): void {
     const hasCallback = isFunction(callback);
 
     // RESTful 请求的情况
@@ -85,5 +85,5 @@ export default {
   /**
    * 请求完成时的处理
    */
-  completeHandler() {}
+  completeHandler(): void {}
 }

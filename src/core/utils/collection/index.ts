@@ -5,24 +5,24 @@ import {
 
 /**
  * 判断是否当作数组进行处理
- * 
+ *
  * @param {*} target 目标
  */
-function treatAsArray( target ) {
+function treatAsArray( target: any ): boolean {
   return isString(target) || isArray(target) || isArrayLike(target);
 }
 
 /**
  * 遍历指定对象
- * 
+ *
  * 与 `jQuery.each()` 效果类似
- * 
+ *
  * 详见：http://api.jquery.com/jQuery.each/
- * 
+ *
  * @param {*} target 目标
  * @param {*} callback 应用到每个元素的处理函数
  */
-function eachItem( target, callback ) {
+function eachItem( target: any, callback: Function ): void {
   if ( treatAsArray(target) ) {
     let idx = 0;
     let ele;
@@ -50,13 +50,12 @@ function eachItem( target, callback ) {
 
 /**
  * 扩展指定对象
- * 
+ *
  * 与 `jQuery.extend()` 效果一样
- * 
+ *
  * 详见：http://api.jquery.com/jQuery.extend/
  */
-function extendTarget() {
-  const args = arguments;
+function extendTarget( ...args: any[] ): object {
   const length = args.length;
 
   let target = args[0] || {};
@@ -116,20 +115,20 @@ function extendTarget() {
 
 /**
  * 将目标转化为数组
- * 
+ *
  * @param {*} target 目标
  */
-function toArray( target ) {
+function toArray( target: any ): any[] {
   return treatAsArray(target) ? [].slice.call(target, 0) : [];
 }
 
 /**
  * 判断目标是否在集合中
- * 
+ *
  * @param {*} target 目标
  * @param {*} collection 集合
  */
-export function includes( target, collection ) {
+export function includes( target: any, collection: any ): boolean {
   if ( isFunction(collection.includes) ) {
     return collection.includes(target);
   }
@@ -148,11 +147,11 @@ export function includes( target, collection ) {
 
 /**
  * 对集合中的每个元素进行处理并返回一个新的集合
- * 
+ *
  * @param {*} target 目标
  * @param {*} callback 应用到每个元素的处理函数
  */
-export function map( target, callback ) {
+export function map( target: any, callback: any ): any[] {
   let result;
 
   if ( treatAsArray(target) ) {
@@ -174,19 +173,19 @@ export function map( target, callback ) {
 
 /**
  * 对集合中的每个元素进行过滤并返回一个新的集合
- * 
+ *
  * @param {*} target 目标
  * @param {*} callback 应用到每个元素的处理函数
  */
-export function filter( arr, callback ) {
-  let newArr = [];
+export function filter( arr: any, callback: Function ): any[] {
+  let newArr: any[] = [];
 
   if ( isArray(arr) ) {
     if ( isFunction(arr.filter) ) {
       newArr = arr.filter(callback);
     }
     else if ( isFunction(callback) ) {
-      eachItem(arr, ( idx, val ) => {
+      eachItem(arr, ( idx: number, val: any ) => {
         if ( callback.apply(val, [val, idx, [].concat(arr)]) ) {
           newArr.push(val);
         }
@@ -199,10 +198,10 @@ export function filter( arr, callback ) {
 
 /**
  * 获取集合中的最后一个元素
- * 
+ *
  * @param {*} target 目标
  */
-export function last( target ) {
+export function last( target: any ): any {
   if ( treatAsArray(target) ) {
     return target[target.length - 1];
   }
@@ -210,18 +209,18 @@ export function last( target ) {
 
 /**
  * 获取指定对象的所有键
- * 
+ *
  * @param {*} target 目标
  */
-export function keys( target ) {
+export function keys( target: any ): string[] {
   if ( isFunction(Object.keys) ) {
     return Object.keys(target);
   }
-  
-  let arr = [];
+
+  let arr: string[] = [];
 
   if ( isPlainObject(target) ) {
-    eachItem(target, key => arr.push(key));
+    eachItem(target, ( key: string ) => arr.push(key));
   }
 
   return arr;
@@ -232,7 +231,7 @@ export function keys( target ) {
  *
  * @param {*} target 被克隆的对象
  */
-export function clone( target ) {
+export function clone( target: any ): any {
   return isArray(target) ? [].concat(target) : isPlainObject(target) ? extendTarget(true, {}, target) : target;
 }
 

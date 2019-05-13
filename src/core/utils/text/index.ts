@@ -1,7 +1,7 @@
 import { isString } from '../is/type';
 import { includes } from '../collection';
 
-function copyText( content ) {
+function copyText( content: string ): string {
   const ipt = document.createElement('input');
 
   ipt.setAttribute('value', content);
@@ -13,7 +13,7 @@ function copyText( content ) {
   return content;
 }
 
-export function copy( content, keepSelected ) {
+export function copy( content: any, keepSelected?: boolean ): void | string {
   let $el;
 
   if ( !isString(content) ) {

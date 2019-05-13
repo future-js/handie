@@ -7,13 +7,13 @@ import NOTIFICATION_DEFAULTS from './defaults';
 
 setDefaults('notification', NOTIFICATION_DEFAULTS);
 
-function generateNoticeUtil( icon ) {
-  return ( text, callback ) => {
-    const opts = mixin({
+function generateNoticeUtil( icon: string ): Function {
+  return ( text: any, callback: Function ) => {
+    const opts: any = mixin({
         text: '',
         duration: getDefaults('notification.duration')
       }, isPlainObject(text) ? text : {text}, {icon, callback});
-    
+
     if ( !isFunction(opts.callback) ) {
       opts.callback = () => {};
     }
@@ -28,7 +28,7 @@ export const success = generateNoticeUtil('success');
 
 export const fail = generateNoticeUtil('fail');
 
-export function loading( text, callback ) {
+export function loading( text: any, callback: Function ): any {
   if ( isFunction(text) ) {
     callback = text;
   }
@@ -40,6 +40,6 @@ export function loading( text, callback ) {
   return invoke('notice.loading.show', {text, callback});
 }
 
-export function hide( callback ) {
+export function hide( callback: Function ): any {
   return invoke('notice.loading.hide', callback);
 }

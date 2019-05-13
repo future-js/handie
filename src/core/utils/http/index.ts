@@ -7,12 +7,12 @@ import HTTP_DEFAULTS from './defaults';
 
 setDefaults('http', HTTP_DEFAULTS);
 
-let requestSender;
+let requestSender: any;
 
 /**
  * 获取发送请求的第三方库
  */
-function resolveRequestSender() {
+function resolveRequestSender(): any {
   return supportJquery() && jQuery.support.ajax && isFunction(jQuery.ajax) ? 'jquery' : supportAxios() ? 'axios' : null;
 }
 
@@ -22,7 +22,7 @@ function resolveRequestSender() {
  * @param {*} res 原始响应信息
  * @param {*} callback 回调函数
  */
-function resolveResponseResult( res, callback ) {
+function resolveResponseResult( res: any, callback: Function ): any {
   const handler = getDefaults('http.responseHandler');
 
   if ( !isFunction(handler) ) {
@@ -37,11 +37,11 @@ function resolveResponseResult( res, callback ) {
  *
  * @param {*} opts 配置项
  */
-function sendRequestViaJquery( opts ) {
+function sendRequestViaJquery( opts: any ): any {
   const httpDefaults = getDefaults('http');
   const params = httpDefaults.jsonify(opts.params);
   const { url, method, callback } = opts;
-  const resolved = { url, method, type: method, global: !httpDefaults.ignoreSenderGlobal };
+  const resolved: any = { url, method, type: method, global: !httpDefaults.ignoreSenderGlobal };
 
   if ( opts.isJson === true ) {
     resolved.data = JSON.stringify(params);
@@ -51,22 +51,22 @@ function sendRequestViaJquery( opts ) {
     resolved.data = params;
   }
   else if ( isPlainObject(params) && keys(params).length ) {
-    resolved.url += ('?' + map(keys(params), k => `${k}=${encodeURIComponent(params[k])}`).join('&'));
+    resolved.url += ('?' + map(keys(params), ( k: string ) => `${k}=${encodeURIComponent(params[k])}`).join('&'));
   }
 
-  const req = window.jQuery.ajax(resolved);
+  const req = jQuery.ajax(resolved);
 
   if ( opts.global !== false ) {
     req
       .always(() => httpDefaults.completeHandler())
-      .done(res => {
-        resolveResponseResult(res, result => {
+      .done(( res: any ) => {
+        resolveResponseResult(res, ( result: any ) => {
           if ( isFunction(callback) ) {
             callback.call(null, result, res);
           }
         });
       })
-      .fail(jqXHR => httpDefaults.errorHandler(jqXHR));
+      .fail(( jqXHR: any ) => httpDefaults.errorHandler(jqXHR));
   }
 
   return req;
@@ -77,8 +77,8 @@ function sendRequestViaJquery( opts ) {
  *
  * @param {*} opts 配置项
  */
-function sendRequestViaAxios( opts ) {
-  return window.axios(opts);
+function sendRequestViaAxios( opts: object ): any {
+  return axios(opts);
 }
 
 /**
@@ -86,12 +86,12 @@ function sendRequestViaAxios( opts ) {
  *
  * @param {*} opts 配置项
  */
-function sendHttpRequest( opts ) {
+function sendHttpRequest( opts: any ): any {
   if ( !isFunction(requestSender) ) {
     requestSender = resolveRequestSender();
   }
 
-  const resolved = mixin({
+  const resolved: any = mixin({
       url: '',
       method: 'get',
       params: null,
@@ -111,8 +111,8 @@ function sendHttpRequest( opts ) {
  *
  * @param {*} method 请求方式
  */
-function generateHttpUtil( method ) {
-  return ( url, params, callback, isJson ) => {
+function generateHttpUtil( method: string ): Function {
+  return ( url: any, params: any, callback: any, isJson: any ): any => {
     let global;
 
     /**
