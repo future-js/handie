@@ -1,10 +1,10 @@
 import { invokeDingTalkApi } from './helper';
 
 export default {
-  open( opts ) {
+  open( opts: any ): void {
     invokeDingTalkApi('biz.util.openLink', {url: opts.url || ''});
   },
-  close() {
+  close(): void {
     invokeDingTalkApi('biz.navigation.close');
   }
 }

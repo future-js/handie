@@ -1,7 +1,7 @@
 import { invokeDingTalkApi } from './helper';
 
 export default {
-  image( opts ) {
+  image( opts: any ): any {
     const {
       multiple, max, camera,
       success: onSuccess, fail: onFail } = opts;

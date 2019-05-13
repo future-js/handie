@@ -2,7 +2,7 @@ import { isNumeric } from '../../../utils/is/type';
 import { invokeDingTalkApi } from './helper';
 
 export default {
-  image( opts ) {
+  image( opts: any ): void {
     const { urls = [], current = 0 } = opts;
 
     invokeDingTalkApi('biz.util.previewImage', {

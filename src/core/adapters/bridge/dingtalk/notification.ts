@@ -8,27 +8,27 @@ import { invokeDingTalkApi } from './helper';
  * @param {*} shortcut API 简写
  * @param {*} opts 配置项
  */
-function invokeNotificationApi( shortcut, opts ) {
+function invokeNotificationApi( shortcut: string, opts: any ): void {
   return invokeDingTalkApi(`device.notification.${shortcut}`, opts);
 }
 
 export default {
-  alert( message, callback = function() {} ) {
+  alert( message: any, callback: Function = function() {} ): void {
     invokeNotificationApi('alert', mixin({
       title: '',
       buttonName: '知道了',
       onSuccess: callback
     }, isPlainObject(message) ? message : {message}));
   },
-  confirm( message, agreed = function() {}, cancelled = function() {} ) {
+  confirm( message: any, agreed: Function = function() {}, cancelled: Function = function() {} ): void {
     invokeNotificationApi('confirm', mixin({
       title: '',
       buttonLabels: ['确定', '取消'],
-      onSuccess: result => result.buttonIndex === 0 ? agreed() : cancelled()
+      onSuccess: ( result: any ) => result.buttonIndex === 0 ? agreed() : cancelled()
     }, isPlainObject(message) ? message : {message}));
   },
   // prompt() {},
-  toast( opts ) {
+  toast( opts: any ): void {
     const { text, icon, duration, callback: onSuccess } = opts;
 
     invokeNotificationApi('toast', {
@@ -40,7 +40,7 @@ export default {
     });
   },
   loading: {
-    show( opts ) {
+    show( opts: any ): void {
       const { text, callback: onSuccess } = opts;
 
       invokeNotificationApi('showPreloader', {
@@ -49,18 +49,18 @@ export default {
         onSuccess
       });
     },
-    hide( callback ) {
+    hide( callback: Function ): void {
       invokeNotificationApi('hidePreloader', {onSuccess: callback});
     }
   },
-  actionSheet( opts ) {
+  actionSheet( opts: any ): void {
     const { title, cancel, actions } = opts;
 
     invokeNotificationApi('actionSheet', {
       title,
       cancelButton: cancel.text,
-      otherButtons: map(actions, action => action.text),
-      onSuccess: result => {
+      otherButtons: map(actions, ( action: any ) => action.text),
+      onSuccess: ( result: any ) => {
         const { buttonIndex: idx } = result;
   
         let action, handler;

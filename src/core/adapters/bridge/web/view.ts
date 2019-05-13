@@ -1,8 +1,8 @@
 export default {
-  open( opts ) {
+  open( opts: any ): void {
     window.open(opts.url || '');
   },
-  close() {
+  close(): void {
     window.close();
   }
 }

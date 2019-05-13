@@ -8,12 +8,12 @@ import { retrieveData } from '../../../utils/storage/helper';
  * @param {*} ref API 引用
  * @param {*} opts 配置项
  */
-export function invokeDingTalkApi( ref, opts ) {
-  const handler = retrieveData(window.dd, ref);
+export function invokeDingTalkApi( ref: string, opts?: any ): any {
+  const handler = retrieveData(dd, ref);
 
   if ( !isFunction(handler) ) {
     return;
   }
 
-  return handler(mixin({onFail: ( ...args ) => console.log(...args)}, opts));
+  return handler(mixin({onFail: ( ...args: any[] ) => console.log(...args)}, opts));
 }
