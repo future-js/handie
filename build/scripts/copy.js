@@ -15,7 +15,7 @@ const {
     resolveBowerComponentName
   } = require("./helper");
 
-[BOWER_DIST_PATH, BOWER_VENDOR_PATH].forEach(pathname => {
+[BOWER_VENDOR_PATH].forEach(pathname => {
   if ( !fs.existsSync(pathname) ) {
     execSync(`mkdir ${pathname}`);
   }
