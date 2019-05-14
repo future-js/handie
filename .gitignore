@@ -21,7 +21,7 @@ dist
 /site/_admin/vendor
 /site/_cookbook/_book
 
-/packages/core/src/vendors
+/src/vendors
 
 /test/assets
 /test/jquery/assets
