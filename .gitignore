@@ -12,9 +12,9 @@ _site
 
 bower_components
 node_modules
+dist
 
 /backup
-/dist
 
 /site/_adaptors/vendor
 /site/_admin/bower_components
