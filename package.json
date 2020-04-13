@@ -14,12 +14,12 @@
     "foundation",
     "enterprise"
   ],
-  "author": "Ourai Lin <ourairyu@gmail.com> (http://ourai.ws/)",
+  "author": "Ourai Lin <ourairyu@gmail.com> (https://ourai.ws/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/anti-chaos/handie/issues"
+    "url": "https://github.com/ourai/handie/issues"
   },
-  "homepage": "https://github.com/anti-chaos/handie",
+  "homepage": "https://github.com/ourai/handie",
   "scripts": {
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
