@@ -10,9 +10,11 @@ const libraryName = 'handie';
 
 export default {
   input: `src/index.ts`,
-  output: [{ file: pkg.main, name: camelCase(libraryName), format: 'es', sourcemap: false }],
+  output: [
+    { file: `dist/${pkg.main.replace('dist/', '')}`, name: camelCase(libraryName), format: 'es', sourcemap: false },
+  ],
   // Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
-  external: [],
+  external: ['number-precision'],
   watch: {
     include: 'src/**',
   },
