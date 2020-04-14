@@ -22,10 +22,10 @@ function resolveRequestSender(): any {
  * @param {*} res 原始响应信息
  * @param {*} callback 回调函数
  */
-function resolveResponseResult( res: any, callback: Function ): any {
+function resolveResponseResult(res: any, callback: Function): any {
   const handler = getDefaults('http.responseHandler');
 
-  if ( !isFunction(handler) ) {
+  if (!isFunction(handler)) {
     return;
   }
 
@@ -37,36 +37,34 @@ function resolveResponseResult( res: any, callback: Function ): any {
  *
  * @param {*} opts 配置项
  */
-function sendRequestViaJquery( opts: any ): any {
+function sendRequestViaJquery(opts: any): any {
   const httpDefaults = getDefaults('http');
   const params = httpDefaults.jsonify(opts.params);
   const { url, method, callback } = opts;
   const resolved: any = { url, method, type: method, global: !httpDefaults.ignoreSenderGlobal };
 
-  if ( opts.isJson === true ) {
+  if (opts.isJson === true) {
     resolved.data = JSON.stringify(params);
     resolved.contentType = 'application/json; charset=UTF-8';
-  }
-  else if ( !includes(method, ['get', 'delete']) ) {
+  } else if (!includes(method, ['get', 'delete'])) {
     resolved.data = params;
-  }
-  else if ( isPlainObject(params) && keys(params).length ) {
-    resolved.url += ('?' + map(keys(params), ( k: string ) => `${k}=${encodeURIComponent(params[k])}`).join('&'));
+  } else if (isPlainObject(params) && keys(params).length) {
+    resolved.url += '?' + map(keys(params), (k: string) => `${k}=${encodeURIComponent(params[k])}`).join('&');
   }
 
   const req = jQuery.ajax(resolved);
 
-  if ( opts.global !== false ) {
+  if (opts.global !== false) {
     req
       .always(() => httpDefaults.completeHandler())
-      .done(( res: any ) => {
-        resolveResponseResult(res, ( result: any ) => {
-          if ( isFunction(callback) ) {
+      .done((res: any) => {
+        resolveResponseResult(res, (result: any) => {
+          if (isFunction(callback)) {
             callback.call(null, result, res);
           }
         });
       })
-      .fail(( jqXHR: any ) => httpDefaults.errorHandler(jqXHR));
+      .fail((jqXHR: any) => httpDefaults.errorHandler(jqXHR));
   }
 
   return req;
@@ -77,8 +75,8 @@ function sendRequestViaJquery( opts: any ): any {
  *
  * @param {*} opts 配置项
  */
-function sendRequestViaAxios( opts: object ): any {
-  // return axios(opts);
+function sendRequestViaAxios(opts: object): any {
+  return axios(opts);
 }
 
 /**
@@ -86,24 +84,31 @@ function sendRequestViaAxios( opts: object ): any {
  *
  * @param {*} opts 配置项
  */
-function sendHttpRequest( opts: any ): any {
-  if ( !isFunction(requestSender) ) {
+function sendHttpRequest(opts: any): any {
+  if (!isFunction(requestSender)) {
     requestSender = resolveRequestSender();
   }
 
-  const resolved: any = mixin({
+  const resolved: any = mixin(
+    {
       url: '',
       method: 'get',
       params: null,
       callback: null,
-      isJson: false
-    }, opts);
+      isJson: false,
+    },
+    opts,
+  );
 
-  if ( !/^http(s)?\:\/\//.test(resolved.url) ) {
+  if (!/^http(s)?\:\/\//.test(resolved.url)) {
     resolved.url = getDefaults('http.baseURL') + resolved.url;
   }
 
-  return requestSender === 'jquery' ? sendRequestViaJquery(resolved) : requestSender === 'axios' ? sendRequestViaAxios(resolved) : null;
+  return requestSender === 'jquery'
+    ? sendRequestViaJquery(resolved)
+    : requestSender === 'axios'
+    ? sendRequestViaAxios(resolved)
+    : null;
 }
 
 /**
@@ -111,8 +116,8 @@ function sendHttpRequest( opts: any ): any {
  *
  * @param {*} method 请求方式
  */
-function generateHttpUtil( method: string ): Function {
-  return ( url: any, params: any, callback: any, isJson: any ): any => {
+function generateHttpUtil(method: string): Function {
+  return (url: any, params: any, callback: any, isJson: any): any => {
     let global;
 
     /**
@@ -123,7 +128,7 @@ function generateHttpUtil( method: string ): Function {
      *    isJson: false
      * })
      */
-    if ( isPlainObject(url) ) {
+    if (isPlainObject(url)) {
       const opts = url;
 
       url = opts.url;
@@ -133,34 +138,32 @@ function generateHttpUtil( method: string ): Function {
       global = opts.global;
     }
     // http[method](url, callback, isJson)
-    else if ( isFunction(params) ) {
+    else if (isFunction(params)) {
       isJson = callback;
       callback = params;
       params = {};
-    }
-    /**
-     * http[method](url, params, {
-     *    callback: $.noop,
-     *    isJson: false
-     * })
-     */
-    else if ( isPlainObject(callback) ) {
+    } else if (isPlainObject(callback)) {
+      /**
+       * http[method](url, params, {
+       *    callback: $.noop,
+       *    isJson: false
+       * })
+       */
       isJson = callback.isJson;
       callback = callback.callback;
       global = callback.global;
-    }
-    /**
-     * http[method](url, params, callback, {
-     *    isJson: false
-     * })
-     */
-    else if ( isPlainObject(isJson) ) {
+    } else if (isPlainObject(isJson)) {
+      /**
+       * http[method](url, params, callback, {
+       *    isJson: false
+       * })
+       */
       isJson = isJson.isJson;
       global = isJson.global;
     }
 
-    return sendHttpRequest({url, method, params, callback, isJson, global});
-  }
+    return sendHttpRequest({ url, method, params, callback, isJson, global });
+  };
 }
 
 const httpGetUtil = generateHttpUtil('get');
@@ -168,9 +171,4 @@ const httpPostUtil = generateHttpUtil('post');
 const httpPutUtil = generateHttpUtil('put');
 const httpDeleteUtil = generateHttpUtil('delete');
 
-export {
-  httpGetUtil as get,
-  httpPostUtil as post,
-  httpPutUtil as put,
-  httpDeleteUtil as delete
-}
+export { httpGetUtil as get, httpPostUtil as post, httpPutUtil as put, httpDeleteUtil as delete };

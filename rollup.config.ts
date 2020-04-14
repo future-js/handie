@@ -14,7 +14,7 @@ export default {
     { file: `dist/${pkg.main.replace('dist/', '')}`, name: camelCase(libraryName), format: 'es', sourcemap: false },
   ],
   // Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
-  external: ['number-precision'],
+  external: [],
   watch: {
     include: 'src/**',
   },
