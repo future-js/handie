@@ -31,6 +31,6 @@
     "/dist/handie"
   ],
   "devDependencies": {
-    "buds-0.2.17": "packagent/buds#0.2.17"
+    "buds-0.2.18": "packagent/buds#0.2.18"
   }
 }

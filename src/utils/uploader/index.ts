@@ -81,72 +81,72 @@ function initFileUploadedHandler ( fn: Function, urlResolver: Function ): Functi
 }
 
 function resolveUploader( settings: any, opts: any ): any {
-  const { immediate, hooks } = opts;
-  const uptoken = pickUpAvailableUptoken(settings);
-  const events = resolveEvents(settings.init);
+  // const { immediate, hooks } = opts;
+  // const uptoken = pickUpAvailableUptoken(settings);
+  // const events = resolveEvents(settings.init);
 
-  let urlResolver = opts.resolver;
-  let uploader: any;
+  // let urlResolver = opts.resolver;
+  // let uploader: any;
 
-  if ( uptoken && supportQiniu() ) {
-    settings = resolveUptoken(mixin({
-        runtimes: 'html5,flash,html4',
-        dragdrop: opts.draggable,
-        auto_start: immediate,
-        domain: opts.domain,
-        unique_names: true
-      }, settings), uptoken);
+  // if ( uptoken && supportQiniu() ) {
+  //   settings = resolveUptoken(mixin({
+  //       runtimes: 'html5,flash,html4',
+  //       dragdrop: opts.draggable,
+  //       auto_start: immediate,
+  //       domain: opts.domain,
+  //       unique_names: true
+  //     }, settings), uptoken);
 
-    settings.init = events.reserved;
+  //   settings.init = events.reserved;
 
-    if ( hasOwnProp('Key', settings.init) ) {
-      settings.unique_names = false;
-    }
+  //   if ( hasOwnProp('Key', settings.init) ) {
+  //     settings.unique_names = false;
+  //   }
 
-    delete settings.url;
+  //   delete settings.url;
 
-    if ( !isFunction(urlResolver) ) {
-      urlResolver = ( res: any ) => `${uploader.getOption("domain")}${res.key}`;
-    }
+  //   if ( !isFunction(urlResolver) ) {
+  //     urlResolver = ( res: any ) => `${uploader.getOption("domain")}${res.key}`;
+  //   }
 
-    if ( isFunction(hooks.upload) ) {
-      settings.init.FileUploaded = initFileUploadedHandler(hooks.upload, urlResolver);
-    }
+  //   if ( isFunction(hooks.upload) ) {
+  //     settings.init.FileUploaded = initFileUploadedHandler(hooks.upload, urlResolver);
+  //   }
 
-    uploader = Qiniu.uploader(settings);
-  }
-  else {
-    let urlMaker: any;
+  //   uploader = Qiniu.uploader(settings);
+  // }
+  // else {
+  //   let urlMaker: any;
 
-    if ( isFunction(settings.url) ) {
-      urlMaker = settings.url;
-      settings.url = 'DYNAMIC_URL_PLACEHOLDER';
-    }
+  //   if ( isFunction(settings.url) ) {
+  //     urlMaker = settings.url;
+  //     settings.url = 'DYNAMIC_URL_PLACEHOLDER';
+  //   }
 
-    if ( !isFunction(urlResolver) ) {
-      urlResolver = ( res: any ) => isPlainObject(res) && hasOwnProp('url', res) ? res.url : res;
-    }
+  //   if ( !isFunction(urlResolver) ) {
+  //     urlResolver = ( res: any ) => isPlainObject(res) && hasOwnProp('url', res) ? res.url : res;
+  //   }
 
-    uploader = new plupload.Uploader(settings);
+  //   uploader = new plupload.Uploader(settings);
 
-    uploader.init();
+  //   uploader.init();
 
-    if ( urlMaker ) {
-      uploader.bind('FilesAdded', () => uploader.setOption('url', urlMaker()));
-    }
+  //   if ( urlMaker ) {
+  //     uploader.bind('FilesAdded', () => uploader.setOption('url', urlMaker()));
+  //   }
 
-    if ( immediate ) {
-      uploader.bind('FilesAdded', () => uploader.start());
-    }
+  //   if ( immediate ) {
+  //     uploader.bind('FilesAdded', () => uploader.start());
+  //   }
 
-    if ( isFunction(hooks.upload) ) {
-      uploader.bind('FileUploaded', initFileUploadedHandler(hooks.upload, urlResolver));
-    }
-  }
+  //   if ( isFunction(hooks.upload) ) {
+  //     uploader.bind('FileUploaded', initFileUploadedHandler(hooks.upload, urlResolver));
+  //   }
+  // }
 
-  each(events.stashed, ( handler: Function, name: string ) => uploader.bind(name, handler));
+  // each(events.stashed, ( handler: Function, name: string ) => uploader.bind(name, handler));
 
-  return uploader;
+  // return uploader;
 }
 
 function initUploader( opts: any ): any {
