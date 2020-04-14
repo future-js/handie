@@ -1,52 +1,57 @@
-const path = require("path");
-const { exec, execSync } = require("child_process");
+const path = require('path');
+const { exec, execSync } = require('child_process');
 
-const gulp = require("gulp");
-const scssimport = require("gulp-shopify-sass");
-const rename = require("gulp-rename");
+const gulp = require('gulp');
+const scssimport = require('gulp-shopify-sass');
+const rename = require('gulp-rename');
 
-const nodeResolver = require("rollup-plugin-node-resolve");
-const cjsResolver = require("rollup-plugin-commonjs");
-const babel = require("rollup-plugin-babel");
-const cleanup = require("rollup-plugin-cleanup");
+// const nodeResolver = require('rollup-plugin-node-resolve');
+// const cjsResolver = require('rollup-plugin-commonjs');
+// const babel = require('rollup-plugin-babel');
+// const cleanup = require('rollup-plugin-cleanup');
 
-const { resolveRollupTask } = require("./functions");
-const { TMP_DIR } = require("./constants");
+// const { resolveRollupTask } = require('./functions');
+// const { TMP_DIR } = require('./constants');
 
-const CORE_ROOT = "src/core";
-const CORE_DIST = "dist/core";
-const CORE_TMP = `${TMP_DIR}/core`;
+// const CORE_ROOT = 'src/core';
+// const CORE_DIST = 'dist/core';
+// const CORE_TMP = `${TMP_DIR}/core`;
 
 gulp.task('core-extract-scss', () => {
   return gulp
-    .src(`${CORE_ROOT}/stylesheets/**/*.scss`)
+    .src('src/stylesheets/**/*.scss')
     .pipe(scssimport())
-    .pipe(rename(p => {
-      p.basename = p.basename.replace("\.cat\.scss", "");
-      p.extname = ".scss";
-    }))
-    .pipe(gulp.dest(`${CORE_DIST}/stylesheets`));
+    .pipe(
+      rename((p) => {
+        p.basename = p.basename.replace('.cat.scss', '');
+        p.extname = '.scss';
+      }),
+    )
+    .pipe(gulp.dest('dist/stylesheets'));
 });
 
 gulp.task('core-compile-js', () => {
-  return new Promise(( resolve, reject ) => {
-    exec("npm run babel:core", {
-      cwd: path.resolve(__dirname, "../.."),
-      maxBuffer: 5 * 1024 * 1024
-    }, ( err, stdout, stderr ) => {
-      if ( err ) {
-        console.error(`exec error: ${err}`);
-        reject(err);
-        return;
-      }
+  return new Promise((resolve, reject) => {
+    exec(
+      'npm run babel:core',
+      {
+        cwd: path.resolve(__dirname, '../..'),
+        maxBuffer: 5 * 1024 * 1024,
+      },
+      (err, stdout, stderr) => {
+        if (err) {
+          console.error(`exec error: ${err}`);
+          reject(err);
+          return;
+        }
 
-      if ( stderr ) {
-        console.log(`stderr: ${stderr}`);
-      }
+        if (stderr) {
+          console.log(`stderr: ${stderr}`);
+        }
 
-      resolve();
-    })
-    .stdout.on("data", function( data ) {
+        resolve();
+      },
+    ).stdout.on('data', function (data) {
       console.log(data.toString());
     });
   });
@@ -89,31 +94,28 @@ gulp.task('core-compile-js', () => {
 //   })));
 // });
 
-gulp.task('core-extract-js-vendors', ['core-compile-js'], () => {
-  return resolveRollupTask({
-    input: `${CORE_ROOT}/utils/calc/index.js`,
-    plugins: [
-      nodeResolver(),
-      cjsResolver(),
-      babel({
-        babelrc: false,
-        presets: [['env', {'modules': false}]],
-        plugins: ['external-helpers']
-      }),
-      cleanup({
-        comments: 'none',
-        maxEmptyLines: 1
-      })
-    ],
-    format: 'es',
-    file: `${CORE_DIST}/utils/calc/index.js`,
-    name: 'calc'
-  });
-});
+// gulp.task('core-extract-js-vendors', ['core-compile-js'], () => {
+//   return resolveRollupTask({
+//     input: `${CORE_ROOT}/utils/calc/index.js`,
+//     plugins: [
+//       nodeResolver(),
+//       cjsResolver(),
+//       babel({
+//         babelrc: false,
+//         presets: [['env', { modules: false }]],
+//         plugins: ['external-helpers'],
+//       }),
+//       cleanup({
+//         comments: 'none',
+//         maxEmptyLines: 1,
+//       }),
+//     ],
+//     format: 'es',
+//     file: `${CORE_DIST}/utils/calc/index.js`,
+//     name: 'calc',
+//   });
+// });
 
 module.exports = {
-  CORE_TASKS: [
-    "core-extract-scss",
-    "core-extract-js-vendors"
-  ]
+  CORE_TASKS: ['core-extract-scss' /*, 'core-extract-js-vendors'*/],
 };

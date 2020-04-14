@@ -78,7 +78,7 @@ function sendRequestViaJquery( opts: any ): any {
  * @param {*} opts 配置项
  */
 function sendRequestViaAxios( opts: object ): any {
-  return axios(opts);
+  // return axios(opts);
 }
 
 /**

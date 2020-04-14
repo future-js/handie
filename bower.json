@@ -3,7 +3,7 @@
   "private": true,
   "homepage": "https://ourai.github.io/handie/",
   "authors": [
-    "Ourai Lin <ourairyu@gmail.com> (http://ourai.ws/)"
+    "Ourai Lin <ourairyu@gmail.com> (https://ourai.ws/)"
   ],
   "description": "为前端开发提供统一的布局、组件和工具方法",
   "keywords": [
@@ -31,6 +31,6 @@
     "/dist/handie"
   ],
   "devDependencies": {
-    "buds-0.2.17": "packagent/buds#0.2.17"
+    "buds-0.2.18": "packagent/buds#0.2.18"
   }
 }
