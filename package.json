@@ -1,12 +1,9 @@
 {
   "name": "handie",
-  "version": "1.0.10",
+  "version": "1.0.12",
   "description": "为前端开发提供统一的布局、组件和工具方法",
-  "main": "dist/handie.js",
-  "files": [
-    "dist"
-  ],
-  "typings": "dist/typings/index.d.ts",
+  "main": "handie.esm.js",
+  "typings": "typings/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+git@github.com:ourai/handie.git"
@@ -28,10 +25,9 @@
     "prebuild": "rimraf dist",
     "build": "tsc && rollup -c rollup.config.ts",
     "postbuild": "gulp compile",
+    "prerelease": "cp package.json *.md dist/",
+    "release": "cd dist && npm publish",
     "start": "rollup -c rollup.config.ts -w"
-  },
-  "dependencies": {
-    "number-precision": "^1.3.1"
   },
   "devDependencies": {
     "@types/jquery": "^3.3.29",

@@ -4,14 +4,12 @@ import { hasOwnProp } from '../common/helper';
  * 判断是否支持 Plupload
  */
 export function supportPlupload(): boolean {
-  return false;
-  // return hasOwnProp('plupload', window) && hasOwnProp('Uploader', plupload);
+  return hasOwnProp('plupload', window) && hasOwnProp('Uploader', plupload);
 }
 
 /**
  * 判断是否支持七牛
  */
 export function supportQiniu(): boolean {
-  return false;
-  // return hasOwnProp('Qiniu', window) && hasOwnProp('uploader', Qiniu);
+  return hasOwnProp('Qiniu', window) && hasOwnProp('uploader', Qiniu);
 }
