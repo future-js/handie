@@ -1,6 +1,6 @@
 {
   "name": "handie",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "为前端开发提供统一的布局、组件和工具方法",
   "main": "handie.esm.js",
   "typings": "typings/index.d.ts",
