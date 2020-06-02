@@ -1,4 +1,4 @@
-import { isFunction } from '../../utils/is/type';
+import { isFunction } from '@ntks/toolbox';
 import { isNativeFlavor, resolveBridge } from './helper';
 
 /**
@@ -8,10 +8,10 @@ import { isNativeFlavor, resolveBridge } from './helper';
  * @param {*} opts 处理函数的首个参数
  * @param {*} rest 处理函数的其余参数
  */
-export function invoke( ref: string, opts: any, ...rest: any[] ): any {
+export function invoke(ref: string, opts: any, ...rest: any[]): any {
   const handler = resolveBridge(ref, isNativeFlavor(opts));
 
-  if ( !isFunction(handler) ) {
+  if (!isFunction(handler)) {
     return false;
   }
 

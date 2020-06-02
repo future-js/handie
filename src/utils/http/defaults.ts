@@ -1,6 +1,4 @@
-import { hasOwnProp } from '../common/helper';
-import { isString, isFunction, isPlainObject } from '../is/type';
-import { getDefaults } from '../storage/helper';
+import { hasOwnProp, isString, isFunction, isPlainObject, getDefaults } from '@ntks/toolbox';
 import { invoke } from '../../adapters/bridge';
 
 export default {
@@ -13,7 +11,7 @@ export default {
   /**
    * 将请求参数转换为 JSON
    */
-  jsonify( params: any ): any {
+  jsonify(params: any): any {
     return params;
   },
   /**
@@ -21,36 +19,37 @@ export default {
    *
    * @param {*} res 请求返回
    */
-  isRestful( res: any ): boolean {
-    return !(res !== undefined && hasOwnProp('success', res) && (hasOwnProp('message', res) || hasOwnProp('errorMsg', res)));
+  isRestful(res: any): boolean {
+    return !(
+      res !== undefined &&
+      hasOwnProp('success', res) &&
+      (hasOwnProp('message', res) || hasOwnProp('errorMsg', res))
+    );
   },
   /**
    * 请求发生错误时的处理
    */
-  errorHandler( res: any ): void {
+  errorHandler(res: any): void {
     const code = res.status;
 
-    if ( code >= 500 ) {
+    if (code >= 500) {
       invoke('notice.alert', getDefaults('http.serverErrorText'));
-    }
-    else if ( code >= 400 ) {
+    } else if (code >= 400) {
       let resText = res.responseText;
       let resJson;
 
-      if ( hasOwnProp('responseJSON', res) ) {
+      if (hasOwnProp('responseJSON', res)) {
         resJson = res.responseJSON;
-      }
-      else {
+      } else {
         try {
           resJson = JSON.parse(resText);
-        }
-        catch ( err ) {
+        } catch (err) {
           resJson = null;
         }
       }
 
       // 支持 {"message": ""} 或 {"errorMsg": ""} 形式的错误信息
-      if ( isPlainObject(resJson) && (hasOwnProp('message', resJson) || hasOwnProp('errorMsg', resJson)) ) {
+      if (isPlainObject(resJson) && (hasOwnProp('message', resJson) || hasOwnProp('errorMsg', resJson))) {
         resText = hasOwnProp('message', resJson) ? resJson.message : resJson.errorMsg;
       }
 
@@ -60,24 +59,22 @@ export default {
   /**
    * 对请求返回数据的处理
    */
-  responseHandler( res: any, callback: Function ): void {
+  responseHandler(res: any, callback: Function): void {
     const hasCallback = isFunction(callback);
 
     // RESTful 请求的情况
-    if ( getDefaults('http.isRestful')(res) ) {
-      if ( isString(res) && res !== '' ) {
+    if (getDefaults('http.isRestful')(res)) {
+      if (isString(res) && res !== '') {
         invoke('notice.alert', res);
-      }
-      else if ( hasCallback ) {
+      } else if (hasCallback) {
         callback.call(null, res);
       }
     }
     // 返回结构为 {success: true, message: ""} 或 {success: true, errorMsg: ""} 的情况
     else {
-      if ( !res.success ) {
+      if (!res.success) {
         invoke('notice.alert', hasOwnProp('message', res) ? res.message : res.errorMsg);
-      }
-      else if ( hasCallback ) {
+      } else if (hasCallback) {
         callback.call(null, res.data);
       }
     }
@@ -85,5 +82,5 @@ export default {
   /**
    * 请求完成时的处理
    */
-  completeHandler(): void {}
-}
+  completeHandler(): void {},
+};

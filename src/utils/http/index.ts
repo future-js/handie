@@ -1,6 +1,4 @@
-import { isFunction, isPlainObject } from '../is/type';
-import { includes, map, keys, mixin } from '../collection';
-import { setDefaults, getDefaults } from '../storage/helper';
+import { isFunction, isPlainObject, includes, map, keys, mixin, setDefaults, getDefaults } from '@ntks/toolbox';
 import { supportJquery, supportAxios } from './helper';
 
 import HTTP_DEFAULTS from './defaults';

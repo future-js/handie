@@ -29,6 +29,9 @@
     "release": "cd dist && npm publish",
     "start": "rollup -c rollup.config.ts -w"
   },
+  "dependencies": {
+    "@ntks/toolbox": "0.0.3"
+  },
   "devDependencies": {
     "@types/jquery": "^3.3.29",
     "@types/lodash": "^4.14.149",
