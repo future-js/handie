@@ -25,4 +25,4 @@ Handie 的目标不是统一技术栈，更不是统一界面风格，而是—�
 
 ## 怎么反馈问题
 
-如果你有问题要反馈或什么好的建议，可以提交 [issue](https://github.com/anti-chaos/handie/issues) 或钉钉联系[欧雷](dingtalk://dingtalkclient/action/sendmsg?dingtalk_id=ourairyu)。
+如果你有问题要反馈或什么好的建议，可以提交 [issue](https://github.com/ourai/handie/issues) 或钉钉联系[欧雷](dingtalk://dingtalkclient/action/sendmsg?dingtalk_id=ourairyu)。

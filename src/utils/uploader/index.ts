@@ -1,8 +1,15 @@
-import { hasOwnProp } from '../common/helper';
-import { isString, isFunction, isPlainObject } from '../is/type';
-import { isUrl } from '../is/format';
-import { each, last, mixin } from '../collection';
-import { setDefaults, getDefaults } from '../storage/helper';
+import {
+  isString,
+  isFunction,
+  isPlainObject,
+  isUrl,
+  hasOwnProp,
+  each,
+  last,
+  mixin,
+  setDefaults,
+  getDefaults,
+} from '@ntks/toolbox';
 import { supportPlupload, supportQiniu } from './helper';
 
 import UPLOADER_DEFAULTS from './defaults';

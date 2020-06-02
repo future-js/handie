@@ -1,4 +1,4 @@
-import { isFunction, isPlainObject } from '../is/type';
+import { isFunction, isPlainObject } from '@ntks/toolbox';
 
 /**
  * 判断是否支持 jQuery

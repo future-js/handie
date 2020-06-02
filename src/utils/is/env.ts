@@ -1,4 +1,4 @@
-import { hasOwnProp } from '../common/helper';
+import { hasOwnProp } from '@ntks/toolbox';
 
 /**
  * 获取用户代理字符串

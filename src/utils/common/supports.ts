@@ -1,4 +1,4 @@
-import { hasOwnProp } from './helper';
+import { hasOwnProp } from '@ntks/toolbox';
 
 /**
  * 判断是否支持 CSS 的 `pointer-events`

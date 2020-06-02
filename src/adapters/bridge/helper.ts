@@ -1,16 +1,26 @@
-import { isBoolean, isString, isFunction, isPlainObject } from '../../utils/is/type';
-import { each, keys } from '../../utils/collection';
-import { getDefaults, setPrivate, getPrivate } from '../../utils/storage/helper';
+import {
+  isBoolean,
+  isString,
+  isFunction,
+  isPlainObject,
+  each,
+  keys,
+  getDefaults,
+  setPrivate,
+  getPrivate,
+} from '@ntks/toolbox';
 
 /**
  * 是否优先使用 native 组件
  *
  * @param {*} opts 包含抉择的配置项
  */
-export function isNativeFlavor( opts: any ): boolean {
-  return isBoolean(opts) ? opts :
-    isPlainObject(opts) && isBoolean(opts.native) ? opts.native :
-    getDefaults('behavior') === 'native';
+export function isNativeFlavor(opts: any): boolean {
+  return isBoolean(opts)
+    ? opts
+    : isPlainObject(opts) && isBoolean(opts.native)
+    ? opts.native
+    : getDefaults('behavior') === 'native';
 }
 
 /**
@@ -19,7 +29,7 @@ export function isNativeFlavor( opts: any ): boolean {
  * @param {*} flag 标识符
  * @param {*} apis API
  */
-export function setBridge( flag: string, apis: any ): any {
+export function setBridge(flag: string, apis: any): any {
   return setPrivate(`bridge.${flag}`, apis);
 }
 
@@ -29,7 +39,7 @@ export function setBridge( flag: string, apis: any ): any {
  * @param {*} flag 标识符
  * @param {*} ref API 引用
  */
-export function getBridge( flag: string, ref: string ): any {
+export function getBridge(flag: string, ref: string): any {
   return getPrivate(`bridge.${flag}.${ref}`);
 }
 
@@ -39,18 +49,18 @@ export function getBridge( flag: string, ref: string ): any {
  * @param {*} ref API 引用
  * @param {*} isNativeFirst 是否 native 优先
  */
-export function resolveBridge( ref: string, isNativeFirst: boolean ): any {
-  if ( !isString(ref) ) {
+export function resolveBridge(ref: string, isNativeFirst: boolean): any {
+  if (!isString(ref)) {
     return;
   }
 
   let handler;
 
-  if ( isNativeFirst ) {
+  if (isNativeFirst) {
     const envs = getPrivate('env');
 
-    each(keys(getPrivate('bridge')), ( k: string ) => {
-      if ( k !== 'fallback' && envs[k] === true ) {
+    each(keys(getPrivate('bridge')), (k: string) => {
+      if (k !== 'fallback' && envs[k] === true) {
         handler = getBridge(k, ref);
 
         return false;
@@ -58,7 +68,7 @@ export function resolveBridge( ref: string, isNativeFirst: boolean ): any {
     });
   }
 
-  if ( !isFunction(handler) ) {
+  if (!isFunction(handler)) {
     handler = getBridge('fallback', ref);
   }
 
