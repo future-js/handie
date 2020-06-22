@@ -30,7 +30,7 @@
     "start": "rollup -c rollup.config.ts -w"
   },
   "dependencies": {
-    "@ntks/toolbox": "0.0.3"
+    "@ntks/toolbox": "0.0.4"
   },
   "devDependencies": {
     "@types/jquery": "^3.3.29",
