@@ -45,7 +45,7 @@
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "lint-staged": "^10.0.7",
-    "mocker-api": "^2.9.0",
+    "mocker-api": "^2.9.5",
     "node-sass": "^5.0.0",
     "path-to-regexp": "^6.2.1",
     "petals-ui": "0.0.25",
