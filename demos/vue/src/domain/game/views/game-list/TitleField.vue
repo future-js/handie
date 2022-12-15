@@ -5,7 +5,7 @@
 <script lang="ts">
 import { Component } from 'vue-property-decorator';
 
-import { StringFieldStructuralWidget } from '@/components/widget/headless';
+import { StringFieldStructuralWidget } from '@/components/widget/base';
 
 @Component
 export default class GameListTitleField extends StringFieldStructuralWidget {

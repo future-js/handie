@@ -1,6 +1,6 @@
-import { ThemeOptions } from '@/types';
+import { ThemeOptions, mixin } from '@handie/runtime-core';
 
-export default {
+const defaultTheme: ThemeOptions = {
   icon: {
     providers: {
       ol: {
@@ -8,8 +8,6 @@ export default {
         urls: ['//at.alicdn.com/t/font_1788044_0dwu4guekcwr.js'],
         resolve: ref => `icon-${ref}`,
       },
-      el: { type: 'font', resolve: ref => `el-icon-${ref}` },
-      ivu: { type: 'font' },
     },
   },
   behavior: {
@@ -18,18 +16,25 @@ export default {
         showIcon: true,
         iconOnly: true,
       },
+      // search: {
+      //   searchWhenSelectableFilterChange: false,
+      // },
       filter: {
         showValidationRulesAsNative: true,
       },
       field: {
+        // enumFieldRenderType: 'select',
         showUnavailableOption: true,
         showHintAtFormItem: true,
         hintPositionOfFormItem: 'label',
-        hintIcon: 'el:question',
+        hintIcon: 'ol:python',
         showValidationRulesAsNative: true,
       },
     },
     view: {
+      // table: {
+      //   inlineActionRenderType: 'link',
+      // },
       form: {
         actionBarOutside: true,
         actionBarAlignment: 'right',
@@ -46,4 +51,10 @@ export default {
       },
     },
   },
-} as ThemeOptions;
+};
+
+function getTheme(theme?: ThemeOptions): ThemeOptions {
+  return theme ? mixin(true, {}, defaultTheme, theme) : defaultTheme;
+}
+
+export { getTheme };

@@ -5,7 +5,7 @@
 <script lang="ts">
 import { Component } from 'vue-property-decorator';
 
-import { RelationFieldStructuralWidget } from '@/components/widget/headless';
+import { RelationFieldStructuralWidget } from '@/components/widget/base';
 
 import { AnimationEntity } from '../../typing';
 

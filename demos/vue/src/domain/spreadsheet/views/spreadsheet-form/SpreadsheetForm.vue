@@ -11,7 +11,7 @@
 import { Component, Ref } from 'vue-property-decorator';
 import DraggableResizable from 'vue-draggable-resizable';
 
-import { ObjectViewStructuralWidget } from '@/components/widget/headless';
+import { ObjectViewStructuralWidget } from '@/components/widget/base';
 
 import { getComponents } from '../../context';
 import { initSpreadsheet } from './helper';

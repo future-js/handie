@@ -1,0 +1,14 @@
+{
+  "extends": "../../configs/tsconfig-base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@handie/runtime-core": ["../../packages/runtime-core/src/index.ts"],
+      "@handie/runtime-core/dist/*": ["../../packages/runtime-core/src/*"]
+    }
+  },
+  "include": [
+    "../../packages/runtime-core/src",
+    "."
+  ]
+}

@@ -1,4 +1,4 @@
-import { ActionDescriptor, ListViewContext, ObjectViewContext } from '@/types';
+import type { ActionDescriptor, ListViewContext, ObjectViewContext } from '@handie/runtime-core';
 
 export default [
   {

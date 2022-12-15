@@ -5,7 +5,7 @@
 <script lang="ts">
 import { Component } from 'vue-property-decorator';
 
-import { TextFieldStructuralWidget } from '@/components/widget/headless';
+import { TextFieldStructuralWidget } from '@/components/widget/base';
 import { getComponents } from '../../helper';
 
 @Component({

@@ -10,7 +10,7 @@
 <script lang="ts">
 import { Component } from 'vue-property-decorator';
 
-import { RelationFieldStructuralWidget } from '@/components/widget/headless';
+import { RelationFieldStructuralWidget } from '@/components/widget/base';
 
 @Component
 export default class AnimationDetailEpisodesField extends RelationFieldStructuralWidget<string[]> {}

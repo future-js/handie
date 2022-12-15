@@ -1,7 +1,7 @@
 <script lang="ts">
 import { Component } from 'vue-property-decorator';
 
-import { ActionStructuralWidget } from '@/components/widget/headless';
+import { ActionStructuralWidget } from '@/components/widget/base';
 
 @Component
 export default class FuckAction extends ActionStructuralWidget {

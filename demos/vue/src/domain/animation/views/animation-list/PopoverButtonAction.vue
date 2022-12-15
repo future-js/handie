@@ -13,7 +13,7 @@
 <script lang="ts">
 import { Component } from 'vue-property-decorator';
 
-import { ActionStructuralWidget } from '@/components/widget/headless';
+import { ActionStructuralWidget } from '@/components/widget/base';
 
 import { getComponents } from '../../helper';
 

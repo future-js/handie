@@ -1,17 +1,18 @@
 import { createApp } from 'handie-react-starter-umi';
 
+import actions from '../../../common/actions';
+import { setInterceptors } from '../../../common/aspects';
+import { getTheme } from '../../../common/utils/theme';
+
 import components from '@/shared/components';
 import modules from '../domain';
-import actions from './actions';
-import { setInterceptors } from './aspects';
 import routes from './routes';
-import theme from './theme';
 
 setInterceptors();
 
 createApp({
   components,
   metadata: { actions, modules },
-  theme,
+  theme: getTheme({ icon: { providers: { antd: { type: 'svg' } } } }),
   routes,
 });

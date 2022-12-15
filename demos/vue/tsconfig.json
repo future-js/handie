@@ -3,6 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@handie/runtime-core": ["../../packages/runtime-core/src/index.ts"],
+      "@handie/runtime-core/dist/*": ["../../packages/runtime-core/src/*"],
       "handie-vue": ["../../packages/handie-vue/src/index.ts"],
       "handie-vue/dist/*": ["../../packages/handie-vue/src/*"],
       "@handie/bulbasaur": ["../../packages/bulbasaur/src/index.ts"],
@@ -14,6 +16,7 @@
     "../../packages/runtime-core/src",
     "../../packages/handie-vue/src",
     "../../packages/bulbasaur/src",
+    "../common",
     "src"
   ]
 }

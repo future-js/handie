@@ -39,7 +39,7 @@
 <script lang="ts">
 import { Component } from 'vue-property-decorator';
 
-import { ObjectViewStructuralWidget } from '@/components/widget/headless';
+import { ObjectViewStructuralWidget } from '@/components/widget/base';
 import { FormRenderer } from '@/components/renderer';
 
 import { getComponents } from '../../helper';

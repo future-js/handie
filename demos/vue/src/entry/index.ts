@@ -2,16 +2,18 @@ import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import { getVueApp, setUserAuthorityGetter, createApp } from 'handie-vue';
 
+import actions from '../../../common/actions';
+import { setInterceptors } from '../../../common/aspects';
+import { getTheme } from '../../../common/utils/theme';
+
+import httpClient from '@/utils/http';
 import components from '@/components';
 import modules from '../domain';
 import plugins from './plugins';
-import actions from './actions';
-import { setInterceptors } from './aspects';
 import routes from './routes';
-import theme from './theme';
 
 setUserAuthorityGetter(() => getVueApp()!.$store.state.session.authority.accessible);
-setInterceptors();
+setInterceptors(httpClient);
 
 createApp({
   plugins: [Vuex, ...plugins],
@@ -21,7 +23,17 @@ createApp({
   },
   components,
   metadata: { actions, modules },
-  theme,
+  theme: getTheme({
+    icon: {
+      providers: {
+        el: { type: 'font', resolve: ref => `el-icon-${ref}` },
+        ivu: { type: 'font' },
+      },
+    },
+    behavior: {
+      common: { field: { hintIcon: 'el:question' } },
+    },
+  }),
   el: '#app',
   routes,
 });
