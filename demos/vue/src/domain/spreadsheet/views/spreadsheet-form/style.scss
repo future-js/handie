@@ -1,0 +1,17 @@
+.SpreadsheetForm {
+  // overflow: auto;
+  &,
+  &-spreadsheet {
+    height: 100%;
+  }
+
+  &-draggable {
+    background-color: #ff0;
+  }
+
+  // ::v-deep .x-spreadsheet {
+  //   &-bottombar {
+  //     display: none;
+  //   }
+  // }
+}

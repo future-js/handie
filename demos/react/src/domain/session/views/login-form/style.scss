@@ -1,0 +1,33 @@
+.LoginFormViewWidget {
+  height: 100%;
+  background-color: #f4f6f9;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    text-align: center;
+    background-color: #0871ab;
+
+    h1 {
+      margin: 0;
+      font-size: 46px;
+      color: #fff;
+    }
+  }
+
+  &-body {
+    width: 480px;
+    margin: 0 auto;
+    padding-top: 100px;
+  }
+
+  &-buttonWrapper {
+    padding-left: 80px;
+  }
+
+  &-button {
+    width: 100%;
+  }
+}

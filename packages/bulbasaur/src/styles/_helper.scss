@@ -1,0 +1,67 @@
+@function resolve-value($widget-name, $prop-name, $default-value) {
+  @if $widget-name and $widget-name != '' {
+    @return var(--handie-#{$widget-name}-#{$prop-name}, #{$default-value});
+  }
+
+  @return $default-value;
+}
+
+@mixin action-rules {
+  :global {
+    .ActionWidget {
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .ActionWidget + .ActionWidget {
+      margin-left: 8px;
+    }
+  }
+}
+
+@mixin form-view-rules($widget-name: '') {
+  height: 100%;
+  border-radius: resolve-value($widget-name, border-radius, 6px);
+  background-color: resolve-value($widget-name, bg, #fff);
+
+  &-form {
+    padding: resolve-value($widget-name, padding, 16px);
+  }
+
+  &-actionBar {
+    @include action-rules;
+  }
+
+  &:not(&--actionBarOutside) {
+    overflow: auto;
+  }
+
+  &--actionBarLeft &-actionBar {
+    text-align: left;
+  }
+
+  &--actionBarCenter &-actionBar {
+    text-align: center;
+  }
+
+  &--actionBarRight &-actionBar {
+    text-align: right;
+  }
+
+  &--actionBarOutside {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &--actionBarOutside &-formContainer {
+    flex-grow: 1;
+    overflow: auto;
+  }
+
+  &--actionBarOutside &-actionBar {
+    flex-shrink: 0;
+    padding: resolve-value($widget-name, action-bar-padding, 16px);
+    background-color: resolve-value($widget-name, action-bar-bg, #fff);
+    box-shadow: resolve-value($widget-name, action-bar-box-shadow, "0 -6px 16px -8px rgb(0 0 0 / 8%), 0 -9px 28px 0 rgb(0 0 0 / 5%), 0 -12px 48px 16px rgb(0 0 0 / 3%)");
+  }
+}

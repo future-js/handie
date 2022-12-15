@@ -1,0 +1,5 @@
+@import "../form";
+
+.FormViewWidget {
+  @include form-view-rules;
+}

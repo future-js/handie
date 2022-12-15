@@ -1,0 +1,74 @@
+.AdminLayout {
+  &-brand,
+  &-menu {
+    padding-left: 24px;
+  }
+
+  &-brand,
+  &-menu a {
+    color: #fff;
+  }
+
+  &-brand {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 48px;
+    text-decoration: none;
+  }
+
+  &-menu {
+    margin-top: 24px;
+
+    li.is-active {
+      background-color: #eee;
+
+      a {
+        color: #666;
+      }
+    }
+  }
+
+  &-mainNav {
+    height: 100%;
+  }
+
+  &-main {
+    overflow: auto;
+    height: calc(100% - 48px);
+  }
+}
+
+.MainNav {
+  @include pie-clearfix;
+
+  &,
+  &-item,
+  &-item::before {
+    height: 100%;
+  }
+
+  &-item {
+    position: relative;
+    float: left;
+    font-size: 16px;
+    font-weight: 400;
+
+    &::before,
+    a {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &::before {
+      content: "\0020";
+    }
+
+    a {
+      padding: 0 12px;
+    }
+
+    &.is-active {
+      background-color: #aaa;
+    }
+  }
+}

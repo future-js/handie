@@ -1,0 +1,54 @@
+@mixin form-view-rules {
+  height: 100%;
+  padding: 24px;
+  border-radius: 6px;
+  background-color: #fff;
+
+  &-actionBar {
+    :global {
+      .ActionWidget {
+        cursor: pointer;
+      }
+      
+      .ActionWidget + .ActionWidget {
+        margin-left: 8px;
+      }
+    }
+  }
+
+  &:not(&--actionBarOutside) {
+    overflow: auto;
+  }
+
+  &--actionBarLeft &-actionBar {
+    text-align: left;
+  }
+
+  &--actionBarCenter &-actionBar {
+    text-align: center;
+  }
+
+  &--actionBarRight &-actionBar {
+    text-align: right;
+  }
+
+  &--actionBarOutside {
+    :global {
+      .ant-spin-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+    }
+  }
+
+  &--actionBarOutside &-formContainer {
+    flex-grow: 1;
+    overflow: auto;
+  }
+
+  &--actionBarOutside &-actionBar {
+    flex-shrink: 0;
+    padding-top: 16px;
+  }
+}

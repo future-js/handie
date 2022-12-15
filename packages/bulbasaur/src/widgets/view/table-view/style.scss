@@ -1,0 +1,24 @@
+@import "../../../styles/helper";
+
+.TableView {
+  $table-actions-height: 40px;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &-search,
+  &-tableActions {
+    flex-shrink: 0;
+  }
+
+  &-tableActions {
+    height: $table-actions-height;
+  }
+
+  &-dataTable {
+    flex-grow: 1;
+  }
+
+  @include action-rules;
+}

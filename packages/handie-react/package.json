@@ -1,0 +1,48 @@
+{
+  "name": "handie-react",
+  "version": "0.0.8",
+  "description": "React framework for front-end of web-based management systems",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "handie",
+    "ui",
+    "framework",
+    "ui-framework",
+    "ui-solution",
+    "config-driven",
+    "admin",
+    "admin-dashboard",
+    "management-system",
+    "management-systems",
+    "react",
+    "reactjs",
+    "react.js"
+  ],
+  "author": "Ourai Lin <ourairyu@gmail.com> (https://ourai.ws/)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/handiejs/shell.git",
+    "directory": "packages/handie-react"
+  },
+  "homepage": "https://handiejs.github.io",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "prerelease": "npm run build",
+    "release": "npm publish"
+  },
+  "peerDependencies": {
+    "petals-ui": "~0.0.17",
+    "react": "~17.0.2",
+    "react-dom": "~17.0.2"
+  },
+  "dependencies": {
+    "@handie/runtime-core": "0.0.11"
+  }
+}

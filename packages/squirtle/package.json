@@ -1,0 +1,47 @@
+{
+  "name": "@handie/squirtle",
+  "version": "0.0.7",
+  "description": "Widgets for Handie-React",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "handie",
+    "ui",
+    "framework",
+    "ui-framework",
+    "ui-solution",
+    "config-driven",
+    "admin",
+    "admin-dashboard",
+    "management-system",
+    "management-systems",
+    "react",
+    "reactjs",
+    "react.js"
+  ],
+  "author": "Ourai Lin <ourairyu@gmail.com> (https://ourai.ws/)",
+  "license": "MIT",
+  "homepage": "https://handiejs.github.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/handiejs/shell.git",
+    "directory": "packages/squirtle"
+  },
+  "scripts": {
+    "precopy": "rm -rf dist",
+    "copy": "mkdir dist && cp -R src/* dist",
+    "prebuild": "npm run copy",
+    "build": "tsc && rm -rf dist/shims-*.d.ts",
+    "prerelease": "npm run build",
+    "release": "npm publish --access=public"
+  },
+  "peerDependencies": {
+    "handie-react": "~0.0.0",
+    "react": "~17.0.2",
+    "react-dom": "~17.0.2"
+  }
+}

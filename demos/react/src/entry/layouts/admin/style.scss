@@ -1,0 +1,36 @@
+.AdminLayoutWidget {
+  &-aside {
+    :global {
+      .ant-layout-sider-children {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  &-brand {
+    flex-shrink: 0;
+    height: 64px;
+    padding: 0 16px;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 64px;
+    color: #fff;
+  }
+
+  &-subNav {
+    flex-grow: 1;
+  }
+
+  &-content {
+    background-color: #f0f2f5;
+  }
+
+  &-navMenu {
+    background-color: transparent;
+  }
+
+  &-main {
+    margin: 24px;
+  }
+}

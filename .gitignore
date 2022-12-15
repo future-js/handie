@@ -1,12 +1,16 @@
 *.log
 
+.DS_Store
 .*-tmp
 .*-cache
-.DS_Store
+.cache
+.npmrc
 .git
+.gitmodules
 .idea
 .jekyll-metadata
 .tmp
+.umi
 
 _site
 
@@ -14,15 +18,5 @@ bower_components
 node_modules
 dist
 
+/external
 /backup
-
-/site/_adaptors/vendor
-/site/_admin/bower_components
-/site/_admin/vendor
-/site/_cookbook/_book
-
-/src/vendors
-
-/test/assets
-/test/jquery/assets
-/test/vue/*.bundle.js

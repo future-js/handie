@@ -1,0 +1,50 @@
+{
+  "name": "handie-vue",
+  "version": "0.0.51-6",
+  "description": "Vue framework for front-end of web-based management systems",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "handie",
+    "ui",
+    "framework",
+    "ui-framework",
+    "ui-solution",
+    "config-driven",
+    "admin",
+    "admin-dashboard",
+    "management-system",
+    "management-systems",
+    "vue",
+    "vuejs",
+    "vue.js"
+  ],
+  "author": "Ourai Lin <ourairyu@gmail.com> (https://ourai.ws/)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/handiejs/shell.git",
+    "directory": "packages/handie-vue"
+  },
+  "homepage": "https://handiejs.github.io",
+  "scripts": {
+    "prebuild": "rimraf dist && node build",
+    "build": "tsc",
+    "postbuild": "rimraf tsconfig.json",
+    "prerelease": "npm run build",
+    "release": "npm publish"
+  },
+  "peerDependencies": {
+    "vue": "^2.6.0",
+    "vue-property-decorator": "^8.0.0",
+    "vue-router": "^3.0.0"
+  },
+  "dependencies": {
+    "@handie/runtime-core": "0.0.13-5",
+    "path-to-regexp": "^6.2.1"
+  }
+}

@@ -1,0 +1,33 @@
+#root {
+  height: 100%;
+}
+
+.ant-form-item {
+  .ant-input-number,
+  .ant-input-number-affix-wrapper,
+  .ant-input-number-group-wrapper,
+  .ant-picker {
+    width: 100%;
+  }
+}
+
+.ant-modal {
+  .ant-modal-content {
+    border-radius: 6px;
+  }
+
+  .ant-modal-header {
+    border-radius: 6px 6px 0 0;
+  }
+
+  .ant-modal-footer {
+    padding: 20px 0;
+    border-top-color: #dfe1e6;
+    border-radius: 0 0 6px 6px;
+    text-align: center;
+
+    .ant-btn + .ant-btn:not(.ant-dropdown-trigger) {
+      margin-left: 14px;
+    }
+  }
+}

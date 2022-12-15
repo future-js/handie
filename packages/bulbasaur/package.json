@@ -1,0 +1,48 @@
+{
+  "name": "@handie/bulbasaur",
+  "version": "0.0.16-4",
+  "description": "Widgets for Handie-Vue",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "handie",
+    "ui",
+    "framework",
+    "ui-framework",
+    "ui-solution",
+    "config-driven",
+    "admin",
+    "admin-dashboard",
+    "management-system",
+    "management-systems",
+    "vue",
+    "vuejs",
+    "vue.js"
+  ],
+  "author": "Ourai Lin <ourairyu@gmail.com> (https://ourai.ws/)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/handiejs/shell.git",
+    "directory": "packages/bulbasaur"
+  },
+  "homepage": "https://handiejs.github.io",
+  "scripts": {
+    "precopy": "rimraf dist",
+    "copy": "mkdir dist && cp -R src/* dist",
+    "prebuild": "npm run copy && node build/gen",
+    "build": "tsc",
+    "postbuild": "node build && rimraf tsconfig.json && rm -rf */shims-*.d.ts",
+    "prerelease": "npm run build",
+    "release": "npm publish --access=public"
+  },
+  "peerDependencies": {
+    "handie-vue": "^0.0.0",
+    "vue": "^2.6.0",
+    "vue-property-decorator": "^8.0.0"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "extends": "../../configs/tsconfig-base.json",
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "jsx": "react-jsx",
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "handie-react": ["../../packages/handie-react/src/index.ts"],
+      "handie-react/dist/*": ["../../packages/handie-react/src/*"],
+      "@handie/squirtle": ["../../packages/squirtle/src/index.ts"],
+      "@handie/squirtle/dist/*": ["../../packages/squirtle/src/*"],
+      "handie-react-starter-antd": ["../../packages/starter-antd/src/index.ts"],
+      "handie-react-starter-antd/dist/*": ["../../packages/starter-antd/src/*"],
+      "handie-react-starter-umi": ["../../packages/starter-umi/src/index.ts"],
+      "handie-react-starter-umi/dist/*": ["../../packages/starter-umi/src/*"],
+      "@/*": ["src/*"],
+      "@@/*": ["src/.umi/*"]
+    }
+  },
+  "include": [
+    "../../packages/*/src",
+    "src",
+    ".umirc.ts",
+    "typings.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "lib",
+    "es",
+    "dist",
+    "typings",
+    "**/__test__",
+    "test",
+    "docs",
+    "tests"
+  ]
+}

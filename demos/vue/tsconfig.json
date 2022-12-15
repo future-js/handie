@@ -1,0 +1,18 @@
+{
+  "extends": "../../configs/tsconfig-base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "handie-vue": ["../../packages/handie-vue/src/index.ts"],
+      "handie-vue/dist/*": ["../../packages/handie-vue/src/*"],
+      "@handie/bulbasaur": ["../../packages/bulbasaur/src/index.ts"],
+      "@handie/bulbasaur/dist/*": ["../../packages/bulbasaur/src/*"],
+      "@/*": ["src/shared/*"]
+    }
+  },
+  "include": [
+    "../../packages/handie-vue/src",
+    "../../packages/bulbasaur/src",
+    "src"
+  ]
+}
