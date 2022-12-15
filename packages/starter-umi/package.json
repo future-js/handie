@@ -28,7 +28,7 @@
   "homepage": "https://handiejs.github.io",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/handiejs/shell.git",
+    "url": "git+https://github.com/handiejs/handie.git",
     "directory": "packages/starter-umi"
   },
   "scripts": {

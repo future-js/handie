@@ -19,6 +19,8 @@ module.exports = {
     },
     resolve: {
       alias: {
+        '@handie/runtime-core/dist': resolve('./packages/runtime-core/src'),
+        '@handie/runtime-core': resolve('./packages/runtime-core/src/index.ts'),
         'handie-vue/dist': resolve('./packages/handie-vue/src'),
         'handie-vue': resolve('./packages/handie-vue/src/index.ts'),
         '@handie/bulbasaur/dist': resolve('./packages/bulbasaur/src'),
