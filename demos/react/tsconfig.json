@@ -14,6 +14,7 @@
       "handie-react-starter-antd/dist/*": ["../../packages/starter-antd/src/*"],
       "handie-react-starter-umi": ["../../packages/starter-umi/src/index.ts"],
       "handie-react-starter-umi/dist/*": ["../../packages/starter-umi/src/*"],
+      "@_/*": ["../common/*"],
       "@/*": ["src/*"],
       "@@/*": ["src/.umi/*"]
     }

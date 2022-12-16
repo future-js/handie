@@ -1,15 +1,3 @@
-import type { ObjectViewContextDescriptor, ListViewContext, ObjectViewContext } from '@/types';
+import { getAnimationBriefFormView } from '@_/modules/animation/views';
 
-export default function getAnimationBriefFormDescriptor(
-  opener: ListViewContext | ObjectViewContext,
-): ObjectViewContextDescriptor {
-  return {
-    name: 'AnimationBriefFormView',
-    category: 'object',
-    renderType: 'form-dialog',
-    config: { moduleLabel: '动画' },
-    fields: ['title', 'description', 'form'],
-    opener,
-    validate: 'submit',
-  };
-}
+export default getAnimationBriefFormView();

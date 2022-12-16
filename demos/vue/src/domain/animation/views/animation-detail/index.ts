@@ -1,17 +1,6 @@
-import { ViewDescriptor } from '@/types';
+import { getAnimationDetailView } from '@_/modules/animation/views';
 
-import EpisodesField from './EpisodesField.vue';
-import DescriptionField from './DescriptionField.vue';
+import DescriptionFieldWidget from './DescriptionField.vue';
+import EpisodesFieldWidget from './EpisodesField.vue';
 
-export default {
-  name: 'AnimationDetailView',
-  category: 'object',
-  renderType: 'form',
-  config: { readonly: true },
-  fields: [
-    'title',
-    { name: 'description', widget: DescriptionField },
-    'form',
-    { name: 'episodes', widget: EpisodesField },
-  ],
-} as ViewDescriptor;
+export default getAnimationDetailView({ DescriptionFieldWidget, EpisodesFieldWidget });
