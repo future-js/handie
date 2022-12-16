@@ -5,9 +5,9 @@
 <script lang="ts">
 import { Component } from 'vue-property-decorator';
 
-import { RelationFieldStructuralWidget } from '@/components/widget/base';
+import { AnimationEntity } from '@_/modules/animation/typing';
 
-import { AnimationEntity } from '../../typing';
+import { RelationFieldStructuralWidget } from '@/components/widget/base';
 
 @Component
 export default class AnimationListEpisodesField extends RelationFieldStructuralWidget<

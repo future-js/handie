@@ -1,8 +1,9 @@
 import { ModuleDescriptor } from '@/types';
 
-import { MODULE_NAME, testUtil } from './helper';
-import model from './model';
-import * as actions from './repository';
+import { MODULE_NAME, testUtil } from '@_/modules/animation/helper';
+import model from '@_/modules/animation/model';
+import * as actions from '@_/modules/animation/repository';
+
 import * as views from './views';
 import TestWidget from './widgets/test-widget';
 

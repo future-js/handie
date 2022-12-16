@@ -1,19 +1,19 @@
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
+
 import { getVueApp, setUserAuthorityGetter, createApp } from 'handie-vue';
 
-import actions from '../../../common/actions';
-import { setInterceptors } from '../../../common/aspects';
-import { getTheme } from '../../../common/utils/theme';
+import actions from '@_/actions';
+import { setInterceptors } from '@_/aspects';
+import { getTheme } from '@_/utils/theme';
 
-import httpClient from '@/utils/http';
 import components from '@/components';
 import modules from '../domain';
 import plugins from './plugins';
 import routes from './routes';
 
 setUserAuthorityGetter(() => getVueApp()!.$store.state.session.authority.accessible);
-setInterceptors(httpClient);
+setInterceptors();
 
 createApp({
   plugins: [Vuex, ...plugins],

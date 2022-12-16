@@ -1,7 +1,10 @@
-import type { AxiosInstance, AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios';
+
 import type { ResponseExtra } from '@handie/runtime-core';
 
-function setInterceptors(httpClient: AxiosInstance): void {
+import httpClient from '../utils/http';
+
+function setInterceptors(): void {
   (httpClient.interceptors.response as any).use((res: AxiosResponse) =>
     res.status === 200
       ? {

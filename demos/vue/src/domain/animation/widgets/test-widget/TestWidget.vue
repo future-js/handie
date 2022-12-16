@@ -5,7 +5,7 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 
-import { getComponents } from '../../helper';
+import { getComponents } from '@_/modules/animation/helper';
 
 @Component({
   components: getComponents(),

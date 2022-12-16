@@ -9,10 +9,12 @@
       "handie-vue/dist/*": ["../../packages/handie-vue/src/*"],
       "@handie/bulbasaur": ["../../packages/bulbasaur/src/index.ts"],
       "@handie/bulbasaur/dist/*": ["../../packages/bulbasaur/src/*"],
+      "@_/*": ["../common/*"],
       "@/*": ["src/shared/*"]
     }
   },
   "include": [
+    "../../typings",
     "../../packages/runtime-core/src",
     "../../packages/handie-vue/src",
     "../../packages/bulbasaur/src",

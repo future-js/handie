@@ -1,4 +1,4 @@
-import { ResponseResult } from './shared/types';
+import type { ResponseResult } from '@handie/runtime-core';
 
 declare module 'axios' {
   interface AxiosInstance {

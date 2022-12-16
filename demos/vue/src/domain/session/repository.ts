@@ -1,5 +1,6 @@
+import httpClient from '@_/utils/http';
+
 import { ResponseResult } from '@/types';
-import httpClient from '@/utils/http';
 
 import { UserAndPermissions } from './typing';
 

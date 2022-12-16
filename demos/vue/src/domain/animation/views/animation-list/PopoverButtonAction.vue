@@ -13,9 +13,9 @@
 <script lang="ts">
 import { Component } from 'vue-property-decorator';
 
-import { ActionStructuralWidget } from '@/components/widget/base';
+import { getComponents } from '@_/modules/animation/helper';
 
-import { getComponents } from '../../helper';
+import { ActionStructuralWidget } from '@/components/widget/base';
 
 @Component({
   components: getComponents(),

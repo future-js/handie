@@ -19,7 +19,9 @@
     }
   },
   "include": [
+    "../../typings",
     "../../packages/*/src",
+    "../common",
     "src",
     ".umirc.ts",
     "typings.d.ts"

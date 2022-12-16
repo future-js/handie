@@ -1,4 +1,4 @@
-import { getComponents as _getComponents } from '@/utils';
+import { getComponents as _getComponents } from '@handie/runtime-core';
 
 const MODULE_NAME = 'animation';
 

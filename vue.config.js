@@ -25,6 +25,7 @@ module.exports = {
         'handie-vue': resolve('./packages/handie-vue/src/index.ts'),
         '@handie/bulbasaur/dist': resolve('./packages/bulbasaur/src'),
         '@handie/bulbasaur': resolve('./packages/bulbasaur/src/index.ts'),
+        '@_': resolve(`./${DEMO_ROOT_DIR}/common`),
         '@': resolve(`${APP_PATH}/src/shared`),
       },
     },

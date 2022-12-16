@@ -1,4 +1,4 @@
-type AnimationEntity = {
+interface AnimationEntity {
   id: string;
   title: string;
   description: string;
@@ -7,6 +7,6 @@ type AnimationEntity = {
     end: string;
   };
   episodes: string[];
-};
+}
 
-export { AnimationEntity };
+export type { AnimationEntity };

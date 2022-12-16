@@ -1,5 +1,6 @@
+import httpClient from '@_/utils/http';
+
 import { Pagination, ResponseResult } from '@/types';
-import httpClient from '@/utils/http';
 
 import { GameEntity } from './typing';
 
