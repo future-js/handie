@@ -12,7 +12,7 @@ function execute(subCmd = 'app', ...args) {
     if (type === 'vue') {
       execSync('vue-cli-service build', { stdio: 'inherit' });
     } else if (type === 'react') {
-      execSync(`APP_ROOT=${REACT_APP_DIR} umi build`, { stdio: 'inherit' });
+      execSync(`cross-env APP_ROOT=${REACT_APP_DIR} umi build`, { stdio: 'inherit' });
     }
   } else if (subCmd === 'pkg') {
     const pkgDirPath = getPkgPath(args[0]);

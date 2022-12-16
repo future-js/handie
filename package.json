@@ -17,7 +17,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "postinstall": "APP_ROOT=demos/react umi generate tmp",
+    "postinstall": "cross-env APP_ROOT=demos/react umi generate tmp",
     "build": "node ./scripts/bin build",
     "release": "node ./scripts/bin release pkg",
     "start": "node ./scripts/bin serve",
@@ -27,8 +27,8 @@
     "core:build": "cd packages/runtime-core && npm run build",
     "core:patch-version": "cd packages/runtime-core && npm version patch && cd ../../",
     "core:release": "cd packages/runtime-core && npm run release",
-    "test": "APP_ROOT=demos/react umi-test",
-    "test:coverage": "APP_ROOT=demos/react umi-test --coverage"
+    "test": "cross-env APP_ROOT=demos/react umi-test",
+    "test:coverage": "cross-env APP_ROOT=demos/react umi-test --coverage"
   },
   "author": "Ourai Lin <ourairyu@gmail.com> (https://ourai.ws/)",
   "license": "MIT",
@@ -53,6 +53,7 @@
     "@wotaware/x-spreadsheet": "0.0.3",
     "@zoras/adapter-ant-design": "0.0.9",
     "axios": "^0.21.1",
+    "cross-env": "^7.0.3",
     "dayjs": "~1.10.7",
     "element-ui": "^2.14.1",
     "eslint": "^7.21.0",

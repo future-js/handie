@@ -8,7 +8,7 @@ function execute(type = 'vue', ...args) {
   if (type === 'vue') {
     execSync('vue-cli-service serve', { stdio: 'inherit' });
   } else if (type === 'react') {
-    execSync(`APP_ROOT=${REACT_APP_DIR} umi dev`, { stdio: 'inherit' });
+    execSync(`cross-env APP_ROOT=${REACT_APP_DIR} umi dev`, { stdio: 'inherit' });
   }
 }
 
