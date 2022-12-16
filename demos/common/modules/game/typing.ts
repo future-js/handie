@@ -1,7 +1,7 @@
-type GameEntity = {
+interface GameEntity {
   id: string;
   title: string;
   description: string;
-};
+}
 
-export { GameEntity };
+export type { GameEntity };

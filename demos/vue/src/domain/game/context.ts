@@ -1,9 +1,6 @@
+import { MODULE_NAME } from '@_/modules/game/helper';
+import * as repo from '@_/modules/game/repository';
+
 import { createModuleContext } from '@/utils';
 
-import { MODULE_NAME } from './helper';
-import * as repo from './repository';
-
-export default createModuleContext({
-  moduleName: MODULE_NAME,
-  actions: repo,
-});
+export default createModuleContext({ moduleName: MODULE_NAME, actions: repo });
