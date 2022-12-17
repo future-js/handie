@@ -1,8 +1,8 @@
-type UserEntity = {
+interface UserEntity {
   id: string;
   username: string;
   nickname: string;
-};
+}
 
 type UserInfo = Omit<UserEntity, 'id'>;
 
@@ -12,4 +12,4 @@ type UserAndPermissions = UserInfo & {
   permissions: Record<string, UserPermission>;
 };
 
-export { UserInfo, UserPermission, UserAndPermissions };
+export type { UserInfo, UserPermission, UserAndPermissions };

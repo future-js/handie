@@ -1,4 +1,4 @@
-import { ModuleDescriptor, ComponentCtor } from '@handie/runtime-core';
+import type { ModuleDescriptor, ComponentCtor } from '@handie/runtime-core';
 
 import { MODULE_NAME, testUtil } from './helper';
 import model from './model';

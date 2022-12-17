@@ -1,9 +1,10 @@
 import { ActionHandler } from 'vuex';
 import { UserAuthority } from 'handie-vue';
 
+import { UserInfo, UserPermission, UserAndPermissions } from '@_/modules/session/typing';
+
 import { isArray, noop } from '@/utils';
 
-import { UserInfo, UserPermission, UserAndPermissions } from './typing';
 import context from './context';
 
 type AllUserAuthority = Record<'accessible' | 'operable', UserAuthority>;

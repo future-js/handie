@@ -1,7 +1,6 @@
 {
   "extends": "../../configs/tsconfig-base.json",
   "compilerOptions": {
-    "resolveJsonModule": true,
     "jsx": "react-jsx",
     "sourceMap": true,
     "baseUrl": ".",

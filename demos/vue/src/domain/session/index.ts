@@ -1,6 +1,5 @@
-import { ModuleDescriptor } from '@/types';
+import { getModule } from '@_/modules/session';
 
-import { MODULE_NAME } from './helper';
 import store from './store';
 
-export default { name: MODULE_NAME, store } as ModuleDescriptor;
+export default getModule(store);

@@ -1,5 +1,1 @@
-module.exports = {
-  ...require('./session'),
-  ...require('./animation'),
-  ...require('./game'),
-};
+module.exports = { ...require('./session'), ...require('./animation'), ...require('./game') };
