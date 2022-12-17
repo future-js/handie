@@ -1,9 +1,10 @@
 import { ReactNode } from 'react';
 
+import { getComponents } from '@_/modules/animation/helper';
+
 import { ObjectViewWidgetState } from '@/shared/types';
 import { FormViewStructuralWidget } from '@/shared/components/widget/base';
 
-import { getComponents } from '../../helper';
 import style from './style.scss';
 
 interface AnimationFormState extends ObjectViewWidgetState {
@@ -63,10 +64,7 @@ export default class AnimationFormViewWidget extends FormViewStructuralWidget<An
   }
 
   private renderTreeNode(data, node) {
-    return this.$createElement(
-      'span',
-      `${data.name} (key-${data.id}) (level-${node.level})`,
-    );
+    return this.$createElement('span', `${data.name} (key-${data.id}) (level-${node.level})`);
   }
 
   private handleAlert(): void {
@@ -89,8 +87,7 @@ export default class AnimationFormViewWidget extends FormViewStructuralWidget<An
         弹窗吗？
       </p>,
       () => (Message as any).show('Good!', 1, { type: 'success' }),
-      () =>
-        (Message as any).show('oh no', () => alert('God!'), { type: 'error' }),
+      () => (Message as any).show('oh no', () => alert('God!'), { type: 'error' }),
       { type: 'warning', closable: true },
     );
   }
@@ -114,15 +111,9 @@ export default class AnimationFormViewWidget extends FormViewStructuralWidget<An
     });
 
     this.$$view.on(`alert.${this.$$view.getId()}`, this.handleAlert.bind(this));
-    this.$$view.on(
-      `confirm.${this.$$view.getId()}`,
-      this.handleConfirm.bind(this),
-    );
+    this.$$view.on(`confirm.${this.$$view.getId()}`, this.handleConfirm.bind(this));
 
-    setTimeout(
-      () => this.$$view.setFieldValue('ghost', 'You can not see me!'),
-      3000,
-    );
+    setTimeout(() => this.$$view.setFieldValue('ghost', 'You can not see me!'), 3000);
 
     this.fetchData();
   }
@@ -144,9 +135,7 @@ export default class AnimationFormViewWidget extends FormViewStructuralWidget<An
       <Wait className={style.AnimationFormViewWidget} busy={this.state.loading}>
         {this.renderForm({
           className: style['AnimationFormViewWidget-form'],
-          children: this.renderActionBar(
-            style['AnimationFormViewWidget-actionBar'],
-          ),
+          children: this.renderActionBar(style['AnimationFormViewWidget-actionBar']),
         })}
       </Wait>
     );

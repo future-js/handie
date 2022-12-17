@@ -1,8 +1,8 @@
 import { createApp } from 'handie-react-starter-umi';
 
-import actions from '../../../common/actions';
-import { setInterceptors } from '../../../common/aspects';
-import { getTheme } from '../../../common/utils/theme';
+import actions from '@_/actions';
+import { setInterceptors } from '@_/aspects';
+import { getTheme } from '@_/utils/theme';
 
 import components from '@/shared/components';
 import modules from '../domain';

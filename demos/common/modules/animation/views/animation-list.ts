@@ -4,20 +4,20 @@ function getAnimationListView({
   TitleFieldWidget,
   EpisodesFieldWidget,
   PopoverButtonActionWidget,
-}: Record<string, ComponentCtor>): ListViewContextDescriptor {
+}: Record<string, ComponentCtor> = {}): ListViewContextDescriptor {
   return {
     name: 'AnimationListView',
     category: 'list',
     renderType: 'table',
     config: { operationColumnWidth: 250 },
     fields: [
-      { name: 'title', widget: TitleFieldWidget, config: { width: '300' } },
+      { name: 'title', widget: TitleFieldWidget, config: { width: 300 } },
       'description',
       {
         name: 'episodes',
         label: '集数',
         widget: EpisodesFieldWidget,
-        config: { width: '60', align: 'center' },
+        config: { width: 80, align: 'center' },
       },
     ],
     actions: [
@@ -48,7 +48,14 @@ function getAnimationListView({
     ],
     search: {
       config: { shortcuts: ['title', 'form'], conditionPersists: true },
-      filters: [{ name: 'title', placeholder: '快输入标题啊，哈哈哈' }, 'form', 'description'],
+      filters: [
+        { name: 'title', placeholder: '快输入标题啊，哈哈哈' },
+        { name: 'form', config: { width: 100 } },
+        'description',
+        { name: 'dateRange', config: { fromField: 'beginDate', toField: 'endDate' } },
+        { name: 'beginDate', hidden: true },
+        { name: 'endDate', hidden: true },
+      ],
     },
   } as ListViewContextDescriptor;
 }

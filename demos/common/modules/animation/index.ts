@@ -1,4 +1,9 @@
-import type { ModuleDescriptor, ComponentCtor } from '@handie/runtime-core';
+import type {
+  ModuleDescriptor,
+  ModuleContextDescriptor,
+  ModuleContext,
+  ComponentCtor,
+} from '@handie/runtime-core';
 
 import { MODULE_NAME, testUtil } from './helper';
 import model from './model';
@@ -40,4 +45,10 @@ function getModule<WidgetCtor extends ComponentCtor = ComponentCtor>({
   return module;
 }
 
-export { getModule };
+function getModuleContext<MC extends ModuleContext = ModuleContext>(
+  creator: (descriptor: ModuleContextDescriptor | string) => MC,
+): MC {
+  return creator({ moduleName: MODULE_NAME, actions });
+}
+
+export { getModule, getModuleContext };
