@@ -12,7 +12,7 @@ export default class LoginFormViewWidget extends ObjectViewStructuralWidget {
         'login',
         this.$$view.getValue(),
         () => this.$$app.history.push({ name: 'otaku' }),
-        (message) => this.$$app.alert(message),
+        message => this.$$app.alert(message),
       ),
     );
   }
@@ -32,16 +32,16 @@ export default class LoginFormViewWidget extends ObjectViewStructuralWidget {
             validation={this.state.validation}
             config={this.config}
             onChange={this.onFieldValueChange.bind(this)}
-          />
-          <div className={style['LoginFormViewWidget-buttonWrapper']}>
+          >
             <XButton
               className={style['LoginFormViewWidget-button']}
-              color="primary"
+              color='primary'
+              nativeType='submit'
               onClick={() => this.$$view.submit()}
             >
               登录
             </XButton>
-          </div>
+          </FormRenderer>
         </div>
       </div>
     );
