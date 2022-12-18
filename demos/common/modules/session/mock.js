@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const { pick } = require('@handie/runtime-core');
+const { pick } = require('@ntks/toolbox');
 
 const { resolveResult } = require('../../utils/mock');
 const { DEMO_USER } = require('./helper');
