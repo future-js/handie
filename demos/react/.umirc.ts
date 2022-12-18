@@ -18,6 +18,7 @@ export default defineConfig({
     'handie-react-starter-antd': resolve('../../packages/starter-antd/src/index.ts'),
     'handie-react-starter-umi/dist': resolve('../../packages/starter-umi/src'),
     'handie-react-starter-umi': resolve('../../packages/starter-umi/src/index.ts'),
+    '@_': resolve(`../common`),
   },
   nodeModulesTransform: { type: 'none' },
   extraBabelIncludes: ['@zoras/core', '@zoras/adapter-ant-design', '@handie/squirtle'],

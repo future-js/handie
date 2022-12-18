@@ -1,5 +1,3 @@
-import { createModuleContext } from '@/shared/utils';
+import { getModuleContext } from '@_/modules/session';
 
-import { MODULE_NAME } from './helper';
-
-export default createModuleContext(MODULE_NAME);
+export default getModuleContext();

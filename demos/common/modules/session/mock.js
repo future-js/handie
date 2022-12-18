@@ -1,9 +1,13 @@
-const { resolveResult } = require('../../utils/mock'); // eslint-disable-line @typescript-eslint/no-var-requires
+/* eslint-disable @typescript-eslint/no-var-requires */
+
+const { pick } = require('@handie/runtime-core');
+
+const { resolveResult } = require('../../utils/mock');
+const { DEMO_USER } = require('./helper');
 
 function mockGetCurrentUser() {
   return resolveResult({
-    username: 'ourai',
-    nickname: '欧雷',
+    ...pick(DEMO_USER, ['username', 'nickname']),
     permissions: {
       otaku: ['animation:read', 'animation:edit', 'comic:read', 'game:read'],
       spreadsheet: ['spreadsheet:edit'],

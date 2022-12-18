@@ -5,6 +5,8 @@
     "sourceMap": true,
     "baseUrl": ".",
     "paths": {
+      "@handie/runtime-core": ["../../packages/runtime-core/src/index.ts"],
+      "@handie/runtime-core/dist/*": ["../../packages/runtime-core/src/*"],
       "handie-react": ["../../packages/handie-react/src/index.ts"],
       "handie-react/dist/*": ["../../packages/handie-react/src/*"],
       "@handie/squirtle": ["../../packages/squirtle/src/index.ts"],
@@ -20,7 +22,11 @@
   },
   "include": [
     "../../typings",
-    "../../packages/*/src",
+    "../../packages/runtime-core/src",
+    "../../packages/handie-react/src",
+    "../../packages/squirtle/src",
+    "../../packages/starter-antd/src",
+    "../../packages/starter-umi/src",
     "../common",
     "src",
     ".umirc.ts",
