@@ -6,9 +6,9 @@ import {
   FormRendererProps,
   isNumber,
   getControl,
-  resolveFieldBehavior,
-  resolveReadonly,
+  isBoolOrExprTrue,
   resolveFieldRequired,
+  resolveFieldBehavior,
   renderForm,
 } from '@handie/runtime-core';
 
@@ -21,9 +21,10 @@ export default class FormRenderer extends BaseRenderer<FormRendererProps> {
     const { name, label, hint, config = {} } = field;
 
     const fieldValidation = (this.props.validation || {})[name] || { success: true };
-    const readonly = resolveReadonly(this.props.value, this.props.readonly || field.readonly);
+    const readonly = isBoolOrExprTrue(this.props.value, this.props.readonly || field.readonly);
 
     const formItemProps: Record<string, any> = {
+      label,
       required: resolveFieldRequired(this.props.value, readonly, field.required),
       message: fieldValidation.success ? '' : fieldValidation.message,
     };
@@ -56,11 +57,8 @@ export default class FormRenderer extends BaseRenderer<FormRendererProps> {
           </span>
         );
       } else {
-        formItemProps.label = label;
         formItemProps.hint = hint;
       }
-    } else {
-      formItemProps.label = label;
     }
 
     const FormField = getControl('FormField') as ComponentCtor;
@@ -76,14 +74,14 @@ export default class FormRenderer extends BaseRenderer<FormRendererProps> {
     fields: ViewFieldDescriptor[],
     cols: GridBreakpoint[] | number,
   ): ReactNode {
-    const GridRow = getControl('GridRow') as ComponentCtor;
-    const GridCol = getControl('GridCol') as ComponentCtor;
-
     let span: number | undefined;
 
     if (isNumber(cols) && cols > -1) {
       span = 24 / fields.length;
     }
+
+    const GridRow = getControl('GridRow') as ComponentCtor;
+    const GridCol = getControl('GridCol') as ComponentCtor;
 
     return GridRow ? (
       <GridRow key={`FieldRow${fields[0].name}OfFormRenderer`} gutter={24}>
