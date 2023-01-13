@@ -47,7 +47,7 @@ export default class FormViewWidget extends FormViewStructuralWidget<
 
     const callback =
       gotoListView !== false
-        ? () => this.$$history.push({ name: listViewRouteName })
+        ? () => this.$$history.push({ name: listViewRouteName, params: this.$$route.params })
         : () =>
             this.$$app.success(
               isFunction(successMessage)
@@ -79,6 +79,7 @@ export default class FormViewWidget extends FormViewStructuralWidget<
         [this.getCommonBehavior('action.cancelAction')]: () =>
           this.$$history.push({
             name: this.config.listViewRouteName || `${this.$$module.getModuleName()}List`,
+            params: this.$$route.params,
           }),
       },
       readonly,

@@ -18,5 +18,5 @@
     "baseUrl": ".",
     "paths": {}
   },
-  "include": ["src", "../../demo/src/shims-sfc.d.ts", "../../demo/src/shims-vue.d.ts"]
+  "include": ["src", "../../demos/vue/src/shims-sfc.d.ts", "../../demos/vue/src/shims-vue.d.ts"]
 }

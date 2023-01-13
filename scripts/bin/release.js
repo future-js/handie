@@ -3,7 +3,7 @@
 const { existsSync } = require('fs');
 const { execSync } = require('child_process');
 
-const { ROOT_PATH, DEPLOY_ROOT_PATH, getPkgPath } = require('./helper');
+const { ROOT_PATH, DEPLOY_ROOT_PATH, getPkgPath } = require('../helper');
 
 const previewDirPath = `${DEPLOY_ROOT_PATH}/preview`;
 const appDirPath = `${previewDirPath}/vue`;

@@ -1,6 +1,6 @@
 {
   "name": "@handie/bulbasaur",
-  "version": "0.0.16-4",
+  "version": "0.0.16-6",
   "description": "Widgets for Handie-Vue",
   "main": "dist/index.js",
   "module": "dist/index.js",
