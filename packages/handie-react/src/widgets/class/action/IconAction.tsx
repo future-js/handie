@@ -20,13 +20,14 @@ class IconActionStructuralWidget<
 
   protected renderIcon(props: Record<string, any> = {}): ReactNode {
     const Icon = getControl('Icon') as ComponentCtor;
-    const resolved = resolveControlPropsAndEvents(this.resolveProps(), props);
+    const { className, ...others } = props;
+    const resolved = resolveControlPropsAndEvents(this.resolveProps(), others);
 
     return (
-      <>
+      <div className={className}>
         {Icon ? <Icon {...{ ...resolved.props, ...resolved.events }} /> : null}
         {this.renderView()}
-      </>
+      </div>
     );
   }
 }

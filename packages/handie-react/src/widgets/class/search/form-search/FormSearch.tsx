@@ -52,7 +52,7 @@ class FormSearchStructuralWidget<
   }
 
   private renderFilterGroup(_, formFieldNodes: ReactNode[]): ReactNode {
-    return <>{formFieldNodes}</>;
+    return <div>{formFieldNodes}</div>;
   }
 
   protected resolveLabelWidth(): string {

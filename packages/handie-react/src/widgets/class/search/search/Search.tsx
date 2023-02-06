@@ -86,6 +86,13 @@ class SearchStructuralWidget<
       ...events,
     });
   }
+
+  public componentDidMount(): void {
+    // TODO:
+    // 为解决搜索上下文已实例化状态下视图部件重新创建时搜索条件值初始化与列表数据加载顺序颠倒的问题而采取的临时方案，
+    // 待上下文随部件销毁而销毁时可以考虑去掉
+    this.$$search.emit(`mount.${this.$$view.getId()}`);
+  }
 }
 
 export { SearchStructuralWidget };

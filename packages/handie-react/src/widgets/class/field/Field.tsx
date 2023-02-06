@@ -7,6 +7,7 @@ import {
   FieldWidgetConfig,
   IFieldWidget,
   isString,
+  isBoolOrExprTrue,
 } from '@handie/runtime-core';
 import { FieldHeadlessWidget } from '@handie/runtime-core/dist/widgets';
 
@@ -30,7 +31,7 @@ class FieldStructuralWidget<
     booleanOrExpr: boolean | ContextExpression,
     defaultReturnValue?: DataValue,
   ): boolean {
-    return this.$$_h.isTrue(booleanOrExpr, defaultReturnValue);
+    return isBoolOrExprTrue(this.$$view.getValue(), booleanOrExpr, defaultReturnValue);
   }
 
   protected getPlaceholder(): string {

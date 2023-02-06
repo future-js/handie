@@ -50,11 +50,7 @@ class ActionStructuralWidget<
   }
 
   protected onExecute(): void {
-    if (this.config.view) {
-      this.$$view.emit(`dialog-view-show.${this.$$view.getId()}`);
-    } else {
-      this.$$_h.execute(this.$$view);
-    }
+    this.$$_h.execute(this.$$view);
   }
 
   public componentWillMount(): void {

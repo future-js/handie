@@ -17,6 +17,7 @@ import {
   isActionsAuthorized,
   resolveActionsAuthority,
   resolveAuthorizedActions,
+  resolveItemActions,
 } from '@handie/runtime-core';
 
 import type { ComponentCtor } from '../../../../types/component';
@@ -60,18 +61,18 @@ function resolveCellRenderer(
 
 function resolveOperationColumn(
   context: ListViewContext,
-  authority: Record<string, boolean> | null,
-  vm,
   inlineButtonSize: string,
   inlineActionRenderType: ActionRenderType,
 ): TableColumn | null {
-  const actionsAuthority = resolveActionsAuthority(context, vm);
+  if (resolveItemActions(context).length === 0) {
+    return null;
+  }
+
+  const actionsAuthority = resolveActionsAuthority(context);
 
   const allSingleActions = resolveAuthorizedActions(
     context.getActionsByContextType('single') as ClientAction[],
     actionsAuthority,
-    authority,
-    vm,
   );
 
   const col: TableColumn = {
@@ -80,34 +81,31 @@ function resolveOperationColumn(
       const ctx = context.getChildren()[index];
       const CellRenderer = createCellRenderer(ctx, () => (
         <div>
-          {resolveAuthorizedActions(
-            ctx.getActions() as ClientAction[],
-            actionsAuthority,
-            authority,
-            vm,
-          ).map(action => {
-            const { renderType = inlineActionRenderType, config = {}, ...others } = action;
-            const ActionRenderer = getRenderer('ActionRenderer') as ComponentCtor;
-            const actionNode = ActionRenderer ? (
-              <ActionRenderer
-                action={{ ...others, renderType, config: { size: inlineButtonSize, ...config } }}
-                key={`${others.name || others.text}InlineActionOfTableViewWidget`}
-              />
-            ) : null;
-            const Tooltip = getControl('Tooltip') as ComponentCtor;
+          {resolveAuthorizedActions(ctx.getActions() as ClientAction[], actionsAuthority).map(
+            action => {
+              const { renderType = inlineActionRenderType, config = {}, ...others } = action;
+              const ActionRenderer = getRenderer('ActionRenderer') as ComponentCtor;
+              const actionNode = ActionRenderer ? (
+                <ActionRenderer
+                  action={{ ...others, renderType, config: { size: inlineButtonSize, ...config } }}
+                  key={`${others.name || others.text}InlineActionOfTableViewWidget`}
+                />
+              ) : null;
+              const Tooltip = getControl('Tooltip') as ComponentCtor;
 
-            return config.showTooltip === true && Tooltip ? (
-              <Tooltip
-                className='ActionWidgetTooltip'
-                content={action.text || ''}
-                key={`${others.name || others.text}InlineActionTooltipOfTableViewWidget`}
-              >
-                {actionNode}
-              </Tooltip>
-            ) : (
-              actionNode
-            );
-          })}
+              return config.showTooltip === true && Tooltip ? (
+                <Tooltip
+                  className='ActionWidgetTooltip'
+                  content={action.text || ''}
+                  key={`${others.name || others.text}InlineActionTooltipOfTableViewWidget`}
+                >
+                  {actionNode}
+                </Tooltip>
+              ) : (
+                actionNode
+              );
+            },
+          )}
         </div>
       ));
 
@@ -130,9 +128,7 @@ function resolveOperationColumn(
     col.align = operationColumnAlignment;
   }
 
-  return isActionsAuthorized(actionsAuthority, authority) && allSingleActions.length > 0
-    ? col
-    : null;
+  return isActionsAuthorized(actionsAuthority) && allSingleActions.length > 0 ? col : null;
 }
 
 export { resolveCellRenderer, resolveOperationColumn };

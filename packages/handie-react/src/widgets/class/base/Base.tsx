@@ -3,11 +3,17 @@ import { Component } from 'react';
 import {
   EventHandlers,
   EventHandler,
+  LocationRoute,
+  HistoryHelper,
+  SessionHelper,
   AppHelper,
   ModuleContext,
   ViewContext,
   BaseWidgetConfig,
   BaseWidgetState,
+  isString,
+  isPlainObject,
+  toKebabCase,
 } from '@handie/runtime-core';
 import { BaseHeadlessWidget } from '@handie/runtime-core/dist/widgets';
 
@@ -36,6 +42,27 @@ class BaseStructuralWidget<
 
   protected get $$app(): AppHelper {
     return this.$$_h.getAppHelper();
+  }
+
+  /**
+   * Shortcut for `history` of `this.$$app`
+   */
+  protected get $$history(): HistoryHelper {
+    return this.$$app.history;
+  }
+
+  /**
+   * Shortcut for `getLocation()` of `this.$$history`
+   */
+  protected get $$route(): LocationRoute {
+    return this.$$history.getLocation();
+  }
+
+  /**
+   * Shortcut for `session` of `this.$$app`
+   */
+  protected get $$session(): SessionHelper {
+    return this.$$app.session;
   }
 
   /**
@@ -70,6 +97,23 @@ class BaseStructuralWidget<
 
   protected getCommonBehavior(path: string, defaultBehavior?: any): any {
     return this.$$_h.getCommonBehavior(path, defaultBehavior);
+  }
+
+  protected getStyle(): Record<string, any> {
+    const style = this.config.style || {};
+    const resolved: Record<string, any> = {};
+
+    Object.keys(style).forEach(key => {
+      const val = style[key];
+
+      if (isString(val)) {
+        resolved[`--handie-${toKebabCase(key)}`] = val;
+      } else if (isPlainObject(val)) {
+        // TODO: style object that the first level is the prefix of CSS variables
+      }
+    });
+
+    return resolved;
   }
 
   protected setStyleClassNames(styleClassNames: Record<string, string>): void {
