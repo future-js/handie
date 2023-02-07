@@ -14,9 +14,9 @@ export default class SelectEditEnumFieldWidget extends EnumFieldStructuralWidget
         placeholder={this.getPlaceholder()}
         clearable={!this.props.field.required}
         disabled={this.state.disabled}
-        onChange={(value) => this.onChange(value)}
+        onChange={value => this.onChange(value)}
       >
-        {this.state.options.map((opt) =>
+        {this.state.options.map(opt =>
           Option ? (
             <Option
               key={`Option${opt.value}OfSelectEditEnumFieldWidget`}

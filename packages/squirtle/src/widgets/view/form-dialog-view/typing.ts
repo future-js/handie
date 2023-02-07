@@ -1,12 +1,9 @@
-import type { ViewWidgetConfig, ObjectViewWidgetState } from 'handie-react';
+import type { FormControlSize, DialogViewWidgetConfig } from 'handie-react';
 
-interface FormDialogViewWidgetConfig extends ViewWidgetConfig {
-  readonly dialogWidth?: number | string;
+interface FormDialogViewWidgetConfig extends DialogViewWidgetConfig {
   readonly moduleLabel?: string;
+  readonly formControlLabelWidth?: number | string;
+  readonly formControlSize?: FormControlSize;
 }
 
-interface FormDialogViewWidgetState extends ObjectViewWidgetState {
-  dialogVisible: boolean;
-}
-
-export type { FormDialogViewWidgetConfig, FormDialogViewWidgetState };
+export type { FormDialogViewWidgetConfig };

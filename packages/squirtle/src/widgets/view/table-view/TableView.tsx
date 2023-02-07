@@ -14,12 +14,16 @@ export default class TableViewWidget extends TableViewStructuralWidget {
   public render(): ReactNode {
     return (
       <div
-        className={normalizeClassName(
-          this.getStyleClassName('TableView'),
-          this.config.className,
-        )}
+        className={normalizeClassName(this.getStyleClassName('TableView'), this.config.className)}
       >
-        {[this.renderSearch(), this.renderActionBar(), this.renderDataTable()]}
+        {[
+          this.renderSearch(this.getStyleClassName('TableView-search')),
+          this.renderActionBar(
+            this.getStyleClassName('TableView-tableActions'),
+            this.getBehavior('topButtonActionSize'),
+          ),
+          this.renderDataTable(this.getStyleClassName('TableView-dataTable')),
+        ]}
       </div>
     );
   }

@@ -1,10 +1,6 @@
 import type { ReactNode } from 'react';
 
-import {
-  ComponentCtor,
-  StringFieldWidgetState,
-  getControl,
-} from 'handie-react';
+import { ComponentCtor, StringFieldWidgetState, getControl } from 'handie-react';
 import { StringFieldStructuralWidget } from 'handie-react/dist/widgets/class';
 
 import { getStringInputtableControlProps } from '../../../../utils';
@@ -22,8 +18,6 @@ export default class UrlEditStringFieldWidget extends StringFieldStructuralWidge
     };
     const UrlInput = getControl('UrlInput') as ComponentCtor;
 
-    return UrlInput ? (
-      <UrlInput {...props} onChange={(value) => this.onChange(value)} />
-    ) : null;
+    return UrlInput ? <UrlInput {...props} onChange={value => this.onChange(value)} /> : null;
   }
 }

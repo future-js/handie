@@ -1,5 +1,5 @@
-@import "../form";
+@import "../../../styles/helper";
 
 .FormViewWidget {
-  @include form-view-rules;
+  @include form-view-rules(form-view-widget);
 }

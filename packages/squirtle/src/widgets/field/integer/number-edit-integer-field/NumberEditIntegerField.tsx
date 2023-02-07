@@ -1,11 +1,6 @@
 import type { ReactNode } from 'react';
 
-import {
-  ComponentCtor,
-  IntegerFieldWidgetState,
-  isNumeric,
-  getControl,
-} from 'handie-react';
+import { ComponentCtor, IntegerFieldWidgetState, isNumeric, getControl } from 'handie-react';
 import { IntegerFieldStructuralWidget } from 'handie-react/dist/widgets/class';
 
 import { getNumberInputProps } from '../../../../utils';
@@ -21,9 +16,7 @@ export default class NumberEditIntegerFieldWidget extends IntegerFieldStructural
     return NumberInput ? (
       <NumberInput
         {...getNumberInputProps(this)}
-        onChange={(value) =>
-          this.onChange(isNumeric(value) ? parseFloat(value) : value)
-        }
+        onChange={value => this.onChange(isNumeric(value) ? parseFloat(value) : value)}
       />
     ) : null;
   }

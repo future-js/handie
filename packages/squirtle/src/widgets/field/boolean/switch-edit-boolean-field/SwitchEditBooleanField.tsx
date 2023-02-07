@@ -11,7 +11,7 @@ export default class SwitchEditBooleanFieldWidget extends BooleanFieldStructural
       <Switch
         value={this.props.value}
         disabled={this.state.disabled}
-        onChange={(value) => this.onChange(value)}
+        onChange={value => this.onChange(value)}
       />
     ) : null;
   }

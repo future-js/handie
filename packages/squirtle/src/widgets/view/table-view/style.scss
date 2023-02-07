@@ -1,3 +1,5 @@
+@import "../../../styles/helper";
+
 .TableView {
   $table-actions-height: 40px;
 
@@ -18,13 +20,5 @@
     flex-grow: 1;
   }
 
-  :global {
-    .ActionWidget {
-      cursor: pointer;
-    }
-    
-    .ActionWidget + .ActionWidget {
-      margin-left: 8px;
-    }
-  }
+  @include action-rules;
 }

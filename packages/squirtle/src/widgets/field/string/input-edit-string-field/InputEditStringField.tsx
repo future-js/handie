@@ -1,10 +1,6 @@
 import type { ReactNode } from 'react';
 
-import {
-  ComponentCtor,
-  StringFieldWidgetState,
-  getControl,
-} from 'handie-react';
+import { ComponentCtor, StringFieldWidgetState, getControl } from 'handie-react';
 import { StringFieldStructuralWidget } from 'handie-react/dist/widgets/class';
 
 import { getStringInputtableControlProps } from '../../../../utils';
@@ -20,7 +16,9 @@ export default class InputEditStringFieldWidget extends StringFieldStructuralWid
     return TextInput ? (
       <TextInput
         {...getStringInputtableControlProps(this)}
-        onInput={(value) => this.onChange(value)}
+        prefix={this.config.prefix}
+        suffix={this.config.suffix}
+        onInput={value => this.onChange(value)}
       />
     ) : null;
   }

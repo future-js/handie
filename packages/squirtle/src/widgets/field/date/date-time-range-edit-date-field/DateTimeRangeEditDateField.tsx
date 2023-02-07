@@ -9,9 +9,8 @@ export default class DateTimeRangeEditDateFieldWidget extends DateFieldStructura
   DateValue[]
 > {
   public render(): ReactNode {
-    const DateTimeRangePicker = getControl(
-      'DateTimeRangePicker',
-    ) as ComponentCtor;
+    const DateTimeRangePicker = getControl('DateTimeRangePicker') as ComponentCtor;
+
     return DateTimeRangePicker ? (
       <DateTimeRangePicker
         value={this.getRangeValue()}
@@ -19,11 +18,7 @@ export default class DateTimeRangeEditDateFieldWidget extends DateFieldStructura
         disabled={this.state.disabled}
         format={this.getDisplayFormat()}
         separator={this.getSeparator()}
-        pickerOption={getPickerOption(
-          this.getRangeValue(),
-          this.config,
-          this.$$view.getValue(),
-        )}
+        pickerOption={getPickerOption(this.getRangeValue(), this.config, this.$$view.getValue())}
         onChange={(_, dates) => this.onRangeChange(dates)}
       />
     ) : null;

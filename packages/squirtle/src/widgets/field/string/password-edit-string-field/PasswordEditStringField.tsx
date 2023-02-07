@@ -12,7 +12,7 @@ export default class PasswordEditStringFieldWidget extends StringFieldStructural
     return Password ? (
       <Password
         {...getStringInputtableControlProps(this)}
-        onInput={(value) => this.onChange(value)}
+        onInput={value => this.onChange(value)}
       />
     ) : null;
   }

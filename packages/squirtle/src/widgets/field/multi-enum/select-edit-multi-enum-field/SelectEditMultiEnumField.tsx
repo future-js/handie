@@ -14,9 +14,9 @@ export default class SelectEditMultiEnumFieldWidget extends MultiEnumFieldStruct
         placeholder={this.getPlaceholder()}
         multiple={true}
         disabled={this.state.disabled}
-        onChange={(value) => this.onChange(value)}
+        onChange={value => this.onChange(value)}
       >
-        {this.state.options.map((opt) =>
+        {this.state.options.map(opt =>
           Option ? (
             <Option
               key={`Option${opt.value}OfSelectEditMultiEnumFieldWidget`}

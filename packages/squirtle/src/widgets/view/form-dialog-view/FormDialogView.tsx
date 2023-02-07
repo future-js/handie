@@ -4,33 +4,21 @@ import {
   ComponentCtor,
   ListViewContext,
   ObjectViewContext,
-  getControl,
+  DialogViewWidgetState,
+  getRenderer,
+  resolveSafePropsFromConfig,
 } from 'handie-react';
-import { FormViewStructuralWidget } from 'handie-react/dist/widgets/class';
+import { DialogViewStructuralWidget } from 'handie-react/dist/widgets/class';
 
-import type {
-  FormDialogViewWidgetConfig,
-  FormDialogViewWidgetState,
-} from './typing';
+import type { FormDialogViewWidgetConfig } from './typing';
 import { isOpenerInlineObjectView } from './helper';
+import style from './style.scss';
 
-export default class FormDialogViewWidget extends FormViewStructuralWidget<
-  FormDialogViewWidgetState,
+export default class FormDialogViewWidget extends DialogViewStructuralWidget<
+  DialogViewWidgetState,
   FormDialogViewWidgetConfig
 > {
-  public readonly state = {
-    loading: false,
-    dataSource: {},
-    value: {},
-    validation: {},
-    dialogVisible: false,
-  } as FormDialogViewWidgetState;
-
-  private closeDialog(): void {
-    this.setState({ dialogVisible: false }, () => this.$$view.reset());
-  }
-
-  private resolveDialogTitle(): string {
+  protected get dialogTitle(): string {
     const { title, moduleLabel } = this.config;
 
     if (title) {
@@ -38,97 +26,72 @@ export default class FormDialogViewWidget extends FormViewStructuralWidget<
     }
 
     return moduleLabel
-      ? `${
-          isOpenerInlineObjectView(this.$$view.getOpener()!) ? '修改' : '新增'
-        }${moduleLabel}`
+      ? `${isOpenerInlineObjectView(this.$$view.getOpener()!) ? '修改' : '新增'}${moduleLabel}`
       : '';
   }
 
-  protected fetchData(): void {
-    const ctx = this.$$view;
-    const opener = ctx.getOpener()!;
-
-    if (!isOpenerInlineObjectView(opener) || !ctx.getOne) {
-      return;
-    }
-
-    ctx.setBusy(true);
-
-    ctx
-      .getOne((opener as ObjectViewContext).getValue(), (data) =>
-        ctx.setDataSource(data),
-      )
-      .finally(() => ctx.setBusy(false));
-  }
-
-  public componentDidMount(): void {
+  private initFormDialogViewContextEvents(): void {
     const opener = this.$$view.getOpener()!;
-
-    opener.on(`dialog-view-show.${opener.getId()}`, () =>
-      this.setState({ dialogVisible: true }, () => this.fetchData()),
-    );
 
     const callback = () => {
       if (opener.getView().category === 'list') {
         (opener as ListViewContext).reload();
-      } else if ((opener as ObjectViewContext).getParent()) {
+      } else if (isOpenerInlineObjectView(opener)) {
         (opener as ObjectViewContext).getParent()!.reload();
       } else {
-        opener.emit(`dialog-view-submit.${opener.getId()}`, this.state.value);
+        opener.emit(
+          `dialog-view-submit.${`${opener.getId()}:${[
+            this.$$module.getModuleName(),
+            this.$$view.getView().name,
+          ].join('-')}`}`,
+          this.state.value,
+        );
       }
 
       this.closeDialog();
     };
 
     this.on('submit', () => {
+      this.$$view.setBusy(true);
+
       if (isOpenerInlineObjectView(opener)) {
-        this.$$view.update(this.state.value, callback, (message) =>
-          this.$$app.error(message),
-        );
+        this.$$view
+          .update(this.state.value, callback, message => this.$$app.error(message))
+          .finally(() => this.$$view.setBusy(false));
       } else {
-        this.$$view.insert(this.state.value, callback, (message) =>
-          this.$$app.error(message),
-        );
+        this.$$view
+          .insert(this.state.value, callback, message => this.$$app.error(message))
+          .finally(() => this.$$view.setBusy(false));
       }
     });
   }
 
-  public componentWillUnmount(): void {
-    const opener = this.$$view.getOpener()!;
+  public render(): ReactNode {
+    const FormRenderer = getRenderer('FormRenderer') as ComponentCtor;
 
-    opener.off(`dialog-view-show.${opener.getId()}`);
+    const props = {
+      fields: this.fields,
+      value: this.state.value,
+      validation: this.state.validation,
+      config: {
+        formControlLabelWidth: 90,
+        formControlSize: 'small',
+        ...resolveSafePropsFromConfig(this.config, ['moduleLabel']),
+      },
+      onChange: this.onFieldValueChange,
+    };
+
+    return this.renderDialog({
+      className: this.getStyleClassName('FormDialogViewWidget'),
+      actionBarClassName: this.getStyleClassName('FormDialogViewWidget-actionBar'),
+      actionText: { submitActionText: '确定' },
+      children: FormRenderer ? <FormRenderer {...props}>{this.props.children}</FormRenderer> : null,
+    });
   }
 
-  public render(): ReactNode {
-    const Dialog = getControl('Dialog') as ComponentCtor;
-    const Button = getControl('Button') as ComponentCtor;
-    const Wait = getControl('Wait') as ComponentCtor;
-
-    const closeDialog = this.closeDialog.bind(this);
-
-    return Dialog ? (
-      <Dialog
-        title={this.resolveDialogTitle()}
-        width={this.config.dialogWidth || 520}
-        footer={
-          Button ? (
-            <>
-              <Button onClick={closeDialog}>取消</Button>
-              <Button color="primary" onClick={() => this.$$view.submit()}>
-                确认
-              </Button>
-            </>
-          ) : null
-        }
-        visible={this.state.dialogVisible}
-        centered
-        disableMask
-        onClose={closeDialog}
-      >
-        {Wait ? (
-          <Wait busy={this.state.loading}>{this.renderForm()}</Wait>
-        ) : null}
-      </Dialog>
-    ) : null;
+  public componentWillMount(): void {
+    super.componentWillMount();
+    this.setStyleClassNames(style);
+    this.initFormDialogViewContextEvents();
   }
 }

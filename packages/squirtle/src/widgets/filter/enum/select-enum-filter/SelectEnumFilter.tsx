@@ -16,7 +16,7 @@ export default class SelectEditEnumFilterWidget extends EnumFilterStructuralWidg
     const Select = getControl('Select') as ComponentCtor;
     const Option = getControl('Option') as ComponentCtor;
 
-    const children: ReactNode[] = this.state.options.map((opt) =>
+    const children: ReactNode[] = this.state.options.map(opt =>
       Option ? (
         <Option
           key={`Option${opt.value}OfSelectEditEnumFilterWidget`}
@@ -25,17 +25,14 @@ export default class SelectEditEnumFilterWidget extends EnumFilterStructuralWidg
       ) : null,
     );
 
-    const showEmptyValueOption = this.getCommonBehavior(
-      'filter.showEmptyValueOption',
-      false,
-    );
+    const showEmptyValueOption = this.getCommonBehavior('filter.showEmptyValueOption', false);
 
     if (showEmptyValueOption && Option) {
       children.unshift(
         <Option
           label={this.getCommonBehavior('filter.emptyValueOptionLabel')}
-          value=""
-          key="OptionAllOfSelectEditEnumFilterWidget"
+          value=''
+          key='OptionAllOfSelectEditEnumFilterWidget'
         />,
       );
     }

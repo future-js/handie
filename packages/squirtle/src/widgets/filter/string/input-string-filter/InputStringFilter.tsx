@@ -7,10 +7,7 @@ import { getStringInputtableControlProps } from '../../../../utils';
 
 export default class InputStringFilterWidget extends StringFilterStructuralWidget {
   public render(): ReactNode {
-    const props: Record<string, any> = getStringInputtableControlProps(
-      this,
-      true,
-    );
+    const props: Record<string, any> = getStringInputtableControlProps(this, true);
 
     if (this.config.className) {
       props.className = this.config.className;
@@ -18,8 +15,6 @@ export default class InputStringFilterWidget extends StringFilterStructuralWidge
 
     const TextInput = getControl('TextInput') as ComponentCtor;
 
-    return TextInput ? (
-      <TextInput {...props} onInput={(value) => this.onChange(value)} />
-    ) : null;
+    return TextInput ? <TextInput {...props} onInput={value => this.onChange(value)} /> : null;
   }
 }

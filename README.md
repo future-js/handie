@@ -1,6 +1,6 @@
 # [Handie](https://handiejs.github.io/)
 
-在运行时库/框架无关的核心 [`@handie/runtime-core`](https://www.npmjs.com/package/@handie/runtime-core) 的基础上针对不同的运行时视图库/框架进行适配封装的**渐进式配置驱动企业级中后台前端应用开发解决方案**。
+在运行时库/框架无关的核心 [`@handie/runtime-core`](packages/runtime-core) 的基础上针对不同的运行时视图库/框架进行适配封装的**渐进式配置驱动企业级中后台前端应用开发解决方案**。
 
 ## 动机
 

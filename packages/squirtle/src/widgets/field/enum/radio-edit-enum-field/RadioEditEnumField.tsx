@@ -19,9 +19,9 @@ export default class RadioEditEnumFieldWidget extends EnumFieldStructuralWidget<
       <RadioGroup
         value={this.props.value}
         disabled={this.state.disabled}
-        onChange={(value) => this.onChange(value)}
+        onChange={value => this.onChange(value)}
       >
-        {this.state.options.map((opt) =>
+        {this.state.options.map(opt =>
           Radio ? (
             <Radio
               key={`Option${opt.value}OfRadioEditEnumFieldWidget`}
@@ -35,10 +35,7 @@ export default class RadioEditEnumFieldWidget extends EnumFieldStructuralWidget<
                     <Tooltip content={opt.hint}>
                       {Icon ? (
                         <Icon
-                          refs={
-                            this.config.hintIcon ||
-                            this.getCommonBehavior('field.hintIcon')
-                          }
+                          refs={this.config.hintIcon || this.getCommonBehavior('field.hintIcon')}
                         />
                       ) : null}
                     </Tooltip>

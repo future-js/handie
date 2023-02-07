@@ -1,12 +1,7 @@
 import type { ReactNode } from 'react';
 
 import type { StringField } from '@handie/runtime-core/dist/types/input';
-import {
-  ComponentCtor,
-  TextFieldWidgetState,
-  isNumber,
-  getControl,
-} from 'handie-react';
+import { ComponentCtor, TextFieldWidgetState, isNumber, getControl } from 'handie-react';
 import { TextFieldStructuralWidget } from 'handie-react/dist/widgets/class';
 
 import { getStringInputtableControlProps } from '../../../../utils';
@@ -30,18 +25,13 @@ export default class TextareaEditTextFieldWidget extends TextFieldStructuralWidg
       resize: 'none',
     };
 
-    if (
-      this.showValidationRulesAsNative &&
-      isNumber((this.props.field as StringField).max)
-    ) {
+    if (this.showValidationRulesAsNative && isNumber((this.props.field as StringField).max)) {
       props.showWordage = showWordLimit;
     }
 
     const TextArea = getControl('TextArea') as ComponentCtor;
 
-    return TextArea ? (
-      <TextArea {...props} onInput={(value) => this.onChange(value)} />
-    ) : null;
+    return TextArea ? <TextArea {...props} onInput={value => this.onChange(value)} /> : null;
   }
 
   public componentWillMount(): void {

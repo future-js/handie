@@ -1,4 +1,4 @@
-import type { ViewWidgetConfig } from 'handie-vue';
+import type { ObjectViewWidgetConfig } from 'handie-vue';
 
 interface FormViewWidgetBehaviors {
   readonly actionBarOutside?: boolean;
@@ -7,7 +7,7 @@ interface FormViewWidgetBehaviors {
 
 type SuccessMessageGetter = (record: Record<string, any>) => string;
 
-interface FormViewWidgetConfig extends ViewWidgetConfig {
+interface FormViewWidgetConfig extends ObjectViewWidgetConfig {
   readonly readonly?: boolean;
   readonly actionBarOutside?: boolean;
   readonly actionBarAlignment?: 'left' | 'center' | 'right';

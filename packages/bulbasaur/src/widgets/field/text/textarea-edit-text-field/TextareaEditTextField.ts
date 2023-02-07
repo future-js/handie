@@ -14,10 +14,6 @@ export default class TextareaEditTextFieldWidget extends TextFieldStructuralWidg
   TextFieldWidgetState,
   TextareaTextFieldWidgetConfig
 > {
-  public created(): void {
-    this.setBehaviors('field.textarea', defaultBehaviors);
-  }
-
   public render(h: CreateElement): VNode {
     let showWordLimit = this.config.showWordLimit;
 
@@ -36,5 +32,9 @@ export default class TextareaEditTextFieldWidget extends TextFieldStructuralWidg
     }
 
     return h(getControl('TextArea'), { props, on: { input: this.onChange } });
+  }
+
+  public created(): void {
+    this.setBehaviors('field.textarea', defaultBehaviors);
   }
 }

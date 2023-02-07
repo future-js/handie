@@ -4,7 +4,7 @@ import { Component } from 'vue-property-decorator';
 import {
   ListViewContext,
   ObjectViewContext,
-  ObjectViewWidgetState,
+  DialogViewWidgetState,
   getRenderer,
   resolveSafePropsFromConfig,
 } from 'handie-vue';
@@ -15,7 +15,7 @@ import { isOpenerInlineObjectView } from './helper';
 
 @Component
 export default class FormDialogViewWidget extends DialogViewStructuralWidget<
-  ObjectViewWidgetState,
+  DialogViewWidgetState,
   FormDialogViewWidgetConfig
 > {
   protected get dialogTitle(): string {

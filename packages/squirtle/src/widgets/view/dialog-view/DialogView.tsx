@@ -1,28 +1,28 @@
-import type { CreateElement, VNode, VueConstructor, VNodeChildren } from 'vue';
-import { Component } from 'vue-property-decorator';
+import type { ReactNode } from 'react';
 
 import {
   DialogViewWidgetState,
   DialogViewWidgetConfig,
   isString,
   isComponentCtor,
-} from 'handie-vue';
-import { DialogViewStructuralWidget } from 'handie-vue/dist/widgets';
+} from 'handie-react';
+import { DialogViewStructuralWidget } from 'handie-react/dist/widgets/class';
 
-@Component
+import style from './style.scss';
+
 export default class DialogViewWidget extends DialogViewStructuralWidget<
   DialogViewWidgetState,
   DialogViewWidgetConfig
 > {
-  public render(h: CreateElement): VNode {
+  public render(): ReactNode {
     const { $$child } = this.config;
 
-    let resolvedChildren: VNodeChildren;
+    let resolvedChildren: ReactNode;
 
     if ($$child === undefined) {
-      resolvedChildren = this.$slots.default;
+      resolvedChildren = this.props.children;
     } else if (isComponentCtor($$child)) {
-      resolvedChildren = [h($$child as VueConstructor)];
+      resolvedChildren = $$child;
     } else if (isString($$child)) {
       // TODO: use `ViewRenderer`
     }
@@ -35,6 +35,6 @@ export default class DialogViewWidget extends DialogViewStructuralWidget<
   }
 
   public created(): void {
-    this.setStyleClassNames(this.$style);
+    this.setStyleClassNames(style);
   }
 }

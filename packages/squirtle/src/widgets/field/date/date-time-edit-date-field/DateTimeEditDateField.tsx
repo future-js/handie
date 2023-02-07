@@ -15,11 +15,7 @@ export default class DateTimeEditDateFieldWidget extends DateFieldStructuralWidg
         placeholder={this.getPlaceholder()}
         disabled={this.state.disabled}
         format={this.getDisplayFormat()}
-        pickerOption={getPickerOption(
-          this.props.value,
-          this.config,
-          this.$$view.getValue(),
-        )}
+        pickerOption={getPickerOption(this.props.value, this.config, this.$$view.getValue())}
         onChange={(_, date) => this.onDateChange(date)}
       />
     ) : null;

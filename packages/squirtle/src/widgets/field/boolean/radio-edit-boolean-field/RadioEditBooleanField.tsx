@@ -20,11 +20,9 @@ export default class RadioEditBooleanFieldWidget extends BooleanFieldStructuralW
       <RadioGroup
         value={this.props.value}
         disabled={this.state.disabled}
-        onChange={(value) => this.onChange(value)}
+        onChange={value => this.onChange(value)}
       >
-        {this.negativeFirst
-          ? [negativeOption, positiveOption]
-          : [positiveOption, negativeOption]}
+        {this.negativeFirst ? [negativeOption, positiveOption] : [positiveOption, negativeOption]}
       </RadioGroup>
     ) : null;
   }

@@ -16,7 +16,7 @@ export default class FormSearchWidget extends FormSearchStructuralWidget {
     const Form = getControl('Form') as ComponentCtor;
 
     const form = Form ? (
-      <Form key="FormOfFormSearchWidget" {...this.resolveProps()}>
+      <Form key='FormOfFormSearchWidget' {...this.resolveProps()}>
         {formChildren}
       </Form>
     ) : null;
