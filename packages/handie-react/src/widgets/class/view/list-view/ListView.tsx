@@ -24,12 +24,12 @@ class ListViewStructuralWidget<
 > extends ViewStructuralWidget<ListViewContext<VT, CT>, S, CT, ListViewHeadlessWidget<CT>> {
   public readonly state = {
     loading: false,
+    topActions: [],
+    itemActions: [],
     dataSource: [],
     pageNum: 1,
     pageSize: 20,
     total: 0,
-    topActions: [],
-    itemActions: [],
   } as any;
 
   /**

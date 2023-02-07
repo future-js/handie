@@ -10,6 +10,7 @@ import {
   isNumeric,
   isFunction,
   isPlainObject,
+  includes,
   omit,
 } from '../../vendors/toolbox';
 import {
@@ -372,6 +373,43 @@ function resolveActionStuffs<A extends ClientAction<ConfigType> = ClientAction<C
   return { top: topActions, item: itemActions, map: actionMap };
 }
 
+function getDefaultActionNames(behaviorKey: string): string[] {
+  return ([] as string[]).concat(getBehaviorByKey(`common.action.${behaviorKey}`));
+}
+
+function resolveDefaultActions<AT = string | ActionDescriptor>(
+  actions: AT[],
+  readonly = false,
+): AT[] {
+  if (!readonly) {
+    return actions;
+  }
+
+  const submitActionNames = getDefaultActionNames('submitAction');
+
+  return actions.filter(refOrDescriptor => {
+    const actionName = isString(refOrDescriptor)
+      ? (refOrDescriptor as string)
+      : (refOrDescriptor as ActionDescriptor).name;
+
+    return !actionName || !includes(actionName, submitActionNames);
+  });
+}
+
+function resolveActionsFromView(viewContext: ViewContext): Record<string, true> {
+  return (viewContext.getView().actions || []).reduce((acc, cur) => {
+    let actionName: string | undefined;
+
+    if (isString(cur)) {
+      actionName = cur as string;
+    } else if (isPlainObject(cur)) {
+      actionName = (cur as ActionDescriptor).name;
+    }
+
+    return actionName ? { ...acc, [actionName]: true } : acc;
+  }, {} as Record<string, true>);
+}
+
 function resolveTooltipEnabled(field: ViewFieldDescriptor, context: ListViewContext): boolean {
   if (field.config && isBoolean(field.config.showOverflowTooltip)) {
     return field.config.showOverflowTooltip;
@@ -499,6 +537,9 @@ export {
   resolveAuthorizedActions,
   resolveItemActions,
   resolveActionStuffs,
+  getDefaultActionNames,
+  resolveDefaultActions,
+  resolveActionsFromView,
   resolveTableProps,
   resolveSafeDialogProps,
 };

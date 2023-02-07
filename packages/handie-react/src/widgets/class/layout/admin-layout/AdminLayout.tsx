@@ -1,15 +1,16 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import { ComponentCtor, BaseWidgetConfig, BaseWidgetState, getControl } from '@handie/runtime-core';
 import { AdminLayoutHeadlessWidget } from '@handie/runtime-core/dist/widgets';
 
 import { BaseStructuralWidget } from '../../base';
 
-import { NavLinkRenderer, NavMenuPosition } from './typing';
+import type { NavLinkRenderer, NavMenuPosition } from './typing';
 import defaultBehaviors from './behavior';
 
 class AdminLayoutStructuralWidget<
   CT extends BaseWidgetConfig = BaseWidgetConfig
+  // eslint-disable-next-line @typescript-eslint/ban-types
 > extends BaseStructuralWidget<{}, BaseWidgetState, CT, AdminLayoutHeadlessWidget<CT>> {
   private getRoutes(): any[] {
     return ((this.props as any).routes || []) as any[];

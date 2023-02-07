@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 import {
   ViewFieldDescriptor,
-  ViewWidgetConfig,
+  ObjectViewWidgetConfig,
   ObjectViewWidgetState,
   getRenderer,
 } from '@handie/runtime-core';
@@ -12,35 +12,14 @@ import { ObjectViewStructuralWidget } from '../object-view';
 
 class FormViewStructuralWidget<
   S extends ObjectViewWidgetState = ObjectViewWidgetState,
-  CT extends ViewWidgetConfig = ViewWidgetConfig
+  CT extends ObjectViewWidgetConfig = ObjectViewWidgetConfig
 > extends ObjectViewStructuralWidget<S, CT> {
-  protected getRecordId(): string {
-    return this.$$app.history.getLocation().params.id || '';
+  protected isNewOne(): boolean {
+    return this.$$_h.isNewOne();
   }
 
   protected fetchData(): void {
-    const ctx = this.$$view;
-    const id = this.getRecordId();
-
-    if (id && ctx.getOne) {
-      this.$$view.setBusy(true);
-
-      ctx.getOne(id, data => ctx.setDataSource(data)).finally(() => this.$$view.setBusy(false));
-    }
-  }
-
-  protected renderActionBar(className?: string): ReactNode {
-    return (
-      <div className={className} key='ActionBarOfFormViewStructuralWidget'>
-        {this.$$view.getActions().map(action => {
-          const ActionRenderer = getRenderer('ActionRenderer') as ComponentCtor;
-
-          return ActionRenderer ? (
-            <ActionRenderer key={action.name || action.text} action={action} />
-          ) : null;
-        })}
-      </div>
-    );
+    this.$$_h.fetchData();
   }
 
   protected renderForm(

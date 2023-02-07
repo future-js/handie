@@ -1,8 +1,8 @@
-import type { VNode, VNodeChildren } from 'vue';
-import { Component } from 'vue-property-decorator';
+import type { ReactNode } from 'react';
 
 import {
   ObjectViewContextDescriptor,
+  ClientAction,
   ListViewContext,
   ObjectViewContext,
   DialogViewWidgetState,
@@ -14,12 +14,19 @@ import {
 
 import { ObjectViewStructuralWidget } from '../object-view';
 
-@Component
 class DialogViewStructuralWidget<
   S extends DialogViewWidgetState = DialogViewWidgetState,
   CT extends DialogViewWidgetConfig = DialogViewWidgetConfig
 > extends ObjectViewStructuralWidget<S, CT> {
-  private dialogVisible: boolean = false;
+  public readonly state = {
+    loading: false,
+    topActions: [] as ClientAction[],
+    itemActions: [] as ClientAction[],
+    dataSource: {},
+    value: {},
+    validation: {},
+    dialogVisible: false,
+  } as S;
 
   // TODO: 解决初始值被重置掉的临时方案，需要底层框架支持后移除
   private initialValueCache!: Record<string, any>;
@@ -33,7 +40,7 @@ class DialogViewStructuralWidget<
   }
 
   protected closeDialog(): void {
-    this.dialogVisible = false;
+    this.setState({ dialogVisible: false });
     this.$$view.reset();
   }
 
@@ -56,7 +63,7 @@ class DialogViewStructuralWidget<
 
     this.opener.off(showEventName);
     this.opener.on(showEventName, () => {
-      this.dialogVisible = true;
+      this.setState({ dialogVisible: true });
       this.fetchData();
     });
 
@@ -80,9 +87,9 @@ class DialogViewStructuralWidget<
       actionBarClassName?: string;
       executors?: Record<string, (...args: any[]) => any>;
       actionText?: Record<string, string>;
-      children?: VNodeChildren;
+      children?: ReactNode;
     } = {},
-  ): VNode {
+  ): ReactNode {
     const {
       className,
       actionBarClassName,
@@ -93,36 +100,37 @@ class DialogViewStructuralWidget<
       children,
     } = options;
     const { width = 520 } = this.config;
-    const h = this.$createElement;
 
-    return h(
-      getControl('Dialog'),
-      {
-        props: {
-          className: [className, this.config.className],
-          title: this.dialogTitle,
-          width: isNumeric(width) ? `${width}px` : width,
-          visible: this.dialogVisible,
-          appendToBody: true,
-          destroyOnClose: true,
-          disableMask: true,
-          ...resolveSafeDialogProps(this.config),
-        },
-        on: { close: this.closeDialog },
-      },
-      [
-        h(getControl('Wait'), { props: { busy: this.loading } }, children),
-        this.renderActionBar({
+    const Dialog = getControl('Dialog');
+    const Wait = getControl('Wait');
+
+    const props = {
+      className: [className, this.config.className],
+      title: this.dialogTitle,
+      width: isNumeric(width) ? `${width}px` : width,
+      visible: this.state.dialogVisible,
+      appendToBody: true,
+      destroyOnClose: true,
+      disableMask: true,
+      ...resolveSafeDialogProps(this.config),
+      onClose: this.closeDialog,
+    };
+
+    return Dialog ? (
+      <Dialog {...props}>
+        {Wait ? <Wait busy={this.state.loading}>{children}</Wait> : null}
+        {this.renderActionBar({
           className: actionBarClassName,
           slotName: 'footer',
           executors,
           actionText,
-        }),
-      ],
-    );
+        })}
+      </Dialog>
+    ) : null;
   }
 
-  public created(): void {
+  public componentWillMount(): void {
+    super.componentWillMount();
     this.initDialogViewCommonContextEvents();
     this.setInitialValueCache();
   }

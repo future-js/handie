@@ -5,7 +5,6 @@ import {
   ViewFieldDescriptor,
   ObjectViewWidgetConfig,
   ObjectViewWidgetState,
-  isPlainObject,
   getRenderer,
 } from '@handie/runtime-core';
 
@@ -16,43 +15,12 @@ class FormViewStructuralWidget<
   S extends ObjectViewWidgetState = ObjectViewWidgetState,
   CT extends ObjectViewWidgetConfig = ObjectViewWidgetConfig
 > extends ObjectViewStructuralWidget<S, CT> {
-  private getRecordParams(): string | Record<string, any> | undefined {
-    const { recordGetterRouteParams = 'id' } = this.config;
-    const routeParams = this.$$route.params;
-
-    if (isPlainObject(recordGetterRouteParams)) {
-      return Object.entries(recordGetterRouteParams as Record<string, string>).reduce(
-        (params, [recordParamKey, routeParamKey]) => ({
-          ...params,
-          [recordParamKey]: routeParams[routeParamKey],
-        }),
-        {},
-      );
-    }
-
-    const keys = ([] as string[]).concat(recordGetterRouteParams as string | string[]);
-
-    return keys.length > 1
-      ? keys.reduce((params, key) => ({ ...params, [key]: routeParams[key] }), {})
-      : routeParams[keys[0]];
-  }
-
   protected isNewOne(): boolean {
-    return !this.getRecordParams() || !this.$$view.getOne;
+    return this.$$_h.isNewOne();
   }
 
   protected fetchData(): void {
-    if (this.isNewOne()) {
-      return;
-    }
-
-    this.$$view.setBusy(true);
-
-    const ctx = this.$$view;
-
-    ctx
-      .getOne(this.getRecordParams()!, data => ctx.setDataSource(data))
-      .finally(() => this.$$view.setBusy(false));
+    this.$$_h.fetchData();
   }
 
   protected renderForm(

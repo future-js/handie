@@ -1,21 +1,31 @@
-import type {
+import type { ReactNode } from 'react';
+
+import {
   DataValue,
+  ActionDescriptor,
   ObjectValue,
+  ClientAction,
   ObjectViewContext,
-  ViewWidgetConfig,
+  ObjectViewWidgetConfig,
   ObjectViewWidgetState,
+  isString,
+  getRenderer,
+  resolveDefaultActions,
 } from '@handie/runtime-core';
-import { ViewHeadlessWidget } from '@handie/runtime-core/dist/widgets';
+import { ObjectViewHeadlessWidget } from '@handie/runtime-core/dist/widgets';
 
 import { ViewStructuralWidget } from '../view';
+import type { ActionExecutors, ActionText, ActionBarRendererOptions } from './typing';
 
 class ObjectViewStructuralWidget<
   S extends ObjectViewWidgetState = ObjectViewWidgetState,
-  CT extends ViewWidgetConfig = ViewWidgetConfig,
+  CT extends ObjectViewWidgetConfig = ObjectViewWidgetConfig,
   VT extends ObjectValue = ObjectValue
-> extends ViewStructuralWidget<ObjectViewContext<VT, CT>, S, CT> {
+> extends ViewStructuralWidget<ObjectViewContext<VT, CT>, S, CT, ObjectViewHeadlessWidget<CT>> {
   public readonly state = {
     loading: false,
+    topActions: [] as ClientAction[],
+    itemActions: [] as ClientAction[],
     dataSource: {},
     value: {},
     validation: {},
@@ -25,10 +35,61 @@ class ObjectViewStructuralWidget<
     this.$$view.setFieldValue(fieldName, value);
   }
 
+  /**
+   * Default actions for object view widgets
+   *
+   * @param readonly whether the object view is read-only, used for filtering actions according to this status
+   * @returns list of action's ref or descriptor
+   */
+  protected getDefaultActions(readonly = false): (string | ActionDescriptor)[] {
+    return resolveDefaultActions(this.$$_h.getDefaultActions(), readonly);
+  }
+
+  protected renderActions({
+    executors = {},
+    actionText = {},
+    readonly,
+  }: Pick<ActionBarRendererOptions, 'executors' | 'actionText' | 'readonly'>): ReactNode[] {
+    return this.$$_h.resolveActionNodes(
+      this.getDefaultActions,
+      action => {
+        const ActionRenderer = getRenderer('ActionRenderer');
+
+        return ActionRenderer ? (
+          <ActionRenderer key={action.name || action.text} action={action} />
+        ) : null;
+      },
+      executors,
+      actionText,
+      readonly,
+    );
+  }
+
+  protected renderActionBar(classNameOrOptions?: string | ActionBarRendererOptions): ReactNode {
+    if (this.config.hideActionBar === true) {
+      return null;
+    }
+
+    const { className, ...others } = isString(classNameOrOptions)
+      ? { className: classNameOrOptions as string }
+      : ((classNameOrOptions || {}) as ActionBarRendererOptions);
+    const actionNodes = this.renderActions(others);
+
+    if (actionNodes.length === 0) {
+      return null;
+    }
+
+    return (
+      <div key='ActionBarOfObjectViewStructuralWidget' className={className}>
+        {actionNodes}
+      </div>
+    );
+  }
+
   public componentWillMount(): void {
     super.componentWillMount();
 
-    this.setHeadlessWidget(new ViewHeadlessWidget(this.props, this.$$view));
+    this.setHeadlessWidget(new ObjectViewHeadlessWidget(this.props, this.$$view));
     this.setState({ value: this.$$view.getValue() });
 
     this.on({

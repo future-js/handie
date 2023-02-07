@@ -9,10 +9,8 @@ import {
   ObjectViewWidgetConfig,
   ObjectViewWidgetState,
   isString,
-  isPlainObject,
-  includes,
-  resolveAction,
   getRenderer,
+  resolveDefaultActions,
 } from '@handie/runtime-core';
 import { ObjectViewHeadlessWidget } from '@handie/runtime-core/dist/widgets';
 
@@ -33,10 +31,6 @@ class ObjectViewStructuralWidget<
     this.$$view.setFieldValue(fieldName, value);
   }
 
-  private getDefaultActionNames(behaviorKey: string): string[] {
-    return ([] as string[]).concat(this.getCommonBehavior(`action.${behaviorKey}`));
-  }
-
   /**
    * Default actions for object view widgets
    *
@@ -44,35 +38,7 @@ class ObjectViewStructuralWidget<
    * @returns list of action's ref or descriptor
    */
   protected getDefaultActions(readonly = false): (string | ActionDescriptor)[] {
-    const actions = this.$$_h.getDefaultActions();
-
-    if (!readonly) {
-      return actions;
-    }
-
-    const submitActionNames = this.getDefaultActionNames('submitAction');
-
-    return actions.filter(refOrDescriptor => {
-      const actionName = isString(refOrDescriptor)
-        ? (refOrDescriptor as string)
-        : (refOrDescriptor as ActionDescriptor).name;
-
-      return !actionName || !includes(actionName, submitActionNames);
-    });
-  }
-
-  private resolveActionsFromView(): Record<string, true> {
-    return (this.$$view.getView().actions || []).reduce((acc, cur) => {
-      let actionName: string | undefined;
-
-      if (isString(cur)) {
-        actionName = cur as string;
-      } else if (isPlainObject(cur)) {
-        actionName = (cur as ActionDescriptor).name;
-      }
-
-      return actionName ? { ...acc, [actionName]: true } : acc;
-    }, {} as Record<string, true>);
+    return resolveDefaultActions(this.$$_h.getDefaultActions(), readonly);
   }
 
   protected renderActions({
@@ -80,81 +46,17 @@ class ObjectViewStructuralWidget<
     actionText = {},
     readonly,
   }: Pick<ActionBarRendererOptions, 'executors' | 'actionText' | 'readonly'>): VNode[] {
-    const certainActions = this.resolveActionsFromView();
-    const defaultExecutors: ActionExecutors = {};
-    const resolvedActionText: ActionText = {};
-
-    this.getDefaultActionNames('submitAction').forEach(actionName => {
-      defaultExecutors[actionName] = () => this.$$view.submit();
-
-      if (this.config.submitActionText) {
-        resolvedActionText[actionName] = this.config.submitActionText;
-      } else if (actionText.submitActionText) {
-        resolvedActionText[actionName] = actionText.submitActionText;
-      }
-    });
-
-    this.getDefaultActionNames('resetAction').forEach(actionName => {
-      defaultExecutors[actionName] = () => this.$$view.reset();
-
-      if (this.config.resetActionText) {
-        resolvedActionText[actionName] = this.config.resetActionText;
-      } else if (actionText.resetActionText) {
-        resolvedActionText[actionName] = actionText.resetActionText;
-      }
-    });
-
-    this.getDefaultActionNames('cancelAction').forEach(actionName => {
-      if (this.config.cancelActionText) {
-        resolvedActionText[actionName] = this.config.cancelActionText;
-      } else if (actionText.cancelActionText) {
-        resolvedActionText[actionName] = actionText.cancelActionText;
-      }
-    });
-
-    const resolvedExecutors = { ...defaultExecutors, ...executors };
-    const actionNodes: VNode[] = [];
-
-    const resolvedActions = this.$$view.getActions();
-
-    if (resolvedActions.length === 0) {
-      this.getDefaultActions(readonly).forEach(refOrDescriptor => {
-        const action = resolveAction(refOrDescriptor);
-
-        if (action) {
-          resolvedActions.push(action);
-        }
-      });
-    }
-
-    resolvedActions.forEach(action => {
-      if (!action.context || action.context === 'single') {
-        const resolvedAction = { ...action };
-
-        if (action.name) {
-          const defaultExecutor = resolvedExecutors[action.name];
-
-          if (!resolvedAction.execute && defaultExecutor) {
-            resolvedAction.execute = defaultExecutor;
-          }
-
-          const textFromConfig = resolvedActionText[action.name];
-
-          if (!certainActions[action.name] && textFromConfig) {
-            resolvedAction.text = textFromConfig;
-          }
-        }
-
-        actionNodes.push(
-          this.$createElement(getRenderer('ActionRenderer'), {
-            key: resolvedAction.name || resolvedAction.text,
-            props: { action: resolvedAction },
-          }),
-        );
-      }
-    });
-
-    return actionNodes;
+    return this.$$_h.resolveActionNodes(
+      this.getDefaultActions,
+      action =>
+        this.$createElement(getRenderer('ActionRenderer'), {
+          key: action.name || action.text,
+          props: { action },
+        }),
+      executors,
+      actionText,
+      readonly,
+    );
   }
 
   protected renderActionBar(classNameOrOptions?: string | ActionBarRendererOptions): VNode | null {

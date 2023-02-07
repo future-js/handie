@@ -1,6 +1,6 @@
 import type { DensityType } from 'petals-ui/dist/data-table';
 
-import type { ValidationResult } from '../../vendors/organik';
+import type { ValidationResult, ClientAction } from '../../vendors/organik';
 
 import type { ObjectValue } from '../value';
 import type { BaseWidgetConfig, BaseWidgetState } from './base';
@@ -43,6 +43,8 @@ interface DialogViewWidgetConfig extends ObjectViewWidgetConfig {
 
 interface ViewWidgetState extends BaseWidgetState {
   loading: boolean;
+  topActions: ClientAction[];
+  itemActions: ClientAction[];
 }
 
 interface ListViewWidgetState<VT extends ObjectValue[] = ObjectValue[]> extends ViewWidgetState {
@@ -58,6 +60,11 @@ interface ObjectViewWidgetState<VT extends ObjectValue = ObjectValue> extends Vi
   validation: Record<string, ValidationResult>;
 }
 
+interface DialogViewWidgetState<VT extends ObjectValue = ObjectValue>
+  extends ObjectViewWidgetState<VT> {
+  dialogVisible: boolean;
+}
+
 interface IViewWidget {}
 
 export type {
@@ -69,5 +76,6 @@ export type {
   ViewWidgetState,
   ListViewWidgetState,
   ObjectViewWidgetState,
+  DialogViewWidgetState,
   IViewWidget,
 };

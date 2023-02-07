@@ -28,6 +28,7 @@ export {
   resolveAuthorizedActions,
   resolveItemActions,
   resolveActionStuffs,
+  resolveDefaultActions,
   resolveTableProps,
   resolveSafeDialogProps,
 } from './widget';

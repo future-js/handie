@@ -14,6 +14,7 @@ import {
   isFunction,
   getControl,
   getRenderer,
+  isActionsAuthorized,
   resolveActionsAuthority,
   resolveAuthorizedActions,
   resolveItemActions,
@@ -59,6 +60,11 @@ function resolveOperationColumn(
 
   const actionsAuthority = resolveActionsAuthority(context);
 
+  const allSingleActions = resolveAuthorizedActions(
+    context.getActionsByContextType('single') as ClientAction[],
+    actionsAuthority,
+  );
+
   const col: TableColumn = {
     title: '操作',
     render: (h, { index }) => {
@@ -101,7 +107,10 @@ function resolveOperationColumn(
     },
   };
 
-  const { operationColumnWidth } = context.getConfig() as TableViewWidgetConfig;
+  const {
+    operationColumnWidth,
+    operationColumnAlignment,
+  } = context.getConfig() as TableViewWidgetConfig;
 
   if (operationColumnWidth) {
     col.width = isNumber(operationColumnWidth)
@@ -109,7 +118,11 @@ function resolveOperationColumn(
       : (operationColumnWidth as string);
   }
 
-  return col;
+  if (operationColumnAlignment) {
+    col.align = operationColumnAlignment;
+  }
+
+  return isActionsAuthorized(actionsAuthority) && allSingleActions.length > 0 ? col : null;
 }
 
 export { resolveCellRenderer, resolveOperationColumn };

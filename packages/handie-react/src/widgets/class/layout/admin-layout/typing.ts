@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 type NavLinkRenderer = (text: string, location: string) => ReactNode;
 
@@ -8,4 +8,4 @@ interface AdminLayoutWidgetBehaviors {
   readonly navMenuPosition?: NavMenuPosition;
 }
 
-export { NavLinkRenderer, NavMenuPosition, AdminLayoutWidgetBehaviors };
+export type { NavLinkRenderer, NavMenuPosition, AdminLayoutWidgetBehaviors };
