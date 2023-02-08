@@ -1,6 +1,6 @@
 {
   "name": "handie-react-starter-umi",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "`handie-react-starter-antd` + `umi`",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -21,26 +21,31 @@
     "management-systems",
     "react",
     "reactjs",
-    "react.js"
+    "react.js",
+    "antd",
+    "ant-design",
+    "umi",
+    "umijs"
   ],
   "author": "Ourai Lin <ourairyu@gmail.com> (https://ourai.ws/)",
   "license": "MIT",
   "homepage": "https://handiejs.github.io",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/handiejs/handie.git",
+    "url": "git+https://github.com/future-js/handie.git",
     "directory": "packages/starter-umi"
   },
   "scripts": {
-    "precopy": "rm -rf dist",
+    "precopy": "rimraf dist",
     "copy": "mkdir dist && cp -R src/* dist",
-    "prebuild": "npm run copy",
-    "build": "tsc && rm -rf dist/shims-*.d.ts",
+    "prebuild": "npm run copy && node build/gen",
+    "build": "tsc",
+    "postbuild": "rimraf tsconfig.json",
     "prerelease": "npm run build",
     "release": "npm publish"
   },
   "dependencies": {
-    "handie-react-starter-antd": "0.0.9",
+    "handie-react-starter-antd": "0.0.10",
     "path-to-regexp": "6.2.0"
   },
   "peerDependencies": {

@@ -1,5 +1,11 @@
 # 更新日志
 
+## 0.0.9 (2023-02-08)
+
+### 依赖更新
+
+- [`handie-react-starter-antd@0.0.10`](https://www.npmjs.com/package/handie-react-starter-antd/v/0.0.10)
+
 ## 0.0.7 (2022-08-12)
 
 ### 特性

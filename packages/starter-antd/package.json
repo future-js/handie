@@ -21,7 +21,9 @@
     "management-systems",
     "react",
     "reactjs",
-    "react.js"
+    "react.js",
+    "antd",
+    "ant-design"
   ],
   "author": "Ourai Lin <ourairyu@gmail.com> (https://ourai.ws/)",
   "license": "MIT",
