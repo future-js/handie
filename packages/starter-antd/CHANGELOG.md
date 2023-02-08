@@ -1,5 +1,11 @@
 # 更新日志
 
+## 0.0.10 (2023-02-08)
+
+### 依赖更新
+
+- [`@zoras/adapter-ant-design@0.0.10`](https://www.npmjs.com/package/@zoras/adapter-ant-design/v/0.0.10)
+
 ## 0.0.8 (2022-08-12)
 
 ### 特性

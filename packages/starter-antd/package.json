@@ -1,6 +1,6 @@
 {
   "name": "handie-react-starter-antd",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "`handie-react` + `@handie/squirtle` + `antd` + `@zoras/adapter-ant-design`",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -28,21 +28,22 @@
   "homepage": "https://handiejs.github.io",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/handiejs/handie.git",
+    "url": "git+https://github.com/future-js/handie.git",
     "directory": "packages/starter-antd"
   },
   "scripts": {
-    "precopy": "rm -rf dist",
+    "precopy": "rimraf dist",
     "copy": "mkdir dist && cp -R src/* dist",
-    "prebuild": "npm run copy",
-    "build": "tsc && rm -rf dist/shims-*.d.ts",
+    "prebuild": "npm run copy && node build/gen",
+    "build": "tsc",
+    "postbuild": "rimraf tsconfig.json",
     "prerelease": "npm run build",
     "release": "npm publish"
   },
   "dependencies": {
     "@ant-design/icons": "4.7.0",
     "@handie/squirtle": "0.0.7",
-    "@zoras/adapter-ant-design": "0.0.9",
+    "@zoras/adapter-ant-design": "0.0.10",
     "antd": "4.18.9",
     "handie-react": "0.0.8"
   },
