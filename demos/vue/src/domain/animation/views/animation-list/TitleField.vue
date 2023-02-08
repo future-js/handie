@@ -8,7 +8,7 @@ import { Component } from 'vue-property-decorator';
 import { StringFieldStructuralWidget } from '@/components/widget/base';
 
 @Component
-export default class AnimationListTitleField extends StringFieldStructuralWidget {
+export default class AnimationListTitleFieldWidget extends StringFieldStructuralWidget {
   private get row() {
     return this.$$view.getValue();
   }

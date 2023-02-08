@@ -48,7 +48,7 @@ function getModule<WidgetCtor extends ComponentCtor = ComponentCtor>({
 function getModuleContext<MC extends ModuleContext = ModuleContext>(
   creator: (descriptor: ModuleContextDescriptor | string) => MC,
 ): MC {
-  return creator({ moduleName: MODULE_NAME, actions });
+  return creator({ moduleName: MODULE_NAME, model, actions });
 }
 
 export { getModule, getModuleContext };

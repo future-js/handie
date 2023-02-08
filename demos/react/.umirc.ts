@@ -8,8 +8,11 @@ function resolve(dir) {
 }
 
 export default defineConfig({
-  title: 'React app demo',
+  title: 'React app demo of Handie',
+  favicon: '/favicon.ico',
   alias: {
+    '@handie/runtime-core/dist': resolve('../../packages/runtime-core/src'),
+    '@handie/runtime-core': resolve('../../packages/runtime-core/src/index.ts'),
     'handie-react/dist': resolve('../../packages/handie-react/src'),
     'handie-react': resolve('../../packages/handie-react/src/index.ts'),
     '@handie/squirtle/dist': resolve('../../packages/squirtle/src'),

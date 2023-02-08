@@ -113,18 +113,20 @@ class DialogViewStructuralWidget<
       destroyOnClose: true,
       disableMask: true,
       ...resolveSafeDialogProps(this.config),
-      onClose: this.closeDialog,
+      onClose: this.closeDialog.bind(this),
     };
 
     return Dialog ? (
-      <Dialog {...props}>
-        {Wait ? <Wait busy={this.state.loading}>{children}</Wait> : null}
-        {this.renderActionBar({
+      <Dialog
+        {...props}
+        footer={this.renderActionBar({
           className: actionBarClassName,
-          slotName: 'footer',
+          // slotName: 'footer',
           executors,
           actionText,
         })}
+      >
+        {Wait ? <Wait busy={this.state.loading}>{children}</Wait> : null}
       </Dialog>
     ) : null;
   }

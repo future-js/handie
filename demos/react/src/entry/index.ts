@@ -1,4 +1,4 @@
-import { createApp } from 'handie-react-starter-umi';
+import { setUserAuthorityGetter, createApp } from 'handie-react-starter-umi';
 
 import actions from '@_/actions';
 import { setInterceptors } from '@_/aspects';
@@ -8,6 +8,7 @@ import components from '@/shared/components';
 import modules from '../domain';
 import routes from './routes';
 
+setUserAuthorityGetter(() => ({ 'animation:edit': true }));
 setInterceptors();
 
 createApp({

@@ -51,7 +51,7 @@ class ObjectViewStructuralWidget<
     readonly,
   }: Pick<ActionBarRendererOptions, 'executors' | 'actionText' | 'readonly'>): ReactNode[] {
     return this.$$_h.resolveActionNodes(
-      this.getDefaultActions,
+      this.getDefaultActions.bind(this),
       action => {
         const ActionRenderer = getRenderer('ActionRenderer');
 

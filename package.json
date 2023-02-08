@@ -1,7 +1,7 @@
 {
   "name": "@handie/main-monorepo",
   "version": "0.0.0",
-  "description": "Examples for front-end of web-based management systems",
+  "description": "Progressive framework for front-end of web-based management systems",
   "keywords": [
     "handie",
     "ui",
@@ -51,7 +51,7 @@
     "@vue/cli-plugin-typescript": "^4.5.9",
     "@vue/cli-service": "^4.5.9",
     "@wotaware/x-spreadsheet": "0.0.3",
-    "@zoras/adapter-ant-design": "0.0.9",
+    "@zoras/adapter-ant-design": "0.0.10",
     "axios": "^0.21.1",
     "cross-env": "^7.0.3",
     "dayjs": "~1.10.7",

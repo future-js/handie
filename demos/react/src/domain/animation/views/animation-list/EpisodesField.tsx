@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import { AnimationEntity } from '@_/modules/animation/typing';
+import type { AnimationEntity } from '@_/modules/animation/typing';
 
 import { RelationFieldStructuralWidget } from '@/shared/components/widget/base';
 

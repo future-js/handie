@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 
 import {
+  ComponentCtor,
   DialogViewWidgetState,
   DialogViewWidgetConfig,
   isString,
@@ -22,7 +23,9 @@ export default class DialogViewWidget extends DialogViewStructuralWidget<
     if ($$child === undefined) {
       resolvedChildren = this.props.children;
     } else if (isComponentCtor($$child)) {
-      resolvedChildren = $$child;
+      const DialogContent = $$child as ComponentCtor;
+
+      resolvedChildren = <DialogContent />;
     } else if (isString($$child)) {
       // TODO: use `ViewRenderer`
     }

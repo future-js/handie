@@ -1,5 +1,8 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { Link } from 'umi';
+
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
 
 import {
   App as AppContainer,
@@ -24,24 +27,26 @@ export default class AdminLayoutWidget extends AdminLayoutStructuralWidget {
 
   public render(): ReactNode {
     return (
-      <AppContainer className={style.AdminLayoutWidget}>
-        <LayoutContainer>
-          <LayoutAside className={style['AdminLayoutWidget-aside']} width={266}>
-            <Link className={style['AdminLayoutWidget-brand']} to="/">
-              Handie for React
-            </Link>
-            {this.renderSubNav(this.renderNavLink)}
-          </LayoutAside>
-          <LayoutContainer className={style['AdminLayoutWidget-content']}>
-            <LayoutHeader className={style['AdminLayoutWidget-header']}>
-              {this.renderNavMenu(this.renderNavLink)}
-            </LayoutHeader>
-            <LayoutMain className={style['AdminLayoutWidget-main']}>
-              {this.props.children}
-            </LayoutMain>
+      <ConfigProvider locale={zhCN}>
+        <AppContainer className={style.AdminLayoutWidget}>
+          <LayoutContainer>
+            <LayoutAside className={style['AdminLayoutWidget-aside']} width={266}>
+              <Link className={style['AdminLayoutWidget-brand']} to='/'>
+                Handie for React
+              </Link>
+              {this.renderSubNav(this.renderNavLink)}
+            </LayoutAside>
+            <LayoutContainer className={style['AdminLayoutWidget-content']}>
+              <LayoutHeader className={style['AdminLayoutWidget-header']}>
+                {this.renderNavMenu(this.renderNavLink)}
+              </LayoutHeader>
+              <LayoutMain className={style['AdminLayoutWidget-main']}>
+                {this.props.children}
+              </LayoutMain>
+            </LayoutContainer>
           </LayoutContainer>
-        </LayoutContainer>
-      </AppContainer>
+        </AppContainer>
+      </ConfigProvider>
     );
   }
 }

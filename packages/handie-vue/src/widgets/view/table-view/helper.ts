@@ -12,6 +12,7 @@ import {
   ActionRenderType,
   isNumber,
   isFunction,
+  toPascalCase,
   getControl,
   getRenderer,
   isActionsAuthorized,
@@ -75,8 +76,10 @@ function resolveOperationColumn(
           h(
             'div',
             resolveAuthorizedActions(ctx.getActions() as ClientAction[], actionsAuthority).map(
-              action => {
+              (action, idx) => {
                 const { renderType = inlineActionRenderType, config = {}, ...others } = action;
+                const actionKey = `${toPascalCase((others.name || others.text) as string)}${idx}`;
+                const rowKey = `TableViewWidgetRow${ctx.getId()}`;
                 const actionNode = h(getRenderer('ActionRenderer'), {
                   props: {
                     action: {
@@ -85,7 +88,7 @@ function resolveOperationColumn(
                       config: { size: inlineButtonSize, ...config },
                     },
                   },
-                  key: `${others.name || others.text}InlineActionOfTableViewWidget`,
+                  key: `${actionKey}InlineActionOf${rowKey}`,
                 });
                 const tooltipComponent = getControl('Tooltip');
 
@@ -94,7 +97,7 @@ function resolveOperationColumn(
                       tooltipComponent,
                       {
                         props: { className: 'ActionWidgetTooltip', content: action.text || '' },
-                        key: `${others.name || others.text}InlineActionTooltipOfTableViewWidget`,
+                        key: `${actionKey}InlineActionTooltipOf${rowKey}`,
                       },
                       [actionNode],
                     )

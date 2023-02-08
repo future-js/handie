@@ -1,3 +1,5 @@
 import { getModule } from '@_/modules/animation';
 
-export default getModule();
+import * as views from './views';
+
+export default getModule({ views });

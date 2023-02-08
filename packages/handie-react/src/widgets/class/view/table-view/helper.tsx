@@ -12,6 +12,7 @@ import {
   ActionRenderType,
   isNumber,
   isFunction,
+  toPascalCase,
   getControl,
   getRenderer,
   isActionsAuthorized,
@@ -79,16 +80,19 @@ function resolveOperationColumn(
     title: '操作',
     render: (_, { index }) => {
       const ctx = context.getChildren()[index];
+
       const CellRenderer = createCellRenderer(ctx, () => (
         <div>
           {resolveAuthorizedActions(ctx.getActions() as ClientAction[], actionsAuthority).map(
-            action => {
+            (action, idx) => {
               const { renderType = inlineActionRenderType, config = {}, ...others } = action;
+              const actionKey = `${toPascalCase((others.name || others.text) as string)}${idx}`;
+              const rowKey = `TableViewWidgetRow${ctx.getId()}`;
               const ActionRenderer = getRenderer('ActionRenderer') as ComponentCtor;
               const actionNode = ActionRenderer ? (
                 <ActionRenderer
                   action={{ ...others, renderType, config: { size: inlineButtonSize, ...config } }}
-                  key={`${others.name || others.text}InlineActionOfTableViewWidget`}
+                  key={`${actionKey}InlineActionOf${rowKey}`}
                 />
               ) : null;
               const Tooltip = getControl('Tooltip') as ComponentCtor;
@@ -97,7 +101,7 @@ function resolveOperationColumn(
                 <Tooltip
                   className='ActionWidgetTooltip'
                   content={action.text || ''}
-                  key={`${others.name || others.text}InlineActionTooltipOfTableViewWidget`}
+                  key={`${actionKey}InlineActionTooltipOf${rowKey}`}
                 >
                   {actionNode}
                 </Tooltip>

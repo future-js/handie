@@ -9,5 +9,5 @@ import AnimationFormViewWidget from './AnimationForm';
 
 export default createView(
   context,
-  getAnimationFormView({ ViewSearchTreeActionWidget, AnimationFormViewWidget }),
+  getAnimationFormView(/* { ViewSearchTreeActionWidget, AnimationFormViewWidget } */),
 );

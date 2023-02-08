@@ -5,12 +5,12 @@
 <script lang="ts">
 import { Component } from 'vue-property-decorator';
 
-import { AnimationEntity } from '@_/modules/animation/typing';
+import type { AnimationEntity } from '@_/modules/animation/typing';
 
 import { RelationFieldStructuralWidget } from '@/components/widget/base';
 
 @Component
-export default class AnimationListEpisodesField extends RelationFieldStructuralWidget<
+export default class AnimationListEpisodesFieldWidget extends RelationFieldStructuralWidget<
   AnimationEntity[]
 > {
   private get count() {

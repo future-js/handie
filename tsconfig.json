@@ -1,0 +1,36 @@
+{
+  "extends": "./configs/tsconfig-base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@handie/runtime-core": ["packages/runtime-core/src/index.ts"],
+      "@handie/runtime-core/dist/*": ["packages/runtime-core/src/*"],
+      "handie-vue": ["packages/handie-vue/src/index.ts"],
+      "handie-vue/dist/*": ["packages/handie-vue/src/*"],
+      "@handie/bulbasaur": ["packages/bulbasaur/src/index.ts"],
+      "@handie/bulbasaur/dist/*": ["packages/bulbasaur/src/*"],
+      "handie-react": ["packages/handie-react/src/index.ts"],
+      "handie-react/dist/*": ["packages/handie-react/src/*"],
+      "@handie/squirtle": ["packages/squirtle/src/index.ts"],
+      "@handie/squirtle/dist/*": ["packages/squirtle/src/*"],
+      "handie-react-starter-antd": ["packages/starter-antd/src/index.ts"],
+      "handie-react-starter-antd/dist/*": ["packages/starter-antd/src/*"],
+      "handie-react-starter-umi": ["packages/starter-umi/src/index.ts"],
+      "handie-react-starter-umi/dist/*": ["packages/starter-umi/src/*"]
+    }
+  },
+  "include": [
+    "demos/vue/src/shims-sfc.d.ts",
+    "demos/vue/src/shims-vue.d.ts",
+    "demos/react/typings.d.ts",
+    "packages/runtime-core/src",
+    "packages/handie-vue/src",
+    "packages/bulbasaur/src",
+    "packages/handie-react/src",
+    "packages/squirtle/src",
+    "packages/starter-antd/src",
+    "packages/starter-umi/src"
+  ]
+}

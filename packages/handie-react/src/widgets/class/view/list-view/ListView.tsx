@@ -66,12 +66,12 @@ class ListViewStructuralWidget<
   protected renderActionBar(className?: string, defaultSize?: FormControlSize): ReactNode {
     return this.config.hideActionBar !== true && this.state.topActions.length > 0 ? (
       <div className={className} key='ActionBarOfListViewStructuralWidget'>
-        {this.state.topActions.map(({ config = {}, ...others }) => {
+        {this.state.topActions.map(({ config = {}, ...others }, idx) => {
           const ActionRenderer = getRenderer('ActionRenderer') as ComponentCtor;
 
           return ActionRenderer ? (
             <ActionRenderer
-              key={others.name || others.text}
+              key={`${others.name || others.text}${idx}`}
               action={{
                 ...others,
                 config: defaultSize ? { size: defaultSize, ...config } : config,

@@ -377,10 +377,10 @@ function getDefaultActionNames(behaviorKey: string): string[] {
   return ([] as string[]).concat(getBehaviorByKey(`common.action.${behaviorKey}`));
 }
 
-function resolveDefaultActions<AT = string | ActionDescriptor>(
-  actions: AT[],
+function resolveDefaultActions(
+  actions: (string | ActionDescriptor)[],
   readonly = false,
-): AT[] {
+): (string | ActionDescriptor)[] {
   if (!readonly) {
     return actions;
   }

@@ -65,9 +65,9 @@ class ListViewStructuralWidget<
       ? h(
           'div',
           { staticClass: className, key: 'ActionBarOfListViewStructuralWidget' },
-          this.topActions.map(({ config = {}, ...others }) =>
+          this.topActions.map(({ config = {}, ...others }, idx) =>
             h(getRenderer('ActionRenderer'), {
-              key: others.name || others.text,
+              key: `${others.name || others.text}${idx}`,
               props: {
                 action: {
                   ...others,
