@@ -1,6 +1,6 @@
 {
   "name": "handie-react",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "React framework for front-end of web-based management systems",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -27,13 +27,14 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/handiejs/handie.git",
+    "url": "git+https://github.com/future-js/handie.git",
     "directory": "packages/handie-react"
   },
   "homepage": "https://handiejs.github.io",
   "scripts": {
-    "prebuild": "rimraf dist",
+    "prebuild": "rimraf dist && node build/gen",
     "build": "tsc",
+    "postbuild": "rimraf tsconfig.json",
     "prerelease": "npm run build",
     "release": "npm publish"
   },
@@ -43,6 +44,6 @@
     "react-dom": "~17.0.2"
   },
   "dependencies": {
-    "@handie/runtime-core": "0.0.11"
+    "@handie/runtime-core": "0.0.13"
   }
 }

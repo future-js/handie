@@ -27,7 +27,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/handiejs/handie.git",
+    "url": "git+https://github.com/future-js/handie.git",
     "directory": "packages/bulbasaur"
   },
   "homepage": "https://handiejs.github.io",

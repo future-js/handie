@@ -36,7 +36,7 @@
     "node": ">=14.15.3"
   },
   "devDependencies": {
-    "@handie/runtime-core": "0.0.13-5",
+    "@handie/runtime-core": "0.0.13",
     "@kokiri/adapter-element-ui": "0.0.11",
     "@kokiri/view-ui": "0.0.16",
     "@ntks/eslint-config": "0.0.0",
