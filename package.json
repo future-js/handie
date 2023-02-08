@@ -62,7 +62,7 @@
     "eslint": "^7.21.0",
     "eslint-plugin-react": "^7.27.1",
     "fibers": "^5.0.0",
-    "handie-react": "0.0.8",
+    "handie-react": "0.0.9",
     "handie-react-starter-antd": "0.0.10",
     "handie-vue": "0.0.51-6",
     "http-server": "^14.1.1",

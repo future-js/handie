@@ -1,6 +1,6 @@
 {
   "name": "@handie/squirtle",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Widgets for Handie-React",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -28,14 +28,15 @@
   "homepage": "https://handiejs.github.io",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/handiejs/handie.git",
+    "url": "git+https://github.com/future-js/handie.git",
     "directory": "packages/squirtle"
   },
   "scripts": {
-    "precopy": "rm -rf dist",
+    "precopy": "rimraf dist",
     "copy": "mkdir dist && cp -R src/* dist",
-    "prebuild": "npm run copy",
-    "build": "tsc && rm -rf dist/shims-*.d.ts",
+    "prebuild": "npm run copy && node build/gen",
+    "build": "tsc",
+    "postbuild": "rimraf tsconfig.json",
     "prerelease": "npm run build",
     "release": "npm publish --access=public"
   },
