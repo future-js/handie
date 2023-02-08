@@ -10,6 +10,7 @@ const DEPLOY_ROOT_PATH = resolvePath(__dirname, '../../.tmp/futurejs-handie');
 
 const pkgRootPath = `${ROOT_PATH}/packages`;
 const pkgSourceDirMap = {
+  core: 'runtime-core',
   'shell:vue': 'handie-vue',
   'shell:react': 'handie-react',
   'widget:vue': 'bulbasaur',

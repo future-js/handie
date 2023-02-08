@@ -1,6 +1,6 @@
 {
   "name": "@handie/runtime-core",
-  "version": "0.0.13-5",
+  "version": "0.0.13",
   "description": "Runtime foundation of Handie",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -24,13 +24,14 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/handiejs/handie.git",
+    "url": "git+https://github.com/future-js/handie.git",
     "directory": "packages/runtime-core"
   },
   "homepage": "https://handiejs.github.io",
   "scripts": {
-    "prebuild": "rimraf dist",
+    "prebuild": "rimraf dist && node build/gen",
     "build": "tsc",
+    "postbuild": "rimraf tsconfig.json",
     "prerelease": "npm run build",
     "release": "npm publish --access=public"
   },
