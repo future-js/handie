@@ -31,13 +31,6 @@
     "directory": "packages/handie-react"
   },
   "homepage": "https://handiejs.github.io",
-  "scripts": {
-    "prebuild": "rimraf dist && node build/gen",
-    "build": "tsc",
-    "postbuild": "rimraf tsconfig.json",
-    "prerelease": "npm run build",
-    "release": "npm publish"
-  },
   "peerDependencies": {
     "petals-ui": "~0.0.17",
     "react": "~17.0.2",

@@ -31,15 +31,6 @@
     "directory": "packages/bulbasaur"
   },
   "homepage": "https://handiejs.github.io",
-  "scripts": {
-    "precopy": "rimraf dist",
-    "copy": "mkdir dist && cp -R src/* dist",
-    "prebuild": "npm run copy && node build/gen",
-    "build": "tsc",
-    "postbuild": "node build && rimraf tsconfig.json && rm -rf */shims-*.d.ts",
-    "prerelease": "npm run build",
-    "release": "npm publish --access=public"
-  },
   "peerDependencies": {
     "handie-vue": "^0.0.0",
     "vue": "^2.6.0",

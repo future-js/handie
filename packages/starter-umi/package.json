@@ -35,15 +35,6 @@
     "url": "git+https://github.com/future-js/handie.git",
     "directory": "packages/starter-umi"
   },
-  "scripts": {
-    "precopy": "rimraf dist",
-    "copy": "mkdir dist && cp -R src/* dist",
-    "prebuild": "npm run copy && node build/gen",
-    "build": "tsc",
-    "postbuild": "rimraf tsconfig.json",
-    "prerelease": "npm run build",
-    "release": "npm publish"
-  },
   "dependencies": {
     "handie-react-starter-antd": "0.0.10",
     "path-to-regexp": "6.2.0"

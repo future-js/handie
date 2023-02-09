@@ -25,6 +25,54 @@ function getPkgPath(pkgName) {
   return `${pkgRootPath}/${pkgSourceDirMap[pkgName]}`;
 }
 
+function getPkgType(pkgName) {
+  if (['core', 'runtime-core'].includes(pkgName)) {
+    return 'core';
+  }
+
+  if (['shell:vue', 'handie-vue', 'widget:vue', 'bulbasaur'].includes(pkgName)) {
+    return 'vue';
+  }
+
+  if (
+    [
+      'shell:react',
+      'handie-react',
+      'widget:react',
+      'squirtle',
+      'starter:antd',
+      'starter-antd',
+      'starter:umi',
+      'starter-umi',
+    ].includes(pkgName)
+  ) {
+    return 'react';
+  }
+
+  return 'unknown';
+}
+
+function needCopySrc(pkgName) {
+  return [
+    'widget:vue',
+    'bulbasaur',
+    'widget:react',
+    'squirtle',
+    'starter:antd',
+    'starter-antd',
+    'starter:umi',
+    'starter-umi',
+  ].includes(pkgName);
+}
+
+function needCopySfc(pkgName) {
+  return ['widget:vue', 'bulbasaur'].includes(pkgName);
+}
+
+function skipLibCheck(pkgName) {
+  return ['starter:umi', 'starter-umi'].includes(pkgName);
+}
+
 module.exports = {
   ROOT_PATH,
   DEMO_ROOT_DIR,
@@ -32,4 +80,8 @@ module.exports = {
   REACT_APP_DIR,
   DEPLOY_ROOT_PATH,
   getPkgPath,
+  getPkgType,
+  needCopySrc,
+  needCopySfc,
+  skipLibCheck,
 };

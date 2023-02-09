@@ -31,15 +31,6 @@
     "url": "git+https://github.com/future-js/handie.git",
     "directory": "packages/squirtle"
   },
-  "scripts": {
-    "precopy": "rimraf dist",
-    "copy": "mkdir dist && cp -R src/* dist",
-    "prebuild": "npm run copy && node build/gen",
-    "build": "tsc",
-    "postbuild": "rimraf tsconfig.json",
-    "prerelease": "npm run build",
-    "release": "npm publish --access=public"
-  },
   "peerDependencies": {
     "handie-react": "~0.0.0",
     "react": "~17.0.2",
