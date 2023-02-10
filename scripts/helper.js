@@ -3,66 +3,27 @@
 const { resolve: resolvePath } = require('path');
 
 const ROOT_PATH = resolvePath(__dirname, '../');
+const CONFIG_ROOT_PATH = `${ROOT_PATH}/configs`;
 const DEMO_ROOT_DIR = 'demos';
 const VUE_APP_DIR = `${DEMO_ROOT_DIR}/vue`;
 const REACT_APP_DIR = `${DEMO_ROOT_DIR}/react`;
 const DEPLOY_ROOT_PATH = resolvePath(__dirname, '../../.tmp/futurejs-handie');
 
 const pkgRootPath = `${ROOT_PATH}/packages`;
-const pkgSourceDirMap = {
-  core: 'runtime-core',
-  'shell:vue': 'handie-vue',
-  'shell:react': 'handie-react',
-  'widget:vue': 'bulbasaur',
-  'widget:react': 'squirtle',
-  'starter:antd': 'starter-antd',
-  'starter:umi': 'starter-umi',
-};
+const pkgSourceMap = require(`${CONFIG_ROOT_PATH}/npm-package.json`);
 
-Object.values(pkgSourceDirMap).forEach(dirName => (pkgSourceDirMap[dirName] = dirName));
+Object.values(pkgSourceMap).forEach(config => (pkgSourceMap[config.dirName] = config));
 
 function getPkgPath(pkgName) {
-  return `${pkgRootPath}/${pkgSourceDirMap[pkgName]}`;
+  return `${pkgRootPath}/${pkgSourceMap[pkgName].dirName}`;
 }
 
 function getPkgType(pkgName) {
-  if (['core', 'runtime-core'].includes(pkgName)) {
-    return 'core';
-  }
-
-  if (['shell:vue', 'handie-vue', 'widget:vue', 'bulbasaur'].includes(pkgName)) {
-    return 'vue';
-  }
-
-  if (
-    [
-      'shell:react',
-      'handie-react',
-      'widget:react',
-      'squirtle',
-      'starter:antd',
-      'starter-antd',
-      'starter:umi',
-      'starter-umi',
-    ].includes(pkgName)
-  ) {
-    return 'react';
-  }
-
-  return 'unknown';
+  return pkgSourceMap[pkgName].pkgType || 'unknown';
 }
 
 function needCopySrc(pkgName) {
-  return [
-    'widget:vue',
-    'bulbasaur',
-    'widget:react',
-    'squirtle',
-    'starter:antd',
-    'starter-antd',
-    'starter:umi',
-    'starter-umi',
-  ].includes(pkgName);
+  return pkgSourceMap[pkgName].copySource;
 }
 
 function needCopySfc(pkgName) {
@@ -75,6 +36,7 @@ function skipLibCheck(pkgName) {
 
 module.exports = {
   ROOT_PATH,
+  CONFIG_ROOT_PATH,
   DEMO_ROOT_DIR,
   VUE_APP_DIR,
   REACT_APP_DIR,

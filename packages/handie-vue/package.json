@@ -31,13 +31,6 @@
     "directory": "packages/handie-vue"
   },
   "homepage": "https://handiejs.github.io",
-  "scripts": {
-    "prebuild": "rimraf dist && node build",
-    "build": "tsc",
-    "postbuild": "rimraf tsconfig.json",
-    "prerelease": "npm run build",
-    "release": "npm publish"
-  },
   "peerDependencies": {
     "vue": "^2.6.0",
     "vue-property-decorator": "^8.0.0",

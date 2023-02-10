@@ -28,13 +28,6 @@
     "directory": "packages/runtime-core"
   },
   "homepage": "https://handiejs.github.io",
-  "scripts": {
-    "prebuild": "rimraf dist && node build/gen",
-    "build": "tsc",
-    "postbuild": "rimraf tsconfig.json",
-    "prerelease": "npm run build",
-    "release": "npm publish --access=public"
-  },
   "peerDependencies": {
     "petals-ui": "~0.0.25"
   },

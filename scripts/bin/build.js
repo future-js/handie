@@ -5,6 +5,7 @@ const { existsSync, readdirSync, statSync, readFileSync, writeFileSync } = requi
 const { execSync } = require('child_process');
 
 const {
+  CONFIG_ROOT_PATH,
   REACT_APP_DIR,
   getPkgPath,
   getPkgType,
@@ -13,12 +14,19 @@ const {
   skipLibCheck,
 } = require('../helper');
 
+function buildApp(type) {
+  if (type === 'vue') {
+    execSync('vue-cli-service build', { stdio: 'inherit' });
+  } else if (type === 'react') {
+    execSync(`cross-env APP_ROOT=${REACT_APP_DIR} umi build`, { stdio: 'inherit' });
+  }
+}
+
 function copyTsconfig(pkgDirPath, pkgType, libCheckSkipped) {
   const configFilePath = resolve(pkgDirPath, './tsconfig.json');
+  const fileSuffix = ['react', 'vue'].includes(pkgType) ? '-' + pkgType : '';
   const tsconfig = JSON.parse(
-    readFileSync(resolve(__dirname, `../../configs/tsconfig-build-${pkgType}.json`), 'utf8')
-      .toString()
-      .trim(),
+    readFileSync(`${CONFIG_ROOT_PATH}/tsconfig-build${fileSuffix}.json`, 'utf8').toString().trim(),
   );
 
   if (libCheckSkipped) {
@@ -29,13 +37,12 @@ function copyTsconfig(pkgDirPath, pkgType, libCheckSkipped) {
   writeFileSync(configFilePath, JSON.stringify(tsconfig));
 }
 
-function replaceSfcScriptFileType(dir) {
-  readdirSync(resolve(__dirname, dir)).forEach(baseName => {
-    const filePath = `${dir}/${baseName}`;
-    const fullPath = resolve(__dirname, filePath);
+function replaceSfcScriptFileType(dirPath) {
+  readdirSync(dirPath).forEach(baseName => {
+    const fullPath = `${dirPath}/${baseName}`;
 
     if (statSync(fullPath).isDirectory()) {
-      replaceSfcScriptFileType(filePath);
+      replaceSfcScriptFileType(fullPath);
     } else if (fullPath.endsWith('.vue')) {
       writeFileSync(
         fullPath,
@@ -45,38 +52,35 @@ function replaceSfcScriptFileType(dir) {
   });
 }
 
+function buildPkg(pkgName) {
+  const pkgDirPath = getPkgPath(pkgName);
+
+  if (!existsSync(pkgDirPath)) {
+    return;
+  }
+
+  copyTsconfig(pkgDirPath, getPkgType(pkgName), skipLibCheck(pkgName));
+
+  const cmds = ['rimraf dist'];
+
+  if (needCopySrc(pkgName)) {
+    cmds.push('mkdir dist', 'cp -R src/* dist');
+  }
+
+  cmds.push('tsc', 'rimraf tsconfig.json');
+
+  execSync(cmds.join(' && '), { stdio: 'inherit', cwd: pkgDirPath });
+
+  if (needCopySfc(pkgName)) {
+    replaceSfcScriptFileType(`${pkgDirPath}/dist`);
+  }
+}
+
 function execute(subCmd = 'app', ...args) {
   if (subCmd === 'app') {
-    const type = args[0] || 'vue';
-
-    if (type === 'vue') {
-      execSync('vue-cli-service build', { stdio: 'inherit' });
-    } else if (type === 'react') {
-      execSync(`cross-env APP_ROOT=${REACT_APP_DIR} umi build`, { stdio: 'inherit' });
-    }
+    buildApp(args[0] || 'vue');
   } else if (subCmd === 'pkg') {
-    const pkgName = args[0];
-    const pkgDirPath = getPkgPath(pkgName);
-
-    if (!existsSync(pkgDirPath)) {
-      return;
-    }
-
-    copyTsconfig(pkgDirPath, getPkgType(pkgName), skipLibCheck(pkgName));
-
-    const cmds = ['rimraf dist'];
-
-    if (needCopySrc(pkgName)) {
-      cmds.push('mkdir dist', 'cp -R src/* dist');
-    }
-
-    cmds.push('tsc', 'rimraf tsconfig.json');
-
-    execSync(cmds.join(' && '), { stdio: 'inherit', cwd: pkgDirPath });
-
-    if (needCopySfc(pkgName)) {
-      replaceSfcScriptFileType(`${pkgDirPath}/dist`);
-    }
+    buildPkg(args[0]);
   }
 }
 

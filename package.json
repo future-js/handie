@@ -24,9 +24,7 @@
     "deploy": "node ./scripts/bin release app",
     "handie:patch-version": "cd packages/handie-vue && npm version patch && cd ../../",
     "widget:patch-version": "cd packages/bulbasaur && npm version patch && cd ../../",
-    "core:build": "cd packages/runtime-core && npm run build",
     "core:patch-version": "cd packages/runtime-core && npm version patch && cd ../../",
-    "core:release": "cd packages/runtime-core && npm run release",
     "test": "cross-env APP_ROOT=demos/react umi-test",
     "test:coverage": "cross-env APP_ROOT=demos/react umi-test --coverage"
   },

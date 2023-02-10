@@ -4,6 +4,7 @@ const { existsSync } = require('fs');
 const { execSync } = require('child_process');
 
 const { ROOT_PATH, DEPLOY_ROOT_PATH, getPkgPath } = require('../helper');
+const { execute: toBuild } = require('./build');
 
 const previewDirPath = `${DEPLOY_ROOT_PATH}/preview`;
 const appDirPath = `${previewDirPath}/vue`;
@@ -38,7 +39,12 @@ function publishPackage(pkgName) {
   const pkgDirPath = getPkgPath(pkgName);
 
   if (existsSync(pkgDirPath)) {
-    execSync('npm run release', { stdio: 'inherit', cwd: pkgDirPath });
+    const { name } = require(`${pkgDirPath}/package.json`);
+
+    execSync(
+      `npm publish${name.startsWith('@') && name.startsWith('@handie') ? ' --access=public' : ''}`,
+      { stdio: 'inherit', cwd: pkgDirPath },
+    );
   }
 }
 
@@ -46,6 +52,7 @@ function execute(subCmd = 'app', ...args) {
   if (subCmd === 'app') {
     deploySite();
   } else if (subCmd === 'pkg') {
+    toBuild(subCmd, args[0]);
     publishPackage(args[0]);
   }
 }

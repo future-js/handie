@@ -1,0 +1,34 @@
+{
+  "core": {
+    "dirName": "runtime-core",
+    "pkgType": "core"
+  },
+  "shell:vue": {
+    "dirName": "handie-vue",
+    "pkgType": "vue"
+  },
+  "shell:react": {
+    "dirName": "handie-react",
+    "pkgType": "react"
+  },
+  "widget:vue": {
+    "dirName": "bulbasaur",
+    "pkgType": "vue",
+    "copySource": true
+  },
+  "widget:react": {
+    "dirName": "squirtle",
+    "pkgType": "react",
+    "copySource": true
+  },
+  "starter:antd": {
+    "dirName": "starter-antd",
+    "pkgType": "react",
+    "copySource": true
+  },
+  "starter:umi": {
+    "dirName": "starter-umi",
+    "pkgType": "react",
+    "copySource": true
+  }
+}
